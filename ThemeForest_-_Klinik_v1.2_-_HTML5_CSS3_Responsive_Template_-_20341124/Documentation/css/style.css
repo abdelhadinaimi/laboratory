@@ -1,0 +1,353 @@
+@font-face {
+    font-family: "Open Sans";
+    src: url("OpenSans-Regular.ttf");
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: #f1f1f1;
+    font-family: 'Open Sans', sans-serif;
+    line-height: 2;
+    font-size: 0;
+    text-rendering: optimizeLegibility;
+}
+
+table {
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+
+a {
+    outline: none;
+    color: #00abef;
+    background-color: transparent;
+}
+
+a:hover,
+a:active {
+    border: 0;
+    outline: 0;
+}
+
+ul, ol {
+    padding: 0 0 0 20px;
+}
+
+ol li {
+    padding: 0 0 3px 10px;
+}
+
+ul li, ol li {
+    font-size: 14px;
+    letter-spacing: .5px;
+}
+
+h1 {
+    font-size: 28px;
+}
+
+h2 {
+    font-size: 24px;
+}
+
+h3 {
+    font-size: 20px;
+}
+
+h4 {
+    font-size: 18px;
+    margin: 5px 0 5px 0;
+}
+
+h5,
+h6 {
+    font-size: 16px;
+    margin: 5px 0 5px 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: 300;
+    color: #333;
+}
+
+p {
+    font-size: 14px;
+    line-height: 28px;
+    letter-spacing: .5px;
+    text-align: justify;
+    color: #555;
+    margin: 0 0 10px 0;
+}
+
+b {
+    color: #333;
+    font-weight: 700;
+}
+
+pre {
+    padding: 5px 0 5px 0 !important;
+}
+
+pre.prettyprint {
+    width: 600px;
+}
+
+input,
+textarea {
+    font-family: 'Open Sans', sans-serif;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    background-color: transparent;
+    border: 0;
+}
+
+input:focus,
+textarea:focus {
+    border: 0;
+    outline: 0;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+textarea {
+    resize: none;
+}
+
+button {
+    background-color: transparent;
+    border: 0;
+}
+
+button:hover,
+button:active,
+button:focus {
+    border: 0;
+    outline: 0;
+}
+
+select:focus {
+    border: none;
+    outline: none;
+}
+
+
+/*----------------- Commom Classes------------------------*/
+
+.tbl {
+    display: table;
+    width: 100%;
+}
+
+.tbl-row {
+    display: table-row;
+}
+
+.tbl-cell {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.div-center {
+    position: relative;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.background {
+    background: #fff;
+}
+
+#hdr {
+    min-width: 980px;
+    width: 100%;
+    background: #fff;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+#hdr img {
+    height: 40px;
+}
+
+#hdr h1 {
+    float: right;
+    font-size: 20px;
+    margin: 0;
+    color: #777;
+    letter-spacing: .5px;
+}
+
+.hdr-inner {
+    width: 100%;
+    margin: 0 auto;
+}
+
+.bdy .tbl-cell {
+    vertical-align: top;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.menu-container {
+    width: 22%;
+    min-width: 220px;
+    max-width: 250px;
+    background: #12565d;
+}
+
+#menu {
+    display: inline-block;
+    padding: 10px;
+}
+
+#menu li {
+    list-style: none;
+    border-bottom: 1px solid #eee;
+}
+
+#menu li:nth-last-child(1) {
+    border-bottom: 0;
+}
+
+#menu a {
+    display: block;
+    font-size: 14px;
+    color: #fff;
+    padding: 10px 5px 10px 5px;
+    text-decoration: none;
+}
+
+#menu a .fa {
+    position: relative;
+    width: 20px;
+    height: 20px;
+    color: #ddd;
+    line-height: 20px;
+    font-size: 18px;
+    text-align: center;
+    margin: 0 10px 0 0;
+    border-radius: 50%;
+}
+
+.color-blue {
+    color: #32c1ce;
+}
+
+.color-red {
+    color: #cc5151;
+}
+
+.container {}
+
+.content {
+    padding: 20px 20px 500px 20px;
+    background: #fcfcfc;
+    border: 1px solid #eee;
+}
+
+.main-content h2 {
+    padding: 0 0 5px 0;
+    margin: 0 0 10px 0;
+    border-bottom: 1px solid #ccc;
+}
+
+.main-content h2 .fa {
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    color: #fff;
+    font-size: 20px;
+    text-align: center;
+    border-radius: 50%;
+    margin: 0 10px 0 0;
+    background: #32c1ce;
+}
+
+.content-container {
+    padding: 20px;
+}
+
+.content-container ul {
+    padding: 0 40px;
+}
+
+#welcome h2 .fa {}
+
+#generalinfo h2 .fa {}
+
+#referencefile h2 .fa {}
+
+#customization {
+    padding: 10px 0 0 0;
+}
+
+#admin-panel h3 {
+    font-size: 16px;
+    color: #333;
+    font-weight: 600;
+    border-bottom: 1px solid #ccc;
+}
+
+#admin-panel h3 .fa {
+    color: #888;
+    padding: 0 10px 0 0;
+}
+
+#file {
+    padding: 10px 0 20px 0;
+}
+
+#file h2 .fa {}
+
+#form h2 .fa {}
+
+#email h2 .fa {}
+
+#upload h2 .fa {}
+
+#validation h2 .fa {}
+
+#help h2 .fa {}
+
+.direcotry {
+    padding: 10px;
+}
+
+.direcotry ul li {
+    list-style: none;
+}
+
+.direcotry ul li .fa {
+    color: #888;
+    padding: 0 5px 0 0;
+}
+
+.direcotry ul li span {
+    font-size: 12px;
+    color: #00abef;
+}
+
+.strucutre-image img {
+    width: 100%;
+    height: auto;
+}

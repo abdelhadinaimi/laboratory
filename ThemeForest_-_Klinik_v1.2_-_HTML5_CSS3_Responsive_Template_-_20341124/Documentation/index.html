@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Klinikal Theme Documentation</title>
+    <link rel="icon" type="image/x-icon" href="images/favicon.png">
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600" rel="stylesheet">
+    <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/prettify.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div id="hdr">
+        <div class="hdr-inner">
+            <img src="images/logo.png" alt="">
+            <h1>Documentation for Klinik Template</h1>
+        </div>
+    </div>
+    <div class="div-center bdy">
+        <div class="tbl">
+            <div class="tbl-row">
+                <div class="tbl-cell menu-container">
+                    <ul id="menu">
+                        <li><a href="#welcome" id="menu-welcome"><i class="fa fa-info"></i>Welcome</a></li>
+                        <li><a href="#generalinfo" id="menu-generalinfo"><i class="fa fa-play"></i>General Information</a></li>
+                        <li><a href="#file" id="menu-File"><i class="fa fa-file-text-o"></i>File Structure</a></li>
+                        <li><a href="#referencefile" id="menu-referencefile"><i class="fa fa-list-ul"></i>Reference File</a></li>
+                        <li><a href="#pagestructure" id="menu-pagestructure"><i class="fa fa-sitemap"></i>Pages Nomenclature</a></li>
+                        <li><a href="#customization" id="menu-customization"><i class="fa fa-gear"></i>Customization</a></li>
+                        <li><a href="#upload" id="menu-upload"><i class="fa fa-upload"></i>Uploading theme</a></li>
+                        <li><a href="#help" id="menu-help"><i class="fa fa-question-circle-o"></i>Help &#38; Support</a></li>
+                    </ul>
+                </div>
+                <div class="tbl-cell container">
+                    <div class="content">
+                        <div id="welcome" class="main-content">
+                            <h2><i class="fa fa-info"></i>Welcome</h2>
+                            <div class="content-container">
+                                <p>
+                                    Thank you for purchasing our Klink template. If you have any questions that are beyond the scope of this help file, please feel free to contact us here <a href="http://support.pepdev.com/" target="_blank">pepdev</a> or mail us at <b>support@pepdev.com</b>.
+                                </p>
+                                <p>
+                                    <b>Klinik</b> is a HTML5 &#38; CSS3 responsive template created for clinic and hospital but also can be used for generalised website.Klinik is best suited for Hospital like Doctor Portfolio, Clinic, Hospital and Dental Clinic etc. It’s fully responsive design and clean, was tested on all major handheld devices. It is a fully responsive, feature rich and beautifully designed to host a website or create online identity. We have created 40+ pages and 90+ components or shortcodes for this template and much more in future. It supports bootstrap framework and intergrated font awesome icon set so easy to customise and develop your own styles. Klinik is a retina ready so it works nicely on smartphones, tablet PCs and desktops. Easily customisable, 24/7 support time.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div id="generalinfo" class="main-content">
+                            <h2><i class="fa fa-play"></i>General Information</h2>
+                            <div class="content-container">
+                                <h4><b>Software requirements</b></h4>
+                                <ul>
+                                    <li>
+                                        <b>Sublime Text 3</b> used to edit the .HTML, .JS, .PHP, .CSS and .SCSS files.
+                                    </li>
+                                    <li>
+                                        <b>Koala</b> used as precompiler for SCSS to CSS convert.
+                                    </li>
+                                </ul>
+                                <p>The following scheme displays the theme files structure.</p>
+                                <div class="direcotry">
+                                    <ul>
+                                        <li><i class="fa fa-folder"></i>Documentation - <span>contains documentation on template cusotmisation and support</span></li>
+                                        <li>
+                                            <i class="fa fa-folder"></i>Template - <span>contains the main files of the template. which will be uploaded on server.</span>
+                                            <ul>
+                                                <li><i class="fa fa-file"></i>CSS - <span>contains all Stylesheets used for UI.</span></li>
+                                                <li><i class="fa fa-file"></i>Font Awesome - <span>contains Font awesome files.</span></li>
+                                                <li><i class="fa fa-file"></i>Fonts - <span>contains Bootstrap icon files.</span></li>
+                                                <li><i class="fa fa-file"></i>Images - <span>contains all the images.</span></li>
+                                                <li><i class="fa fa-file"></i>Inc - <span>contains PHP files ofr Form.</span></li>
+                                                <li><i class="fa fa-file"></i>Js - <span>contains all javascript library or plugin files.</span></li>
+                                                <li><i class="fa fa-file"></i>SASS - <span>contains all SCSS and variable files.</span></li>
+                                                <li><i class="fa fa-file"></i>Upload - <span>contains all uploaded files.</span></li>
+                                                <li><i class="fa fa-file-code-o"></i>index.html - <span>contains all UI code.</span></li>
+                                                <li><i class="fa fa-file-code-o"></i>+ More.html - <span>contains all UI code.</span></li>
+                                            </ul>
+                                        </li>
+                                        <li><i class="fa fa-folder"></i>Screenshot - <span>Contains screenshot of template.</span></li>
+                                        <li>
+                                            <i class="fa fa-folder"></i>Sources - <span>contains source files.</span>
+                                            <ul>
+                                                <li><i class="fa fa-folder"></i>sass - <span>contains .scss files used in template.</span></li>
+                                                 <li><i class="fa fa-folder"></i>Multiple Color Stylesheet - <span>contains .css files used in template.</span></li>
+                                            </ul>
+                                        </li>
+                                        <li><i class="fa fa-file-text"></i>readme.txt - <span>contains the information about theme</span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="file" class="main-content">
+                            <h2><i class="fa fa-file-text-o"></i>File Strucutre</h2>
+                            <div class="content-container">
+                                <h4><b>HTML Structure</b></h4>
+                                <p>
+                                    This template has a responsive layout. It has a block structure, one block on grey background and the other on an image (pattern) background.
+                                </p>
+                                <div class="strucutre-image">
+                                    <a href="images/well-documented.jpg"><img src="images/well-documented.jpg" alt=""></a>
+                                </div>
+                                <h4><b>CSS Structure</b></h4>
+                                <p> If any styles need to be changed just replace it with the wanted styles in the respective block in your colored style-color.css.</p>
+                                <div class="strucutre-image">
+                                    <a href="images/well-documented-css.jpg"><img src="images/well-documented-css.jpg" alt=""></a>
+                                </div>
+                                <h4><b>Js Strucutre</b></h4>
+                                <p>
+                                    This template has dynamic animations, which have been implemented in JavaScript. The JS file is custom.js
+                                </p>
+                                <div class="strucutre-image">
+                                    <a href="images/well-documented-js.jpg"><img src="images/well-documented-js.jpg" alt=""></a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div id="referencefile" class="main-content">
+                            <h2><i class="fa fa-list-ul"></i>Reference File</h2>
+                            <div class="content-container">
+                                <p>
+                                    In this theme we have used google font open+sans. You can learn more on using Google Web Fonts by checking the tutorial on how to work with
+                                    <a href="https://developers.google.com/fonts/docs/getting_started" target="_blank">Google web Fonts.</a>
+                                </p>
+                                <h4><b>JQuery Plugin: </b></h4>
+                                <p>In this theme jQuery libraries and plugins have been used for dynamic animation.</p>
+                                <ul>
+                                    <li>jQUery (js/jquery-2.1.4.min.js)</li>
+                                    <li>Bootstrap (js/bootstrap.min.js)</li>
+                                    <li>Bootstrap Datetimepicker (js/bootstrap-datetimepicker.min.js)</li>
+                                    <li>Metarial Theme (js/material.min.js)</li>
+                                    <li>Fullcalendar (js/fullcalendar.min.js)</li>
+                                    <li>Counterup (js/jquery.counterup.js)</li>
+                                    <li>Flexslider (js/jquery.flexslider.min.js)</li>
+                                    <li>Magnific Popup (js/jquery.magnific-popup.min.js)</li>
+                                    <li>Waypoint (js/jquery.waypoints.min.js)</li>
+                                    <li>Scroll to Fixed (js/jquery-scrolltofixed-min.js)</li>
+                                    <li>Momento (js/moment.min.js)</li>
+                                    <li>Owl Carousel (js/owl.carousel.min.js)</li>
+                                </ul>
+                                <h4><b>Stylesheet (CSS) Reference File</b></h4>
+                                <ul>
+                                    <li>Animate (css/animate.css)</li>
+                                    <li>Bootstrap (css/bootstrap.min.css)</li>
+                                    <li>Bootstrapdatetimepicker (css/bootstrap-datetimepicker.min.css)</li>
+                                    <li>Material Theme (css/material.min.css)</li>
+                                    <li>Material Select list (css/mdl-selectfield.min.min.css)</li>
+                                    <li>Fullcalendar (css/fullcalendar.min.css)</li>
+                                    <li>Flexslider (css/flexslider.css)</li>
+                                    <li>Magnific Popup (css/magnific-popup.css)</li>
+                                    <li>Owl Carousel (css/owl.carousel.min.css)</li>
+                                    <li>Owl Carousel theme (css/owl.theme.default.css)</li>
+                                </ul>
+                                <h4><b>Font awesome Icon</b></h4>
+                                <p>
+                                    Font Awesome icons have been used in this theme. Learn more about font awesome icon from <a href="http://fontawesome.io/examples/" target="_blank">font awesome website</a>. In a single collection, Font Awesome is a pictographic language of web-related actions. Easily style icon color, size, shadow, and anything that's possible with CSS. Font Awesome icons are vectors, which mean they're gorgeous on high-resolution displays.
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div id="pagestructure" class="main-content">
+                            <h2><i class="fa fa-sitemap"></i>Pages Nomenclature</h2>
+                            <div class="content-container">
+                                <p>
+                                    We have designed 40+ pages for klinik template. You can easily use it and customise it as you want. We have used bootstrap layout structure. See below for their file nomenclature.
+                                </p>
+                                <ol>
+                                    <li>Home Style 1 - <span class="color-red"><i class="fa fa-html5"></i> index.html</span></li>
+                                    <li>Home Style 2 - <span class="color-red"><i class="fa fa-html5"></i> index-1.html</span></li>
+                                    <li>Home Style 3 - <span class="color-red"><i class="fa fa-html5"></i> index-2.html</span></li>
+                                    <li>Home Style 4 - <span class="color-red"><i class="fa fa-html5"></i> index-3.html</span></li>
+                                    <li>Home Style 5 - <span class="color-red"><i class="fa fa-html5"></i> index-4.html</span></li>
+                                    <li>Home Style 6 - <span class="color-red"><i class="fa fa-html5"></i> index-5.html</span></li>
+                                    <li>Services Style 1 - <span class="color-red"><i class="fa fa-html5"></i> service-1.html</li>
+                                    <li>Services Style 1 with Right Sidebar - <span class="color-red"><i class="fa fa-html5"></i> service-4.html</span></li>
+                                    <li>Services Style 1 with Left Sidebar - <span class="color-red"><i class="fa fa-html5"></i> service-7.html</span></li>
+                                    <li>Services Style 2 - <span class="color-red"><i class="fa fa-html5"></i> service-2.html</span></li>
+                                    <li>Services Style 2 with Right Sidebar - <span class="color-red"><i class="fa fa-html5"></i> service-5.html</span></li>
+                                    <li>Services Style 3 - <span class="color-red"><i class="fa fa-html5"></i> service-3.html</span></li>
+                                    <li>Services Style 3 with Right Sidebar - <span class="color-red"><i class="fa fa-html5"></i> service-6.html</span></li>
+                                    <li>Services Style 3 with Left Sidebar - <span class="color-red"><i class="fa fa-html5"></i> service-8.html</span></li>
+                                    <li>Services Style 4 - <span class="color-red"><i class="fa fa-html5"></i> service-9.html</span></li>
+                                    <li>Services Style 4 with Right Sidebar - <span class="color-red"><i class="fa fa-html5"></i> service-10.html</span></li>
+                                    <li>Single Service Page - <span class="color-red"><i class="fa fa-html5"></i> service.html</span></li>
+                                    <li>Doctors Style 1 - <span class="color-red"><i class="fa fa-html5"></i> doctors-1.html</span></li>
+                                    <li>Doctors Style 1 with Right Sidebar - <span class="color-red"><i class="fa fa-html5"></i> doctors-4.html</span></li>
+                                    <li>Doctors Style 1 with Left Sidebar - <span class="color-red"><i class="fa fa-html5"></i> doctors-7.html</span></li>
+                                    <li>Doctors Style 2 - <span class="color-red"><i class="fa fa-html5"></i> doctors-2.html</span></li>
+                                    <li>Doctors Style 2 with Right Sidebar - <span class="color-red"><i class="fa fa-html5"></i> doctors-5.html</span></li>
+                                    <li>Doctors Style 3 - <span class="color-red"><i class="fa fa-html5"></i> doctors-3.html</span></li>
+                                    <li>Doctors Style 3 with Right Sidebar - <span class="color-red"><i class="fa fa-html5"></i> doctors-6.html</span></li>
+                                    <li>Doctors Style 3 with left Sidebar - <span class="color-red"><i class="fa fa-html5"></i> doctors-8.html</span></li>
+                                    <li>Doctor Details Style 1 - <span class="color-red"><i class="fa fa-html5"></i> doctor-1.html</span></li>
+                                    <li>Doctor Details Style 2 - <span class="color-red"><i class="fa fa-html5"></i> doctor-2.html</span></li>
+                                    <li>Blog Style 1 - <span class="color-red"><i class="fa fa-html5"></i> blogs-1.html</span></li>
+                                    <li>Blog Style 1 with Right Sidebar - <span class="color-red"><i class="fa fa-html5"></i> blogs-3.html</span></li>
+                                    <li>Blog Style 1 with Left Sidebar - <span class="color-red"><i class="fa fa-html5"></i> blogs-5.html</span></li>
+                                    <li>Blog Style 2 - <span class="color-red"><i class="fa fa-html5"></i> blogs-2.html</span></li>
+                                    <li>Blog Style 2 with Right Sidebar - <span class="color-red"><i class="fa fa-html5"></i> blogs-4.html</span></li>
+                                    <li>Blog Style 3 with Right Sidebar - <span class="color-red"><i class="fa fa-html5"></i> blogs-6.html</span></li>
+                                    <li>Blog Style 3 with left Sidebar - <span class="color-red"><i class="fa fa-html5"></i> blogs-7.html</span></li>
+                                    <li>Single Blog Style 1 - <span class="color-red"><i class="fa fa-html5"></i> blog-1.html</span></li>
+                                    <li>Single Blog Style 2 - <span class="color-red"><i class="fa fa-html5"></i> blog-2.html</span></li>
+                                    <li>Department Style 1 - <span class="color-red"><i class="fa fa-html5"></i> departments-1.html</span></li>
+                                    <li>Department Style 2 - <span class="color-red"><i class="fa fa-html5"></i> departments-2.html</span></li>
+                                    <li>Invoice Style - <span class="color-red"><i class="fa fa-html5"></i> invoice.html</span></li>
+                                    <li>Event Style 1 - <span class="color-red"><i class="fa fa-html5"></i> event-1.html</span></li>
+                                    <li>Event Style 2 - <span class="color-red"><i class="fa fa-html5"></i> event-2.html</span></li>
+                                    <li>Event Style 3 - <span class="color-red"><i class="fa fa-html5"></i> event-3.html</span></li>
+                                    <li>About Us Page - <span class="color-red"><i class="fa fa-html5"></i> about.html</span></li>
+                                    <li>Contact Us Page - <span class="color-red"><i class="fa fa-html5"></i> contact.html</span></li>
+                                    <li>Gallery Page 1 - <span class="color-red"><i class="fa fa-html5"></i> gallery.html</span></li>
+                                    <li>Gallery Page 2 - <span class="color-red"><i class="fa fa-html5"></i> gallery-1.html</span></li>
+                                    <li>Login Page - <span class="color-red"><i class="fa fa-html5"></i> login.html</span></li>
+                                    <li>Register Page - <span class="color-red"><i class="fa fa-html5"></i> register.html</span></li>
+                                    <li>Forgot Page - <span class="color-red"><i class="fa fa-html5"></i> forgot.html</span></li>
+                                    <li>MyAppointment Page - <span class="color-red"><i class="fa fa-html5"></i> myappointment.html</span></li>
+                                    <li>MyRequest Page - <span class="color-red"><i class="fa fa-html5"></i> myrequest.html</span></li>
+                                    <li>MyProfile Page - <span class="color-red"><i class="fa fa-html5"></i> myprofile.html</span></li>
+                                    <li>404 Page not Found Page - <span class="color-red"><i class="fa fa-html5"></i> 404.html</span></li>
+                                    <li>503 Temporarily Unavailable Page - <span class="color-red"><i class="fa fa-html5"></i> 503.html</span></li>
+                                    <li>FAQ Page - <span class="color-red"><i class="fa fa-html5"></i> faq.html</span></li>
+                                    <li>Privacy Policy Page - <span class="color-red"><i class="fa fa-html5"></i> privacy-policy.html</span></li>
+                                    <li>Terms &#38; Conditions Page - <span class="color-red"><i class="fa fa-html5"></i> terms-conditions.html</span></li>
+                                </ol>
+                            </div>
+                        </div>
+                        
+                        <div id="customization" class="main-content">
+                            <h2><i class="fa fa-gear"></i>Customization</h2>
+                            <div class="content-container">
+                                <p>
+                                    It is HTML5, CSS3 and Js based template so you cna edit it yourself.
+                                </p>
+                                <p>
+                                    This template use bootstrap grid to make it very easy for anybody to understand the grid system and we have created other grid for layout. See below for more info
+                                </p>
+                               <h3>Classes of Sections</h3>
+                               <p><b>.layer-stretch and .layer-wrapper</b> class is used to creating the out layer of section</p>
+    <pre class="prettyprint">
+        &lt;div class="layer-stretch"&gt;
+            &lt;div class="layer-wrapper"&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    </pre>
+                              <div class="strucutre-image">
+                                  <img src="images/colored-background.jpg" alt="">
+                              </div>
+                               <p><b>.layer-ttl</b> class is used to creating the mail title of section</p>
+    <pre class="prettyprint">
+        &lt;div class="layer-ttl"&gt;
+            &lt;h3&gt; Section Title &lt;/h&gt;
+        &lt;/div&gt;
+    </pre>                    
+                              <div class="strucutre-image">
+                                  <img src="images/layer-ttl.jpg" alt="">
+                              </div>
+                               <p><b>.layer-container</b> class is used to creating container for section content</p>
+    <pre class="prettyprint">
+        &lt;div class="layer-container"&gt;
+            Secton content element
+        &lt;/div&gt;
+    </pre>
+                                <p><b>.colored-background</b> class is used to give background color of section</p>
+    <pre class="prettyprint">
+        &lt;div class="colored-background"&gt;
+            &lt;div class="layer-stretch"&gt;
+                &lt;div class="layer-wrapper"&gt;
+                    &lt;div class="layer-ttl"&gt;
+                        &lt;h3&gt; Section Title &lt;/h&gt;
+                    &lt;/div&gt;
+                    &lt;div class="layer-container"&gt;
+                        Secton content element
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    </pre>          
+                              <div class="strucutre-image">
+                                  <img src="images/colored-background.jpg" alt="">
+                              </div>    
+                           <p><b>.hm-parallax</b> class is used to creating backgrund parallax effect for section</p>
+    <pre class="prettyprint">
+        &lt;div class="hm-parallax hm-service-picture"&gt;
+            &lt;div class="layer-stretch"&gt;
+                &lt;div class="layer-wrapper"&gt;
+                    &lt;div class="layer-ttl"&gt;
+                        &lt;h3&gt; Section Title &lt;/h3&gt;
+                    &lt;/div&gt;
+                    &lt;div class="layer-container"&gt;
+                        Secton content element
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    </pre>   
+                              <div class="strucutre-image">
+                                  <img src="images/parallax.jpg" alt="">
+                              </div>
+                            <p><b>Theme block</b>, This is used to create card for this template</p>
+    <pre class="prettyprint">
+        &lt;div class="theme-block"&gt;
+            &lt;div class="theme-block-inner theme-block-hover"&gt;
+				&lt;div class="theme-block-picture"&gt;
+				    &lt;img src="uploads/495x420.jpg" alt=""&gt;
+                    &lt;/div>
+				&lt;div class="theme-block-data"&gt;
+				    &lt;h4&gt;
+                       &lt;a href="#"&gt;Card Title&lt;/a&gt;
+                    &lt;/h4&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    </pre> 
+                              <div class="strucutre-image">
+                                  <img src="images/theme-block.jpg" alt="">
+                              </div>
+                           <p>Metrial Theme Card</p>
+    <pre class="prettyprint">
+        &lt;div class="theme-material-card"&gt;
+            content element
+        &lt;/div&gt;
+    </pre>                   
+                              <div class="strucutre-image">
+                                  <img src="images/material-themecard.jpg" alt="">
+                              </div>
+                           <p>Image and Images on hover</p>
+    <pre class="prettyprint">
+       &lt;img src="image-link" class="theme-img" alt=""&gt;
+       &lt;img src="image-link" class="theme-img theme-img-scale" alt=""&gt;
+       &lt;img src="image-link" class="theme-img theme-img-scalerotate" alt=""&gt;
+    </pre>                       
+                              <div class="strucutre-image">
+                                  <img src="images/images.jpg" alt="">
+                              </div>
+                           <p>We have created much more components for this template. For more info about componenents, please visit component page</p>       
+                            </div>
+                        </div>
+
+                        <div id="upload" class="main-content">
+                            <h2><i class="fa fa-upload"></i>Upload Document</h2>
+                            <div class="content-container">
+                                <h4>Unzip package in an empty directory and you will see template folder. In template folder change content according to yours then upload this folder on server root directory.</h4>
+                            </div>
+                        </div>
+
+                        <div id="help" class="main-content">
+                            <h2><i class="fa fa-question-circle-o"></i>Help &#38; Support</h2>
+                            <div class="content-container">
+                                <p>24/7 Support, Just mail us any issue we will be happpy to help.</p>
+                                <p>For any issue create ticket by clicking here <a href="http://support.pepdev.com/" target="_blank">support</a></p>
+                                <p>Or you can email us.</p>
+                                <p>Email - <b>support@pepdev.com</b></p>
+                                <p>
+                                    Thank you for purchasing Klinik template . If you have any question that is beyond the scope of this documentation, Please feel free to create a support ticket using Our Support Site or send an email to support@pepdev.com.
+                                </p>
+                            </div>
+                        </div>
+                        <h2 style="display: block;text-align: right;">Manasa theme</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/prettify/prettify.js"></script>
+    <script src="js/jquery-scrolltofixed-min.js"></script>
+    <script src="js/jquery.scrollTo.min.js"></script>
+    <script src="js/custom.js"></script>
+</body>
+
+</html>
