@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- Site Title -->
+	<title>Klinik - Invoice page</title>
+	<!-- Favicon Icon -->
+	<link rel="icon" type="image/x-icon" href="images/favicon.png" />
+	<!-- Font Awesoeme Stylesheet CSS -->
+	<link rel="stylesheet" href="font-awesome/css/font-awesome.min.css" />
+	<!-- Google web Font -->
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Montserrat:400">
+	<!-- Bootstrap core CSS -->
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<!-- Material Design Lite Stylesheet CSS -->
+	<link rel="stylesheet" href="css/material.min.css" />
+	<!-- Custom Main Stylesheet CSS -->
+	<link rel="stylesheet" href="css/invoice.css">
+</head>
+<body>
+	<div class="container">
+		<table class="invoice-hdr">
+			<tr>
+				<td>
+					<p>Street Name, City Country</p>
+					<p>youremail@address.com</p>
+					<p>+0 12 333 4444</p>
+				</td>
+				<td class="invoice-logo">
+					<img src="images/logo.png" alt="">
+				</td>
+			</tr>
+		</table>
+		<div class="invoice-bdy">
+			<div class="row">
+				<div class="col-6">
+					<table class="invoice-info">
+						<tr>
+							<td class="dark">Client Name</td>
+							<td><input type="text"></td>
+						</tr>
+						<tr>
+							<td class="dark">E-Mail Address</td>
+							<td><input type="text"></td>
+						</tr>
+						<tr>
+							<td class="dark">Mobile Number</td>
+							<td><input type="text"></td>
+						</tr>
+					</table>
+				</div>
+				<div class="col-6">
+					<table class="pull-right invoice-info">
+						<tr>
+							<td class="dark">Invoice Id</td>
+							<td><input type="text"></td>
+						</tr>
+						<tr>
+							<td class="dark">Date</td>
+							<td><input type="text"></td>
+						</tr>
+						<tr>
+							<td class="dark">Payment Method</td>
+							<td><input type="text"></td>
+						</tr>
+					</table>
+				</div>
+			</div>
+			<div class="items">
+				<table>
+					<tr>
+						<th>Item Name</th>
+						<th>Description</th>
+						<th>Unit Cost</th>
+						<th>Quantity</th>
+						<th>Tax( in % )</th>
+						<th>Tax( in $ )</th>
+						<th>Price( in $ )</th>
+					</tr>
+					<tr class="item-row">
+						<td>
+							<textarea class="font-14" placeholder="Item Name"></textarea>
+							<a class="item-delete">x</a>
+						</td>
+						<td>
+							<textarea class="item-description" rows="3" placeholder="Item Description"></textarea>
+						</td>
+						<td class="item-width">
+							<textarea class="item-cost"></textarea>
+						</td>
+						<td class="item-width">
+							<textarea class="item-quantity"></textarea>
+						</td>
+						<td class="item-width">
+							<textarea class="item-tax"></textarea>
+						</td>
+						<td class="item-width item-tax-price"></td>
+						<td class="item-width item-total-price"></td>
+					</tr>
+					<tr class="item-hide">
+						<td colspan="7">
+							<a class="item-add">Add Item</a>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="3" class="blank"></td>
+						<td colspan="2" class="text-right">Sub Total( in $ )</td>
+						<td colspan="2">
+							<span id="subtotal"></span>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="3" class="blank"></td>
+						<td colspan="2" class="text-right">Tax( in $ )</td>
+						<td colspan="2">
+							<span id="tax"></span>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="3" class="blank"></td>
+						<td colspan="2" class="text-right">Discount( in $ )</td>
+						<td colspan="2">
+							<input type="text" id="discount" placeholder="">
+						</td>
+					</tr>
+					<tr>
+						<td colspan="3" class="blank"></td>
+						<td colspan="2" class="text-right">Total Amount( in $ )</td>
+						<td colspan="2">
+							<span id="total"></span>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="3" class="blank"></td>
+						<td colspan="2" class="text-right">Amount Paid( in $ )</td>
+						<td colspan="2">
+							<input type="text" id="paid" placeholder="">
+						</td>
+					</tr>
+					<tr>
+						<td colspan="3" class="blank"></td>
+						<td colspan="2" class="text-right">Amount Due( in $ )</td>
+						<td colspan="2">
+							<span id="due"></span>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+		<div class="invoice-ftr">
+			<p>Note</p>
+			<textarea placeholder="Enter Comment or Note"></textarea>
+		</div>
+	</div>
+
+	<!-- Jquery Library 2.1 JavaScript-->
+	<script src="js/jquery-2.1.4.min.js"></script>
+    <!-- Popper JavaScript-->
+    <script src="js/popper.min.js"></script>
+	<!-- Bootstrap Core JavaScript-->
+	<script src="js/bootstrap.min.js"></script>
+	<!-- Material Design Lite JavaScript-->
+	<script src="js/material.min.js"></script>
+	<!-- main invoice JavaScript-->
+	<script src="js/invoice.js"></script>
+</body>
+</html>
