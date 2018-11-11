@@ -204,6 +204,18 @@ blockquote {
 [ 2.0 - DEFAULT CSS START ] ***********************
 ***************************************************/
 /* [ 2.1 OVERRIDING CSS START ] */
+/* Add by CHERIFI */
+.profileImage{
+  min-width: 220px;
+  max-width: 220px;
+  min-height: 240px;
+  max-height: 240px;
+}
+}
+
+
+
+/* Add by CHERIFI */
 .mdl-button, .mdl-textfield__input {
   font-family: "Montserrat", sans-serif; }
 
@@ -1629,7 +1641,7 @@ blockquote {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  background-image: url(../uploads/background-1.jpg); }
+  }
   .page-ttl::before {
     content: '';
     position: absolute;
@@ -1641,7 +1653,7 @@ blockquote {
 .page-ttl-container {
   text-align: center; }
   .page-ttl-container h1 {
-    font-size: 42px;
+    font-size: 30px;
     font-weight: 500;
     color: #FFF;
     margin: 0; }
