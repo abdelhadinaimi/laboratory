@@ -1,0 +1,734 @@
+%PDF-1.3
+1 0 obj
+<< /Type /Catalog
+/Outlines 2 0 R
+/Pages 3 0 R >>
+endobj
+2 0 obj
+<< /Type /Outlines /Count 0 >>
+endobj
+3 0 obj
+<< /Type /Pages
+/Kids [6 0 R
+27 0 R
+]
+/Count 2
+/Resources <<
+/ProcSet 4 0 R
+/Font << 
+/F1 8 0 R
+/F2 9 0 R
+/F3 10 0 R
+>>
+/XObject << 
+/I1 11 0 R
+/I2 12 0 R
+/I3 16 0 R
+/I4 17 0 R
+/I5 19 0 R
+/I6 20 0 R
+/I7 24 0 R
+/I8 25 0 R
+/I9 33 0 R
+/I10 34 0 R
+>>
+>>
+/MediaBox [0.000 0.000 612.000 792.000]
+ >>
+endobj
+4 0 obj
+[/PDF /Text /ImageC ]
+endobj
+5 0 obj
+<<
+/Creator (DOMPDF)
+/CreationDate (D:20180417200441+00'00')
+/ModDate (D:20180417200441+00'00')
+/Title (BeIntelligent Receipt for Transaction: 22)
+>>
+endobj
+6 0 obj
+<< /Type /Page
+/Parent 3 0 R
+/Annots [ 14 0 R 22 0 R ]
+/Contents 7 0 R
+>>
+endobj
+7 0 obj
+<<
+/Length 7157 >>
+stream
+
+1.000 1.000 1.000 rg
+0.000 0.000 612.000 792.000 re f
+0.000 33.526 611.693 758.474 re f
+q
+0.000 33.526 611.693 758.474 re W n
+1.000 1.000 1.000 rg
+28.346 613.959 340.291 149.695 re f
+0.867 0.867 0.867 rg
+28.346 613.584 340.291 0.750 re f
+0.000 0.000 0.000 rg
+BT 47.096 732.072 Td /F1 11.0 Tf  [(BeIntelligent)] TJ ET
+BT 47.096 718.844 Td /F2 11.0 Tf  [(University of Tlemcen)] TJ ET
+BT 47.096 705.617 Td /F2 11.0 Tf  [(Faculty of Biology)] TJ ET
+BT 47.096 692.389 Td /F2 11.0 Tf  [(Tlemcen)] TJ ET
+BT 47.096 679.162 Td /F2 11.0 Tf  [(, DZ)] TJ ET
+BT 47.096 665.934 Td /F2 11.0 Tf  [(13000)] TJ ET
+BT 47.096 652.707 Td /F2 11.0 Tf  [(scorpioclub2017@gmail.com)] TJ ET
+BT 47.096 639.479 Td /F2 11.0 Tf  [(VAT/Tax Number: 123456789)] TJ ET
+1.000 1.000 1.000 rg
+368.638 613.959 214.709 149.695 re f
+0.867 0.867 0.867 rg
+368.638 613.584 214.709 0.750 re f
+0.000 0.000 0.000 rg
+BT 416.272 740.560 Td /F1 14.0 Tf  [(ORDER CONFIRMATION)] TJ ET
+BT 458.540 708.134 Td /F2 12.0 Tf  [(Date: )] TJ ET
+BT 505.556 708.134 Td /F2 12.0 Tf  [(April 17, 2018)] TJ ET
+BT 466.556 689.819 Td /F2 12.0 Tf  [(Transaction ID: )] TJ ET
+BT 566.252 689.819 Td /F2 12.0 Tf  [(22)] TJ ET
+BT 472.556 671.504 Td /F2 12.0 Tf  [(Status: )] TJ ET
+0.000 0.502 0.000 rg
+BT 528.248 671.504 Td /F2 12.0 Tf  [(Complete)] TJ ET
+q
+18.000 0 0 18.000 28.346 581.785 cm /I2 Do
+Q
+0.000 0.000 0.000 rg
+BT 58.346 587.035 Td /F1 12.0 Tf  [(Event Name: )] TJ ET
+BT 134.366 585.385 Td /F2 12.0 Tf  [(BE INT elligent;)] TJ ET
+BT 28.346 570.265 Td /F2 9.6 Tf  [(\( )] TJ ET
+0.000 0.000 0.800 rg
+BT 34.212 570.265 Td /F2 9.6 Tf  [(view)] TJ ET
+0.000 0.000 0.800 RG
+0.192 w 0 J [  ] 0 d
+34.212 569.037 m 53.412 569.037 l S
+0.000 0.000 0.000 rg
+BT 53.412 570.265 Td /F2 9.6 Tf  [( \))] TJ ET
+0.957 0.957 0.957 rg
+28.346 532.021 142.500 20.364 re f
+0.000 0.000 0.000 rg
+BT 32.096 539.094 Td /F1 9.0 Tf  [(Ticket)] TJ ET
+0.957 0.957 0.957 rg
+170.846 532.021 246.675 20.364 re f
+0.000 0.000 0.000 rg
+BT 174.596 539.094 Td /F1 9.0 Tf  [(Description)] TJ ET
+0.957 0.957 0.957 rg
+417.521 532.021 52.500 20.364 re f
+0.000 0.000 0.000 rg
+BT 425.519 539.094 Td /F1 9.0 Tf  [(Quantity)] TJ ET
+0.957 0.957 0.957 rg
+470.021 532.021 52.500 20.364 re f
+0.000 0.000 0.000 rg
+BT 485.264 539.094 Td /F1 9.0 Tf  [(Price)] TJ ET
+0.957 0.957 0.957 rg
+522.521 532.021 52.500 20.364 re f
+0.000 0.000 0.000 rg
+BT 549.770 539.094 Td /F1 9.0 Tf  [(Total)] TJ ET
+0.400 0.400 0.400 rg
+28.346 531.646 142.500 0.750 re f
+0.867 0.867 0.867 rg
+28.346 475.315 142.500 0.750 re f
+0.000 0.000 0.000 rg
+BT 32.096 517.230 Td /F2 9.0 Tf  [(Free Ticket)] TJ ET
+0.400 0.400 0.400 rg
+170.846 531.646 123.337 0.750 re f
+0.867 0.867 0.867 rg
+170.846 475.315 123.337 0.750 re f
+0.400 0.400 0.400 rg
+294.184 531.646 123.337 0.750 re f
+0.867 0.867 0.867 rg
+294.184 475.315 123.337 0.750 re f
+0.000 0.000 0.000 rg
+BT 174.596 517.230 Td /F2 9.0 Tf  [(You will recieve the Ticket on your Personal Email \(For BE )] TJ ET
+BT 174.596 506.241 Td /F2 9.0 Tf  [(INT elligent;\))] TJ ET
+BT 174.596 495.252 Td /F3 9.0 Tf  [(This ticket can be used once at any of the dates/times )] TJ ET
+BT 174.596 484.263 Td /F3 9.0 Tf  [(below.)] TJ ET
+0.400 0.400 0.400 rg
+417.521 531.646 52.500 0.750 re f
+0.867 0.867 0.867 rg
+417.521 475.315 52.500 0.750 re f
+0.000 0.000 0.000 rg
+BT 441.269 517.230 Td /F2 9.0 Tf  [(1)] TJ ET
+0.400 0.400 0.400 rg
+470.021 531.646 52.500 0.750 re f
+0.867 0.867 0.867 rg
+470.021 475.315 52.500 0.750 re f
+0.000 0.000 0.000 rg
+BT 485.012 517.230 Td /F2 9.0 Tf  [(0.000)] TJ ET
+0.400 0.400 0.400 rg
+522.521 531.646 52.500 0.750 re f
+0.867 0.867 0.867 rg
+522.521 475.315 52.500 0.750 re f
+0.000 0.000 0.000 rg
+BT 548.753 517.230 Td /F2 9.0 Tf  [(0.000)] TJ ET
+q
+12.000 0 0 12.000 52.346 424.690 cm /I4 Do
+Q
+BT 76.346 425.280 Td /F1 12.0 Tf  [(Date/Time:)] TJ ET
+BT 52.346 398.317 Td /F2 12.0 Tf  [(May 2, 2018 10:00 am - May 2, 2018 6:30 pm \(+0100\))] TJ ET
+q
+12.000 0 0 12.000 424.046 424.690 cm /I6 Do
+Q
+BT 448.046 425.280 Td /F1 12.0 Tf  [(Venue)] TJ ET
+BT 424.046 398.317 Td /F2 12.0 Tf  [(Faculty of Biology)] TJ ET
+BT 424.046 386.009 Td /F2 9.6 Tf  [(\()] TJ ET
+0.000 0.000 0.800 rg
+BT 427.243 386.009 Td /F2 9.6 Tf  [(view)] TJ ET
+0.192 w 0 J [  ] 0 d
+427.243 384.781 m 446.443 384.781 l S
+0.000 0.000 0.000 rg
+BT 446.443 386.009 Td /F2 9.6 Tf  [( \))] TJ ET
+q
+12.000 0 0 12.000 52.346 347.665 cm /I8 Do
+Q
+BT 76.346 348.254 Td /F1 12.0 Tf  [(Registration Details )] TJ ET
+BT 192.374 347.943 Td /F2 9.6 Tf  [(\( )] TJ ET
+BT 198.240 347.943 Td /F2 9.6 Tf  [( \))] TJ ET
+0.957 0.957 0.957 rg
+52.346 305.986 180.825 27.027 re f
+0.000 0.000 0.000 rg
+BT 56.096 316.390 Td /F1 9.0 Tf  [(Attendee)] TJ ET
+0.957 0.957 0.957 rg
+233.171 305.986 350.175 27.027 re f
+0.000 0.000 0.000 rg
+BT 236.921 315.291 Td /F2 12.0 Tf  [(HammouTrari Bouchra \(trari.ahlem@gmail.com\))] TJ ET
+0.867 0.867 0.867 rg
+52.346 305.611 180.825 0.750 re f
+0.000 0.000 0.000 rg
+BT 56.096 289.363 Td /F1 9.0 Tf  [(Registration Code:)] TJ ET
+0.867 0.867 0.867 rg
+233.171 305.611 350.175 0.750 re f
+0.000 0.000 0.000 rg
+BT 236.921 288.264 Td /F2 12.0 Tf  [(22-2-1-2343 - )] TJ ET
+BT 312.953 288.264 Td /F2 12.0 Tf  [(Approved)] TJ ET
+0.867 0.867 0.867 rg
+52.346 278.584 180.825 0.750 re f
+0.000 0.000 0.000 rg
+BT 56.096 265.668 Td /F1 9.0 Tf  [(Custom Questions and Answers:)] TJ ET
+0.867 0.867 0.867 rg
+233.171 278.584 350.175 0.750 re f
+52.346 258.220 180.825 0.750 re f
+52.346 231.193 180.825 0.750 re f
+0.000 0.000 0.000 rg
+BT 56.096 241.972 Td /F1 9.0 Tf  [(WORKSHOP)] TJ ET
+0.867 0.867 0.867 rg
+233.171 258.220 350.175 0.750 re f
+233.171 231.193 350.175 0.750 re f
+0.000 0.000 0.000 rg
+BT 236.921 240.873 Td /F2 12.0 Tf  [(MALWARE CREATION)] TJ ET
+BT 28.346 157.984 Td /F1 12.0 Tf  [(Additional Charges/Discounts)] TJ ET
+0.957 0.957 0.957 rg
+28.346 119.378 87.003 20.364 re f
+0.000 0.000 0.000 rg
+BT 32.096 126.451 Td /F1 9.0 Tf  [(Name)] TJ ET
+0.957 0.957 0.957 rg
+115.349 119.378 154.964 20.364 re f
+0.000 0.000 0.000 rg
+BT 119.099 126.451 Td /F1 9.0 Tf  [(Description)] TJ ET
+0.957 0.957 0.957 rg
+270.314 119.378 119.614 20.364 re f
+0.000 0.000 0.000 rg
+BT 311.868 126.451 Td /F1 9.0 Tf  [(Quantity)] TJ ET
+0.957 0.957 0.957 rg
+389.927 119.378 114.588 20.364 re f
+0.000 0.000 0.000 rg
+BT 426.215 126.451 Td /F1 9.0 Tf  [(Unit Price)] TJ ET
+0.957 0.957 0.957 rg
+504.515 119.378 78.832 20.364 re f
+0.000 0.000 0.000 rg
+BT 508.265 126.451 Td /F1 9.0 Tf  [(Total)] TJ ET
+0.400 0.400 0.400 rg
+28.346 119.003 87.003 0.750 re f
+0.867 0.867 0.867 rg
+28.346 106.628 87.003 0.750 re f
+0.400 0.400 0.400 rg
+115.349 119.003 154.964 0.750 re f
+0.867 0.867 0.867 rg
+115.349 106.628 154.964 0.750 re f
+0.400 0.400 0.400 rg
+270.314 119.003 119.614 0.750 re f
+0.867 0.867 0.867 rg
+270.314 106.628 119.614 0.750 re f
+0.400 0.400 0.400 rg
+389.927 119.003 114.588 0.750 re f
+0.867 0.867 0.867 rg
+389.927 106.628 114.588 0.750 re f
+0.400 0.400 0.400 rg
+504.515 119.003 78.832 0.750 re f
+0.867 0.867 0.867 rg
+504.515 106.628 78.832 0.750 re f
+0.000 0.000 0.000 rg
+BT 28.346 66.419 Td /F1 12.0 Tf  [(Taxes)] TJ ET
+BT 28.346 51.457 Td /F1 12.0 Tf  [(*)] TJ ET
+BT 33.014 51.457 Td /F2 12.0 Tf  [( Taxable items. The total amount collected for taxes is reflected in the total\(s\) below.)] TJ ET
+Q
+endstream
+endobj
+8 0 obj
+<< /Type /Font
+/Subtype /Type1
+/Name /F1
+/BaseFont /Helvetica-Bold
+/Encoding /WinAnsiEncoding
+>>
+endobj
+9 0 obj
+<< /Type /Font
+/Subtype /Type1
+/Name /F2
+/BaseFont /Helvetica
+/Encoding /WinAnsiEncoding
+>>
+endobj
+10 0 obj
+<< /Type /Font
+/Subtype /Type1
+/Name /F3
+/BaseFont /Helvetica-Oblique
+/Encoding /WinAnsiEncoding
+>>
+endobj
+11 0 obj
+<<
+/Type /XObject
+/Subtype /Image
+/Width 24
+/Height 24
+/Filter /FlateDecode
+/DecodeParms << /Predictor 15 /Colors 1 /Columns 24 /BitsPerComponent 8>>
+/ColorSpace /DeviceGray
+/BitsPerComponent 8
+/Length 451>>
+stream
+(‘}Ò[H“ağÿÈì€wˆAA00!ÅˆÄl~ì»ì¢›yšt$±Ã<2¤ˆ˜W[f ˆ³ò&SCšBŸæ6ÂÓ”òsúÍOÄş=sásñşßÅóòòû–Å÷Ëéª¶YöÀáïlÎt­?´~¥'Óy9šµ;,tU•[‡øè\eYYe¾‡}g*ª\…c$ïûèj“dû-zİ’c1Éá;Ói˜¹ç¸>$ĞÒƒyÍäN¥´…tháßJÃŸ(×ZâåŠs OQÜ“%J=gL.wfOkœîKÀY¦Vx¸Úxîr?]ì\Ş¹U(5ŞùßLÿh÷H}ñBŒ
+Ìò±êhŒV¨jÿG§ê=s¨Îlğ¸ìx} ¨}y{8ES I»ê`¯^Èìs)PL]`‚ãÁ°9Ğİ»˜x4¿õÃŒ,ğ¦Íú@+µå»Î¨áÛVÛ]&Ö™+;:ä±ëj€£²ã4×Viœ#' ßK /$;Š˜ˆsKOn2µ´ò{;©¯qsYßb\ )ªÆ|D©)ÃĞ#	ÃXšhÚÿü·ş ¨û£
+endstream
+endobj
+12 0 obj
+<<
+/Type /XObject
+/Subtype /Image
+/Width 24
+/Height 24
+/SMask 11 0 R
+/Filter /FlateDecode
+/DecodeParms << /Predictor 15 /Colors 1 /Columns 24 /BitsPerComponent 1>>
+/ColorSpace  [ /Indexed /DeviceRGB 1 13 0 R ]
+/BitsPerComponent 1
+/Length 22>>
+stream
+™cøÿÿ?C#Õ1È\  Là
+endstream
+endobj
+13 0 obj
+<<
+/Length 6 >>
+stream
+ºººÿÿÿ
+endstream
+endobj
+14 0 obj
+<< /Type /Annot
+/Subtype /Link
+/A 15 0 R
+/Border [0 0 0]
+/H /I
+/Rect [ 34.2121 569.3773 53.4121 579.1453 ]
+>>
+endobj
+15 0 obj
+<< /Type /Action
+/S /URI
+/URI (https://beintelligent.eventsmart.com/events/be-int-elligent/)
+>>
+endobj
+16 0 obj
+<<
+/Type /XObject
+/Subtype /Image
+/Width 16
+/Height 16
+/Filter /FlateDecode
+/DecodeParms << /Predictor 15 /Colors 1 /Columns 16 /BitsPerComponent 8>>
+/ColorSpace /DeviceGray
+/BitsPerComponent 8
+/Length 172>>
+stream
+•e=
+ƒ@„§JA,Sa[Á"M •'±¬ö ^%ÊJ°ò*‚U@˜ìÛŸ*S½™}³û-`•Ëy.C† A½÷iTš)CNâç	™¢›i€‚l!A´d‘#bàÌÆÊN¥*nøòW¼¹Å»;ÂƒTÀ•G¨ wI¤2R{œÒnh{©m7¹‘g-Øçåıó-`½êˆşÿ9 ×+¹ê\æ×‡dŠ
+endstream
+endobj
+17 0 obj
+<<
+/Type /XObject
+/Subtype /Image
+/Width 16
+/Height 16
+/SMask 16 0 R
+/Filter /FlateDecode
+/DecodeParms << /Predictor 15 /Colors 1 /Columns 16 /BitsPerComponent 1>>
+/ColorSpace  [ /Indexed /DeviceRGB 0 18 0 R ]
+/BitsPerComponent 1
+/Length 12>>
+stream
+™c`    0 
+endstream
+endobj
+18 0 obj
+<<
+/Length 3 >>
+stream
+™™™
+endstream
+endobj
+19 0 obj
+<<
+/Type /XObject
+/Subtype /Image
+/Width 16
+/Height 16
+/Filter /FlateDecode
+/DecodeParms << /Predictor 15 /Colors 1 /Columns 16 /BitsPerComponent 8>>
+/ColorSpace /DeviceGray
+/BitsPerComponent 8
+/Length 138>>
+stream
+•UÎ!E@ …á›Ç9Šl‚n	Öà("Q°Í:D@´MPäÿ=ïÆMóaf¤sN1…£{ÁÂwKpµÛÃ8BïÈ¡‘Èt¾ät*H¥*ÑÆe;[tİÚò[{?›ü!y>2==­ò„Òo…Õ³@5Ôv+„ğšçw+Íáf‰J5
+endstream
+endobj
+20 0 obj
+<<
+/Type /XObject
+/Subtype /Image
+/Width 16
+/Height 16
+/SMask 19 0 R
+/Filter /FlateDecode
+/DecodeParms << /Predictor 15 /Colors 1 /Columns 16 /BitsPerComponent 1>>
+/ColorSpace  [ /Indexed /DeviceRGB 1 21 0 R ]
+/BitsPerComponent 1
+/Length 14>>
+stream
+™cxÀÎ@
+ a‡q
+endstream
+endobj
+21 0 obj
+<<
+/Length 6 >>
+stream
+dddÿÿÿ
+endstream
+endobj
+22 0 obj
+<< /Type /Annot
+/Subtype /Link
+/A 23 0 R
+/Border [0 0 0]
+/H /I
+/Rect [ 427.2433 385.1210 446.4433 394.8890 ]
+>>
+endobj
+23 0 obj
+<< /Type /Action
+/S /URI
+/URI (https://beintelligent.eventsmart.com/venues/faculty-of-biology/)
+>>
+endobj
+24 0 obj
+<<
+/Type /XObject
+/Subtype /Image
+/Width 16
+/Height 16
+/Filter /FlateDecode
+/DecodeParms << /Predictor 15 /Colors 1 /Columns 16 /BitsPerComponent 8>>
+/ColorSpace /DeviceGray
+/BitsPerComponent 8
+/Length 233>>
+stream
+•c` ®î©Bpà(ÈPöÿÿTV&—qêÿë’×şÿÿ.²ãÿv  Ïÿÿÿ}WüÿÊ ÈĞ 
+0ûÿŸÏæÿÿd–ßÿßñ€ôğ,©c`Ie`ˆ]«6Ó¿Apòô©SÕê£¸tOş?Êı ¨ıÿgÑÙÿïÊ3,øÿß-ä?TşÿßÍĞòÿp D Øòÿÿ|‹7ÿ§ŠB´2ÿÿ—f`]ôÿç)ÿç‰ÿ§–Äşÿ¯—	˜&ûÿ#P@øõÿ65€SÌÿßZ wÈØ±ÜÚÊ«U¤÷°xG:„ í|!
+endstream
+endobj
+25 0 obj
+<<
+/Type /XObject
+/Subtype /Image
+/Width 16
+/Height 16
+/SMask 24 0 R
+/Filter /FlateDecode
+/DecodeParms << /Predictor 15 /Colors 1 /Columns 16 /BitsPerComponent 1>>
+/ColorSpace  [ /Indexed /DeviceRGB 0 26 0 R ]
+/BitsPerComponent 1
+/Length 12>>
+stream
+™c`    0 
+endstream
+endobj
+26 0 obj
+<<
+/Length 3 >>
+stream
+
+endstream
+endobj
+27 0 obj
+<< /Type /Page
+/Parent 3 0 R
+/Annots [ 29 0 R 31 0 R ]
+/Contents 28 0 R
+>>
+endobj
+28 0 obj
+<<
+/Length 4047 >>
+stream
+
+0.000 0.000 0.000 rg
+0.000 0.000 0.800 RG
+0.192 w 0 J [  ] 0 d
+1.000 1.000 1.000 rg
+0.000 0.000 612.000 769.500 re f
+0.000 277.120 611.693 492.380 re f
+q
+0.000 277.120 611.693 492.380 re W n
+0.957 0.957 0.957 rg
+28.346 749.136 134.734 20.364 re f
+0.000 0.000 0.000 rg
+BT 32.096 756.209 Td /F1 9.0 Tf  [(Tax Name)] TJ ET
+0.957 0.957 0.957 rg
+163.080 749.136 174.099 20.364 re f
+0.000 0.000 0.000 rg
+BT 166.830 756.209 Td /F1 9.0 Tf  [(Description)] TJ ET
+0.957 0.957 0.957 rg
+337.179 749.136 82.464 20.364 re f
+0.000 0.000 0.000 rg
+BT 368.660 756.209 Td /F1 9.0 Tf  [(Rate)] TJ ET
+0.957 0.957 0.957 rg
+419.643 749.136 163.703 20.364 re f
+0.000 0.000 0.000 rg
+BT 423.393 756.209 Td /F1 9.0 Tf  [(Tax Amount)] TJ ET
+0.400 0.400 0.400 rg
+28.346 748.761 134.734 0.750 re f
+0.867 0.867 0.867 rg
+28.346 736.386 134.734 0.750 re f
+0.400 0.400 0.400 rg
+163.080 748.761 174.099 0.750 re f
+0.867 0.867 0.867 rg
+163.080 736.386 174.099 0.750 re f
+0.400 0.400 0.400 rg
+337.179 748.761 82.464 0.750 re f
+0.867 0.867 0.867 rg
+337.179 736.386 82.464 0.750 re f
+0.400 0.400 0.400 rg
+419.643 748.761 163.703 0.750 re f
+0.867 0.867 0.867 rg
+419.643 736.386 163.703 0.750 re f
+0.000 0.000 0.000 rg
+BT 500.116 700.586 Td /F1 14.0 Tf  [(Grand Total:)] TJ ET
+BT 28.346 664.083 Td /F1 12.0 Tf  [(Payments)] TJ ET
+0.957 0.957 0.957 rg
+28.346 625.478 105.601 20.364 re f
+0.000 0.000 0.000 rg
+BT 32.096 632.551 Td /F1 9.0 Tf  [(Payment Method)] TJ ET
+0.957 0.957 0.957 rg
+133.948 625.478 47.581 20.364 re f
+0.000 0.000 0.000 rg
+BT 137.698 632.551 Td /F1 9.0 Tf  [(Date)] TJ ET
+0.957 0.957 0.957 rg
+181.528 625.478 147.694 20.364 re f
+0.000 0.000 0.000 rg
+BT 185.278 632.551 Td /F1 9.0 Tf  [(Transaction Id / Cheque #)] TJ ET
+0.957 0.957 0.957 rg
+329.223 625.478 73.209 20.364 re f
+0.000 0.000 0.000 rg
+BT 332.973 632.551 Td /F1 9.0 Tf  [(P.O. / S.O.#)] TJ ET
+0.957 0.957 0.957 rg
+402.432 625.478 95.978 20.364 re f
+0.000 0.000 0.000 rg
+BT 406.182 632.551 Td /F1 9.0 Tf  [(Status)] TJ ET
+0.957 0.957 0.957 rg
+498.410 625.478 84.936 20.364 re f
+0.000 0.000 0.000 rg
+BT 502.160 632.551 Td /F1 9.0 Tf  [(Amount)] TJ ET
+0.400 0.400 0.400 rg
+28.346 625.103 105.601 0.750 re f
+133.948 625.103 47.581 0.750 re f
+181.528 625.103 147.694 0.750 re f
+329.223 625.103 73.209 0.750 re f
+402.432 625.103 95.978 0.750 re f
+498.410 625.103 84.936 0.750 re f
+0.000 0.000 0.000 rg
+BT 32.096 610.687 Td /F2 9.0 Tf  [(No approved payments have been received.)] TJ ET
+0.867 0.867 0.867 rg
+28.346 601.739 105.601 0.750 re f
+133.948 601.739 47.581 0.750 re f
+181.528 601.739 147.694 0.750 re f
+329.223 601.739 73.209 0.750 re f
+402.432 601.739 95.978 0.750 re f
+498.410 601.739 84.936 0.750 re f
+28.346 589.364 105.601 0.750 re f
+133.948 589.364 47.581 0.750 re f
+181.528 589.364 147.694 0.750 re f
+329.223 589.364 73.209 0.750 re f
+0.000 0.000 0.000 rg
+BT 32.096 574.948 Td /F2 9.0 Tf  [( )] TJ ET
+0.867 0.867 0.867 rg
+402.432 589.364 95.978 0.750 re f
+0.000 0.000 0.000 rg
+BT 454.142 574.948 Td /F2 9.0 Tf  [(Total Paid)] TJ ET
+0.867 0.867 0.867 rg
+498.410 589.364 84.936 0.750 re f
+0.000 0.000 0.000 rg
+BT 530.087 574.948 Td /F2 9.0 Tf  [(0.000 )] TJ ET
+BT 555.107 574.948 Td /F2 9.0 Tf  [(\(DZD\))] TJ ET
+0.957 0.957 0.957 rg
+28.346 543.761 374.085 22.989 re f
+0.000 0.000 0.000 rg
+BT 32.096 551.959 Td /F2 9.0 Tf  [( )] TJ ET
+0.957 0.957 0.957 rg
+402.432 543.761 95.978 22.989 re f
+0.000 0.000 0.000 rg
+BT 430.661 551.959 Td /F1 9.0 Tf  [(Amount Owed:)] TJ ET
+0.957 0.957 0.957 rg
+498.410 543.761 84.936 22.989 re f
+0.000 0.000 0.000 rg
+BT 530.087 551.959 Td /F1 9.0 Tf  [(0.000 )] TJ ET
+BT 555.107 551.959 Td /F1 9.0 Tf  [(\(DZD\))] TJ ET
+BT 28.346 503.177 Td /F1 12.0 Tf  [(Additional Information:)] TJ ET
+BT 28.346 478.760 Td /F1 14.0 Tf  [(Venue Details:)] TJ ET
+0.867 0.867 0.867 rg
+28.346 305.092 191.480 0.750 re f
+0.000 0.000 0.800 rg
+BT 32.096 438.120 Td /F1 12.0 Tf  [(Faculty of Biology)] TJ ET
+0.000 0.000 0.800 RG
+0.24 w 0 J [  ] 0 d
+32.096 436.214 m 136.112 436.214 l S
+0.867 0.867 0.867 rg
+219.826 305.092 355.195 0.750 re f
+q
+150.000 0 0 150.000 223.576 311.842 cm /I10 Do
+Q
+Q
+endstream
+endobj
+29 0 obj
+<< /Type /Annot
+/Subtype /Link
+/A 30 0 R
+/Border [0 0 0]
+/H /I
+/Rect [ 32.0965 437.0099 136.1125 449.2199 ]
+>>
+endobj
+30 0 obj
+<< /Type /Action
+/S /URI
+/URI (https://beintelligent.eventsmart.com/venues/faculty-of-biology/)
+>>
+endobj
+31 0 obj
+<< /Type /Annot
+/Subtype /Link
+/A 32 0 R
+/Border [0 0 0]
+/H /I
+/Rect [ 223.5762 311.8415 373.5762 461.8415 ]
+>>
+endobj
+32 0 obj
+<< /Type /Action
+/S /URI
+/URI (http://maps.google.com/maps?q=)
+>>
+endobj
+33 0 obj
+<<
+/Type /XObject
+/Subtype /Image
+/Width 200
+/Height 200
+/Filter /FlateDecode
+/DecodeParms << /Predictor 15 /Colors 1 /Columns 200 /BitsPerComponent 8>>
+/ColorSpace /DeviceGray
+/BitsPerComponent 8
+/Length 242>>
+stream
+xœíÏ	 0À°ù7ı›¼œDA;çó:`‹‘#5FjŒÔ©1Rc¤ÆH‘#5FjŒÔ©1Rc¤ÆH‘#5FjŒÔ©1Rc¤ÆH‘#5FjŒÔ©1Rc¤ÆH‘#5FjŒÔ©1Rc¤ÆH‘#5FjŒÔ©1Rc¤ÆH‘#5FjŒÔ©1Rc¤ÆH‘#5FjŒÔ©1Rc¤ÆH‘#5FjŒÔ©1Rc¤ÆH‘#5FjŒÔ©1Rc¤ÆH‘#5FjŒÔ©1Rc¤ÆH‘#5FjŒÔ©1Rc¤ÆH‘#5Fj.¼'¬Ö
+endstream
+endobj
+34 0 obj
+<<
+/Type /XObject
+/Subtype /Image
+/Width 200
+/Height 200
+/SMask 33 0 R
+/Filter /FlateDecode
+/DecodeParms << /Predictor 15 /Colors 1 /Columns 200 /BitsPerComponent 8>>
+/ColorSpace  [ /Indexed /DeviceRGB 252 35 0 R ]
+/BitsPerComponent 8
+/Length 1398>>
+stream
+xœí×yTTUğ™a€ùX¤ƒ^Ñj"´Ac\2$y†ƒ’q%SCK¥¬,+m±!\Æ˜@˜ÔVD
+DÉl±ÀÈÍö"m±-Ë²RK[şè¾7átÒlĞÄs¾ŸÃ9ÜùÍ;¼û=wE£                                                                    8Ciuz}`PğéîG;ÈÇØéx…(Ïı_½úï:)à¬³CÏéÒÕH¦°c?×ÑƒŒÔ­;c=Âë©§^ÇNBçw~b¦nì‚ˆÉÙ»ÏE¢Ñ„Y,jš(m”¯l1´3n§Mgê~1‘UüEK <š°NzÑĞ‡„i´ıäõc4*AtòkHÇ‹b¢KXŒˆ!RÈ=ylıûÛÈ8@ì $º4ˆhğe&ù[9Qìşqdîp;œ™z³Ëi µˆ/IÃ®­„áv»=1AÆ±†zLR‚Ä]9J’®J&“¯ã§€ï/[i43S0ÑHY¥HÃ®/]CcÇÙÇ·_›J#Øè	1Ñl¢$Eºîú1“&Ç’¡ƒÑÓf"Q¨ÀBcÓF%%ßo»Ñ>•è¦›í·è£»‹‰ÕÕÄŸ6ÍvëmÒtÒu° t;»ƒ”N}YRº4ƒÌzºSº+Ñ~7õ¢Aö™‘¬™­4K	’,İsïdé¾ûg“ÕÏ 82ÄËtdşC—æ¨Å¹óÚçÏq.x(‹»v:³]<g¡3GsóÜœ?²È¹øh ZÂUö‘.=Ff3=.I´?A&äÉ%¬X)T"MšñTœØø$©xyAŞñ‚¸—µÖ
+óNÍ}&¯hù³Å%¥+Ê®\U^Æ‹<«İ¼¬â¹Âü¢– ÁV1$×Èìóá=b×®}AL­Ólãí/‰âTyjõx™(RZë¤Wˆ¦½*vhƒx*‹¸ëµªL^]şz•Ë[S[Wà’{œ]W»^-¾áXêkÈá²–ç×Õ—¼)?R¿acçÕø¦Íùn^X>¿dYCK1$ƒ·°ğ­1oMaÑâ<™.­Û¶ím)…Şy×>ó½™öqcé,6+bÂûêbÿ@|ÿáGÒÇdö;HcÿdqU¦·65wûoİf÷§¢“™¥%Ÿ-P‹bD|Q¯ty
+Å¯y¹œç¯¬ÿœóÙâ³Â3MG§–F£c1…1Şs8Oâ¦§IRZŠ˜<_ìÛïÎ/ÅPED3¶%Ü„†ÊßgÔú$woj#²¼i×êfoçò’ÈŞ­L-¥(O-¥!ê5¼´¬pÄ]ºBŒIk¯KKj›[ƒÈ·A£)òq›â@‰Mßk—C±n¾MPÖõ»È5ƒ÷%©'moz¬80ıÊ¡áë7ïâU™Æ¢šfïÎsšÔ MjQñ5ä©õ}sEÅ’øJ×BL-%Èş9ÿ© MAg•{h‹|¡~MXˆ\´êˆbF‹%ô3› ÄĞµ|ß <õ"HFÁÜ½³Ü¥r‡å68ÕbqÅ\_CŞ´òS9äùµx©Xb7¬*oğ9”wØ½ç@Û ù~¨m¹t9Ú´h-òşü‹î³•ìK•j°V{ÄÏjÙ¿g‰ ‡=u•û½Û·/¨V¶§ú:OZtÕæûêö['¶_± jSáÜÍÕ5²x‘¼!ó«/‘ş˜ÈöıB~w¿m¿ñVó ;Q'únñ—r¥ÔGáA4Qò2Ÿœ›{»{İ 'Ó©ò`¨
+endstream
+endobj
+35 0 obj
+<<
+/Length 759 >>
+stream
+£Ìÿ®ÒşÁÜşÌâıÑåıÈàş¹Øş¦ÎşªĞşØéşÖèşºÙş¼Ùı°Óşºùgœ÷TõX”öv©ö¬ÌûÅİı¤Ìş¤ÆúH‹óB…ôLŠóD„òp¢õÇàşŠÊ­4¨S—Î¼ÎäşCˆò¸ùÌßü´Ğûa™õt¦õÕèş¬Ğş¨ÏşÉßüHˆò±ÍûÔçşÊáş‹µø‚°÷ÙåùÚÍİµÖşÜäæßàÍËâşÔåş½ÖûØáõÛÇÕÙçü¹Öûİ£¨èOAêC5éPCá¦¬İäáğÆHû¼ñÆL–½ùMŒófšöáš¡èJ<æd]ÚÑáãğÿPóá¡¦â‘áİ¥ªÛæïõ¿$êÓƒõÂ'Ùäòˆ²ø\•õèVIâ™çD9èXNV”öèJ@èF9êÔ†íÏiÙéüîÍeèÔ‰ÚØéŞ·Áæ\Sà¡x¨ö›¾úÜÅÒâzwâwqÛÉÖŞáÓïÊQRôåkfŞš¡å]Tà£¨ØâòÆÑŞEHMŒ”¼ÆÓ°¹Å}„Şêù€‡ĞÛéPUZNSXtz‚ÅĞİâîı‹“œ‰‘š§°»TX^Úæõ^djÔàîœ¤¯SW]”œ¦³ĞûSóãyxãwtßãÔğÊNİÀËY^d]ci…Œ•\agĞÜê§±¼±»ÇÂÍÚ¯¸Änt{ÖâğÒŞìejq«´ÀÍØæÉÔâËÖäW\b`elHLQVZ`ÏÚèÁÙüœÂúçK?ÚÔäèI:ìĞpÊàüèSGÜÁÎŞ¶¿w}…mszy€ˆ– KOT·ÁÍx~†hnuMQVrx€cho˜¢pv~™¢¬¡©´„‹”½ÇÔÇÒàn¢ôi õ}¬öá•™éOFÛæëõÁçÕJˆóß§°â–œèUMİ»Å¨²½¸ÂÎjpw¹ÃĞflsÄÏÜ˜¡«ÜâÜñÇAÜäŞŞ¡¦‚‰’gmt­¶ÂŸ§²kqxµ¿Ë¹ÖıİÇÕáİÂÑãüC…òÇÒßou}’š¤—Ÿ©£¬·™Àú¥®¹OTY³½ÉÜè÷ÁËØÌ×å¦Íş¢ÄúGKP§ÈúlŸõ
+endstream
+endobj
+xref
+0 36
+0000000000 65535 f 
+0000000008 00000 n 
+0000000073 00000 n 
+0000000119 00000 n 
+0000000428 00000 n 
+0000000465 00000 n 
+0000000630 00000 n 
+0000000719 00000 n 
+0000007928 00000 n 
+0000008040 00000 n 
+0000008147 00000 n 
+0000008263 00000 n 
+0000008956 00000 n 
+0000009255 00000 n 
+0000009311 00000 n 
+0000009437 00000 n 
+0000009549 00000 n 
+0000009963 00000 n 
+0000010252 00000 n 
+0000010305 00000 n 
+0000010685 00000 n 
+0000010976 00000 n 
+0000011032 00000 n 
+0000011160 00000 n 
+0000011275 00000 n 
+0000011750 00000 n 
+0000012039 00000 n 
+0000012092 00000 n 
+0000012183 00000 n 
+0000016283 00000 n 
+0000016410 00000 n 
+0000016525 00000 n 
+0000016653 00000 n 
+0000016735 00000 n 
+0000017222 00000 n 
+0000018904 00000 n 
+trailer
+<<
+/Size 36
+/Root 1 0 R
+/Info 5 0 R
+>>
+startxref
+19715
+%%EOF
