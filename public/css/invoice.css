@@ -1,0 +1,343 @@
+html {
+    height: 100%;
+}
+
+body {
+    position: relative;
+    width: 100%;
+    padding: 0;
+    background-color: #AAA;
+    font-family: "Montserrat", sans-serif;
+    font-size: 0;
+    text-rendering: optimizeLegibility !important;
+    -webkit-font-smoothing: antialiased !important;
+}
+
+table {
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+
+a {
+    text-decoration: none !important;
+    color: #333;
+    cursor: pointer;
+}
+
+a:hover,
+a:active {
+    outline: 0;
+    color: #32C1CE;
+}
+
+p,
+span {
+    line-height: normal;
+}
+
+label {
+    font-weight: 400;
+    margin: 0;
+}
+
+input,
+textarea {
+    font-family: "Montserrat", sans-serif;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    background-color: transparent;
+    border: 0;
+}
+
+input:focus,
+textarea:focus {
+    border: 0;
+    outline: 0;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+textarea {
+    resize: none;
+}
+
+button {
+    background-color: transparent;
+    border: 0;
+}
+
+select {
+    border: none;
+    outline: none;
+}
+
+select:focus {
+    border: none;
+    outline: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 400;
+    letter-spacing: normal;
+}
+
+h1 {
+    font-size: 36px;
+}
+
+h2 {
+    font-size: 30px;
+}
+
+h3 {
+    font-size: 24px;
+}
+
+h4 {
+    font-size: 20px;
+}
+
+h5 {
+    font-size: 16px;
+}
+
+h6 {
+    font-size: 14px;
+}
+
+.mdl-button,
+.mdl-textfield__input {
+    font-family: "Montserrat", sans-serif;
+}
+
+.mdl-textfield__label::after,
+.mdl-selectfield__label::after {
+    background-color: #32C1CE;
+}
+
+.mdl-textfield--floating-label.is-focused .mdl-textfield__label,
+.mdl-textfield--floating-label.is-dirty .mdl-textfield__label,
+.mdl-textfield--floating-label.has-placeholder .mdl-textfield__label,
+.mdl-selectfield--floating-label.is-focused .mdl-selectfield__label,
+.mdl-selectfield--floating-label.is-dirty .mdl-selectfield__label {
+    color: #32C1CE;
+}
+
+.container {
+  width: 990px;
+}
+
+.invoice-hdr {
+    width: 100%;
+    background: #FFF;
+}
+
+.invoice-hdr td {
+    width: 50%;
+    padding: 20px 20px 0 20px;
+}
+
+.invoice-hdr h1 {
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+    color: #333;
+}
+
+.invoice-hdr p {
+    font-size: 13px;
+    color: #333;
+    margin: 0 0 8px 0;
+    letter-spacing: .5px;
+}
+
+.invoice-logo {
+    text-align: right;
+}
+
+.invoice-logo img {
+    height: 50px;
+}
+
+.invoice-bdy {
+    width: 100%;
+    padding: 20px;
+    background: #FFF;
+}
+
+.invoice-info {
+    width: 90%;
+}
+
+.invoice-info td {
+    position: relative;
+    font-size: 13px;
+    color: #333;
+    padding: 5px;
+    border: 1px solid #DDD;
+}
+
+.invoice-info td.dark {
+    width: 130px;
+    background: #EEE;
+}
+
+.invoice-info td input {
+    width: 100%;
+    font-size: 13px;
+}
+
+.invoice-info td input:hover {
+    background: #EEE;
+}
+
+.invoice-customer {
+    width: 100%;
+}
+
+.invoice-customer td {
+    padding: 0 10px;
+}
+
+.invoice-block {
+    border: 1px solid #DDD;
+    border-top: 2px solid #DDD;
+}
+
+.invoice-block-ttl {
+    font-size: 15px;
+    color: #333;
+    padding: 6px;
+    text-align: center;
+    background: #DDD;
+}
+
+.invoice-input {
+    border: 1px solid #DDD;
+}
+
+.invoice-input input {
+    display: block;
+    width: 100%;
+    padding: 8px 10px;
+    font-size: 14px;
+    color: #333;
+    background: #FFF;
+}
+
+.items {
+    padding: 20px 0;
+}
+
+.items table {
+    width: 100%;
+}
+
+.items th {
+    font-size: 13px;
+    color: #333;
+    padding: 8px;
+    font-weight: 400;
+    background: #EEE;
+    border: 1px solid #DDD;
+}
+
+.items td {
+    position: relative;
+    font-size: 13px;
+    vertical-align: top;
+    color: #333;
+    padding: 8px;
+    border: 1px solid #DDD;
+}
+
+.items td textarea {
+    width: 100%;
+    font-size: 13px;
+}
+
+.items td textarea:hover {
+    background: #EEE;
+}
+
+.items td input {
+    width: 100%;
+    font-size: 13px;
+}
+
+.items td input:hover {
+    background: #EEE;
+}
+
+.items td.blank {
+    border: 0;
+}
+
+.item-delete {
+    position: absolute;
+    top: 0;
+    left: -20px;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    font-size: 16px;
+    text-align: center;
+    color: #FFF;
+    background: #cc5151;
+    border-radius: 2px;
+}
+
+.item-add {
+    font-size: 12px;
+    color: #FFF;
+    padding: 3px 5px;
+    background: #32C1CE;
+    border-radius: 2px;
+}
+
+.item-add:hover {
+    color: #333;
+}
+
+.item-width {
+    width: 100px;
+}
+
+.invoice-ftr {
+    padding: 0 20px 20px 20px;
+    background: #FFF;
+}
+
+.invoice-ftr p {
+    text-align: center;
+    font-size: 16px;
+    color: #555;
+    margin: 0;
+    padding: 0 0 10px 0;
+    text-transform: uppercase;
+    border-bottom: 2px solid #DDD;
+}
+
+.invoice-ftr textarea {
+    width: 100%;
+    font-size: 13px;
+    text-align: center;
+}
+
+.invoice-ftr textarea:hover {
+    background: #EEE;
+}
+
+@media print { 
+  .item-add, .item-delete, .item-hide { display: none !important; } 
+}
