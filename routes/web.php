@@ -129,3 +129,12 @@ Route::any('/search',function(){
         ]);;
 
 });
+
+
+
+/* ---- Front Office ---- */
+
+
+Route::get('/front/equipes',function(){
+	return view('front.equipes');
+});
