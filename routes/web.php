@@ -1,4 +1,4 @@
-<?php
+!<?php
 use App\User;
 use App\These;
 use App\Projet;
@@ -136,3 +136,4 @@ Route::any('/search',function(){
 
 
 Route::get('/front/equipes','FrontController@equipes');
+Route::get('/front/publications','FrontController@getAllPubs');
