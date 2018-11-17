@@ -1,14 +1,8 @@
 @extends('layouts.frontMaster')
+
 @section('title','publications')
 <!-- Affiche moi toutes Les publications -->
 @section('content')
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css" type="text/css" media="all" />
-    <link rel="stylesheet" href="{{asset('slider/price_range_style.css')}}">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" type="text/javascript"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript"></script>
-    
-    <script src="{{ asset('slider/price_range_script.js')}}"></script>
-    <!-- Start Blog List Section -->
     <div class="layer-stretch">
         <div class="layer-wrapper">
             <div class="row">
@@ -20,28 +14,10 @@
                             <button class="fa fa-search search-button"></button>
                         </div>
                     </div>
-                    <!--<div class="theme-material-card">
-                        <div class="sub-ttl">Trending Post</div>
-                        <div class="flexslider theme-flexslider">
-                            <ul class="slides">
-                                <li>
-                                    <div class="theme-flexslider-container">
-                                        <img src="uploads/blog-1.jpg" alt="" />
-                                        <h4 class="font-16 text-left"><a href="#">Why Food Poisoning happened and How To – Home Remedy</a></h4>
-                                        <p class="text-left primary-color">24 Aug 2017</p>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="theme-flexslider-container">
-                                        <img src="uploads/blog-2.jpg" alt="" />
-                                        <h4 class="font-16 text-left"><a href="#">All you need to know about Chinese Food, Is it good or bad?</a></h4>
-                                        <p class="text-left primary-color">24 Jul 2017</p>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>-->
-                    <?php $nbrPub = 0; ?>
+                    <?php $nbrPub = 0;$url="?"; ?>
+                    <?php if(request('type'))
+                               $url.='type='.request('type')."&";
+                     ?>
                     <div class="theme-material-card">
                         <div class="sub-ttl">Filtrer Par Equipe</div>
                         <ul class="category-list">
@@ -52,16 +28,20 @@
                                             <?php $nbrPub = $compteur->cpt ?>
                                           @endif
                                       @endforeach
-                            <li><a href="#">{{$equipe->intitule}}</a><span>({{$nbrPub}})</span></li>
+                            <li><a href="{{ route('publications',[ 'equipe_id' => $equipe->id , 'type' => request('type') ]) }}">{{$equipe->intitule}}</a><span>({{$nbrPub}})</span></li>
                             <?php $nbrPub = 0; ?>
                             @endforeach
                         </ul>
                     </div>
+                    <?php $url2 = "?" ?>
+                    <?php if(request('equipe_id'))
+                               $url2.='equipe_id='.request('equipe_id')."&";
+                     ?>
                     <!-- pour colorier un button vous devrier utiliser cette classe theme-tag-colored -->
                     <div class="theme-material-card">
                         <div class="sub-ttl">Filtrer Par Type</div>
                         @foreach($types as $typeArticle)
-                           <a href="#" class="theme-tag">{{$typeArticle->type}}</a>
+                           <a href="{{ route('publications',[ 'equipe_id'=>request('equipe_id') , 'type' => $typeArticle->type ]) }}" class="theme-tag">{{$typeArticle->type}}</a>
                         @endforeach
                     </div>
                     <div class="theme-material-card">
@@ -103,7 +83,8 @@
                         @endforeach
                         
                     </div>
-                    <ul class="theme-pagination">
+                    <div class="col-sm-5 col-sm-offset-5">{{$pubs->links('vendor.pagination.default')}}</div>
+                    <!--<ul class="theme-pagination">
                         <li><a href="#" class="active">1</a></li>
                         <li><a href="#">2</a></li>
                         <li><a href="#">3</a></li>
@@ -111,7 +92,7 @@
                         <li><a href="#">5</a></li>
                         <li><a href="#">...</a></li>
                         <li><a href="#">10</a></li>
-                    </ul>
+                    </ul>-->
                 </div>
             </div>
         </div>

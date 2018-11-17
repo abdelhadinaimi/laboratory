@@ -1,11 +1,5 @@
-
 $(document).ready(function(){
-	
-
-
-	
-
-
+  
 	$(function () {
 	  $("#slider-range").slider({
 		range: true,

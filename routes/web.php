@@ -136,4 +136,4 @@ Route::any('/search',function(){
 
 
 Route::get('/front/equipes','FrontController@equipes');
-Route::get('/front/publications','FrontController@getAllPubs');
+Route::get('/front/publications','FrontController@getAllPubs')->name('publications');;

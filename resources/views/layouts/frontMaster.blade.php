@@ -6,7 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Site Title -->
-    <title> @yield('title')</title>
+    <title>@yield('title')</title>
+    <!-- importante pour slider -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css" type="text/css" media="all" />
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    
     <!-- Favicon Icon -->
     <link rel="icon" type="image/x-icon" href="images/favicon.png" />
     <!-- Font Awesoeme Stylesheet CSS -->
@@ -29,6 +33,7 @@
     <link rel="stylesheet" href="{{ asset('css/flexslider.css')}}" />
     <!-- Custom Main Stylesheet CSS -->
     <link rel="stylesheet" href="{{ asset('css/style.css')}}">
+    <link rel="stylesheet" href="{{ asset('slider/price_range_style.css')}}">
 </head>
 
 <body>
@@ -117,6 +122,12 @@
     <script src="{{ asset('js/smoothscroll.min.js')}}"></script>
     <!--Custom JavaScript for Klinik Template-->
     <script src="{{ asset('js/custom.js')}}"></script>
+
+    <!-- ils sont importants pour le slider -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript"></script>
+    <script src="{{ asset('slider/price_slider.js')}}"></script>
+
 </body>
 
 </html>
