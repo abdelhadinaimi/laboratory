@@ -1131,9 +1131,12 @@ blockquote {
     list-style: none;
     padding: 10px 0;
     border-bottom: 1px solid #EEE; }
+    
     .category-list li a {
       color: #333;
       font-size: 14px; }
+      .category-list li a.active{
+      color: #32C1CE;}
       .category-list li a:hover {
         color: #32C1CE; }
       .category-list li a .fa {
@@ -1211,7 +1214,10 @@ blockquote {
   .theme-tag:hover {
     color: #FFF;
     background: #32C1CE; }
-
+  .type a.active{
+    color: #FFF;
+    background: #32C1CE;
+  }
 .theme-tag-1 {
   padding-right: 30px;
   padding-left: 25px; }
