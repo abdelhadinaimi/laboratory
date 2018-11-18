@@ -51,7 +51,7 @@ class User extends Authenticatable
 
     public function projets()
     {
-        return $this->belongsToMany('App\Article');
+        return $this->belongsToMany('App\Projet');
     }
     
     public function role()

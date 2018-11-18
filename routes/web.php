@@ -135,4 +135,5 @@ Route::any('/search',function(){
 /* ---- Front Office ---- */
 
 
-Route::get('/front/equipes','FrontController@equipes');
+Route::get('front/equipes','FrontController@equipes');
+Route::get('front/profiles/{id}','FrontController@profiles');
