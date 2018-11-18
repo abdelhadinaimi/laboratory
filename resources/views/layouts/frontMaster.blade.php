@@ -39,13 +39,33 @@
     <!-- Start Header -->
     <header id="header">
         <!-- Start Main Header Section -->
+        <div id="hdr-top-wrapper">
+            <div class="layer-stretch hdr-top">
+                <div class="hdr-top-block hidden-xs">
+                    <div id="hdr-social">
+                        <ul class="social-list social-list-sm">
+                            <li><a class="width-auto font-13">Suivez Nous : </a></li>
+                            <li><a href="#" target="_blank" id="hdr-facebook" ><i class="fa fa-facebook" ></i></a><span class="mdl-tooltip mdl-tooltip--bottom" data-mdl-for="hdr-facebook">Facebook</span></li>
+                            <li><a href="#" target="_blank" id="hdr-twitter" ><i class="fa fa-twitter" ></i></a><span class="mdl-tooltip mdl-tooltip--bottom" data-mdl-for="hdr-twitter">Twitter</span></li>
+                            <li><a href="#" target="_blank" id="hdr-linkedin" ><i class="fa fa-linkedin" ></i></a><span class="mdl-tooltip mdl-tooltip--bottom" data-mdl-for="hdr-linkedin">Linkedin</span></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="hdr-top-line hidden-xs"></div>
+                <div class="hdr-top-block">
+                    <div class="theme-dropdown">
+                        <a href="{{url('/')}}" id="profile-menu" class="mdl-button mdl-js-button mdl-js-ripple-effect font-13"><i class="fa fa-user-o color-black"></i> Se Connecter</a>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div id="hdr-wrapper">
             <div class="layer-stretch hdr">
                 <div class="tbl">
                     <div class="tbl-row">
                         <!-- Start Header Logo Section -->
                         <div class="tbl-cell hdr-logo">
-                            <a href="index.html"><img src="images/logo.png" alt=""></a>
+                            <a href="index.html"><img src="{{asset('logo.jpeg')}}" alt=""></a>
                         </div><!-- End Header Logo Section -->
                         <div class="tbl-cell hdr-menu">
                             <!-- Start Menu Section -->
@@ -60,10 +80,11 @@
                                     <a href="{{url('front/projets')}}" class="mdl-button mdl-js-button mdl-js-ripple-effect">Projets</a>
                                 </li>
                                 <li>
-                                    <a href="{{url('front/equipes')}}" class="mdl-button mdl-js-button mdl-js-ripple-effect">Equipes</a>
+                                    <a href="{{url('front/equipes')}}" class="mdl-button mdl-js-button mdl-js-ripple-effect">Equipes</a>    
                                 </li>
                                 <li>
-                                    <a href="{{url('front/contact')}}"  class="mdl-button mdl-js-button mdl-js-ripple-effect">Contact</a></li>
+                                    <a href="{{url('front/contact')}}"  class="mdl-button mdl-js-button mdl-js-ripple-effect">Contact</a> 
+                                </li>
                                 <li>
                                 </li>
                                 <li class="mobile-menu-close"><i class="fa fa-times"></i></li>
@@ -120,11 +141,13 @@
     <!-- SmoothScroll Plugin JavaScript-->
     <script src="{{ asset('js/smoothscroll.min.js')}}"></script>
     <!--Custom JavaScript for Klinik Template-->
+
     <script src="{{ asset('js/custom.js')}}"></script>
 
     <!-- ils sont importants pour le slider -->
     <script src="{{ asset('js/jquery-ui.min.js')}}" type="text/javascript"></script>
     <script src="{{ asset('slider/price_slider.js')}}"></script>
+    <script src="{{ asset('js/front.js')}}"></script>
 
 </body>
 
