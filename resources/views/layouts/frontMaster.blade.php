@@ -6,7 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Site Title -->
-    <title> @yield('title')</title>
+    <title>@yield('title')</title>
+    <!-- importante pour slider -->
+    <link rel="stylesheet" href="{{ asset('css/jquery-ui.css') }}" type="text/css" media="all" />
+    
     <!-- Favicon Icon -->
     <link rel="icon" type="image/x-icon" href="images/favicon.png" />
     <!-- Font Awesoeme Stylesheet CSS -->
@@ -29,6 +32,7 @@
     <link rel="stylesheet" href="{{ asset('css/flexslider.css')}}" />
     <!-- Custom Main Stylesheet CSS -->
     <link rel="stylesheet" href="{{ asset('css/style.css')}}">
+    <link rel="stylesheet" href="{{ asset('slider/price_range_style.css')}}">
 </head>
 
 <body>
@@ -113,7 +117,7 @@
     <footer>
 
     <!-- Jquery Library 2.1 JavaScript-->
-    <script src="{{ asset('js/jquery-2.1.4.min.js')}}"></script>
+    <script src="{{ asset('js/jquery-3.2.1.min.js')}}"></script>
     <!-- Popper JavaScript-->
     <script src="{{ asset('js/popper.min.js')}}"></script>
     <!-- Bootstrap Core JavaScript-->
@@ -137,7 +141,14 @@
     <!-- SmoothScroll Plugin JavaScript-->
     <script src="{{ asset('js/smoothscroll.min.js')}}"></script>
     <!--Custom JavaScript for Klinik Template-->
+
+    <script src="{{ asset('js/custom.js')}}"></script>
+
+    <!-- ils sont importants pour le slider -->
+    <script src="{{ asset('js/jquery-ui.min.js')}}" type="text/javascript"></script>
+    <script src="{{ asset('slider/price_slider.js')}}"></script>
     <script src="{{ asset('js/front.js')}}"></script>
+
 </body>
 
 </html>
