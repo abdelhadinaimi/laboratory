@@ -8,8 +8,7 @@
     <!-- Site Title -->
     <title>@yield('title')</title>
     <!-- importante pour slider -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css" type="text/css" media="all" />
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/jquery-ui.css') }}" type="text/css" media="all" />
     
     <!-- Favicon Icon -->
     <link rel="icon" type="image/x-icon" href="images/favicon.png" />
@@ -97,7 +96,7 @@
     <footer>
 
     <!-- Jquery Library 2.1 JavaScript-->
-    <script src="{{ asset('js/jquery-2.1.4.min.js')}}"></script>
+    <script src="{{ asset('js/jquery-3.2.1.min.js')}}"></script>
     <!-- Popper JavaScript-->
     <script src="{{ asset('js/popper.min.js')}}"></script>
     <!-- Bootstrap Core JavaScript-->
@@ -124,8 +123,7 @@
     <script src="{{ asset('js/custom.js')}}"></script>
 
     <!-- ils sont importants pour le slider -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" type="text/javascript"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript"></script>
+    <script src="{{ asset('js/jquery-ui.min.js')}}" type="text/javascript"></script>
     <script src="{{ asset('slider/price_slider.js')}}"></script>
 
 </body>
