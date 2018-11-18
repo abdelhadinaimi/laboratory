@@ -65,14 +65,11 @@
                     <div class="tbl-row">
                         <!-- Start Header Logo Section -->
                         <div class="tbl-cell hdr-logo">
-                            <a href="index.html"><img src="{{asset('logo.jpeg')}}" alt=""></a>
+                            <a href="/front"><img src="{{asset('logo.jpeg')}}" alt=""></a>
                         </div><!-- End Header Logo Section -->
                         <div class="tbl-cell hdr-menu">
                             <!-- Start Menu Section -->
                             <ul class="menu">
-                            <li>
-                                    <a href="{{url('front')}}" class="mdl-button mdl-js-button mdl-js-ripple-effect">Présentation</a>
-                                </li>
                                 <li>
                                     <a href="{{url('front')}}" class="mdl-button mdl-js-button mdl-js-ripple-effect">Accueil</a>
                                 </li>
@@ -83,7 +80,7 @@
                                     <a href="{{url('front/equipes')}}" class="mdl-button mdl-js-button mdl-js-ripple-effect">Equipes</a>    
                                 </li>
                                 <li>
-                                    <a href="{{url('front/projets')}}" class="mdl-button mdl-js-button mdl-js-ripple-effect">Publications</a>
+                                    <a href="{{url('front/publications')}}" class="mdl-button mdl-js-button mdl-js-ripple-effect">Publications</a>
                                 </li>
                                 <li>
                                     <a href="{{url('front/projets')}}" class="mdl-button mdl-js-button mdl-js-ripple-effect">Projets</a>
