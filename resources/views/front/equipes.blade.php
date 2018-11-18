@@ -2,17 +2,16 @@
 
 @section('title','Equipes de recherche')
 
-
 @section('content')
-        <div class="page-ttl">
-        <div class="layer-stretch">
-            <div class="page-ttl-container">
-                <h1>@yield('title')</h1>
-                <p><a href="#">Accueil</a> &#8594; <span>@yield('title')</span></p>
-            </div>
-        </div>
-    </div><!-- End Page Title Section -->
-   <div id="service-page" class="layer-stretch">
+
+    @component('components.breadcrumbs')
+        @slot('title')
+            @yield('title')
+        @endslot
+        @yield('title')    
+    @endcomponent
+
+    <div id="service-page" class="layer-stretch">
         <div class="layer-wrapper text-center">
             <div class="row">
             
