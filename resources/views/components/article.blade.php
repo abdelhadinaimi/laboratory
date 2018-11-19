@@ -1,13 +1,13 @@
 
 
-<div class="col-md-6">
+<div class="col-md-{{$size}}">
     <div class="theme-block theme-block-hover">
         <div class="theme-block-picture">
             <div class="blog-full-date">{{$pub->mois}}  {{$pub->annee}}</div>
             <img src="{{asset('uploads/types/'.$type.'.jpeg')}}" alt="">
         </div>
         <div class="theme-block-data service-block-data">
-            <div class="service-icon"><img src="{{asset($pub->photo)}}" alt="" class="fa"></div>
+            <div class="service-icon"><img src="{{asset($photo)}}" alt="" class="fa"></div>
             <br><br>
             <h6 class="paragraph-small paragraph-black service-description">Par {{$pub->name}}  {{$pub->prenom}}</h6>
             <h6 style="text-align:left"><a href="#">{{$pub->titre}}</a></h6>

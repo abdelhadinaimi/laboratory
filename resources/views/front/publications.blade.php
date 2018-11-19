@@ -66,7 +66,11 @@
                         @foreach($pubs as $pub)
                         <?php $type = str_replace(' ','',$pub->type); ?>
                         
-                        @component('components.article',['pub' => $pub,'type' => $type])
+                        @component('components.article',[
+                            'pub' => $pub,
+                            'type' => $type,
+                            'photo' => $pub->photo,
+                            'size' => 6])
                         @endcomponent
 
                         @endforeach
