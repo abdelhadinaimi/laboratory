@@ -242,7 +242,7 @@
         center: true,
         autoplay: true,
         items: 3,
-        margin: 10,
+        margin: 35,
         loop: true,
         smartSpeed: 1000,
         autoplayTimeout: 3000,

@@ -1,17 +1,10 @@
 @extends('layouts.frontMaster')
 
-@section('title','Equipes de recherche')
+@section('title','Equipes De Recherche')
 
 
 @section('content')
-        <div class="page-ttl">
-        <div class="layer-stretch">
-            <div class="page-ttl-container">
-                <h1>@yield('title')</h1>
-                <p><a href="#">Accueil</a> &#8594; <span>@yield('title')</span></p>
-            </div>
-        </div>
-    </div><!-- End Page Title Section -->
+
    <div id="service-page" class="layer-stretch">
         <div class="layer-wrapper text-center">
             <div class="row">

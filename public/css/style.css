@@ -1768,8 +1768,8 @@ blockquote {
 .hdr-logo a {
   display: inline-block; }
   .hdr-logo a img {
-    max-width: 220px;
-    height: 70px; }
+    max-width: 200px;
+    height: 40px; }
 
 .menu {
   position: relative;
@@ -2354,14 +2354,14 @@ blockquote {
     #hm-doctor-slider .center .hm-doctor h6 {
       color: #015259; }
     #hm-doctor-slider .center .hm-doctor p {
-      color: #75DBE4; }
+      color: white; }
 
 .hm-doctor {
   display: inline-block;
   vertical-align: top;
   text-align: center;
   padding: 4px 4px 20px 4px;
-  background: #EBFCFD;
+  background: transparent;
   border-radius: 2px;
   opacity: .6; }
   .hm-doctor img {
@@ -2428,7 +2428,7 @@ blockquote {
 .hm-feature-block-1 {
   padding: 4px 4px 4px 4px;
   margin: 0 0 30px 0;
-  background: #FFF;
+  background: linear-gradient(-90deg, rgba(2, 167, 182, 0.9), rgba(1, 82, 89, 0.9));
   border-radius: 2px; }
   .hm-feature-block-1 .theme-img {
     padding: 0;
@@ -2437,11 +2437,11 @@ blockquote {
   .hm-feature-block-1 span {
     display: block;
     font-size: 18px;
-    color: #32C1CE;
+    color: #b3f1e6;
     padding: 15px 5px 10px 5px; }
   .hm-feature-block-1 p {
     text-align: center;
-    color: #777;
+    color: #ffffff63;
     padding: 0 10px; }
 
 /* [ 5.7 HOME TESTIMONIAL CSS START ] */
