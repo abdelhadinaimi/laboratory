@@ -9,6 +9,7 @@
         <div class="theme-block-data service-block-data">
             <div class="service-icon"><img src="{{asset($pub->photo)}}" alt="" class="fa"></div>
             <br><br>
+            <?php dd($pub->users()) ?>
             <h6 class="paragraph-small paragraph-black service-description">Par {{$pub->name}}  {{$pub->prenom}}</h6>
             <h6 style="text-align:left"><a href="#">{{$pub->titre}}</a></h6>
             <p class="paragraph-small paragraph-black service-description">

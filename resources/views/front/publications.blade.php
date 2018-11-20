@@ -72,7 +72,7 @@
                         @endforeach
                         
                     </div>
-                    <div class="col-sm-5 col-sm-offset-5">{{$pubs->links('vendor.pagination.default')}}</div>
+                    {{$pubs->links('vendor.pagination.default')}}
                 </div>
             </div>
         </div>

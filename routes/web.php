@@ -138,3 +138,4 @@ Route::any('/search',function(){
 Route::get('/front/equipes','FrontController@equipes');
 Route::get('/front/publications','FrontController@getAllPubs')->name('publications');
 Route::get('front/profiles/{id}','FrontController@profiles');
+Route::get('fr')

@@ -58,7 +58,7 @@ class FrontController extends Controller
             $pubs = $pubs->where('type', "=", request('type'));
 
      //traiter pagination
-        $pubs = $pubs->paginate(1)->appends(['type' => request('type'), 'equipe_id' => request('equipe_id')]);
+        $pubs = $pubs->paginate(2)->appends(['type' => request('type'), 'equipe_id' => request('equipe_id')]);
         return view('front.publications', compact('pubs', 'equipes', 'compteurs', 'types'));
     }
 
