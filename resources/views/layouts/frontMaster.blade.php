@@ -31,7 +31,7 @@
     <!-- Flex Slider Stylesheet CSS -->
     <link rel="stylesheet" href="{{ asset('css/flexslider.css')}}" />
     <!-- Custom Main Stylesheet CSS -->
-    <link rel="stylesheet" href="{{ asset('css/style.css?<? echo time(); ?>')}}">
+    <link rel="stylesheet" href="{{ asset('css/style.css')}}">
     <link rel="stylesheet" href="{{ asset('slider/price_range_style.css')}}">
 </head>
 
