@@ -2,10 +2,16 @@
 
 @section('title','Equipes De Recherche')
 
-
 @section('content')
 
-   <div id="service-page" class="layer-stretch">
+    @component('components.breadcrumbs')
+        @slot('title')
+            @yield('title')
+        @endslot
+        @yield('title')    
+    @endcomponent
+
+    <div id="service-page" class="layer-stretch">
         <div class="layer-wrapper text-center">
             <div class="row">
             

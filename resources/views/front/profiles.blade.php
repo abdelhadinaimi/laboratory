@@ -83,26 +83,16 @@
                                         <h5>Articles</h5>
                                                  <div class="row">
                         @foreach ($membre->articles as $article) 
-                                      
-                         <div class="col-md-3">
-                            
-                    
-                            <div class="theme-block theme-block-hover">
-                                <div class="theme-block-picture">
-                                    <div class="blog-full-date">{{$article->mois}} {{$article->annee}}</div>
-                                    <img src="{{ asset('uploads/service-1.jpg')}}" alt="">
-                                </div>
-                                <div class="theme-block-data service-block-data">
-                                    <div class="service-icon"><img src="{{asset($membre->photo)}}" alt="" class="fa"></div>
-                                    <br><br><h6 class="paragraph-small paragraph-black service-description">Par {{$membre->prenom}} {{$membre->name}}</h6>
-                                    <h6 style="text-align:left"><a href="#">{{$article->resume}}</a></h6>
-                                    <p class="paragraph-small paragraph-black service-description">
-                                        <span>{{$article->titre}}</span>
-                                        <a href="#">(Read More)</a>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
+                        <?php $type = str_replace(' ','',$article->type); ?>
+                        
+                        @component('components.article',[
+                            'pub' => $article,
+                            'type' => $type,
+                            'photo' => $membre->photo,
+                            'size' => 3])
+                        @endcomponent
+
+
                         @endforeach
                         
                                     </div>

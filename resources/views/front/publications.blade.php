@@ -1,8 +1,15 @@
 @extends('layouts.frontMaster')
 
-@section('title','publications')
+@section('title','Publications')
 <!-- Affiche moi toutes Les publications -->
 @section('content')
+
+    @component('components.breadcrumbs')
+        @slot('title')
+            @yield('title')
+        @endslot
+        @yield('title')    
+    @endcomponent
     <div class="layer-stretch">
         <div class="layer-wrapper">
             <div class="row">
@@ -28,7 +35,7 @@
                                             <?php $nbrPub = $compteur->cpt ?>
                                           @endif
                                       @endforeach
-                            <li><a href="{{ route('publications',[ 'equipe_id' => $equipe->id , 'type' => request('type') ]) }}">{{$equipe->intitule}}</a><span>({{$nbrPub}})</span></li>
+                            <li><a class="{{request('equipe_id') == $equipe->id ? 'active':''}}" href="{{ route('publications',[ 'equipe_id' => $equipe->id , 'type' => request('type') ]) }}">{{$equipe->intitule}}</a><span>({{$nbrPub}})</span></li>
                             <?php $nbrPub = 0; ?>
                             @endforeach
                         </ul>
@@ -38,10 +45,10 @@
                                $url2.='equipe_id='.request('equipe_id')."&";
                      ?>
                     <!-- pour colorier un button vous devrier utiliser cette classe theme-tag-colored -->
-                    <div class="theme-material-card">
+                    <div class="theme-material-card type">
                         <div class="sub-ttl">Filtrer Par Type</div>
                         @foreach($types as $typeArticle)
-                           <a href="{{ route('publications',[ 'equipe_id'=>request('equipe_id') , 'type' => $typeArticle->type ]) }}" class="theme-tag">{{$typeArticle->type}}</a>
+                           <a  href="{{ route('publications',[ 'equipe_id'=>request('equipe_id') , 'type' => $typeArticle->type ]) }}" class="theme-tag {{request('type') ==  $typeArticle->type ? 'active':''}}">{{$typeArticle->type}}</a>
                         @endforeach
                     </div>
                     <div class="theme-material-card">
@@ -54,45 +61,22 @@
                     </div>
                  </div>
                 <div class="col-lg-8 text-center">
-                    
-                   
-                    
-                    
-                   
                     <div class="row">
                         
                         @foreach($pubs as $pub)
                         <?php $type = str_replace(' ','',$pub->type); ?>
-                        <div class="col-md-6">
-                            <div class="theme-block theme-block-hover">
-                                <div class="theme-block-picture">
-                                	<div class="blog-full-date">{{$pub->mois}}  {{$pub->annee}}</div>
-                                    <img src="{{asset('uploads/types/'.$type.'.jpeg')}}" alt="">
-                                </div>
-                                <div class="theme-block-data service-block-data">
-                                    <div class="service-icon"><img src="{{asset($pub->photo)}}" alt="" class="fa"></div>
-                                    <br><br><h6 class="paragraph-small paragraph-black service-description">Par {{$pub->name}}  {{$pub->prenom}}</h6>
-                                    <h6 style="text-align:left"><a href="#">{{$pub->titre}}</a></h6>
-                                    <p class="paragraph-small paragraph-black service-description">
-                                        <span>{{$pub->resume}}</span>
-                                        <a href="#">(Read More)</a>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
+                        
+                        @component('components.article',[
+                            'pub' => $pub,
+                            'type' => $type,
+                            'photo' => $pub->photo,
+                            'size' => 6])
+                        @endcomponent
+
                         @endforeach
                         
                     </div>
-                    <div class="col-sm-5 col-sm-offset-5">{{$pubs->links('vendor.pagination.default')}}</div>
-                    <!--<ul class="theme-pagination">
-                        <li><a href="#" class="active">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">5</a></li>
-                        <li><a href="#">...</a></li>
-                        <li><a href="#">10</a></li>
-                    </ul>-->
+                    {{$pubs->links('vendor.pagination.default')}}
                 </div>
             </div>
         </div>

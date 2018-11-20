@@ -28,7 +28,8 @@
     <!-- Flex Slider Stylesheet CSS -->
     <link rel="stylesheet" href="{{ asset('css/flexslider.css')}}" />
     <!-- Custom Main Stylesheet CSS -->
-    <link rel="stylesheet" href="{{ asset('css/style.css')}}">
+    <link rel="stylesheet" href="{{ asset('css/style.css?<? echo time(); ?>')}}">
+    <link rel="stylesheet" href="{{ asset('slider/price_range_style.css')}}">
 </head>
 
 <body>
@@ -61,7 +62,7 @@
                     <div class="tbl-row">
                         <!-- Start Header Logo Section -->
                         <div class="tbl-cell hdr-logo">
-                            <a href="index.html"><img src="{{asset('logo.jpeg')}}" alt=""></a>
+                            <a href="/front"><img src="{{asset('logo.jpeg')}}" alt=""></a>
                         </div><!-- End Header Logo Section -->
                         <div class="tbl-cell hdr-menu">
                             <!-- Start Menu Section -->
@@ -73,7 +74,10 @@
                                     <a href="{{url('front/actualites')}}" class="mdl-button mdl-js-button mdl-js-ripple-effect">Actualités</a>
                                 </li>
                                 <li>
-                                    <a href="{{url('front/projets')}}" class="mdl-button mdl-js-button mdl-js-ripple-effect">Projets</a>
+                                    <a href="{{url('front/equipes')}}" class="mdl-button mdl-js-button mdl-js-ripple-effect">Equipes</a>    
+                                </li>
+                                <li>
+                                    <a href="{{url('front/publications')}}" class="mdl-button mdl-js-button mdl-js-ripple-effect">Publications</a>
                                 </li>
                                 <li>
                                     <a href="{{url('front/equipes')}}" class="mdl-button mdl-js-button mdl-js-ripple-effect">Equipes</a>    
