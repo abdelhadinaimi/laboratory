@@ -5,29 +5,23 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Equipe;
-use App\Article;
-use App\ArticleUser;
-use App\User;
-use App\Role;
-use App\Parametre;
+use App\Projet;
 
-class FrontController extends Controller
-{
+class FrontController extends Controller{
 
-    public function equipes()
-    {
+    public function equipes(){
 
         return view('front.equipes')->with([
             'equipes' => Equipe::all(),
         ]);;
     }
-
-    public function profiles($id)
+    public function index()
     {
-        $membre = User::find($id);
-
-        return view('front.profiles')->with([
-            'membre' => $membre,
+    	$users = DB::table('Projets')
+    		   ->join('users', 'Projets.chef_id', '=', 'users.id')
+    		   ->get();
+    	return view('front.index')->with([
+            'projets' => $users,
         ]);;
     }
 

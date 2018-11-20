@@ -1,6 +1,6 @@
 @extends('layouts.frontMaster')
 
-@section('title','Equipes de recherche')
+@section('title','Equipes De Recherche')
 
 @section('content')
 
