@@ -5,7 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Equipe;
+use App\Article;
 use App\Projet;
+use App\ArticleUser;
+use App\User;
+use App\Role;
+use App\Parametre;
 
 class FrontController extends Controller{
 
@@ -27,13 +32,13 @@ class FrontController extends Controller{
             'chef' => $chef  
         ]);
     }
+
     public function profiles($id)
     {
-    	$users = DB::table('Projets')
-    		   ->join('users', 'Projets.chef_id', '=', 'users.id')
-    		   ->get();
-    	return view('front.index')->with([
-            'projets' => $users,
+        $membre = User::find($id);
+
+        return view('front.profiles')->with([
+            'membre' => $membre,
         ]);;
     }
 
@@ -66,6 +71,16 @@ class FrontController extends Controller{
      //traiter pagination
         $pubs = $pubs->paginate(2)->appends(['type' => request('type'), 'equipe_id' => request('equipe_id')]);
         return view('front.publications', compact('pubs', 'equipes', 'compteurs', 'types'));
+    }
+
+    public function index()
+    {
+    	$users = DB::table('projets')
+    		   ->join('users', 'projets.chef_id', '=', 'users.id')
+    		   ->get();
+    	return view('front.index')->with([
+            'projets' => $users,
+        ]);;
     }
 
 }
