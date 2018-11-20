@@ -15,7 +15,19 @@ class FrontController extends Controller{
             'equipes' => Equipe::all(),
         ]);;
     }
-    public function index()
+
+    public function equipe($id)
+    {   
+        $equipe = Equipe::find($id);
+        $membres = User::where('equipe_id', $id)->get();
+        $chef = $equipe->chef;
+        return view('front.equipe')->with([ 
+            'equipe' => $equipe,
+            'membres' => $membres,
+            'chef' => $chef  
+        ]);
+    }
+    public function profiles($id)
     {
     	$users = DB::table('Projets')
     		   ->join('users', 'Projets.chef_id', '=', 'users.id')
