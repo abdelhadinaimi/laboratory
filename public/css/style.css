@@ -204,6 +204,16 @@ blockquote {
 [ 2.0 - DEFAULT CSS START ] ***********************
 ***************************************************/
 /* [ 2.1 OVERRIDING CSS START ] */
+
+/* Added by Abdelhadi */
+
+.trobon-image{
+  min-width: 100px;
+  max-width: 100px;
+  min-height: 120px;
+  max-height: 120px;
+}
+
 /* Add by CHERIFI */
 .profileImage{
   min-width: 220px;

@@ -23,7 +23,7 @@
                         </div>
                         <div class="theme-block-data service-block-data">
                             <div class="service-icon"><i class="fa fa-book"></i></div>
-                            <h4><a href="{{ url('front/equipes/'.$equipe->id)}}">{{$equipe->intitule}}</a></h4>
+                            <h4><a href="{{ url('front/equipe/'.$equipe->id)}}">{{$equipe->intitule}}</a></h4>
                             <p class="paragraph-small paragraph-black service-description">
                                 <span>{{ str_limit($equipe->resume, $limit = 150, $end = '...') }}</span>
                                 <a href="{{ url('front/equipes/'.$equipe->id)}}">(Read More)</a>
