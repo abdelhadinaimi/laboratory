@@ -35,7 +35,7 @@
                                             <?php $nbrPub = $compteur->cpt ?>
                                           @endif
                                       @endforeach
-                            <li><a href="{{ route('publications',[ 'equipe_id' => $equipe->id , 'type' => request('type') ]) }}">{{$equipe->intitule}}</a><span>({{$nbrPub}})</span></li>
+                            <li><a class="{{request('equipe_id') == $equipe->id ? 'active':''}}" href="{{ route('publications',[ 'equipe_id' => $equipe->id , 'type' => request('type') ]) }}">{{$equipe->intitule}}</a><span>({{$nbrPub}})</span></li>
                             <?php $nbrPub = 0; ?>
                             @endforeach
                         </ul>
@@ -45,10 +45,10 @@
                                $url2.='equipe_id='.request('equipe_id')."&";
                      ?>
                     <!-- pour colorier un button vous devrier utiliser cette classe theme-tag-colored -->
-                    <div class="theme-material-card">
+                    <div class="theme-material-card type">
                         <div class="sub-ttl">Filtrer Par Type</div>
                         @foreach($types as $typeArticle)
-                           <a href="{{ route('publications',[ 'equipe_id'=>request('equipe_id') , 'type' => $typeArticle->type ]) }}" class="theme-tag">{{$typeArticle->type}}</a>
+                           <a  href="{{ route('publications',[ 'equipe_id'=>request('equipe_id') , 'type' => $typeArticle->type ]) }}" class="theme-tag {{request('type') ==  $typeArticle->type ? 'active':''}}">{{$typeArticle->type}}</a>
                         @endforeach
                     </div>
                     <div class="theme-material-card">
@@ -76,7 +76,7 @@
                         @endforeach
                         
                     </div>
-                    <div class="col-sm-5 col-sm-offset-5">{{$pubs->links('vendor.pagination.default')}}</div>
+                    {{$pubs->links('vendor.pagination.default')}}
                 </div>
             </div>
         </div>
