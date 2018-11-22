@@ -31,7 +31,7 @@
     <!-- Flex Slider Stylesheet CSS -->
     <link rel="stylesheet" href="{{ asset('css/flexslider.css')}}" />
     <!-- Custom Main Stylesheet CSS -->
-    <link rel="stylesheet" href="{{ asset('css/style.css')}}">
+    <link rel="stylesheet" href="{{ asset('css/style.css?<? echo time(); ?>')}}">
     <link rel="stylesheet" href="{{ asset('slider/price_range_style.css')}}">
 </head>
 
@@ -214,9 +214,42 @@
 
     <!-- ils sont importants pour le slider -->
     <script src="{{ asset('js/jquery-ui.min.js')}}" type="text/javascript"></script>
-    <script src="{{ asset('slider/price_slider.js')}}"></script>
+    <script src="{{ asset('slider/price_slider.js?v=1.1')}}"></script>
     <script src="{{ asset('js/front.js')}}"></script>
+    <script type="text/javascript">
+      $( "#sidebar-search" ).autocomplete({
+      source : "{{url('autocomplete')}}",
+      minLength : 3
+    });
+      $( "#search-button-pub" ).click(function() {
+            var term = "";
+            term = $('#sidebar-search').val();
+            var searchUrl ="{{ route('publications',['term' => ':term' ]) }}";
+            searchUrl = searchUrl.replace("%3Aterm",term);
+             document.location.href = searchUrl;
+         return false;
+        }); 
+ /*var tabs=["Tlemcen","Oran","Alger","Sidi Bel Abbes"];
+ $( "#sidebar-search" ).autocomplete({
+      source : tabs
+    });*/
+    </script>
+    <script type="text/javascript">
+        $( ".makeSlider" ).click(function() {
+            var from = document.getElementById('from').innerHTML;
+            var to = document.getElementById('to').innerHTML;
 
+            var sliderUrl ="{{ route('publications',['from' => ':from','to' => ':to' , 'type' => request('type') , 'equipe_id' => request('equipe_id') ]) }}";
+            sliderUrl = sliderUrl.replace("%3Afrom",from);
+            sliderUrl = sliderUrl.replace("%3Ato",to);
+            for (var i = 0; i < 5; i++) {
+               sliderUrl = sliderUrl.replace("amp;",""); 
+            }
+            
+             document.location.href = sliderUrl;
+         return false;
+        }); 
+    </script>
 </body>
 
 </html>
