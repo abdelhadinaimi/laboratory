@@ -26,15 +26,15 @@
                         <div class="tab-content">
                             <div role="tabpanel" class="tab-pane active" id="description">
                                 <div class="p-2">
-                                    <h1>Description</h1>
+                                    <h2>Description</h2>
                                     <div class="theme-img"><img src="{{ asset('uploads/'.$equipe->achronymes.'.jpg')}}" alt=""></div>
                                     <p class="font-18">{{$equipe->resume}}</p>
                                 </div>
                             </div>
                             <div role="tabpanel" class="tab-pane" id="membres">
                                 <div class="p-2">
-                                    <h1>Membres de l'equipe</h1>
-                                    <h2>Chef d'équipe</h2>
+                                    <h2>Membres de l'equipe</h2>
+                                    <h3>Chef d'équipe</h3>
                                    
                                     <div class="p-2"> 
                                         <a href="{{url('/front/profiles/'.$chef->id)}}">
@@ -61,10 +61,16 @@
                             </div>
                             <div role="tabpanel" class="tab-pane" id="projets">
                                 <div class="p-2">
-                                    <h5>Projets</h5>
-                                    <p class="font-14">Natus aspernatur ut totam quis et, repellat maiores voluptas
-                                        dolore sed aliquam delectus doloremque atque dolorum accusantium a. Officia
-                                        neque quas error veritatis sed, id earum voluptas! Ea, eum, ratione!</p>
+                                    <h2>Projets</h2>
+                                    <div class="row">
+                                        @foreach ($projets as $projet)                                         
+                                            @component('components.projet',[
+                                                'projet' => $projet,
+                                                'size' => 4
+                                                ])
+                                            @endcomponent
+                                        @endforeach
+                                    </div>
                                 </div>
                             </div>
                         </div>
