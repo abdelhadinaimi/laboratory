@@ -18,7 +18,7 @@
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label form-input">
                             <input class="mdl-textfield__input" type="text" id="sidebar-search">
                             <label class="mdl-textfield__label" for="sidebar-search">Rechercher</label>
-                            <button class="fa fa-search search-button"></button>
+                            <button class="fa fa-search search-button" id="search-button-pub"></button>
                         </div>
                     </div>
                     <?php $nbrPub = 0;$url="?"; ?>
@@ -35,7 +35,7 @@
                                             <?php $nbrPub = $compteur->cpt ?>
                                           @endif
                                       @endforeach
-                            <li><a class="{{request('equipe_id') == $equipe->id ? 'active':''}}" href="{{ route('publications',[ 'equipe_id' => $equipe->id , 'type' => request('type') ]) }}">{{$equipe->intitule}}</a><span>({{$nbrPub}})</span></li>
+                            <li><a class="{{request('equipe_id') == $equipe->id ? 'active':''}}" href="{{ route('publications',[ 'equipe_id' => $equipe->id , 'type' => request('type') , 'from' => request('from') ,'to' => request('to') ]) }}">{{$equipe->intitule}}</a><span>({{$nbrPub}})</span></li>
                             <?php $nbrPub = 0; ?>
                             @endforeach
                         </ul>
@@ -48,15 +48,15 @@
                     <div class="theme-material-card type">
                         <div class="sub-ttl">Filtrer Par Type</div>
                         @foreach($types as $typeArticle)
-                           <a  href="{{ route('publications',[ 'equipe_id'=>request('equipe_id') , 'type' => $typeArticle->type ]) }}" class="theme-tag {{request('type') ==  $typeArticle->type ? 'active':''}}">{{$typeArticle->type}}</a>
+                           <a  href="{{ route('publications',[ 'equipe_id'=>request('equipe_id') , 'type' => $typeArticle->type , 'from' => request('from') ,'to' => request('to')]) }}" class="theme-tag {{request('type') ==  $typeArticle->type ? 'active':''}}">{{$typeArticle->type}}</a>
                         @endforeach
                     </div>
                     <div class="theme-material-card">
                         <div class="sub-ttl">Filtrer Par Année</div>
                           <div style="text-align: center;">
-                             <p><span id="from">2000</span>-<span id="to">2018</span></p>
-                        	 <div id="slider-range" class="price-filter-range"></div>
-                        	 <button class="mdl-button mdl-js-button mdl-button--colored mdl-js-ripple-effect mdl-button--raised button button-primary button-lg make-appointment">Rechercher</button>
+                             <p><span id="from"><?php echo request()->has('from') ? request('from') : "2000"  ?></span>-<span id="to"><?php echo request()->has('to') ? request('to') : "2018"  ?></span></p>
+                             <div id="slider-range" class="price-filter-range"></div>
+                             <button class="mdl-button mdl-js-button mdl-button--colored mdl-js-ripple-effect mdl-button--raised button button-primary button-lg makeSlider">Rechercher</button>
                           </div>
                     </div>
                  </div>
@@ -69,7 +69,8 @@
                         @component('components.article',[
                             'pub' => $pub,
                             'type' => $type,
-                            'photo' => $pub->photo,
+                            'photo' => $pub->users->first()->photo,
+                            'users' => $pub->users,
                             'size' => 6])
                         @endcomponent
 
