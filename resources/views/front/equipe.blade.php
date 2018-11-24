@@ -60,7 +60,7 @@
                                 </div>
                             </div>
                             <div role="tabpanel" class="tab-pane" id="projets">
-                                <div class="p-2">
+                                <div class="p-2" style="min-width: 80vw;">
                                     <h2>Projets</h2>
                                     <div class="row">
                                         @foreach ($projets as $projet)                                         
