@@ -11,6 +11,7 @@ use App\ArticleUser;
 use App\User;
 use App\Role;
 use App\Parametre;
+use App\Actualite;
 
 class FrontController extends Controller{
 
@@ -127,10 +128,23 @@ class FrontController extends Controller{
     {
     	$users = DB::table('projets')
     		   ->join('users', 'projets.chef_id', '=', 'users.id')
+               ->orderBy('chef_id', 'desc')
+               ->take(5)
     		   ->get();
+        $latestActualite = Actualite::orderBy('id', 'desc')->take(5)->get(); 
     	return view('front.index')->with([
             'projets' => $users,
-        ]);;
+            'latestActs' => $latestActualite
+        ]);
+    }
+    public function actualites()
+    {
+        $actualites = Actualite::all();  
+        $latestActualite = Actualite::orderBy('id', 'desc')->take(5)->get(); 
+        return view('front.actualite')->with([
+            'actualites' => $actualites,
+            'latestActs'  => $latestActualite
+        ]);
     }
 
 }
