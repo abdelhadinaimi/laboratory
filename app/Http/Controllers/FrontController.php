@@ -24,12 +24,17 @@ class FrontController extends Controller{
     public function equipe($id)
     {   
         $equipe = Equipe::find($id);
-        $membres = User::where('equipe_id', $id)->get();
-        $chef = $equipe->chef;
+        $projets = DB::table('users')
+            ->where('users.equipe_id','=',$equipe->id)
+            ->join('projet_user', 'users.id', '=', 'projet_user.user_id')
+            ->join('projets','projets.id', '=', 'projet_user.projet_id')
+            ->get();
+               
         return view('front.equipe')->with([ 
             'equipe' => $equipe,
-            'membres' => $membres,
-            'chef' => $chef  
+            'membres' => $equipe->membres,
+            'chef' => $equipe->chef,
+            'projets' =>  $projets
         ]);
     }
 
