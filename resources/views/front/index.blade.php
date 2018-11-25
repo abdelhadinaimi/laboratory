@@ -38,39 +38,25 @@
         <div class="layer-stretch">
             <div class="layer-wrapper">
                 <div class="layer-ttl">
+                    <!-- latest actualité-->
                     <h3>Actualité</h3>
                 </div>
                 <div class="layer-container">
                     <div id="hm-doctor-slider" class="owl-carousel owl-theme theme-owl-dot">
+                        @foreach($latestActs as $latestAct)
                      <div class="hm-doctor">
-                    <div class="hm-feature-block-1">
-                        <div class="theme-img theme-img-scalerotate">
-                            <img src="uploads/feature-6.jpg" alt="">
+                        <div class="hm-feature-block-1">
+                            <div class="theme-img theme-img-scalerotate">
+                                <img src="uploads/feature-6.jpg" alt="">
+                            </div>
+                            <span><a style="color: white" href="#">{{$latestAct->titre}}</a></span>
+                            <p>{{substr ($latestAct->content,0,260)}}</p>
                         </div>
-                        <span>Pharmacies and drug stores</span>
-                        <p>Mel in hinc veri admodum, copiosae epicurei mea ei. Cum at nisl soleat. Eam insolens referrentur efficiantur an. Nibh deleniti ad vix, quodsi aliquam legendos pri in.</p>
+                    </div>
+                @endforeach
                     </div>
                 </div>
-                 <div class="hm-doctor">
-                    <div class="hm-feature-block-1">
-                        <div class="theme-img theme-img-scalerotate">
-                            <img src="uploads/feature-6.jpg" alt="">
-                        </div>
-                        <span>Pharmacies and drug stores</span>
-                        <p>Mel in hinc veri admodum, copiosae epicurei mea ei. Cum at nisl soleat. Eam insolens referrentur efficiantur an. Nibh deleniti ad vix, quodsi aliquam legendos pri in.</p>
-                    </div>
-                </div>
-                 <div class="hm-doctor">
-                    <div class="hm-feature-block-1">
-                        <div class="theme-img theme-img-scalerotate">
-                            <img src="uploads/feature-6.jpg" alt="">
-                        </div>
-                        <span>Pharmacies and drug stores</span>
-                        <p>Mel in hinc veri admodum, copiosae epicurei mea ei. Cum at nisl soleat. Eam insolens referrentur efficiantur an. Nibh deleniti ad vix, quodsi aliquam legendos pri in.</p>
-                    </div>
-                </div>
-                    </div>
-                </div>
+                <a class="pull-right" id="layer-suite" href="{{url('front/actualites')}}"><h3>Lire la suite</h3></a>
             </div>
         </div>
     </div>
@@ -79,6 +65,7 @@
         <div class="layer-stretch">
             <div class="layer-wrapper">
                 <div class="layer-ttl layer-ttl-white">
+                    <!-- latest projects-->
                     <h3>Projects</h3>
                 </div>
                 <div class="layer-container">

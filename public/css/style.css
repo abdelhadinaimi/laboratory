@@ -521,6 +521,23 @@ blockquote {
     border-bottom: 2px solid #02A7B6;
     border-radius: 4px; }
 
+    #layer-suite  {
+    position: relative;
+    font-size: 32px;
+    font-weight: 500;
+    color: #015259;
+    line-height: 1;
+    display: inline-block;
+    margin-bottom: 30px;
+    padding: 12px 25px 15px 25px;
+    border-bottom: 2px dashed #02A7B6;
+    border-radius: 4px; }
+
+    #layer-suite:hover{
+      color: #0094a0;
+      border-bottom: 2px solid #02A7B6;
+    }
+
 .layer-ttl-white h3 {
   color: #EBFCFD;
   background: #015259;
@@ -3248,7 +3265,6 @@ blockquote {
   position: absolute;
   top: 0;
   left: 16px;
-  width: 70px;
   padding: 10px;
   font-size: 14px;
   color: #015259;
