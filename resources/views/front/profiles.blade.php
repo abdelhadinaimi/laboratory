@@ -103,26 +103,13 @@
                                         <h5>Projets</h5>
                                                  <div class="row">
                             @foreach ($membre->projets as $projet) 
-                                      
-                         <div class="col-md-3">
-                            
-                    
-                            <div class="theme-block theme-block-hover">
-                                <div class="theme-block-picture">
-                                    <img src="{{ asset('uploads/service-1.jpg')}}" alt="">
-                                </div>
-                                <div class="theme-block-data service-block-data">
-                                    <div class="service-icon"><img src="{{asset($membre->photo)}}" alt="" class="fa"></div>
-                                    <br><br><h6 class="paragraph-small paragraph-black service-description"></h6>
-                                    <h6 style="text-align:left"><a href="#">{{$projet->intitule}}</a></h6>
-                                    <p class="paragraph-small paragraph-black service-description">
-                                        <span>{{$projet->resume}}</span>
-                                        <a href="#">(Read More)</a>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        @endforeach
+                                @component('components.projet',[
+                                    'projet' => $projet,
+                                    'size' => 3
+                                    ])
+                                @endcomponent
+                                        
+                            @endforeach
                          
                               </div>  
                                     </div>
