@@ -40,7 +40,7 @@
                                         <a href="{{url('/front/profiles/'.$chef->id)}}">
                                             <img src="{{asset($chef->photo)}}" class="rounded-circle trobon-image"/>
                                         </a>
-                                        <a href="{{url('/front/profiles/'.$equipe->id)}}"><h4>{{$chef->name}} {{$chef->prenom}}</h4></a>
+                                        <a href="{{url('/front/profiles/'.$chef->id)}}"><h4>{{$chef->name}} {{$chef->prenom}}</h4></a>
                                     </div>
 
                                     <h3>Chercheurs</h3>
