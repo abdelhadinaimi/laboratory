@@ -420,6 +420,13 @@
 
   
 </script>
-
+<script type="text/javascript">
+     $(function () {
+           var manageCat = $("#gererCat").DataTable({
+            'ajax': "{{url('getCat')}}",
+             'order': []   
+             });
+     });
+</script>
 </body>
 </html>

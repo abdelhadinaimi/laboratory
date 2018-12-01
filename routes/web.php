@@ -21,7 +21,9 @@ Route::get('/', function () {
     return view('auth/login');
 });
 
-
+//Traitement materiels
+Route::get('materiels','MaterielController@index');
+Route::get('getCat','MaterielController@getCategories');
 
 Route::get('dashboard','dashController@index');
 Route::get('parametre','ParametreController@create');
