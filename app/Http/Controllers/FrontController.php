@@ -147,4 +147,12 @@ class FrontController extends Controller{
         ]);
     }
 
+    public function projets()
+    {
+        $projets = Projet::paginate(15);
+        return view('front.projets')->with([
+            'projets' => $projets
+        ]);
+
+    }
 }

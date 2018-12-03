@@ -141,3 +141,4 @@ Route::get('/front/publications','FrontController@getAllPubs')->name('publicatio
 Route::get('front/profiles/{id}','FrontController@profiles');
 Route::get('autocomplete','FrontController@autocomplete');
 Route::get('/front/actualites','FrontController@actualites');
+Route::get('/front/projets','FrontController@projets');
