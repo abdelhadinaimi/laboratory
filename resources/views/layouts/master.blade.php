@@ -420,6 +420,72 @@
 
   
 </script>
+<script type="text/javascript">
+     $(function () {
+           var manageCat = $("#gererCat").DataTable({
+            'ajax': 'getCat',
+             'order': []   
+             });
+           $("#submitCatForm").unbind('submit').bind('submit', function() {
+              var catLib = $("#catLib").val();
+              if(catLib == "") {
+                  $("#catLib").after('<p class="text-danger">Saissisz le libellé</p>');
+                  $('#catLib').closest('.form-group').addClass('has-error');
+              }
+              else{
+                var form = $(this);
+                $("#createCatBtn").button('loading');
+                $.ajax({
+                  url : form.attr('action'),
+                  type: form.attr('method'),
+                  data: form.serialize(),
+                  dataType: 'json',
+                  success:function(response) {
+                   $("#createCatBtn").button('reset');
+                     if(response.success == true) {
+                           manageCat.ajax.reload(null, false);
+                           $("#submitCatForm")[0].reset();
+                           $(".text-danger").remove();
+                           $('.form-group').removeClass('has-error').removeClass('has-success');
+                           $('#add-cat-messages').html('<div class="alert alert-success">'+
+            '<button type="button" class="close" data-dismiss="alert">&times;</button>'+
+            '<strong><i class="glyphicon glyphicon-ok-sign"></i></strong> '+ response.messages +
+          '</div>');
+                    $(".alert-success").delay(500).show(10, function() {
+                       $(this).delay(3000).hide(10, function() {
+                       $(this).remove();
+                        });
+                       }); // /.alert
+                    }  // if
+                  } // /success
+                  }); // /ajax
+               }
+              return false;
+           });
 
+        $('#removeCat').on('click',function(e){
+             var idCat = $("#getCatId").attr('role');
+              $.ajax({
+                url: 'deleteCat/'+idCat,
+                type: 'post',
+                dataType: 'json',
+                data: {"_token": "{{ csrf_token() }}"},
+                success:function(response) {
+                  $('#removeCatModal').modal('hide');
+                  manageCat.ajax.reload(null, false);
+                  $('.remove-messages').html('<div class="alert alert-success">'+
+                  '<button type="button" class="close" data-dismiss="alert">&times;</button>'+
+                  '<strong><i class="glyphicon glyphicon-ok-sign"></i></strong> Suppression Effectuée</div>');
+
+                  $(".alert-success").delay(500).show(10, function() {
+                    $(this).delay(3000).hide(10, function() {
+                          $(this).remove();
+                    });
+                  }); // /.alert
+                }
+             });
+        });
+     });
+</script>
 </body>
 </html>

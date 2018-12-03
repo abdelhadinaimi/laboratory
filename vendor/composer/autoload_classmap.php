@@ -6,6 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'App\\Actualite' => $baseDir . '/app/Actualite.php',
     'App\\Article' => $baseDir . '/app/Article.php',
     'App\\ArticleUser' => $baseDir . '/app/ArticleUser.php',
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
@@ -19,7 +20,10 @@ return array(
     'App\\Http\\Controllers\\Auth\\ResetPasswordController' => $baseDir . '/app/Http/Controllers/Auth/ResetPasswordController.php',
     'App\\Http\\Controllers\\Controller' => $baseDir . '/app/Http/Controllers/Controller.php',
     'App\\Http\\Controllers\\EquipeController' => $baseDir . '/app/Http/Controllers/EquipeController.php',
+    'App\\Http\\Controllers\\FrontController' => $baseDir . '/app/Http/Controllers/FrontController.php',
     'App\\Http\\Controllers\\HomeController' => $baseDir . '/app/Http/Controllers/HomeController.php',
+    'App\\Http\\Controllers\\MaterielController' => $baseDir . '/app/Http/Controllers/MaterielController.php',
+    'App\\Http\\Controllers\\ParametreController' => $baseDir . '/app/Http/Controllers/ParametreController.php',
     'App\\Http\\Controllers\\ProjetController' => $baseDir . '/app/Http/Controllers/ProjetController.php',
     'App\\Http\\Controllers\\TheseController' => $baseDir . '/app/Http/Controllers/TheseController.php',
     'App\\Http\\Controllers\\UserController' => $baseDir . '/app/Http/Controllers/UserController.php',
@@ -36,7 +40,9 @@ return array(
     'App\\Http\\Requests\\equipeRequest' => $baseDir . '/app/Http/Requests/equipeRequest.php',
     'App\\Http\\Requests\\projetRequest' => $baseDir . '/app/Http/Requests/projetRequest.php',
     'App\\Http\\Requests\\theseRequest' => $baseDir . '/app/Http/Requests/theseRequest.php',
+    'App\\Http\\Requests\\userEditRequest' => $baseDir . '/app/Http/Requests/userEditRequest.php',
     'App\\Http\\Requests\\userRequest' => $baseDir . '/app/Http/Requests/userRequest.php',
+    'App\\Parametre' => $baseDir . '/app/Parametre.php',
     'App\\Policies\\ArticlePolicy' => $baseDir . '/app/Policies/ArticlePolicy.php',
     'App\\Policies\\ProjetPolicy' => $baseDir . '/app/Policies/ProjetPolicy.php',
     'App\\Policies\\ThesePolicy' => $baseDir . '/app/Policies/ThesePolicy.php',

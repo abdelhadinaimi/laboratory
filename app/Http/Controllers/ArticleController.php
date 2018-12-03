@@ -73,7 +73,6 @@ class ArticleController extends Controller
             $file_name = time().'.'.$file->getClientOriginalExtension();
             $file->move(public_path('/uploads/article'),$file_name);
             $article->detail = '/uploads/article/'.$file_name;
-
         }
 
 	 	$article->type = $request->input('type');
