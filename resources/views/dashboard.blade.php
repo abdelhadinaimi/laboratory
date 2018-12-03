@@ -51,10 +51,15 @@
             <span>Articles</span></a>
           </li>
         
-        <li >
+        <li>
           <a href="{{url('projets')}}">
             <i class="fa fa-folder-open-o"></i> 
             <span>Projets</span>
+          </a>
+        </li>
+        <li>
+          <a href="{{url('materiels')}}">
+            <span>materiels</span>
           </a>
         </li>
         
