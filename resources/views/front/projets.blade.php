@@ -15,12 +15,12 @@
             <div class="text-center">
                 <div class="theme-material-card">
                     <div class="row">
-                        @foreach ($projets as $projet)                                         
-                            @component('components.projet',[
-                                'projet' => $projet,
-                                    'size' => 4
-                                ])
-                            @endcomponent
+                        @foreach ($projets as $projet)                     
+                                @component('components.projet',[
+                                    'projet' => $projet,
+                                        'size' => 4
+                                    ])
+                                @endcomponent
                         @endforeach
                     </div>
                     {{$projets->links('vendor.pagination.default')}}
