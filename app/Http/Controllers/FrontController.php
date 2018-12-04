@@ -149,4 +149,20 @@ class FrontController extends Controller{
         ]);
     }
 
+    public function projets()
+    {
+        $projets = Projet::paginate(9);
+        return view('front.projets')->with([
+            'projets' => $projets
+        ]);
+
+    }
+
+    public function projet($id)
+    {
+        $projet = Projet::find($id);
+        return view('front.projet')->with([
+            'projet' => $projet
+        ]); 
+    }
 }

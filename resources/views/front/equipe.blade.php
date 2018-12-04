@@ -8,7 +8,7 @@
         @slot('title')
             @yield('title')
         @endslot
-        @yield('title')    
+        <a href="/front/equipes">Equipes</a> &#8594;@yield('title')    
     @endcomponent
     <div id="service-page-1">
         <div class="layer-stretch">
