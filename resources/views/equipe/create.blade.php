@@ -65,7 +65,14 @@
             <span>Projets</span>
           </a>
         </li>
-        
+        @if(Auth::user()->role->nom == 'admin' )
+          <li>
+          <a href="{{url('materiels')}}">
+            <i class="fa fa-folder-open-o"></i> 
+            <span>Materiels</span>
+          </a>
+        </li>
+      @endif
           @if(Auth::user()->role->nom == 'admin' )
 
           <li>

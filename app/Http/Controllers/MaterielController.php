@@ -26,7 +26,7 @@ class MaterielController extends Controller
 	                      Action <span class="caret"></span>
 	                  </button>
 	                 <ul class="dropdown-menu">
-	                    <li><a type="button" data-toggle="modal" id="editCategoriesModalBtn" data-target="#editCategoriesModal" onclick="editCategories('.$categorie->id.')"> <i class="glyphicon glyphicon-edit"></i> Editer</a></li>
+	                    <li><a type="button" data-toggle="modal" id="editCategoriesModalBtn" data-target="#editCategoriesModal"> <i class="glyphicon glyphicon-edit"></i> Editer</a></li>
 	                   <li><a type="button" data-toggle="modal" data-target="#removeCatModal" role="'.$categorie->id.'" id="getCatId"> <i class="glyphicon glyphicon-trash"></i> Supprimer</a></li>         
 	                 </ul>
 	             </div>';
@@ -46,11 +46,17 @@ class MaterielController extends Controller
 		$valid['messages'] = "Ajout réussi";	
 	    return response()->json($valid);
     }
-    function deleteCategorie($id){
-    	Categorie::destroy($id);
+    function deleteCategorie(Request $request){
+    	Categorie::destroy($request->input('idCat'));
     	$valid['success'] = array('success' => false, 'messages' => array());
 	 	$valid['success'] = true;
 		$valid['messages'] = "Ajout réussi";	
 	    return response()->json($valid);
+    }
+    function editCategorie($id,Request $request){
+         $categorie = Categorie::find($id);
+         $categorie->libelle = $request->input('catLib');
+         $categorie->save();
+         return response()->json(array('success' => true,'message' => "Categorie Mise à Jour"));
     }
 }

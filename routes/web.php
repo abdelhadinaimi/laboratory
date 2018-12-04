@@ -25,8 +25,8 @@ Route::get('/', function () {
 Route::get('materiels','MaterielController@index');
 Route::get('getCat','MaterielController@getCategories');
 Route::post('createCat','MaterielController@createCategorie');
-Route::post('deleteCat/{id}','MaterielController@deleteCategorie');
-
+Route::post('deleteCat','MaterielController@deleteCategorie');
+Route::post('editCat/{id}','MaterielController@editCategorie');
 
 Route::get('dashboard','dashController@index');
 Route::get('parametre','ParametreController@create');
