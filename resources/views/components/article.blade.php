@@ -10,7 +10,7 @@
             <div class="service-icon"><img src="{{asset($photo)}}" alt="" class="fa"></div>
             <br><br>
             @foreach($users as $user)
-            <h6 class="paragraph-small paragraph-black service-description">Par {{$user->name}}  {{$user->prenom}}</h6>
+                <h6 class="paragraph-small paragraph-black service-description">Par {{$user->name}}  {{$user->prenom}}</h6>
             @endforeach
             <h6 style="text-align:left"><a href="#">{{$pub->titre}}</a></h6>
             <p class="paragraph-small paragraph-black service-description">

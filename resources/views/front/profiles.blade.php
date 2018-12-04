@@ -89,6 +89,7 @@
                             'pub' => $article,
                             'type' => $type,
                             'photo' => $membre->photo,
+                            'users' => $article->users,
                             'size' => 3])
                         @endcomponent
 

@@ -1,7 +1,6 @@
 @extends('layouts.frontMaster')
 
 @section('title','Projets')
-<!-- Affiche moi toutes Les publications -->
 @section('content')
 
     @component('components.breadcrumbs')

@@ -147,3 +147,4 @@ Route::get('front/profiles/{id}','FrontController@profiles');
 Route::get('autocomplete','FrontController@autocomplete');
 Route::get('/front/actualites','FrontController@actualites');
 Route::get('/front/projets','FrontController@projets');
+Route::get('/front/projet/{id}','FrontController@projet');
