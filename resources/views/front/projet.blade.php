@@ -12,7 +12,7 @@
     @endcomponent
     <div class="layer-stretch">
         <div class="row layer-wrapper">
-            <div class="text-center" style="width:100%;">
+            <div style="width:100%;">
                 <div class="theme-material-card">
                     <div class="box-body">
                         <div class="row container">
@@ -56,7 +56,7 @@
                                 <strong>Chef De Projet</strong>
                             </div>
                             <div class="col-md-9">
-                                <p class="text-muted">{{ $projet->chef->name ." " . $projet->chef->prenom}}</p>
+                                <p class="text-muted"><a href="{{ url('front/profiles/'.$projet->chef->id)}}">{{ $projet->chef->name ." " . $projet->chef->prenom}}</a></p>
                             </div>
                         </div>
                         <hr/>
@@ -65,16 +65,31 @@
                                 <strong>Membres</strong>
                             </div>
                             <div class="col-md-9">
-                                <p class="text-muted">{{ $projet->type }}</p>
-                            </div>
-                            <div class="col-md-9">
-                                <p class="text-muted">{{ $projet->type }}</p>
-                            </div>
-                            <div class="col-md-9">
-                                <p class="text-muted">{{ $projet->type }}</p>
+                                <ul>
+                                    @foreach($projet->users as $user)
+                                    <li><a href="{{url('front/profiles/'.$user->id)}}">{{ $user->name . " " . $user->prenom}}</a></li>
+
+                                    @endforeach
+                                </ul>
                             </div>
                         </div>
                         <hr/>
+                        <div class="row container">
+                            <div class="col-md-3">
+                                <strong>Lien</strong>
+                            </div>
+                            <div class="col-md-9">
+                                <p class="text-muted"><a href="{{ url($projet->lien)}}">{{$projet->lien}}</a></p>
+                            </div>
+                        </div>
+                        <div class="row container">
+                            <div class="col-md-3">
+                                <strong>Detail</strong>
+                            </div>
+                            <div class="col-md-9">
+                                <p class="text-muted"><a href="{{ url($projet->detail)}}">Lien Fichier</a></p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
