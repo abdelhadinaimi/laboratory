@@ -26,8 +26,8 @@ class MaterielController extends Controller
 	                      Action <span class="caret"></span>
 	                  </button>
 	                 <ul class="dropdown-menu">
-	                    <li><a type="button" data-toggle="modal" id="editCategoriesModalBtn" data-target="#editCategoriesModal"> <i class="glyphicon glyphicon-edit"></i> Editer</a></li>
-	                   <li><a type="button" data-toggle="modal" data-target="#removeCatModal" role="'.$categorie->id.'" id="getCatId"> <i class="glyphicon glyphicon-trash"></i> Supprimer</a></li>         
+	                    <li><a type="button" data-toggle="modal" id="editCategoriesModalBtn" data-target="#editCategoriesModal" onclick="editCat('.$categorie->id.');"> <i class="glyphicon glyphicon-edit"></i> Editer</a></li>
+	                   <li><a type="button" data-toggle="modal" data-target="#removeCategoriesModal" id="removeCategoriesModalBtn" onclick="removeCat('.$categorie->id.');"> <i class="glyphicon glyphicon-trash"></i> Supprimer</a></li>          
 	                 </ul>
 	             </div>';
         	$output['data'][] = array( 		
