@@ -24,9 +24,16 @@ Route::get('/', function () {
 //Traitement materiels
 Route::get('materiels','MaterielController@index');
 Route::get('getCat','MaterielController@getCategories');
+Route::get('getMat','MaterielController@getMateriels');
+
 Route::post('createCat','MaterielController@createCategorie');
+Route::post('createMat','MaterielController@createMateriel');
+
 Route::post('deleteCat','MaterielController@deleteCategorie');
+Route::post('deleteMat','MaterielController@deleteMateriel');
+
 Route::post('editCat/{id}','MaterielController@editCategorie');
+Route::post('editMat/{id}','MaterielController@editMateriel');
 
 Route::get('dashboard','dashController@index');
 Route::get('parametre','ParametreController@create');

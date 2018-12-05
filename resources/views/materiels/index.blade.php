@@ -32,7 +32,8 @@
                                 @endcomponent
                     </div>
                     <div role="tabpanel" class="tab-pane" id="materiels">
-                          
+                          @component('components.compMater',['categories' => $categories])
+                                @endcomponent
                     </div>
               </div>
  @endsection
