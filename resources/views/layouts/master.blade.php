@@ -53,6 +53,11 @@
 
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+
+  <!-- include summernote css/js -->
+<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.css" rel="stylesheet">
+
+
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
@@ -254,7 +259,7 @@
 <!-- iCheck 1.0.1 -->
 <script src="{{ asset('labo/plugins/iCheck/icheck.min.js')}}"></script>
 
-
+<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.js"></script>
 <script>
   $(function () {
     //Initialize Select2 Elements
@@ -487,5 +492,69 @@
         });
      });
 </script>
+<script>
+  $(document).ready(function() {
+var IMAGE_PATH = '{{ public_path(("/uploads/photo/")) }}';
+
+$.ajaxSetup({
+    headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content')     }
+});
+$('#summernote').summernote({
+    height: 400,
+    onImageUpload: function(files) {
+        data = new FormData();
+        data.append("image", files[0]);
+        $.ajax({
+            data: data,
+            type: "POST",
+            url: '{{ public_path(("/uploads/photo/")) }}',
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function(filename) {
+                var file_path = IMAGE_PATH + filename;
+                console.log(file_path);
+                $('#summernote').summernote("insertImage", file_path);
+            }
+        });
+    }
+});
+});
+
+ /* $(document).ready(function() {
+    $.ajaxSetup({
+    headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content')     }
+});
+$("#summernote").summernote({
+  placeholder: 'enter directions here...',
+        height: 300,
+         callbacks: {
+        onImageUpload: function(image) {
+            uploadImage(image[0]);
+        }
+    }
+    });
+});
+function uploadImage(image) {
+    var data = new FormData();
+    data.append("image", image);
+    $.ajax({
+        url: '{{ public_path(("/uploads/photo/")) }}',
+        cache: false,
+        contentType: false,
+        processData: false,
+        data: data,
+        type: "post",
+        success: function(url) {
+            var image = $('<img>').attr('src', 'http://' + url);
+            $('#summernote').summernote("insertNode", image[0]);
+        },
+        error: function(data) {
+            console.log(data);
+        }
+    });
+}*/
+</script>
+
 </body>
 </html>

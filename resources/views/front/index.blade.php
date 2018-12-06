@@ -34,34 +34,31 @@
         </div>
     </div>
     <!-- End Slider Section -->
-    <div class="layer-stretch">
+ <div class="colored-background">
         <div class="layer-stretch">
             <div class="layer-wrapper">
-                <div class="layer-ttl">
+                <div class="layer-ttl layer-ttl-white">
                     <!-- latest actualité-->
                     <h3>Actualité</h3>
                 </div>
-                <div class="layer-container">
+                  <div class="layer-container">
                     <div id="hm-doctor-slider" class="owl-carousel owl-theme theme-owl-dot">
                         @foreach($latestActs as $latestAct)
-                     <div class="hm-doctor">
-                        <div class="hm-feature-block-1">
-                            <div class="theme-img theme-img-scalerotate">
-                                <img src="uploads/feature-6.jpg" alt="">
-                            </div>
-                            <span><a style="color: white" href="#">{{$latestAct->titre}}</a></span>
-                            <p>{{substr ($latestAct->content,0,260)}}</p>
+                        <div class="hm-doctor">
+                            <img class="img-responsive" src="{{asset($latestAct->photo)}}" alt="">
+                            <h6>{{$latestAct->titre}}</h6>
+                            <p>{{$latestAct->description}}</p>
                         </div>
-                    </div>
-                @endforeach
+                        @endforeach
                     </div>
                 </div>
+
                 <a class="pull-right" id="layer-suite" href="{{url('front/actualites')}}"><h3>Lire la suite</h3></a>
             </div>
         </div>
     </div>
 <!-- Start Testimonial Section -->
-    <div id="testimonial" class="colored-background">
+    <div id="testimonial" >
         <div class="layer-stretch">
             <div class="layer-wrapper">
                 <div class="layer-ttl layer-ttl-white">

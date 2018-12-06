@@ -3,7 +3,12 @@
 @section('title','Actualite')
 
 @section('content')
-
+   @component('components.breadcrumbs')
+        @slot('title')
+            @yield('title')
+        @endslot
+        @yield('title')    
+    @endcomponent
   <!-- Start Blog List Section -->
     <div class="layer-stretch">
         <div class="layer-wrapper">
@@ -39,9 +44,9 @@
                     <div class="theme-material-card">
                         <div class="sub-ttl">Post récent</div>
                         @foreach($latestActs as $latestAct)
-                        <a href="#" class="row blog-recent">
+                        <a href="{{url('/front/details/'.$latestAct->id)}}" class="row blog-recent">
                             <div class="col-4 blog-recent-img">
-                                <img class="img-responsive img-thumbnail" src="{{asset('uploads/'.'recent-1'.'.jpg')}}" alt="">
+                                <img class="img-responsive img-thumbnail" src="{{asset($latestAct->photo)}}" alt="">
                             </div>
                             <div class="col-8 blog-recent-post">
                                 <h4>{{$latestAct->titre}}</h4>
