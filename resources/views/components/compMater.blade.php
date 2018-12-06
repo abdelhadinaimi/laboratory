@@ -7,7 +7,7 @@
               <div class="panel-body">
                   <div class="remove-messagesMat"></div>
                   <div class="div-action pull pull-right" style="padding-bottom:20px;">
-                 <button class="btn btn-default button1" data-toggle="modal" data-target="#addMat"> <i class="glyphicon glyphicon-plus-sign"></i> Ajouter Matériel </button>
+                 <button class="btn btn-default button1" id="addButton" data-toggle="modal" data-target="#addMat"> <i class="glyphicon glyphicon-plus-sign"></i> Ajouter Matériel </button>
         </div> <!-- /div-action -->       
         
         <table class="table" width="100%" id="tableMat">
@@ -44,9 +44,7 @@
             <div class="col-sm-8">
               <select id="selectCat" name="catMat" class="form-control">
                           <option>Séléctionner</option>
-                                    @foreach($categories as $categorie)
-                                    <option  value="{{$categorie->id}}">{{$categorie->libelle}}</option>
-                                    @endforeach
+                                 
                                   </select>
             </div>
           </div> <!-- /form-group-->   
@@ -98,10 +96,7 @@
             <label class="col-sm-1 control-label">: </label>
             <div class="col-sm-8">
               <select id="selectCatEdit" name="catMatEdit" class="form-control">
-                          <option selected="true">Séléctionner</option>
-                                    @foreach($categories as $categorie)
-                                    <option  value="{{$categorie->id}}">{{$categorie->libelle}}</option>
-                                    @endforeach
+                          
                                   </select>
             </div>
           </div> <!-- /form-group-->   
@@ -158,4 +153,57 @@
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 <!-- /remove brand -->
+<div class="modal fade" id="affecterMatModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      
+      <form class="form-horizontal" id="" action="" method="POST">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title"><i class="glyphicon glyphicon-export"></i> Affecter Matériel</h4>
+        </div>
+        <div class="modal-body" id="body-editMat">
+          <div id="edit-mat-messages"></div>
+          <div class="form-group">
+            <label for="brandName" class="col-sm-3 control-label">Affecter à un(e) </label>
+            <label class="col-sm-1 control-label">: </label>
+            <div class="col-sm-8">
+              <select id="affecterSelect" name="affecterSelect" class="form-control">
+                          <option value="0" selected="true">Equipe</option>
+                          <option value="1">Membre</option>
 
+                                  </select>
+            </div>
+          </div> <!-- /form-group-->   
+          <div class="form-group">
+            <label for="brandName" class="col-sm-3 control-label">Equipe </label>
+            <label class="col-sm-1 control-label">: </label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" id="affecterEquipe" placeholder="Equipe" name="affecterEquipe" autocomplete="off">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="brandName" class="col-sm-3 control-label">Membre </label>
+            <label class="col-sm-1 control-label">: </label>
+            <div class="col-sm-8">
+              <input type="text" disabled="true"  class="form-control" id="affecterMembre" placeholder="Membre" name="affecterMembre" autocomplete="off">
+            </div>
+          </div>               
+                          
+          <!-- /edit brand result -->
+
+        </div> <!-- /modal-body -->
+        
+        <div class="modal-footer editBrandFooter">
+          <button type="button" class="btn btn-default" data-dismiss="modal"> <i class="glyphicon glyphicon-remove-sign"></i> Fermer</button>
+          
+          <button type="submit" class="btn btn-success" id="editMatBtn" data-loading-text="Loading..." autocomplete="off"> <i class="glyphicon glyphicon-ok-sign"></i> Affecter</button>
+        </div>
+        <!-- /modal-footer -->
+      </form>
+       <!-- /.form -->
+    </div>
+    <!-- /modal-content -->
+  </div>
+  <!-- /modal-dailog -->
+</div>

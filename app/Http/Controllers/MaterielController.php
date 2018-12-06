@@ -32,7 +32,7 @@ class MaterielController extends Controller
 	                   <li><a type="button" data-toggle="modal" data-target="#removeCategoriesModal" id="removeCategoriesModalBtn" onclick="removeCat('.$categorie->id.');"> <i class="glyphicon glyphicon-trash"></i> Supprimer</a></li>          
 	                 </ul>
 	             </div>';
-        	$output['data'][] = array( 		
+        	$output['data'][] = array(
  		       $categorie->libelle,
  		       $button_Action	
  		    ); 
@@ -74,7 +74,8 @@ class MaterielController extends Controller
                       </button>
                      <ul class="dropdown-menu">
                         <li><a type="button" data-toggle="modal" id="editMaterielsModalBtn" data-target="#editMaterielsModal" onclick="editMat('.$materiel->id.');"> <i class="glyphicon glyphicon-edit"></i> Editer</a></li>
-                       <li><a type="button" data-toggle="modal" data-target="#removeMatModal" id="removeMaterielsModalBtn" onclick="removeMat('.$materiel->id.');"> <i class="glyphicon glyphicon-trash"></i> Supprimer</a></li>          
+                       <li><a type="button" data-toggle="modal" data-target="#removeMatModal" id="removeMaterielsModalBtn" onclick="removeMat('.$materiel->id.');"> <i class="glyphicon glyphicon-trash"></i> Supprimer</a></li>
+                       <li><a type="button" data-toggle="modal" data-target="#affecterMatModal" id="affecterMaterielsModalBtn" onclick="AffecterMat('.$materiel->id.');"> <i class="glyphicon glyphicon-export"></i> Affecter</a></li>          
                      </ul>
                  </div>';
             $output['data'][] = array(
@@ -130,4 +131,27 @@ class MaterielController extends Controller
               return response()->json($output);
 
         }
+       public function getSmallCat(){
+        $output = array('data' => array());
+        $categories = Categorie::all();
+        foreach ($categories as $categorie)
+        {
+            $output['data'][] = array(
+               $categorie->id,
+                $categorie->libelle,
+                
+            ); 
+        }
+      return response()->json($output);
     }
+
+
+    public function affecterForMembre($id){
+
+    }
+
+    public function affecterForEquipe($id){
+        
+    }
+
+}

@@ -3,20 +3,61 @@ function removeMat($idMat){
     $('#body-removeMat').attr('role',$idMat);
     return true;
 }
-function editMat($idMat){
-     $('#body-editMat').attr('role',$idMat);
-        $.getJSON('getInformationMat/'+$idMat, function (data) {
-    // Iterate the groups first.
-            var ref= data.data[0][0];
-            refTmp=ref;
-            var categorie= data.data[0][1];
-            var description= data.data[0][2];
-            $("#RefMatEdit").val(ref);
-       		 $("#selectCatEdit").val(categorie);
-            $("#DescMatEdit").val(description);
-		});
-}
+  function editMat($idMat){
+            fillSelectCategories();
 
+       $('#body-editMat').attr('role',$idMat);
+          $.getJSON('getInformationMat/'+$idMat, function (data) {
+      // Iterate the groups first.
+              var ref= data.data[0][0];
+              refTmp=ref;
+              var categorie= data.data[0][1];
+              var description= data.data[0][2];
+              $("#RefMatEdit").val(ref);
+         		 $("#selectCatEdit").val(categorie);
+              $("#DescMatEdit").val(description);
+  		});
+
+  }
+
+  
+    
+    $( "#addButton" ).click(function() {
+      fillSelectCategories();
+    });
+    function fillSelectCategories(){
+      $.getJSON('getSmallCat', function (data) {
+          $('#selectCat').empty();
+          $('#selectCat').append($('<option>').text("Séléctionner").attr('value',""));
+          data.data.forEach(e => {
+          $('#selectCat').append($('<option>').text(e[1]).attr('value', e[0]));
+          console.log(e);
+        });
+      });
+
+      $.getJSON('getSmallCat', function (data) {
+          $('#selectCatEdit').empty();
+          $('#selectCatEdit').append($('<option>').text("Séléctionner").attr('value',""));
+          data.data.forEach(e => {
+          $('#selectCatEdit').append($('<option>').text(e[1]).attr('value', e[0]));
+          console.log(e);
+        });
+      });
+    }
+
+    $('#affecterSelect').on('change', function() {
+      var val = this.value;
+      if(val == 0){
+        $('#affecterMembre').prop('disabled', true);
+         $('#affecterEquipe').prop('disabled', false);
+
+      }
+      else{
+         $('#affecterEquipe').prop('disabled', true);
+        $('#affecterMembre').prop('disabled', false);
+       }
+
+});
 $(function () {
         
            var manageMat = $("#tableMat").DataTable({
