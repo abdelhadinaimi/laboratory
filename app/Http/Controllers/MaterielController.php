@@ -22,12 +22,12 @@ class MaterielController extends Controller
         {
         	$button_Action = '<!-- Single button -->
 	              <div class="btn-group">
-	                  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	                  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 	                      Action <span class="caret"></span>
 	                  </button>
 	                 <ul class="dropdown-menu">
-	                    <li><a type="button" data-toggle="modal" id="editCategoriesModalBtn" data-target="#editCategoriesModal" onclick="editCat('.$categorie->id.');"> <i class="glyphicon glyphicon-edit"></i> Editer</a></li>
-	                   <li><a type="button" data-toggle="modal" data-target="#removeCategoriesModal" id="removeCategoriesModalBtn" onclick="removeCat('.$categorie->id.');"> <i class="glyphicon glyphicon-trash"></i> Supprimer</a></li>          
+	                    <li><a type="button" data-toggle="modal" id="editCategoriesModalBtn" data-target="#editCategoriesModal" onclick="editCat('.$categorie->id.',\''.$categorie->libelle.'\');" style="cursor:pointer;"> <i class="glyphicon glyphicon-edit"></i> Editer</a></li>
+	                   <li><a type="button" data-toggle="modal" data-target="#removeCategoriesModal" id="removeCategoriesModalBtn" onclick="removeCat('.$categorie->id.');" style="cursor:pointer;"> <i class="glyphicon glyphicon-trash"></i> Supprimer</a></li>          
 	                 </ul>
 	             </div>';
         	$output['data'][] = array( 		

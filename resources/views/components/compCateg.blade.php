@@ -14,7 +14,7 @@
             <table class="table" id="gererCat">
                <thead>
                    <tr>              
-                      <th>Libellé du categorie</th>
+                      <th>Libellé</th>
                       <th style="width:15%;">Options</th>
                    </tr>
                </thead>
