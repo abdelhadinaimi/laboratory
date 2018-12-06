@@ -9,6 +9,7 @@ return array(
     'App\\Actualite' => $baseDir . '/app/Actualite.php',
     'App\\Article' => $baseDir . '/app/Article.php',
     'App\\ArticleUser' => $baseDir . '/app/ArticleUser.php',
+    'App\\Categorie' => $baseDir . '/app/Categorie.php',
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
     'App\\Equipe' => $baseDir . '/app/Equipe.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',

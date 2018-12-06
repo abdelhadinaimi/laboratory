@@ -10,8 +10,6 @@
     <!-- importante pour slider -->
     <link rel="stylesheet" href="{{ asset('css/jquery-ui.css') }}" type="text/css" media="all" />
     
-    <!-- Favicon Icon -->
-    <link rel="icon" type="image/x-icon" href="images/favicon.png" />
     <!-- Font Awesoeme Stylesheet CSS -->
     <link rel="stylesheet" href="{{ asset('font-awesome/css/font-awesome.min.css')}}"/>
     <!-- Google web Font -->
@@ -20,19 +18,12 @@
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css')}}">
     <!-- Material Design Lite Stylesheet CSS -->
     <link rel="stylesheet" href="{{ asset('css/material.min.css')}}" />
-    <!-- Material Design Select Field Stylesheet CSS -->
-    <link rel="stylesheet" href="{{ asset('css/mdl-selectfield.min.css')}}">
     <!-- Owl Carousel Stylesheet CSS -->
     <link rel="stylesheet" href="{{ asset('css/owl.carousel.min.css')}}" />
-    <!-- Animate Stylesheet CSS -->
-    <link rel="stylesheet" href="{{ asset('css/animate.min.css')}}" />
-    <!-- Magnific Popup Stylesheet CSS -->
-    <link rel="stylesheet" href="{{ asset('css/magnific-popup.css')}}" />
     <!-- Flex Slider Stylesheet CSS -->
     <link rel="stylesheet" href="{{ asset('css/flexslider.css')}}" />
     <!-- Custom Main Stylesheet CSS -->
     <link rel="stylesheet" href="{{ asset('css/style.css')}}">
-    <link rel="stylesheet" href="{{ asset('slider/price_range_style.css')}}">
 </head>
 
 <body>
@@ -183,15 +174,12 @@
             </div>
         </div><!-- End of Copyright Section -->
     </footer>
-
-    <!-- Jquery Library 2.1 JavaScript-->
+    
     <script src="{{ asset('js/jquery-3.2.1.min.js')}}"></script>
-    <!-- Popper JavaScript-->
     <script src="{{ asset('js/popper.min.js')}}"></script>
-    <!-- Bootstrap Core JavaScript-->
-    <script src="{{ asset('js/bootstrap.min.js')}}"></script>
-    <!-- Material Design Lite JavaScript-->
     <script src="{{ asset('js/material.min.js')}}"></script>
+    <!-- Jquery Library 2.1 JavaScript-->
+    <script src="{{ asset('js/bootstrap.min.js')}}"></script>
     <!-- Material Select Field Script -->
     <script src="{{ asset('js/mdl-selectfield.min.js')}}"></script>
     <!-- Flexslider Plugin JavaScript-->
@@ -200,56 +188,10 @@
     <script src="{{ asset('js/owl.carousel.min.js')}}"></script>
     <!-- Scrolltofixed Plugin JavaScript-->
     <script src="{{ asset('js/jquery-scrolltofixed.min.js')}}"></script>
-    <!-- Magnific Popup Plugin JavaScript-->
-    <script src="{{ asset('js/jquery.magnific-popup.min.js')}}"></script>
-    <!-- WayPoint Plugin JavaScript-->
-    <script src="{{ asset('js/jquery.waypoints.min.js')}}"></script>
-    <!-- CounterUp Plugin JavaScript-->
-    <script src="{{ asset('js/jquery.counterup.js')}}"></script>
-    <!-- SmoothScroll Plugin JavaScript-->
-    <script src="{{ asset('js/smoothscroll.min.js')}}"></script>
     <!--Custom JavaScript for Klinik Template-->
-
+    <script src="{{ asset('js/smoothscroll.min.js')}}"></script>
     <script src="{{ asset('js/custom.js')}}"></script>
-
-    <!-- ils sont importants pour le slider -->
-    <script src="{{ asset('js/jquery-ui.min.js')}}" type="text/javascript"></script>
-    <script src="{{ asset('slider/price_slider.js')}}"></script>
-    <script src="{{ asset('js/front.js')}}"></script>
-    <script type="text/javascript">
-      $( "#sidebar-search" ).autocomplete({
-      source : "{{url('autocomplete')}}",
-      minLength : 3
-    });
-      $( "#search-button-pub" ).click(function() {
-            var term = "";
-            term = $('#sidebar-search').val();
-            var searchUrl ="{{ route('publications',['term' => ':term' ]) }}";
-            searchUrl = searchUrl.replace("%3Aterm",term);
-             document.location.href = searchUrl;
-         return false;
-        }); 
- /*var tabs=["Tlemcen","Oran","Alger","Sidi Bel Abbes"];
- $( "#sidebar-search" ).autocomplete({
-      source : tabs
-    });*/
-    </script>
-    <script type="text/javascript">
-        $( ".makeSlider" ).click(function() {
-            var from = document.getElementById('from').innerHTML;
-            var to = document.getElementById('to').innerHTML;
-
-            var sliderUrl ="{{ route('publications',['from' => ':from','to' => ':to' , 'type' => request('type') , 'equipe_id' => request('equipe_id') ]) }}";
-            sliderUrl = sliderUrl.replace("%3Afrom",from);
-            sliderUrl = sliderUrl.replace("%3Ato",to);
-            for (var i = 0; i < 5; i++) {
-               sliderUrl = sliderUrl.replace("amp;",""); 
-            }
-            
-             document.location.href = sliderUrl;
-         return false;
-        }); 
-    </script>
+    @yield('scripts')
 </body>
 
 </html>

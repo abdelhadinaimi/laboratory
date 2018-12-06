@@ -156,3 +156,7 @@ Route::get('autocomplete','FrontController@autocomplete');
 Route::get('/front/actualites','FrontController@actualites');
 Route::get('/front/projets','FrontController@projets');
 Route::get('/front/projet/{id}','FrontController@projet');
+Route::get('/front/contact',function(){
+	return view('front.contact');
+});
+Route::post('/front/contact','FrontController@contact');
