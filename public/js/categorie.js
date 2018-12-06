@@ -1,4 +1,14 @@
+//passing data when showing modal 
+function removeCat(idCat){
+    $('#body-remove').attr('role',idCat);
+}
+function editCat(idCat,libelle){
+    $('#body-edit').attr('role',idCat);
+    $('#editCatName').val(libelle);
+}
+/* fin */
     $(function () {
+        
            var manageCat = $("#gererCat").DataTable({
             'ajax': 'getCat',
              'order': []   
@@ -39,16 +49,16 @@
                }
               return false;
            });
-
-        $('#removeCat').on('click',function(e){
-             var idCat = $("#getCatId").attr('role');
+        
+        $('#removeCategoriesBtn').on('click',function(e){
+             var idCat = $("#body-remove").attr('role');
               $.ajax({
                 url: 'deleteCat',
                 type: 'post',
                 dataType: 'json',
                 data: {"_token": $('meta[name="csrf-token"]').attr('content'),"idCat":idCat},
                 success:function(response) {
-                  $('#removeCatModal').modal('hide');
+                  $('#removeCategoriesModal').modal('hide');
                   manageCat.ajax.reload(null, false);
                   $('.remove-messages').html('<div class="alert alert-success">'+
                   '<button type="button" class="close" data-dismiss="alert">&times;</button>'+
@@ -64,7 +74,7 @@
         });
         
         $('#editCatBtn').on('click',function(e){
-             var idCat = $("#getCatId").attr('role');
+             var idCat = $("#body-edit").attr('role');
              var nvCatLib = $("#editCatName").val();
              if(nvCatLib == ""){
                 $("#editCatName").after('<p class="text-danger">Saissisz le libellé</p>');

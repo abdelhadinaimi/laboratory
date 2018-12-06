@@ -14,7 +14,7 @@
             <table class="table" id="gererCat">
                <thead>
                    <tr>              
-                      <th>Libellé du categorie</th>
+                      <th>Libellé</th>
                       <th style="width:15%;">Options</th>
                    </tr>
                </thead>
@@ -63,7 +63,7 @@
            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
            <h4 class="modal-title"><i class="fa fa-edit"></i> Editer Categorie</h4>
         </div>
-        <div class="modal-body">
+        <div class="modal-body" id="body-edit">
           <div id="edit-cat-messages"></div>
           <div class="edit-cat-result">
             <div class="form-group">
@@ -96,19 +96,19 @@
 <!-- /edit brand -->
 
 <!-- remove brand -->
-<div class="modal fade" tabindex="-1" role="dialog" id="removeCatModal">
+<div class="modal fade" tabindex="-1" role="dialog" id="removeCategoriesModal">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title"><i class="glyphicon glyphicon-trash"></i> Supprimer Categorie</h4>
       </div>
-      <div class="modal-body">
+      <div class="modal-body" id="body-remove">
         <p>Etes vous sur ?</p>
       </div>
       <div class="modal-footer removeCatFooter">
         <button type="button" class="btn btn-default" data-dismiss="modal"> <i class="glyphicon glyphicon-remove-sign"></i> Fermer</button>
-        <button type="button" class="btn btn-primary" id="removeCat" data-loading-text="Loading..."> <i class="glyphicon glyphicon-ok-sign"></i> Supprimer</button>
+        <button type="button" class="btn btn-primary" id="removeCategoriesBtn" data-loading-text="Loading..."> <i class="glyphicon glyphicon-ok-sign"></i> Supprimer</button>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
