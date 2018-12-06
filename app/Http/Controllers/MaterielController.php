@@ -116,4 +116,18 @@ class MaterielController extends Controller
          $materiel->save();
          return response()->json(array('success' => true,'message' => "Materiel mis à jour"));
     }
-}
+
+    public function getMat($id){
+        $output = array('data' => array());
+        $materiel = Materiel::find($id);
+       
+            $output['data'][] = array(
+                $materiel->reference,
+               $materiel->categorie->id,
+               $materiel->description,
+            ); 
+
+              return response()->json($output);
+
+        }
+    }

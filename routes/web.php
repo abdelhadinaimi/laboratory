@@ -25,6 +25,7 @@ Route::get('/', function () {
 Route::get('materiels','MaterielController@index');
 Route::get('getCat','MaterielController@getCategories');
 Route::get('getMat','MaterielController@getMateriels');
+Route::get('getInformationMat/{id}','MaterielController@getMat');
 
 Route::post('createCat','MaterielController@createCategorie');
 Route::post('createMat','MaterielController@createMateriel');

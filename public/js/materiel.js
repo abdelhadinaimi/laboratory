@@ -1,10 +1,20 @@
+var refTmp;
 function removeMat($idMat){
     $('#body-removeMat').attr('role',$idMat);
     return true;
 }
 function editMat($idMat){
-    $('#body-editMat').attr('role',$idMat);
-    return true;
+     $('#body-editMat').attr('role',$idMat);
+        $.getJSON('getInformationMat/'+$idMat, function (data) {
+    // Iterate the groups first.
+            var ref= data.data[0][0];
+            refTmp=ref;
+            var categorie= data.data[0][1];
+            var description= data.data[0][2];
+            $("#RefMatEdit").val(ref);
+       		 $("#selectCatEdit").val(categorie);
+            $("#DescMatEdit").val(description);
+		});
 }
 
 $(function () {
@@ -15,20 +25,34 @@ $(function () {
              });
             
            $("#submitMatForm").unbind('submit').bind('submit', function() {
-              var selectCat = $("#selectCat").val();
+           	  var selectCat = $("#selectCat").val();
               var RefMat = $("#RefMat").val();
+              var RefUnique = $('#tableMat td').filter(function (){
+              	return $.trim($(this).text()) == RefMat;});
+
+
               if(selectCat == "Séléctionner") {
                   $("#selectCat").after('<p class="text-danger">Veuillez choisir la catégorie</p>');
                   $('#selectCat').closest('.form-group').addClass('has-error');
-                  if(RefMat == ""){
+                  if(RefMat == "" ){
                   	$("#RefMat").after('<p class="text-danger">Veuillez saisir la référence</p>');
                   	$('#RefMat').closest('.form-group').addClass('has-error');
                   }
-         	  }
+                  else if(RefUnique.length>0){
+                  	$("#RefMat").after('<p class="text-danger">Référence déja existe</p>');
+                  	$('#RefMat').closest('.form-group').addClass('has-error');
+                  }
+                  
+                }
          	  else if(RefMat == ""){
                   	$("#RefMat").after('<p class="text-danger">Veuillez saisir la référence</p>');
                   	$('#RefMat').closest('.form-group').addClass('has-error');
                   }
+                  else if(RefUnique.length>0){
+                  	$("#RefMat").after('<p class="text-danger">Référence déja existe</p>');
+                  	$('#RefMat').closest('.form-group').addClass('has-error');
+                  	return false;
+                  }	
               else{
                 var form = $(this);
                 $("#createMatBtn").button('loading');
@@ -87,10 +111,32 @@ $(function () {
              var selectCatEdit = $("#selectCatEdit").val();
              var RefMatEdit = $("#RefMatEdit").val();
              var DescMatEdit = $("#DescMatEdit").val();
-             if(false){
-             	
-             }
+              var RefUniqueEdit = $('#tableMat td').filter(function (){
+              	return $.trim($(this).text()) == RefMatEdit;});
 
+
+              if(selectCatEdit == "Séléctionner") {
+                  $("#selectCatEdit").after('<p class="text-danger">Veuillez choisir la catégorie</p>');
+                  $('#selectCatEdit').closest('.form-group').addClass('has-error');
+                  if(RefMatEdit == "" ){
+                  	$("#RefMatEdit").after('<p class="text-danger">Veuillez saisir la référence</p>');
+                  	$('#RefMatEdit').closest('.form-group').addClass('has-error');
+                  }
+                  else if(RefUniqueEdit.length>0 && RefMatEdit != refTmp){
+                  	$("#RefMatEdit").after('<p class="text-danger">Référence déja existe</p>');
+                  	$('#RefMatEdit').closest('.form-group').addClass('has-error');
+                  }
+                  
+                }
+         	  else if(RefMatEdit == ""){
+                  	$("#RefMatEdit").after('<p class="text-danger">Veuillez saisir la référence</p>');
+                  	$('#RefMatEdit').closest('.form-group').addClass('has-error');
+                  }
+                  else if(RefUniqueEdit.length>0 && refTmp != RefMatEdit){
+                  	$("#RefMatEdit").after('<p class="text-danger">Référence déja existe</p>');
+                  	$('#RefMatEdit').closest('.form-group').addClass('has-error');
+                  	return false;
+                  }
              else{
               $.ajax({
                 url: 'editMat/'+idMatEdit,
@@ -117,6 +163,6 @@ $(function () {
            }
             return false;
         });
-        
+   
 
      });

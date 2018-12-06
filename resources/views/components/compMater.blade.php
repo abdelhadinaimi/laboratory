@@ -43,7 +43,7 @@
             <label class="col-sm-1 control-label">: </label>
             <div class="col-sm-8">
               <select id="selectCat" name="catMat" class="form-control">
-                          <option selected="true">Séléctionner</option>
+                          <option>Séléctionner</option>
                                     @foreach($categories as $categorie)
                                     <option  value="{{$categorie->id}}">{{$categorie->libelle}}</option>
                                     @endforeach
