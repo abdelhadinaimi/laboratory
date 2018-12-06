@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title','LRI | Ajouter une thèse')
+@section('title','LRI | Ajouter un actualite')
 
 @section('header_page')
 
@@ -10,7 +10,7 @@
       </h1>
       <ol class="breadcrumb">
         <li><a href="{{url('dashboard')}}"><i class="fa fa-dashboard"></i>Dashboard</a></li>
-        <li><a href="{{url('theses')}}">Actualité</a></li>
+        <li><a href="{{url('Actualite')}}">Actualité</a></li>
         <li class="active">Ajouter</li>
       </ol>
 
@@ -43,7 +43,7 @@
             <li><a href="{{url('membres')}}"><i class="fa fa-list"></i> Liste</a></li>
           </ul>
         </li>
-         <li class="active">
+         <li>
           <a href="{{url('theses')}}">
             <i class="fa fa-file-pdf-o"></i> 
             <span>Thèses</span>
@@ -64,8 +64,8 @@
           </a>
         </li>
         
-        <li>
-          <a href="{{url('actualites')}}">
+        <li class="active">
+          <a  href="{{url('actualites')}}">
             <i class="fa fa-newspaper-o"></i> 
             <span>Actualite</span>
           </a>

@@ -51,7 +51,7 @@
           </a>
         </li>
       
-         <li class="active">
+         <li>
           <a href="{{url('articles')}}">
             <i class="fa fa-newspaper-o"></i> 
             <span>Articles</span></a>
@@ -63,7 +63,7 @@
             <span>Projets</span>
           </a>
         </li>
-        <li>
+        <li class="active">
           <a href="{{url('actualites')}}">
             <i class="fa fa-newspaper-o"></i> 
             <span>Actualite</span>
