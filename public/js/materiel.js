@@ -82,21 +82,24 @@ $(function () {
                 }
              });
         });
-        
         $('#editMatBtn').on('click',function(e){
-             var idMat = $("#body-editMat").attr('role');
+             var idMatEdit = $("#body-editMat").attr('role');
+             var selectCatEdit = $("#selectCatEdit").val();
+             var RefMatEdit = $("#RefMatEdit").val();
+             var DescMatEdit = $("#DescMatEdit").val();
              if(false){
-               
+             	
              }
+
              else{
               $.ajax({
-                url: '/editMat/'+idMat,
-                type: 'POST',
+                url: 'editMat/'+idMatEdit,
+                type: 'post',
                 dataType: 'json',
-                data: {"_token": $('meta[name="csrf-token"]').attr('content')},
+                data: {"_token": $('meta[name="csrf-token"]').attr('content'),"selectCatEdit":selectCatEdit
+                ,"RefMatEdit":RefMatEdit,"DescMatEdit":DescMatEdit},
                 success:function(response) {
                   manageMat.ajax.reload(null, false);
-
                            $("#editMatForm")[0].reset();
                            $(".text-danger").remove();
                            $('.form-group').removeClass('has-error').removeClass('has-success');
@@ -114,5 +117,6 @@ $(function () {
            }
             return false;
         });
+        
 
      });

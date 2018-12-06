@@ -12,7 +12,6 @@ function editCat($idCat){
             'ajax': 'getCat',
              'order': []   
              });
-            
            $("#submitCatForm").unbind('submit').bind('submit', function() {
               var catLib = $("#catLib").val();
               if(catLib == "") {
@@ -73,20 +72,21 @@ function editCat($idCat){
              });
         });
         
-        $('#editMatBtn').on('click',function(e){
-             var idMat = $("#body-editMat").attr('role');
-             if(false){
-             
+        $('#editCatBtn').on('click',function(e){
+             var idCat = $("#body-edit").attr('role');
+             var nvCatLib = $("#editCatName").val();
+             if(nvCatLib == ""){
+                $("#editCatName").after('<p class="text-danger">Saissisz le libellé</p>');
+                $('#editCatName').closest('.form-group').addClass('has-error');
              }
              else{
               $.ajax({
-                url: 'editMat/'+idMat,
+                url: 'editCat/'+idCat,
                 type: 'post',
                 dataType: 'json',
                 data: {"_token": $('meta[name="csrf-token"]').attr('content'),"catLib":nvCatLib},
                 success:function(response) {
                   manageCat.ajax.reload(null, false);
-
                            $("#editCatForm")[0].reset();
                            $(".text-danger").remove();
                            $('.form-group').removeClass('has-error').removeClass('has-success');
