@@ -1,11 +1,12 @@
-function removeCat($idCat){
-    $('#body-remove').attr('role',$idCat);
-    return true;
+//passing data when showing modal 
+function removeCat(idCat){
+    $('#body-remove').attr('role',idCat);
 }
-function editCat($idCat){
-    $('#body-edit').attr('role',$idCat);
-    return true;
+function editCat(idCat,libelle){
+    $('#body-edit').attr('role',idCat);
+    $('#editCatName').val(libelle);
 }
+/* fin */
     $(function () {
         
            var manageCat = $("#gererCat").DataTable({
