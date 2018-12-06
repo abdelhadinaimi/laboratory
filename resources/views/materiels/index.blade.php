@@ -1,9 +1,6 @@
 @extends('layouts.master')
-
 @section('title','LRI | Liste des thèses')
-
-@section('header_page')
-
+  @section('header_page')
       <h1>
         Materiels
       </h1>
@@ -11,13 +8,10 @@
         <li><a href="{{url('dashboard')}}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
         <li class="active"><a href="{{url('theses')}}">Materiels</a></li>
       </ol>
-
-@endsection
-
+  @endsection
 @section('asidebar')
        @component('components.sidebar',['active' => 'Materiels']) @endcomponent
-
-    @endsection
+@endsection
 
 @section('content')
                <ul class="nav nav-tabs">
@@ -28,8 +22,7 @@
               </ul>
               <div class="tab-content">
                     <div role="tabpanel" class="tab-pane active" id="categories">
-                                @component('components.compCateg')
-                                @endcomponent
+                                @component('components.compCateg') @endcomponent
                     </div>
                     <div role="tabpanel" class="tab-pane" id="materiels">
                           @component('components.compMater',['categories' => $categories])

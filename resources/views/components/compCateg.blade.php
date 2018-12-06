@@ -14,7 +14,7 @@
             <table class="table" id="gererCat">
                <thead>
                    <tr>              
-                      <th>Libellé du categorie</th>
+                      <th>Libellé</th>
                       <th style="width:15%;">Options</th>
                    </tr>
                </thead>
@@ -58,7 +58,7 @@
 <div class="modal fade" id="editCategoriesModal" tabindex="-1" role="dialog">
   <div class="modal-dialog">
     <div class="modal-content">
-      <form class="form-horizontal" id="editCatForm" action="" method="POST">
+      <form class="form-horizontal" id="editCatForm" action="editCat" method="POST">
         <div class="modal-header">
            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
            <h4 class="modal-title"><i class="fa fa-edit"></i> Editer Categorie</h4>
