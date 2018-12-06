@@ -317,6 +317,7 @@ class ComposerStaticInitc4a3b668e15bc31216c179cbf4f6f57d
         'App\\Actualite' => __DIR__ . '/../..' . '/app/Actualite.php',
         'App\\Article' => __DIR__ . '/../..' . '/app/Article.php',
         'App\\ArticleUser' => __DIR__ . '/../..' . '/app/ArticleUser.php',
+        'App\\Categorie' => __DIR__ . '/../..' . '/app/Categorie.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Equipe' => __DIR__ . '/../..' . '/app/Equipe.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',

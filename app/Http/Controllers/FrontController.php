@@ -12,6 +12,9 @@ use App\User;
 use App\Role;
 use App\Parametre;
 use App\Actualite;
+use App\Message;
+use App\Http\Requests\messageRequest;
+
 
 class FrontController extends Controller{
 
@@ -164,5 +167,19 @@ class FrontController extends Controller{
         return view('front.projet')->with([
             'projet' => $projet
         ]); 
+    }
+
+    public function contact(messageRequest $request){
+        $message = new Message();
+
+        $message->nom = $request->input('nom');
+        $message->email = $request->input('email');
+        $message->telephone = $request->input('telephone');
+        $message->sujet = $request->input('sujet');
+        $message->msg = $request->input('msg');
+
+        $message->save();
+        return redirect('front/contact');
+
     }
 }

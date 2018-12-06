@@ -174,10 +174,12 @@
             </div>
         </div><!-- End of Copyright Section -->
     </footer>
-    <script src="{{ asset('js/bootstrap.min.js')}}"></script>
+    
+    <script src="{{ asset('js/jquery-3.2.1.min.js')}}"></script>
+    <script src="{{ asset('js/popper.min.js')}}"></script>
     <script src="{{ asset('js/material.min.js')}}"></script>
     <!-- Jquery Library 2.1 JavaScript-->
-    <script src="{{ asset('js/jquery-3.2.1.min.js')}}"></script>
+    <script src="{{ asset('js/bootstrap.min.js')}}"></script>
     <!-- Material Select Field Script -->
     <script src="{{ asset('js/mdl-selectfield.min.js')}}"></script>
     <!-- Flexslider Plugin JavaScript-->
@@ -187,6 +189,7 @@
     <!-- Scrolltofixed Plugin JavaScript-->
     <script src="{{ asset('js/jquery-scrolltofixed.min.js')}}"></script>
     <!--Custom JavaScript for Klinik Template-->
+    <script src="{{ asset('js/smoothscroll.min.js')}}"></script>
     <script src="{{ asset('js/custom.js')}}"></script>
     @yield('scripts')
 </body>
