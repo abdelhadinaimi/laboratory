@@ -24,6 +24,16 @@ class ActualiteController extends Controller
     	$listActualite = Actualite::all();
     	return view('actualite.ajouter' , ['actualites' => $listActualite],['labo'=>$labo]);
     }
+    public function details($id)
+    {
+    	$labo = Parametre::find('1');
+	 	$actualite = Actualite::find($id);
+
+	 	return view('actualite.details')->with([
+	 		'actualite' => $actualite,
+	 		'labo'=>$labo,
+	 	]);;
+    }
     public function store(actualiteRequest $request){
 
 	 	$actualite = new Actualite();

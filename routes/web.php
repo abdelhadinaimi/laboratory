@@ -79,6 +79,7 @@ Route::get('actualites','ActualiteController@index');
 Route::get('actualites/create','ActualiteController@create');
 Route::post('actualites','ActualiteController@store');
 Route::get('actualites/{id}/edit','ActualiteController@edit');
+Route::get('actualites/{id}/details','ActualiteController@details');
 Route::put('actualites/{id}','ActualiteController@update');
 Route::delete('actualites/{id}','ActualiteController@destroy');
 
