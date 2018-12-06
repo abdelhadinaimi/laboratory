@@ -82,4 +82,43 @@
             </div>
         </div>
     </div><!-- End Blog List Section -->
-@stop
+@endsection
+
+@section('scripts')
+ <!-- ils sont importants pour le slider -->
+<script src="{{ asset('js/jquery-ui.min.js')}}" type="text/javascript"></script>
+<script src="{{ asset('slider/price_slider.js')}}"></script>
+<script src="{{ asset('js/front.js')}}"></script>
+<script type="text/javascript">
+      $( "#sidebar-search" ).autocomplete({
+      source : "{{url('autocomplete')}}",
+      minLength : 3
+    });
+      $( "#search-button-pub" ).click(function() {
+            var term = "";
+            term = $('#sidebar-search').val();
+            var searchUrl ="{{ route('publications',['term' => ':term' ]) }}";
+            searchUrl = searchUrl.replace("%3Aterm",term);
+             document.location.href = searchUrl;
+         return false;
+        }); 
+    </script>
+    <script type="text/javascript">
+        $( ".makeSlider" ).click(function() {
+            var from = document.getElementById('from').innerHTML;
+            var to = document.getElementById('to').innerHTML;
+
+            var sliderUrl ="{{ route('publications',['from' => ':from','to' => ':to' , 'type' => request('type') , 'equipe_id' => request('equipe_id') ]) }}";
+            sliderUrl = sliderUrl.replace("%3Afrom",from);
+            sliderUrl = sliderUrl.replace("%3Ato",to);
+            for (var i = 0; i < 5; i++) {
+               sliderUrl = sliderUrl.replace("amp;",""); 
+            }
+            
+             document.location.href = sliderUrl;
+         return false;
+        }); 
+    </script>
+    <link rel="stylesheet" href="{{ asset('slider/price_range_style.css')}}">
+
+@endsection
