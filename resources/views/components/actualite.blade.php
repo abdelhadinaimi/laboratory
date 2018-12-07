@@ -8,11 +8,11 @@
                             </div>
                             <div class="col-sm-8">
                                 <div class="blog-full-ttl">
-                                    <h3><a href="#">{{$actualite->titre}}</a></h3>
+                                    <h3><a href="{{url('/front/actualites/'.$actualite->id.'/details')}}">{{$actualite->titre}}</a></h3>
                                 </div>
                                 <div class="blog-full-description">{{$actualite->description}}</div>
                                 <div class="blog-full-ftr">
-                                    <a class="pull-right anchor-icon" href="{{url('/front/details/'.$actualite->id)}}">
+                                    <a class="pull-right anchor-icon" href="{{url('/front/actualites/'.$actualite->id.'/details')}}">
                                         Lire la suite <i class="fa fa-arrow-right"></i>
                                     </a>
                                 </div>

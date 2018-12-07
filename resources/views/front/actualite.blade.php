@@ -21,17 +21,7 @@
                                  @endcomponent
                             @endforeach
 
-       
-       
-                    <ul class="theme-pagination">
-                        <li><a href="#" class="active">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">5</a></li>
-                        <li><a href="#">...</a></li>
-                        <li><a href="#">10</a></li>
-                    </ul>
+                 {{$actualites->links('vendor.pagination.default')}}
                 </div>
                 <div class="col-lg-4">
                     <div class="theme-material-card text-center">
@@ -44,7 +34,7 @@
                     <div class="theme-material-card">
                         <div class="sub-ttl">Post récent</div>
                         @foreach($latestActs as $latestAct)
-                        <a href="{{url('/front/details/'.$latestAct->id)}}" class="row blog-recent">
+                        <a href="{{url('/front/actualites/'.$latestAct->id).'/details'}}" class="row blog-recent">
                             <div class="col-4 blog-recent-img">
                                 <img class="img-responsive img-thumbnail" src="{{asset($latestAct->photo)}}" alt="">
                             </div>

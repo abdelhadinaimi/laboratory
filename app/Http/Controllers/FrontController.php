@@ -149,6 +149,7 @@ public function detailActual($id)
     public function actualites()
     {
         $actualites = Actualite::orderBy('id', 'desc')->get();  
+        $actualites = Actualite::paginate(5);
         $latestActualite = Actualite::orderBy('id', 'desc')->take(5)->get(); 
         return view('front.actualite')->with([
             'actualites' => $actualites,
