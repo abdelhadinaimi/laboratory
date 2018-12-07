@@ -24,9 +24,17 @@ Route::get('/', function () {
 //Traitement materiels
 Route::get('materiels','MaterielController@index');
 Route::get('getCat','MaterielController@getCategories');
-Route::post('createCat','MaterielController@createCategorie');
-Route::post('deleteCat/{id}','MaterielController@deleteCategorie');
+Route::get('getMat','MaterielController@getMateriels');
+Route::get('getInformationMat/{id}','MaterielController@getMat');
 
+Route::post('createCat','MaterielController@createCategorie');
+Route::post('createMat','MaterielController@createMateriel');
+
+Route::post('deleteCat','MaterielController@deleteCategorie');
+Route::post('deleteMat','MaterielController@deleteMateriel');
+
+Route::post('editCat/{id}','MaterielController@editCategorie');
+Route::post('editMat/{id}','MaterielController@editMateriel');
 
 Route::get('dashboard','dashController@index');
 Route::get('parametre','ParametreController@create');
@@ -155,3 +163,9 @@ Route::get('front/profiles/{id}','FrontController@profiles');
 Route::get('autocomplete','FrontController@autocomplete');
 Route::get('/front/actualites','FrontController@actualites');
 Route::get('front/actualites/{id}/details','FrontController@detailActual');
+Route::get('/front/projets','FrontController@projets');
+Route::get('/front/projet/{id}','FrontController@projet');
+Route::get('/front/contact',function(){
+	return view('front.contact');
+});
+Route::post('/front/contact','FrontController@contact');

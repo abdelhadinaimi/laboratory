@@ -59,7 +59,8 @@
         </li>
         <li>
           <a href="{{url('materiels')}}">
-            <span>materiels</span>
+            <i class="fa fa-folder-open-o"></i> 
+            <span>Materiels</span>
           </a>
         </li>
         

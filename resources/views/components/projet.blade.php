@@ -1,6 +1,6 @@
 
-<div class="col-md-{{$size}}">
-    <div class="card">
+<div class="col-md-{{$size}}" style="padding-bottom: 30px;">
+    <div class="card" style="height:100%;">
         <div class="card-body">
             <h4 class="card-title"><a href="{{url('/front/projet/'.$projet->id)}}">{{$projet->intitule}}</a></h4>
             <h6 class="card-subtitle mb-2 text-muted">

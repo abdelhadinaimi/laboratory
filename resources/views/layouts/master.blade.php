@@ -3,6 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
+
   <link rel="icon" type="image/png" href="{{asset('easy.png')}}"/>
   <title>
     @yield('title')
@@ -53,11 +55,6 @@
 
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
-
-  <!-- include summernote css/js -->
-<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.css" rel="stylesheet">
-
-
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
@@ -259,7 +256,7 @@
 <!-- iCheck 1.0.1 -->
 <script src="{{ asset('labo/plugins/iCheck/icheck.min.js')}}"></script>
 
-<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.js"></script>
+
 <script>
   $(function () {
     //Initialize Select2 Elements
@@ -425,136 +422,8 @@
 
   
 </script>
-<script type="text/javascript">
-     $(function () {
-           var manageCat = $("#gererCat").DataTable({
-            'ajax': 'getCat',
-             'order': []   
-             });
-           $("#submitCatForm").unbind('submit').bind('submit', function() {
-              var catLib = $("#catLib").val();
-              if(catLib == "") {
-                  $("#catLib").after('<p class="text-danger">Saissisz le libellé</p>');
-                  $('#catLib').closest('.form-group').addClass('has-error');
-              }
-              else{
-                var form = $(this);
-                $("#createCatBtn").button('loading');
-                $.ajax({
-                  url : form.attr('action'),
-                  type: form.attr('method'),
-                  data: form.serialize(),
-                  dataType: 'json',
-                  success:function(response) {
-                   $("#createCatBtn").button('reset');
-                     if(response.success == true) {
-                           manageCat.ajax.reload(null, false);
-                           $("#submitCatForm")[0].reset();
-                           $(".text-danger").remove();
-                           $('.form-group').removeClass('has-error').removeClass('has-success');
-                           $('#add-cat-messages').html('<div class="alert alert-success">'+
-            '<button type="button" class="close" data-dismiss="alert">&times;</button>'+
-            '<strong><i class="glyphicon glyphicon-ok-sign"></i></strong> '+ response.messages +
-          '</div>');
-                    $(".alert-success").delay(500).show(10, function() {
-                       $(this).delay(3000).hide(10, function() {
-                       $(this).remove();
-                        });
-                       }); // /.alert
-                    }  // if
-                  } // /success
-                  }); // /ajax
-               }
-              return false;
-           });
-
-        $('#removeCat').on('click',function(e){
-             var idCat = $("#getCatId").attr('role');
-              $.ajax({
-                url: 'deleteCat/'+idCat,
-                type: 'post',
-                dataType: 'json',
-                data: {"_token": "{{ csrf_token() }}"},
-                success:function(response) {
-                  $('#removeCatModal').modal('hide');
-                  manageCat.ajax.reload(null, false);
-                  $('.remove-messages').html('<div class="alert alert-success">'+
-                  '<button type="button" class="close" data-dismiss="alert">&times;</button>'+
-                  '<strong><i class="glyphicon glyphicon-ok-sign"></i></strong> Suppression Effectuée</div>');
-
-                  $(".alert-success").delay(500).show(10, function() {
-                    $(this).delay(3000).hide(10, function() {
-                          $(this).remove();
-                    });
-                  }); // /.alert
-                }
-             });
-        });
-     });
-</script>
-<script>
-  $(document).ready(function() {
-var IMAGE_PATH = '{{ public_path(("/uploads/photo/")) }}';
-
-$.ajaxSetup({
-    headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content')     }
-});
-$('#summernote').summernote({
-    height: 400,
-    onImageUpload: function(files) {
-        data = new FormData();
-        data.append("image", files[0]);
-        $.ajax({
-            data: data,
-            type: "POST",
-            url: '{{ public_path(("/uploads/photo/")) }}',
-            cache: false,
-            contentType: false,
-            processData: false,
-            success: function(filename) {
-                var file_path = IMAGE_PATH + filename;
-                console.log(file_path);
-                $('#summernote').summernote("insertImage", file_path);
-            }
-        });
-    }
-});
-});
-
- /* $(document).ready(function() {
-    $.ajaxSetup({
-    headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content')     }
-});
-$("#summernote").summernote({
-  placeholder: 'enter directions here...',
-        height: 300,
-         callbacks: {
-        onImageUpload: function(image) {
-            uploadImage(image[0]);
-        }
-    }
-    });
-});
-function uploadImage(image) {
-    var data = new FormData();
-    data.append("image", image);
-    $.ajax({
-        url: '{{ public_path(("/uploads/photo/")) }}',
-        cache: false,
-        contentType: false,
-        processData: false,
-        data: data,
-        type: "post",
-        success: function(url) {
-            var image = $('<img>').attr('src', 'http://' + url);
-            $('#summernote').summernote("insertNode", image[0]);
-        },
-        error: function(data) {
-            console.log(data);
-        }
-    });
-}*/
-</script>
+<script type="text/javascript" src="{{asset('js/categorie.js')}}"></script>
+<script type="text/javascript" src="{{asset('js/materiel.js')}}"></script>
 
 </body>
 </html>
