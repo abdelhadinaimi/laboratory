@@ -60,6 +60,12 @@
             <span>Projets</span>
           </a>
         </li>
+        <li>
+          <a href="{{url('actualites')}}">
+            <i class="fa fa-newspaper-o"></i> 
+            <span>Actualite</span>
+          </a>
+        </li>
         
       
           @if(Auth::user()->role->nom == 'admin' )

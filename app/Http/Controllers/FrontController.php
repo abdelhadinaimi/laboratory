@@ -53,6 +53,13 @@ class FrontController extends Controller{
         ]);;
     }
 
+public function detailActual($id)
+{
+    $detail = Actualite::find($id);
+    return view('front.details')->with([
+            'actualite' => $detail
+        ]);
+}
     //return toutes les publications
      public function getAllPubs()
     {
@@ -144,7 +151,8 @@ class FrontController extends Controller{
     }
     public function actualites()
     {
-        $actualites = Actualite::all();  
+        $actualites = Actualite::orderBy('id', 'desc')->get();  
+        $actualites = Actualite::paginate(5);
         $latestActualite = Actualite::orderBy('id', 'desc')->take(5)->get(); 
         return view('front.actualite')->with([
             'actualites' => $actualites,

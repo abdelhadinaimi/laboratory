@@ -55,6 +55,12 @@
             <i class="fa fa-newspaper-o"></i> 
             <span>Articles</span></a>
           </li>
+          <li>
+          <a href="{{url('actualites')}}">
+            <i class="fa fa-newspaper-o"></i> 
+            <span>Actualite</span>
+          </a>
+        </li>
 
           <li>
           <a href="parametre.php">
