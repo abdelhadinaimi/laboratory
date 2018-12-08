@@ -62,6 +62,15 @@
         </li>
       @endif
         
+      @if(Auth::user()->role->nom == 'admin' )
+          <li class="{{ $active ==  'Messages' ? 'active':''}}">
+          <a href="{{url('messages')}}">
+            <i class="fa fa-envelope"></i> 
+            <span>Messages</span>
+          </a>
+        </li>
+      @endif
+
           @if(Auth::user()->role->nom == 'admin' )
 
           <li class="{{ $active ==  'Paramètres' ? 'active':''}}">

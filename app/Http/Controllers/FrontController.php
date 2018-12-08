@@ -188,6 +188,6 @@ public function detailActual($id)
 
         $message->save();
         return redirect('front/contact');
-
+        
     }
 }

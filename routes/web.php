@@ -91,6 +91,9 @@ Route::get('actualites/{id}/details','ActualiteController@details');
 Route::put('actualites/{id}','ActualiteController@update');
 Route::delete('actualites/{id}','ActualiteController@destroy');
 
+Route::get('messages','MessageController@index');
+Route::delete('message/{id}','MessageController@delete');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
