@@ -19,8 +19,14 @@ function removeMat($idMat){
   		});
 
   }
+    function affecterMat($idMat){
+        updateLists();
+       $('#body-affecter').attr('role',$idMat);
 
-  
+      
+  }
+
+   
     
     $( "#addButton" ).click(function() {
       fillSelectCategories();
@@ -28,24 +34,45 @@ function removeMat($idMat){
     function fillSelectCategories(){
       $.getJSON('getSmallCat', function (data) {
           $('#selectCat').empty();
-          $('#selectCat').append($('<option>').text("Séléctionner").attr('value',""));
+          $('#selectCat').append($('<option>').text("Séléctionner").attr('value',"Séléctionner"));
           data.data.forEach(e => {
           $('#selectCat').append($('<option>').text(e[1]).attr('value', e[0]));
-          console.log(e);
         });
       });
 
       $.getJSON('getSmallCat', function (data) {
           $('#selectCatEdit').empty();
-          $('#selectCatEdit').append($('<option>').text("Séléctionner").attr('value',""));
+          $('#selectCatEdit').append($('<option>').text("Séléctionner").attr('value',"Séléctionner"));
           data.data.forEach(e => {
           $('#selectCatEdit').append($('<option>').text(e[1]).attr('value', e[0]));
-          console.log(e);
+        });
+      });
+    }
+    function updateLists(){
+      $.getJSON('getAffecterEquipes', function (data) {
+          $('#affecterEquipe').empty();
+          $('#affecterEquipe').append($('<option>').text("Séléctionner").attr('value',"Séléctionner"));
+          data.data.forEach(e => {
+          $('#affecterEquipe').append($('<option>').text(e[1]).attr('value', e[0]));
+        });
+      });
+
+      $.getJSON('getAffecterMembres', function (data) {
+          $('#affecterMembre').empty();
+          $('#affecterMembre').append($('<option>').text("Séléctionner").attr('value',"Séléctionner"));
+          data.data.forEach(e => {
+          $('#affecterMembre').append($('<option>').text(e[1]+" "+e[2]).attr('value', e[0]));
         });
       });
     }
 
-    $('#affecterSelect').on('change', function() {
+    
+
+
+
+
+
+      $('#affecterSelect').on('change', function() {
       var val = this.value;
       if(val == 0){
         $('#affecterMembre').prop('disabled', true);
@@ -58,16 +85,29 @@ function removeMat($idMat){
        }
 
 });
+
+
+
+
 $(function () {
-        
+      
            var manageMat = $("#tableMat").DataTable({
             'ajax': 'getMat',
              'order': []   
              });
-            
+            var manageAffectMembres = $("#tableAffectMembres").DataTable({
+            'ajax': 'getHistoriqueMembres',
+             'order': []   
+             });
+
+            var manageAffectEquipes = $("#tableAffectEquipes").DataTable({
+            'ajax': 'getHistoriqueEquipes',
+             'order': []   
+             });
            $("#submitMatForm").unbind('submit').bind('submit', function() {
            	  var selectCat = $("#selectCat").val();
-              var RefMat = $("#RefMat").val();
+              var RefMat = $("#RefMat").val().toUpperCase();
+              console.log(RefMat);
               var RefUnique = $('#tableMat td').filter(function (){
               	return $.trim($(this).text()) == RefMat;});
 
@@ -150,7 +190,7 @@ $(function () {
         $('#editMatBtn').on('click',function(e){
              var idMatEdit = $("#body-editMat").attr('role');
              var selectCatEdit = $("#selectCatEdit").val();
-             var RefMatEdit = $("#RefMatEdit").val();
+             var RefMatEdit = $("#RefMatEdit").val().toUpperCase();
              var DescMatEdit = $("#DescMatEdit").val();
               var RefUniqueEdit = $('#tableMat td').filter(function (){
               	return $.trim($(this).text()) == RefMatEdit;});
@@ -187,7 +227,6 @@ $(function () {
                 ,"RefMatEdit":RefMatEdit,"DescMatEdit":DescMatEdit},
                 success:function(response) {
                   manageMat.ajax.reload(null, false);
-                           $("#editMatForm")[0].reset();
                            $(".text-danger").remove();
                            $('.form-group').removeClass('has-error').removeClass('has-success');
                            $('#edit-mat-messages').html('<div class="alert alert-success">'+
@@ -204,6 +243,43 @@ $(function () {
            }
             return false;
         });
+
+        $('#affecterMatBtn').on('click',function(e){
+             var idMatAffecterEdit = $("#body-affecter").attr('role');
+             var membreSelected = $("#affecterMembre").val();
+            
+            if(false){
+
+            }
+
+
+              
+             else{
+              $.ajax({
+                url: 'affecterForMembre/'+idMatAffecterEdit,
+                type: 'post',
+                dataType: 'json',
+                data: {"_token": $('meta[name="csrf-token"]').attr('content'),"membreSelected":membreSelected},
+                success:function(response) {
+                  manageAffectMembres.ajax.reload(null, false);
+                  manageMat.ajax.reload(null, false);
+                           $(".text-danger").remove();
+                           $('.form-group').removeClass('has-error').removeClass('has-success');
+                           $('#affecter-mat-messages').html('<div class="alert alert-success">'+
+            '<button type="button" class="close" data-dismiss="alert">&times;</button>'+
+            '<strong><i class="glyphicon glyphicon-ok-sign"></i></strong> '+ response.message +
+          '</div>');
+                    $(".alert-success").delay(500).show(10, function() {
+                       $(this).delay(3000).hide(10, function() {
+                       $(this).remove();
+                        });
+                       }); // /.alert
+                }
+             });
+           }
+            return false;
+        });
+   
    
 
      });

@@ -19,6 +19,8 @@
                                     aria-selected="true">Categories</a></li>
                     <li class="nav-item"><a  href="#materiels" role="tab" data-toggle="tab"
                                     aria-selected="false">Materiels</a></li>
+                    <li class="nav-item"><a  href="#affectations" role="tab" data-toggle="tab"
+                                    aria-selected="false">Affectations</a></li>
               </ul>
               <div class="tab-content">
                     <div role="tabpanel" class="tab-pane active" id="categories">
@@ -27,6 +29,25 @@
                     <div role="tabpanel" class="tab-pane" id="materiels">
                           @component('components.compMater',['categories' => $categories])
                                 @endcomponent
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="affectations">
+                    <ul class="nav nav-tabs">
+                    <li class="nav-item active"><a  href="#affectationsMembres"  role="tab" data-toggle="tab"
+                                    aria-selected="true">Affectations membres</a></li>
+                    <li class="nav-item"><a  href="#affectationsEquipes" role="tab" data-toggle="tab"
+                                    aria-selected="false">Affectations équipes</a></li>
+                  </ul>
+                                       <div class="tab-content">
+                     <div role="tabpanel"  class="tab-pane active" id="affectationsMembres">
+
+                          @component('components.compAffectMembre')
+                                @endcomponent
+                                </div>
+                                <div role="tabpanel" class="tab-pane" id="affectationsEquipes">
+
+                          @component('components.compAffectEquipe')
+                                @endcomponent
+                                </div>
                     </div>
               </div>
  @endsection
