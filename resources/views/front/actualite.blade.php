@@ -25,11 +25,13 @@
                 </div>
                 <div class="col-lg-4">
                     <div class="theme-material-card text-center">
+                    <form action="" method="GET">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label form-input">
-                            <input class="mdl-textfield__input" type="text" id="sidebar-search">
+                            <input class="mdl-textfield__input" type="text" id="sidebar-search" name="term">
                             <label class="mdl-textfield__label" for="sidebar-search">Rechercher</label>
                             <button class="fa fa-search search-button"></button>
                         </div>
+                    </form>
                     </div>
                     <div class="theme-material-card">
                         <div class="sub-ttl">Post récent</div>
