@@ -149,10 +149,11 @@ public function detailActual($id)
             'latestActs' => $latestActualite
         ]);
     }
-    public function actualites()
+    public function actualites(Request $req)
     {
+        $term = $req->input('term');
         $actualites = Actualite::orderBy('id', 'desc')->get();  
-        $actualites = Actualite::paginate(5);
+        $actualites = Actualite::orderBy('id', 'desc')->search($term)->paginate(5);
         $latestActualite = Actualite::orderBy('id', 'desc')->take(5)->get(); 
         return view('front.actualite')->with([
             'actualites' => $actualites,

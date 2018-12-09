@@ -17,4 +17,9 @@ class Actualite extends Model
     {
         return $this->belongsTo('App\User');
     }
+    public function scopeSearch($query,$term)
+    {
+    	return $query->where('titre','like','%'.$term.'%')
+    			->orWhere('description','like','%'.$term.'%');
+    }
 }
