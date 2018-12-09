@@ -57,7 +57,7 @@
                                     <div class="col-md-4">
                                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label form-input-icon">
                                             <i class="fa fa-user-o"></i>
-                                            <input id="contact-name" class="mdl-textfield__input" type="text" pattern="[A-Z,a-z, ]*" required name="nom">
+                                            <input id="contact-name" class="mdl-textfield__input" type="text" pattern="[A-Z,a-z, ]{,255}" required name="nom">
                                             <label class="mdl-textfield__label" for="contact-name">Votre Nom</label>
                                             <span class="mdl-textfield__error">Entrez un nom valide</span>
                                         </div>
