@@ -55,43 +55,46 @@
                                 <div class="layer-ttl"><h3>Contactez Nous</h3></div>
                                 <div class="contact-form row text-center">
                                     <div class="col-md-4">
-                                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label form-input-icon">
+                                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label form-input-icon {!! $errors->has('nom') ? 'is-invalid' : '' !!}">
                                             <i class="fa fa-user-o"></i>
-                                            <input id="contact-name" class="mdl-textfield__input" type="text" pattern="[A-Z,a-z, ]{,255}" required name="nom">
+                                            <input id="contact-name" class="mdl-textfield__input" type="text" pattern="[A-Z,a-z, ]{,255}" name="nom">
                                             <label class="mdl-textfield__label" for="contact-name">Votre Nom</label>
                                             <span class="mdl-textfield__error">Entrez un nom valide</span>
                                         </div>
-                                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label form-input-icon">
+                                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label form-input-icon {!! $errors->has('email') ? 'is-invalid' : '' !!}">
                                             <i class="fa fa-envelope-o"></i>
-                                            <input class="mdl-textfield__input" type="text" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" id="contact-email" required name="email">
+                                            <input class="mdl-textfield__input" type="text" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" id="contact-email" name="email">
                                             <label class="mdl-textfield__label" for="contact-email">Votre Email</label>
                                             <span class="mdl-textfield__error">Entrez un email correct!</span>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
-                                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label form-input-icon">
+                                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label form-input-icon {!! $errors->has('telephone') ? 'is-invalid' : '' !!}">
                                             <i class="fa fa-phone"></i>
-                                            <input class="mdl-textfield__input" type="text" pattern="[0-9]*" id="contact-mobile" required name="telephone">
+                                            <input class="mdl-textfield__input" type="text" pattern="[0-9]+" id="contact-mobile" name="telephone">
                                             <label class="mdl-textfield__label" for="contact-mobile">Votre Numero Mobile</label>
                                             <span class="mdl-textfield__error">Entrez un numero correct</span>
                                         </div>
-                                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label form-input-icon">
+                                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label form-input-icon {!! $errors->has('sujet') ? 'is-invalid' : '' !!}">
                                             <i class="fa fa-rocket"></i>
-                                            <input class="mdl-textfield__input" type="text" id="contact-subject" required name="sujet">
+                                            <input class="mdl-textfield__input" type="text" id="contact-subject" name="sujet">
                                             <label class="mdl-textfield__label" for="contact-subject">Votre Sujet</label>
                                             <span class="mdl-textfield__error">Entrez un sujet</span>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
-                                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label form-input-icon">
+                                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label form-input-icon {!! $errors->has('msg') ? 'is-invalid' : '' !!}">
                                             <i class="fa fa-paper-plane"></i>
-                                            <textarea class="mdl-textfield__input" id="contact-message" required name="msg"></textarea>
+                                            <textarea class="mdl-textfield__input" id="contact-message" name="msg"></textarea>
                                             <label class="mdl-textfield__label" for="contact-message">Votre Message</label>
                                             <span class="mdl-textfield__error">Entrer votre message</span>
                                         </div>
                                     </div>
                                     <div class="col-md-12 contact-error">
-
+                                    @if(isset($success) && $success)
+                                        <div class='alert alert-success' role='alert'>Message envoyé avec succès</div>
+                                    @endif
+                                    
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-submit">
