@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class PartenaireController extends FormRequest
+class PartenaireRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,10 +25,9 @@ class PartenaireController extends FormRequest
     {
         return [
             'nom' => 'required|max:255',
-            'email' => 'required|max:255',  
-            'telephone' => 'required|max:10', 
-            'sujet' => 'required|max:255',
-            'msg' => 'required|max:2000',   
+            'description' => 'max:255',
+            'email' => 'max:255',  
+            'num_tel' => 'max:15',   
              ];
     }
 }

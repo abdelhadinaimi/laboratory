@@ -50,15 +50,37 @@ class PartenaireController extends Controller
 
     public function create(PartenaireRequest $request)
     {
+        $validated = $request->validated();
         $partenaire = new Partenaire();
 
-        $partenaire->nom = $request->input('nom');
-        $partenaire->email = $request->input('email');
-        $partenaire->telephone = $request->input('telephone');
-        $partenaire->sujet = $request->input('sujet');
-        $partenaire->msg = $request->input('msg');
+        $partenaire->nom = $validated['nom'];
+        $partenaire->description = $validated['description'];
+        $partenaire->email = $validated['email'];
+        $partenaire->num_tel = $validated['num_tel'];
 
         $partenaire->save();
-        return redirect('front/contact');
+        $valid = array("success" => true);
+        return response()->json($valid);
     }
+
+    public function edit($id,PartenaireRequest $request){
+        $validated = $request->validated();
+        $partenaire = Partenaire::find($id);
+
+        $partenaire->nom = $validated['nom'];
+        $partenaire->description = $validated['description'];
+        $partenaire->email = $validated['email'];
+        $partenaire->num_tel = $validated['num_tel'];
+
+        $partenaire->save();
+        $valid = array("success" => true);
+        return response()->json($valid);
+    }
+
+    public function delete($id){
+        $partenaire = Partenaire::destroy($id);
+        $valid = array("success" => true);
+        return response()->json($valid);
+    }
+
 }

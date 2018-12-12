@@ -94,6 +94,10 @@ Route::delete('actualites/{id}','ActualiteController@destroy');
 Route::get('partenaires','PartenaireController@index');
 Route::get('partenaires/all','PartenaireController@all');
 Route::post('partenaires/create','PartenaireController@create');
+Route::post('partenaires/{id}/edit','PartenaireController@edit');
+Route::delete('partenaires/{id}','PartenaireController@delete');
+
+
 
 Route::get('messages','MessageController@index');
 Route::delete('message/{id}','MessageController@delete');

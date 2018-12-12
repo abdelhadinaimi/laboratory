@@ -81,10 +81,9 @@ var managePart;
                            $("#submitPartForm")[0].reset();
                            $(".text-danger").remove();
                            $('.form-group').removeClass('has-error').removeClass('has-success');
-                           $('#add-cat-messages').html('<div class="alert alert-success">'+
+                           $('#add-part-messages').html('<div class="alert alert-success">'+
             '<button type="button" class="close" data-dismiss="alert">&times;</button>'+
-            '<strong><i class="glyphicon glyphicon-ok-sign"></i></strong> '+ response.messages +
-          '</div>');
+            '<strong><i class="glyphicon glyphicon-ok-sign"></i></strong> Ajout avec success</div>');
                     $(".alert-success").delay(500).show(10, function() {
                        $(this).delay(3000).hide(10, function() {
                        $(this).remove();
@@ -100,10 +99,10 @@ var managePart;
         $('#removePartenairesBtn').on('click',function(e){
              var idPart = $("#body-remove").attr('role');
               $.ajax({
-                url: 'deletePart',
-                type: 'post',
+                url: 'partenaires/'+idPart,
+                type: 'delete',
                 dataType: 'json',
-                data: {"_token": $('meta[name="csrf-token"]').attr('content'),"idPart":idPart},
+                data: {"_token": $('meta[name="csrf-token"]').attr('content')},
                 success:function(response) {
                   $('#removePartenairesModal').modal('hide');
                   managePart.ajax.reload(null, false);
@@ -120,31 +119,36 @@ var managePart;
              });
         });
         
-        $('#editPartBtn').on('click',function(e){
+        $('#editPartForm').unbind('submit').bind('submit', function(e) {
+             e.preventDefault();
              var idPart = $("#body-edit").attr('role');
-             var nvPartNom = $("#editPartNom").val();
-             if(nvPartNom == ""){
-                $("#editPartNom").after('<p class="text-danger">S le libellé</p>');
+             var partNom = $("#editPartNom");
+              if(partNom.val() == "") {
+                if(partNom.siblings().length == 0){
+                $("#editPartNom").after('<p class="text-danger">Saisissez un nom</p>');
                 $('#editPartNom').closest('.form-group').addClass('has-error');
+                }
              }
              else{
+              var form = $(this);
               $.ajax({
-                url: 'editPart/'+idPart,
+                url: 'partenaires/'+idPart+'/edit',
                 type: 'post',
+                data: form.serialize(),
                 dataType: 'json',
-                data: {"_token": $('meta[name="csrf-token"]').attr('content'),"catLib":nvPartLib},
                 success:function(response) {
                   managePart.ajax.reload(null, false);
                            $("#editPartForm")[0].reset();
                            $(".text-danger").remove();
                            $('.form-group').removeClass('has-error').removeClass('has-success');
-                           $('#edit-cat-messages').html('<div class="alert alert-success">'+
+                           $('#edit-part-messages').html('<div class="alert alert-success">'+
             '<button type="button" class="close" data-dismiss="alert">&times;</button>'+
-            '<strong><i class="glyphicon glyphicon-ok-sign"></i></strong> '+ response.message +
-          '</div>');
+            '<strong><i class="glyphicon glyphicon-ok-sign"></i></strong>Edition avec success</div>');
                     $(".alert-success").delay(500).show(10, function() {
                        $(this).delay(3000).hide(10, function() {
                        $(this).remove();
+                       $("#editPartForm").remove();
+                       
                         });
                        }); // /.alert
                 }

@@ -31,7 +31,7 @@
 <div class="modal fade" id="addPart" tabindex="-1" role="dialog">
    <div class="modal-dialog">
       <div class="modal-content">
-         <form class="form-horizontal" id="submitPartForm" action="partenaires/add" method="POST">
+         <form class="form-horizontal" id="submitPartForm" action="partenaires/create" method="POST">
                  {{csrf_field()}}
                <div class="modal-header">
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -40,38 +40,38 @@
         <div class="modal-body">
              <div id="add-part-messages"></div>
              <div class="form-group">
-                  <label for="brandName" class="col-sm-3 control-label">Nom du partenaire </label>
+                  <label class="col-sm-3 control-label">Nom du partenaire </label>
                   <label class="col-sm-1 control-label">: </label>
                   <div class="col-sm-8">
-                       <input type="text" class="form-control" id="partNom" name="partNom" autocomplete="off">
+                       <input type="text" class="form-control" id="partNom" name="nom" autocomplete="off">
                    </div>
               </div>
               <div class="form-group">
-                  <label for="brandName" class="col-sm-3 control-label">Description </label>
+                  <label class="col-sm-3 control-label">Description </label>
                   <label class="col-sm-1 control-label">: </label>
                   <div class="col-sm-8">
-                       <input type="text" class="form-control" id="partDesc" name="partDesc" autocomplete="off">
+                       <input type="text" class="form-control" id="partDesc" name="description" autocomplete="off">
                    </div>
               </div> 
               <div class="form-group">
-                  <label for="brandName" class="col-sm-3 control-label">Email</label>
+                  <label class="col-sm-3 control-label">Email</label>
                   <label class="col-sm-1 control-label">: </label>
                   <div class="col-sm-8">
-                       <input type="text" class="form-control" id="partEmail" name="partEmail" autocomplete="off">
+                       <input type="text" class="form-control" id="partEmail" name="email" autocomplete="off">
                    </div>
               </div> 
               <div class="form-group">
-                  <label for="brandName" class="col-sm-3 control-label">Numero Telephone</label>
+                  <label class="col-sm-3 control-label">Numero Telephone</label>
                   <label class="col-sm-1 control-label">: </label>
                   <div class="col-sm-8">
-                       <input type="text" class="form-control" id="partNum" name="partNum" autocomplete="off">
+                       <input type="text" class="form-control" id="partNum" name="num_tel" autocomplete="off">
                    </div>
               </div> 
         </div> <!-- /modal-body -->
         
           <div class="modal-footer">
              <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
-             <button type="submit" class="btn btn-primary" id="createCatBtn" data-loading-text="Loading..." autocomplete="off">Ajouter</button>
+             <button type="submit" class="btn btn-primary" id="createPartBtn" data-loading-text="Loading..." autocomplete="off">Ajouter</button>
            </div>
          </form>
     </div>
@@ -83,7 +83,8 @@
 <div class="modal fade" id="editPartenairesModal" tabindex="-1" role="dialog">
   <div class="modal-dialog">
     <div class="modal-content">
-      <form class="form-horizontal" id="editCatForm" action="editCat" method="POST">
+      <form class="form-horizontal" id="editPartForm" method="POST">
+      {{csrf_field()}}
         <div class="modal-header">
            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
            <h4 class="modal-title"><i class="fa fa-edit"></i> Editer Partenaire</h4>
@@ -92,31 +93,31 @@
           <div id="edit-part-messages"></div>
           <div class="edit-part-result">
             <div class="form-group">
-              <label for="editCatName" class="col-sm-3 control-label">Nom Partenaire</label>
+              <label class="col-sm-3 control-label">Nom Partenaire</label>
               <label class="col-sm-1 control-label">: </label>
               <div class="col-sm-8">
-                <input type="text" class="form-control" id="editPartNom" name="editPartNom" autocomplete="off">
+                <input type="text" class="form-control" id="editPartNom" name="nom" autocomplete="off">
               </div>
             </div>
             <div class="form-group">
-              <label for="editCatName" class="col-sm-3 control-label">Description</label>
+              <label class="col-sm-3 control-label">Description</label>
               <label class="col-sm-1 control-label">: </label>
               <div class="col-sm-8">
-                <input type="text" class="form-control" id="editPartDesc" name="editPartDesc" autocomplete="off">
+                <input type="text" class="form-control" id="editPartDesc" name="description" autocomplete="off">
               </div>
             </div>
             <div class="form-group">
-              <label for="editCatName" class="col-sm-3 control-label">Email</label>
+              <label class="col-sm-3 control-label">Email</label>
               <label class="col-sm-1 control-label">: </label>
               <div class="col-sm-8">
-                <input type="text" class="form-control" id="editPartEmail" name="editPartEmail" autocomplete="off">
+                <input type="text" class="form-control" id="editPartEmail" name="email" autocomplete="off">
               </div>
             </div>
             <div class="form-group">
-              <label for="editCatName" class="col-sm-3 control-label">Numero Telephone</label>
+              <label class="col-sm-3 control-label">Numero Telephone</label>
               <label class="col-sm-1 control-label">: </label>
               <div class="col-sm-8">
-                <input type="text" class="form-control" id="editPartNum" name="editPartNum" autocomplete="off">
+                <input type="text" class="form-control" id="editPartNum" name="num_tel" autocomplete="off">
               </div>
             </div>                  
             
@@ -128,7 +129,7 @@
         <div class="modal-footer editBrandFooter">
           <button type="button" class="btn btn-default" data-dismiss="modal"> <i class="glyphicon glyphicon-remove-sign"></i> Fermer</button>
           
-          <button type="submit" class="btn btn-success" id="editCatBtn" data-loading-text="Loading..." autocomplete="off"> <i class="glyphicon glyphicon-ok-sign"></i> Editer</button>
+          <button type="submit" class="btn btn-success" id="editPartBtn" data-loading-text="Loading..." autocomplete="off"> <i class="glyphicon glyphicon-ok-sign"></i> Editer</button>
         </div>
         <!-- /modal-footer -->
       </form>
@@ -152,7 +153,7 @@
       <div class="modal-body" id="body-remove">
         <p>Etes vous sur ?</p>
       </div>
-      <div class="modal-footer removeCatFooter">
+      <div class="modal-footer removePartFooter">
         <button type="button" class="btn btn-default" data-dismiss="modal"> <i class="glyphicon glyphicon-remove-sign"></i> Fermer</button>
         <button type="button" class="btn btn-primary" id="removePartenairesBtn" data-loading-text="Loading..."> <i class="glyphicon glyphicon-ok-sign"></i> Supprimer</button>
       </div>
