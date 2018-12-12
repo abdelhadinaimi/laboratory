@@ -91,6 +91,9 @@ Route::get('actualites/{id}/details','ActualiteController@details');
 Route::put('actualites/{id}','ActualiteController@update');
 Route::delete('actualites/{id}','ActualiteController@destroy');
 
+Route::get('partenaires','PartenaireController@index');
+Route::get('partenaires/all','PartenaireController@all');
+
 Route::get('messages','MessageController@index');
 Route::delete('message/{id}','MessageController@delete');
 
