@@ -35,15 +35,22 @@
 <script>
 //passing data when showing modal 
 function removePart(idPart){
-    $('#body-remove').attr('role',idPart);
+    $('#body-remove').attr('role',managePart.data()[idPart][0]);
 }
 function editPart(idPart){
-    $('#body-edit').attr('role',idPart);
+  var bodyEdit = $('#body-edit');
+  var data = managePart.data()[idPart];
+  bodyEdit.attr('role',data[0]);
+  bodyEdit.find("#editPartNom").val(data[1]);
+  bodyEdit.find("#editPartDesc").val(data[2]);
+  bodyEdit.find("#editPartEmail").val(data[3]);
+  bodyEdit.find("#editPartNum").val(data[4]);
 }
+var managePart;
 /* fin */
     $(function () {
         
-            var managePart = $("#gererPart").DataTable({
+            managePart = $("#gererPart").DataTable({
                 'ajax': 'partenaires/all',
                 'columnDefs': [{
                     "targets": [ 0 ],
@@ -53,9 +60,11 @@ function editPart(idPart){
             });
            $("#submitPartForm").unbind('submit').bind('submit', function() {
               var partNom = $("#partNom");
-              if(partNom.val() == "" && partNom.siblings().length == 0) {
+              if(partNom.val() == "") {
+                if(partNom.siblings().length == 0){
                   partNom.after('<p class="text-danger">Saissisz un nom</p>');
                   partNom.closest('.form-group').addClass('has-error');
+                }
               }
               else{
                 var form = $(this);
@@ -88,7 +97,7 @@ function editPart(idPart){
               return false;
            });
         
-        $('#removePartegoriesBtn').on('click',function(e){
+        $('#removePartenairesBtn').on('click',function(e){
              var idPart = $("#body-remove").attr('role');
               $.ajax({
                 url: 'deletePart',

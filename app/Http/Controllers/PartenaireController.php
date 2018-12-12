@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Parametre;
 use App\Partenaire;
+use App\Http\Requests\PartenaireRequest;
 
 class PartenaireController extends Controller
 {
@@ -20,6 +21,7 @@ class PartenaireController extends Controller
     public function all(){
         $output = array('data' => array());
         $partenaires = Partenaire::all();
+        $i = 0;
         foreach ($partenaires as $partenaire)
         {
             $button_Action = 
@@ -29,8 +31,8 @@ class PartenaireController extends Controller
 	                      Action <span class="caret"></span>
 	                  </button>
 	                 <ul class="dropdown-menu">
-	                    <li><a type="button" data-toggle="modal" id="editPartenairesModalBtn" data-target="#editPartenairesModal" onclick="editCat('.$partenaire->id.');"> <i class="glyphicon glyphicon-edit"></i> Editer</a></li>
-	                   <li><a type="button" data-toggle="modal" data-target="#removePartenairesModal" id="removePartenairesModalBtn" onclick="removeCat('.$partenaire->id.');"> <i class="glyphicon glyphicon-trash"></i> Supprimer</a></li>          
+	                    <li><a type="button" data-toggle="modal" id="editPartenairesModalBtn" data-target="#editPartenairesModal" onclick="editPart('.$i.');"> <i class="glyphicon glyphicon-edit"></i> Editer</a></li>
+	                   <li><a type="button" data-toggle="modal" data-target="#removePartenairesModal" id="removePartenairesModalBtn" onclick="removePart('.$i.');"> <i class="glyphicon glyphicon-trash"></i> Supprimer</a></li>          
 	                 </ul>
 	             </div>';
         	$output['data'][] = array(
@@ -40,8 +42,23 @@ class PartenaireController extends Controller
                 $partenaire->email,
                 $partenaire->num_tel,
  		        $button_Action	
- 		    ); 
+             ); 
+            $i++;
         }
       return response()->json($output);
+    }
+
+    public function create(PartenaireRequest $request)
+    {
+        $partenaire = new Partenaire();
+
+        $partenaire->nom = $request->input('nom');
+        $partenaire->email = $request->input('email');
+        $partenaire->telephone = $request->input('telephone');
+        $partenaire->sujet = $request->input('sujet');
+        $partenaire->msg = $request->input('msg');
+
+        $partenaire->save();
+        return redirect('front/contact');
     }
 }

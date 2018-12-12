@@ -31,7 +31,7 @@
 <div class="modal fade" id="addPart" tabindex="-1" role="dialog">
    <div class="modal-dialog">
       <div class="modal-content">
-         <form class="form-horizontal" id="submitPartForm" action="createPart" method="POST">
+         <form class="form-horizontal" id="submitPartForm" action="partenaires/add" method="POST">
                  {{csrf_field()}}
                <div class="modal-header">
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
