@@ -90,11 +90,10 @@ class MaterielController extends Controller
                   $button_Action=$button_Action.'</ul></div>';
                  }
             $output['data'][] = array(
-               $materiel->id,
                 $materiel->reference,
                $materiel->categorie->libelle,
                $materiel->description,
-               ($materiel->etat==0)?"Disponible":"Affecté",
+               ($materiel->etat==0)?"<h4><span class=\" col-md-4 label label-success\">Libre</span></h4>":"<h4><span class=\" col-md-4 label label-danger\">Affecté</span></h4>",
               $button_Action   
             ); 
         }
@@ -194,16 +193,18 @@ class MaterielController extends Controller
           {
              $button_Action = '<!-- Single button -->
                   <div class="btn-group">
-                      <button type="button" class="btn btn-default  data-target="#rendreMaterielsModal" dropdown-toggle" id="rendreMaterielsModalBtn" data-toggle="modal" aria-haspopup="true" aria-expanded="false" onclick="rendre('.$affectMembre->materiel_id.');">
-                          <i class="glyphicon glyphicon-import"></i> Rendre
+                      <button type="button" class="btn btn-default"  data-target="#rendreMaterielsMembres" dropdown-toggle" onclick="rendreMatMembre('.$affectMembre->materiel_id.');" id="rendreMaterielsModalBtn" data-toggle="modal" aria-haspopup="true" aria-expanded="false" >
+                          <i class="glyphicon glyphicon-import"></i> Libérer
                       </button>
                  </div>';
             $output['data'][] = array(
+               //rendre('.$affectMembre->materiel_id.');
                $affectMembre->materiel->reference,
                $affectMembre->materiel->categorie->libelle,
                $affectMembre->user->name." ".$affectMembre->user->prenom,
-               $affectMembre->date,
-               $button_Action
+               $affectMembre->dateAffectation,
+               $affectMembre->dateRetour,
+               ($affectMembre->materiel->etat==1)?$button_Action:""
             ); 
           }
 
@@ -217,16 +218,17 @@ class MaterielController extends Controller
           {
              $button_Action = '<!-- Single button -->
                   <div class="btn-group">
-                      <button type="button" class="btn btn-default  data-target="#rendreMaterielsModal" dropdown-toggle" id="rendreMaterielsModalBtn" data-toggle="modal" aria-haspopup="true" aria-expanded="false" onclick="rendre('.$affectEquipe->materiel_id.');">
-                          <i class="glyphicon glyphicon-import"></i> Rendre
+                      <button type="button" class="btn btn-default"  data-target="#rendreMaterielsEquipes" dropdown-toggle" id="rendreMaterielsModalBtn" data-toggle="modal" aria-haspopup="true" aria-expanded="false" onclick="rendreMatEquipe('.$affectEquipe->materiel_id.');">
+                          <i class="glyphicon glyphicon-import"></i> Libérer
                       </button>
                  </div>';
             $output['data'][] = array(
                $affectEquipe->materiel->reference,
                $affectEquipe->materiel->categorie->libelle,
                $affectEquipe->equipe->achronymes,
-               $affectEquipe->date,
-               $button_Action
+               $affectEquipe->dateAffectation,
+               $affectEquipe->dateRetour,
+               ($affectEquipe->materiel->etat==1)?$button_Action:""
             ); 
           }
 
@@ -234,22 +236,25 @@ class MaterielController extends Controller
 
     }
 
-    /*public function affecterForEquipe($id,Request $request){
-        $Materiel = new MaterielMembre();
-        $Materiel->categorie_id = $request->input('catMat');
-        $Materiel->reference = strtoupper($request->input('RefMat'));
-        $Materiel->description = $request->input('DescMat');
+    public function affecterForEquipe($id,Request $request){
+        $Materiel = new MaterielEquipe();
+        $Materiel->materiel_id = $id;
+        $Materiel->equipe_id = $request->input('selected');
+        $Materiel->dateAffectation = Carbon::now();
+        $Materiel->dateRetour = Carbon::now();
         $Materiel->save();
+        Materiel::where('id', $id)->update( array('etat'=>'1'));
         $valid['success'] = array('success' => false, 'messages' => array());
         $valid['success'] = true;
         $valid['messages'] = "Ajout réussi";    
         return response()->json($valid);
-    }*/
+    }
     public function affecterForMembre($id,Request $request){
         $Materiel = new MaterielMembre();
         $Materiel->materiel_id = $id;
-        $Materiel->user_id = $request->input('membreSelected');
-        $Materiel->date = Carbon::now();
+        $Materiel->user_id = $request->input('selected');
+        $Materiel->dateAffectation = Carbon::now();
+        $Materiel->dateRetour = Carbon::now();
         $Materiel->save();
         Materiel::where('id', $id)->update( array('etat'=>'1'));
         $valid['success'] = array('success' => false, 'messages' => array());
@@ -258,5 +263,20 @@ class MaterielController extends Controller
         return response()->json($valid);
     }
     
+    public function rendreFromMembre($id){
+       Materiel::where('id', $id)->update( array('etat'=>'0'));
+        $valid['success'] = array('success' => false, 'messages' => array());
+        $valid['success'] = true;
+        $valid['messages'] = "opération réussie";    
+        return response()->json($valid);
+    }
+
+    public function rendreFromEquipe($id){
+       Materiel::where('id', $id)->update( array('etat'=>'0'));
+        $valid['success'] = array('success' => false, 'messages' => array());
+        $valid['success'] = true;
+        $valid['messages'] = "opération réussie";    
+        return response()->json($valid);
+    }
 
 }

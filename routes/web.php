@@ -38,6 +38,9 @@ Route::post('createMat','MaterielController@createMateriel');
 Route::post('affecterForMembre/{id}','MaterielController@affecterForMembre');
 Route::post('affecterForEquipe/{id}','MaterielController@affecterForEquipe');
 
+Route::post('rendreFromMembre/{id}','MaterielController@rendreFromMembre');
+Route::post('rendreFromEquipe/{id}','MaterielController@rendreFromEquipe');
+
 
 Route::post('deleteCat','MaterielController@deleteCategorie');
 Route::post('deleteMat','MaterielController@deleteMateriel');

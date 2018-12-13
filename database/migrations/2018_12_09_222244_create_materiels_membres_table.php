@@ -17,7 +17,8 @@ class CreateMaterielsMembresTable extends Migration
             $table->increments('id');
             $table->integer('user_id')->unsigned()->nullable();
             $table->integer('materiel_id')->unsigned()->nullable();
-            $table->dateTime('date');
+            $table->dateTime('dateAffectation');
+            $table->dateTime('dateRetour');
             $table->timestamps();
 
             $table-> foreign('user_id')->references('id')->on('users')->onDelete('set null');

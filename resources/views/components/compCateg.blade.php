@@ -3,7 +3,7 @@
         <br>
    <div class="panel panel-primary">
               <div class="panel-heading">
-                 <div class="page-heading"> <i class="glyphicon glyphicon-edit"></i> Categories</div>
+                 <div class="page-heading"> Categories</div>
               </div> <!-- /panel-heading -->
       <div class="panel-body">
             <div class="remove-messages"></div>

@@ -1,19 +1,19 @@
 <div class="row">
       <div class="col-md-12">
-         <div class="panel panel-default">
+      <br>
+         <div class="panel panel-primary">
               <div class="panel-heading">
-                 <div class="page-heading"> <i class="glyphicon glyphicon-edit"></i>Matériels</div>
+                 <div class="page-heading">Matériels</div>
               </div> <!-- /panel-heading -->
               <div class="panel-body">
                   <div class="remove-messagesMat"></div>
                   <div class="div-action pull pull-right" style="padding-bottom:20px;">
-                 <button class="btn btn-default button1" id="addButton" data-toggle="modal" data-target="#addMat"> <i class="glyphicon glyphicon-plus-sign"></i> Ajouter Matériel </button>
+                 <button class="btn btn-primary button1" id="addButton" data-toggle="modal" data-target="#addMat"> <i class="glyphicon glyphicon-plus-sign"></i> Ajouter Matériel </button> 
         </div> <!-- /div-action -->       
         
         <table class="table" width="100%" id="tableMat">
           <thead>
             <tr>              
-              <th>ID</th>
               <th>Référence</th>
               <th>Catégorie</th>
               <th>Déscription</th>
@@ -158,7 +158,7 @@
 
 
 
-<div class="modal fade" id="affecterMatModal" tabindex="-1" role="dialog">
+<div class="modal fade" id="affecterMatModal"  style="overflow:hidden;" role="dialog">
   <div class="modal-dialog">
     <div class="modal-content">
       
@@ -184,7 +184,7 @@
             <label for="brandName" class="col-sm-3 control-label">Equipe </label>
             <label class="col-sm-1 control-label">: </label>
             <div class="col-sm-8">
-              <select id="affecterEquipe" name="affecterEquipe" class="form-control">
+              <select id="affecterEquipe" style="width: 100%;" name="affecterEquipe" class="form-control select2">
 
                                   </select>
             </div>
@@ -193,9 +193,9 @@
             <label for="brandName" class="col-sm-3 control-label">Membre </label>
             <label class="col-sm-1 control-label">: </label>
             <div class="col-sm-8">
-              <select id="affecterMembre" disabled="true" name="affecterMembre" class="form-control">
+              <select id="affecterMembre" disabled="true" style="width: 100%;" class="form-control select2"   name="affecterMembre">
 
-                                  </select>
+              </select>
             </div>
           </div>           
                           

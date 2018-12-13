@@ -1,4 +1,6 @@
 var refTmp;
+
+
 function removeMat($idMat){
     $('#body-removeMat').attr('role',$idMat);
     return true;
@@ -24,8 +26,20 @@ function removeMat($idMat){
        $('#body-affecter').attr('role',$idMat);
 
       
-  }
+    }
 
+    function rendreMatMembre($idMat){
+        updateLists();
+       $('#body-RendreMatMembre').attr('role',$idMat);
+
+      
+    }
+    function rendreMatEquipe($idMat){
+        updateLists();
+       $('#body-RendreMatEquipe').attr('role',$idMat);
+
+      
+    }
    
     
     $( "#addButton" ).click(function() {
@@ -187,6 +201,9 @@ $(function () {
                 }
              });
         });
+
+
+
         $('#editMatBtn').on('click',function(e){
              var idMatEdit = $("#body-editMat").attr('role');
              var selectCatEdit = $("#selectCatEdit").val();
@@ -247,6 +264,10 @@ $(function () {
         $('#affecterMatBtn').on('click',function(e){
              var idMatAffecterEdit = $("#body-affecter").attr('role');
              var membreSelected = $("#affecterMembre").val();
+             var equipeSelected = $("#affecterEquipe").val();
+             var choice = $("#affecterSelect").val();
+             var urll;
+             var dataChosen;
             
             if(false){
 
@@ -255,11 +276,20 @@ $(function () {
 
               
              else{
+              if(choice==1){
+                dataChosen = membreSelected;
+                urll = 'affecterForMembre/'+idMatAffecterEdit;
+              }
+              else{
+                dataChosen = equipeSelected;
+                urll = 'affecterForEquipe/'+idMatAffecterEdit;
+              }
+
               $.ajax({
-                url: 'affecterForMembre/'+idMatAffecterEdit,
+                url: urll,
                 type: 'post',
                 dataType: 'json',
-                data: {"_token": $('meta[name="csrf-token"]').attr('content'),"membreSelected":membreSelected},
+                data: {"_token": $('meta[name="csrf-token"]').attr('content'),"selected":dataChosen},
                 success:function(response) {
                   manageAffectMembres.ajax.reload(null, false);
                   manageMat.ajax.reload(null, false);
@@ -279,7 +309,54 @@ $(function () {
            }
             return false;
         });
+        
+        $('#rendreMatMembreBtn').on('click',function(e){
+             var idMatFromMembre = $("#body-RendreMatMembre").attr('role');
+              $.ajax({
+                url: 'rendreFromMembre/'+idMatFromMembre,
+                type: 'post',
+                dataType: 'json',
+                data: {"_token": $('meta[name="csrf-token"]').attr('content')},
+                success:function(response) {
+                  $('#rendreMaterielsMembres').modal('hide');
+                  manageAffectMembres.ajax.reload(null, false);
+                  manageMat.ajax.reload(null, false);
+                  $('.rendreMembre-messagesMat').html('<div class="alert alert-success">'+
+                  '<button type="button" class="close" data-dismiss="alert">&times;</button>'+
+                  '<strong><i class="glyphicon glyphicon-ok-sign"></i></strong> Opération Effectuée</div>');
+
+                  $(".alert-success").delay(500).show(10, function() {
+                    $(this).delay(3000).hide(10, function() {
+                          $(this).remove();
+                    });
+                  }); // /.alert
+                }
+             });
+        });
    
-   
+
+        $('#rendreMatEquipeBtn').on('click',function(e){
+             var idMatFromEquipe = $("#body-RendreMatEquipe").attr('role');
+              $.ajax({
+                url: 'rendreFromEquipe/'+idMatFromEquipe,
+                type: 'post',
+                dataType: 'json',
+                data: {"_token": $('meta[name="csrf-token"]').attr('content')},
+                success:function(response) {
+                  $('#rendreMaterielsEquipes').modal('hide');
+                  manageAffectEquipes.ajax.reload(null, false);
+                  manageMat.ajax.reload(null, false);
+                  $('.rendreEquipe-messagesMat').html('<div class="alert alert-success">'+
+                  '<button type="button" class="close" data-dismiss="alert">&times;</button>'+
+                  '<strong><i class="glyphicon glyphicon-ok-sign"></i></strong> Opération Effectuée</div>');
+
+                  $(".alert-success").delay(500).show(10, function() {
+                    $(this).delay(3000).hide(10, function() {
+                          $(this).remove();
+                    });
+                  }); // /.alert
+                }
+             });
+        });
 
      });

@@ -17,7 +17,8 @@ class CreateMaterielsEquipesTable extends Migration
             $table->increments('id');
             $table->integer('equipe_id')->unsigned()->nullable();
             $table->integer('materiel_id')->unsigned()->nullable();
-            $table->dateTime('date');
+            $table->dateTime('dateAffectation');
+            $table->dateTime('dateRetour');
             $table->timestamps();
 
             $table-> foreign('equipe_id')->references('id')->on('equipes')->onDelete('set null');
