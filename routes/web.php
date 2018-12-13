@@ -97,7 +97,10 @@ Route::post('partenaires/create','PartenaireController@create');
 Route::post('partenaires/{id}/edit','PartenaireController@edit');
 Route::delete('partenaires/{id}','PartenaireController@delete');
 
-
+Route::get('contacts/all','ContactController@all');
+Route::post('contacts/create','ContactController@create');
+Route::post('contacts/{id}/edit','ContactController@edit');
+Route::delete('contacts/{id}','ContactController@delete');
 
 Route::get('messages','MessageController@index');
 Route::delete('message/{id}','MessageController@delete');

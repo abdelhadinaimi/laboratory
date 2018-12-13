@@ -12,9 +12,8 @@ class PartenaireController extends Controller
     public function index()
     {
     	$labo = Parametre::find('1');
-        $partenaires = Partenaire::all();
         return view('partenaire.index')->with([
-            'labo' => $labo,'partenaires' => $partenaires,
+            'labo' => $labo,
         ]);;
     }
 
