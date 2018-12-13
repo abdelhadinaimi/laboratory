@@ -179,16 +179,18 @@ public function detailActual($id)
     }
 
     public function contact(messageRequest $request){
+        $validated = $request->validated();
         $message = new Message();
-
-        $message->nom = $request->input('nom');
-        $message->email = $request->input('email');
-        $message->telephone = $request->input('telephone');
-        $message->sujet = $request->input('sujet');
-        $message->msg = $request->input('msg');
+        $message->nom = $validated['nom'];
+        $message->email = $validated['email'];
+        $message->telephone = $validated['telephone'];
+        $message->sujet = $validated['sujet'];
+        $message->msg = $validated['msg'];
 
         $message->save();
-        return redirect('front/contact');
+        return redirect('front/contact')->with([
+            'success' => true
+        ]);
         
     }
 }
