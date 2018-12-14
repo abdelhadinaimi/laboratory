@@ -9,6 +9,7 @@
                   <div class="remove-messagesMat"></div>
                   <div class="div-action pull pull-right" style="padding-bottom:20px;">
                  <button class="btn btn-primary button1" id="addButton" data-toggle="modal" data-target="#addMat"> <i class="glyphicon glyphicon-plus-sign"></i> Ajouter Matériel </button> 
+
         </div> <!-- /div-action -->       
         
         <table class="table" width="100%" id="tableMat">
@@ -192,13 +193,23 @@
           <div class="form-group">
             <label for="brandName" class="col-sm-3 control-label">Membre </label>
             <label class="col-sm-1 control-label">: </label>
-            <div class="col-sm-8">
+            <div class="col-sm-8" id="divmembre">
               <select id="affecterMembre" disabled="true" style="width: 100%;" class="form-control select2"   name="affecterMembre">
 
               </select>
+
             </div>
-          </div>           
-                          
+          </div>    
+            <div class="form-group">
+            <label for="brandName" class="col-sm-3 control-label">Date et heure </label>
+            <label class="col-sm-1 control-label">: </label>
+            <div class="col-sm-8">
+              <table id="tableE" width="100%"><tr><td width="90%">
+              <input type="date" class="form-control" style="width: 100%;" id="dateAffect"  name="dateAffectM" autocomplete="off"></td><td>
+              <input type="time" class="form-control" style="width: 100%;" id="timeAffect" value="now" name="timeAffectM" autocomplete="off"></td></tr></table>
+            </div>
+          </div>  
+                        
           <!-- /edit brand result -->
 
         </div> <!-- /modal-body -->

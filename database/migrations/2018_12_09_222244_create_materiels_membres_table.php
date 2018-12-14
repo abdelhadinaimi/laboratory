@@ -17,12 +17,12 @@ class CreateMaterielsMembresTable extends Migration
             $table->increments('id');
             $table->integer('user_id')->unsigned()->nullable();
             $table->integer('materiel_id')->unsigned()->nullable();
-            $table->dateTime('dateAffectation');
-            $table->dateTime('dateRetour');
+            $table->string('dateAffectation',20)->nullable();
+            $table->string('dateRetour',20)->nullable();
             $table->timestamps();
 
-            $table-> foreign('user_id')->references('id')->on('users')->onDelete('set null');
-            $table-> foreign('materiel_id')->references('id')->on('materiels')->onDelete('set null');
+            $table-> foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table-> foreign('materiel_id')->references('id')->on('materiels')->onDelete('cascade');
         });
     }
 

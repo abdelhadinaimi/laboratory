@@ -6,7 +6,7 @@
                  <div class="page-heading">Affectations aux équipes</div>
               </div>
               <div class="panel-body">
-                  <div class="remove-messagesMat"></div>
+                  <div class="rendreEquipe-messagesMat"></div>
                   <div class="div-action pull pull-right" style="padding-bottom:20px;">
                   <br>
                  
@@ -39,11 +39,21 @@
         <h4 class="modal-title"><i class="glyphicon glyphicon-import"></i> Libérer Matériel</h4>
       </div>
       <div class="modal-body" id="body-RendreMatEquipe">
-        <p>Etes vous sur ?</p>
+          <br>
+         <div class="form-group">
+            <label for="brandName" class="col-sm-3 control-label">Date et heure </label>
+            <label class="col-sm-1 control-label">: </label>
+            <div class="col-sm-8">
+              <table id="tableEE" width="100%"><tr><td width="90%">
+              <input type="date" class="form-control" style="width: 100%;" id="dateRendreEE"  name="dateRendreEE" autocomplete="off"></td><td>
+              <input type="time" class="form-control" style="width: 100%;" id="timeRendreEE" value="now" name="timeRendreEE" autocomplete="off"></td></tr></table>
+            </div>
+          </div>
+          <br>  
       </div>
       <div class="modal-footer removeCatFooter">
         <button type="button" class="btn btn-default" data-dismiss="modal"> <i class="glyphicon glyphicon-remove-sign"></i> Fermer</button>
-        <button type="button" class="btn btn-primary" id="rendreMatEquipeBtn" data-loading-text="Loading..."> <i class="glyphicon glyphicon-ok-sign"></i> Confirmer</button>
+        <button type="button" class="btn btn-primary" id="rendreMatEquipeBtn" data-loading-text="Loading..."> <i class="glyphicon glyphicon-ok-sign"></i> Libérer</button>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->

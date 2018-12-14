@@ -47,11 +47,21 @@
         <h4 class="modal-title"><i class="glyphicon glyphicon-import"></i> Libérer Matériel</h4>
       </div>
       <div class="modal-body" id="body-RendreMatMembre">
-        <p>Etes vous sur ?</p>
+      <br>
+         <div class="form-group">
+            <label for="brandName" class="col-sm-3 control-label">Date et heure </label>
+            <label class="col-sm-1 control-label">: </label>
+            <div class="col-sm-8">
+              <table id="tableMM" width="100%"><tr><td width="90%">
+              <input type="date" class="form-control" style="width: 100%;" id="dateRendre"  name="dateRendre" autocomplete="off"></td><td>
+              <input type="time" class="form-control" style="width: 100%;" id="timeRendre" value="now" name="timeRendre" autocomplete="off"></td></tr></table>
+            </div>
+          </div>
+          <br>
       </div>
       <div class="modal-footer removeCatFooter">
         <button type="button" class="btn btn-default" data-dismiss="modal"> <i class="glyphicon glyphicon-remove-sign"></i> Fermer</button>
-        <button type="button" class="btn btn-primary" id="rendreMatMembreBtn" data-loading-text="Loading..."> <i class="glyphicon glyphicon-ok-sign"></i> Confirmer</button>
+        <button type="button" class="btn btn-primary" id="rendreMatMembreBtn" data-loading-text="Loading..."> <i class="glyphicon glyphicon-ok-sign"></i> Libérer</button>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->

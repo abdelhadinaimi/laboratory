@@ -261,6 +261,23 @@
   $(function () {
     //Initialize Select2 Elements
     $('.select2').select2();
+
+   $(function(){     
+  var d = new Date(),        
+      h = d.getHours(),
+      m = d.getMinutes();
+  if(h < 10) h = '0' + h; 
+  if(m < 10) m = '0' + m; 
+  $('input[type="time"][value="now"]').each(function(){ 
+    $(this).attr({'value': h + ':' + m});
+  });
+});
+
+   var today = moment().format('YYYY-MM-DD');
+ $('#dateAffect').val(today);
+  $('#dateRendre').val(today);
+  $('#dateRendreEE').val(today);
+
     //Datemask dd/mm/yyyy
     $('#datemask').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' })
     //Datemask2 mm/dd/yyyy

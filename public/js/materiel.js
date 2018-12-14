@@ -28,15 +28,18 @@ function removeMat($idMat){
       
     }
 
-    function rendreMatMembre($idMat){
+    function rendreMatMembre($idMat,$idAffectM){
         updateLists();
        $('#body-RendreMatMembre').attr('role',$idMat);
+       $('#body-RendreMatMembre').attr('role2',$idAffectM);
+
 
       
     }
-    function rendreMatEquipe($idMat){
+    function rendreMatEquipe($idMat,$idAffectE){
         updateLists();
        $('#body-RendreMatEquipe').attr('role',$idMat);
+       $('#body-RendreMatEquipe').attr('role2',$idAffectE);
 
       
     }
@@ -121,7 +124,6 @@ $(function () {
            $("#submitMatForm").unbind('submit').bind('submit', function() {
            	  var selectCat = $("#selectCat").val();
               var RefMat = $("#RefMat").val().toUpperCase();
-              console.log(RefMat);
               var RefUnique = $('#tableMat td').filter(function (){
               	return $.trim($(this).text()) == RefMat;});
 
@@ -265,11 +267,15 @@ $(function () {
              var idMatAffecterEdit = $("#body-affecter").attr('role');
              var membreSelected = $("#affecterMembre").val();
              var equipeSelected = $("#affecterEquipe").val();
+             var dateAFF = $("#dateAffect").val()+"  /  "+$("#timeAffect").val();
              var choice = $("#affecterSelect").val();
              var urll;
              var dataChosen;
+
             
-            if(false){
+            if(!$("#dateAffect").val() || !$("#timeAffect").val()){
+                    $('#tableE').closest('.form-group').addClass('has-error');
+                    return false;
 
             }
 
@@ -277,28 +283,42 @@ $(function () {
               
              else{
               if(choice==1){
+                if(membreSelected!="Séléctionner"){
                 dataChosen = membreSelected;
                 urll = 'affecterForMembre/'+idMatAffecterEdit;
               }
               else{
+                    $('#affecterMembre').closest('.form-group').addClass('has-error');
+                    return false;
+              }
+              }
+              else{
+                 if(equipeSelected!="Séléctionner"){
+
                 dataChosen = equipeSelected;
                 urll = 'affecterForEquipe/'+idMatAffecterEdit;
+              }
+              else{
+                    $('#affecterEquipe').closest('.form-group').addClass('has-error');
+                    return false;
+              }
               }
 
               $.ajax({
                 url: urll,
                 type: 'post',
                 dataType: 'json',
-                data: {"_token": $('meta[name="csrf-token"]').attr('content'),"selected":dataChosen},
+                data: {"_token": $('meta[name="csrf-token"]').attr('content'),"selected":dataChosen,"dateAFF":dateAFF},
                 success:function(response) {
+                  $('#affecterMatModal').modal('hide');
                   manageAffectMembres.ajax.reload(null, false);
+                  manageAffectEquipes.ajax.reload(null, false);
                   manageMat.ajax.reload(null, false);
                            $(".text-danger").remove();
                            $('.form-group').removeClass('has-error').removeClass('has-success');
                            $('#affecter-mat-messages').html('<div class="alert alert-success">'+
             '<button type="button" class="close" data-dismiss="alert">&times;</button>'+
-            '<strong><i class="glyphicon glyphicon-ok-sign"></i></strong> '+ response.message +
-          '</div>');
+            '<strong><i class="glyphicon glyphicon-ok-sign"></i></strong>Opération réussie</div>');
                     $(".alert-success").delay(500).show(10, function() {
                        $(this).delay(3000).hide(10, function() {
                        $(this).remove();
@@ -312,11 +332,19 @@ $(function () {
         
         $('#rendreMatMembreBtn').on('click',function(e){
              var idMatFromMembre = $("#body-RendreMatMembre").attr('role');
+             var affectLineM = $("#body-RendreMatMembre").attr('role2');
+             var dateRND = $("#dateRendre").val()+"  /  "+$("#timeRendre").val();
+             if(!$("#dateRendre").val() || !$("#timeRendre").val()){
+                    $('#tableMM').closest('.form-group').addClass('has-error');
+                    return false;
+
+            }
+             
               $.ajax({
                 url: 'rendreFromMembre/'+idMatFromMembre,
                 type: 'post',
                 dataType: 'json',
-                data: {"_token": $('meta[name="csrf-token"]').attr('content')},
+                data: {"_token": $('meta[name="csrf-token"]').attr('content'),"affectLineM":affectLineM,"dateRND":dateRND},
                 success:function(response) {
                   $('#rendreMaterielsMembres').modal('hide');
                   manageAffectMembres.ajax.reload(null, false);
@@ -337,11 +365,18 @@ $(function () {
 
         $('#rendreMatEquipeBtn').on('click',function(e){
              var idMatFromEquipe = $("#body-RendreMatEquipe").attr('role');
+             var affectLineE = $("#body-RendreMatEquipe").attr('role2');
+             var dateRNDE = $("#dateRendreEE").val()+"  /  "+$("#timeRendreEE").val();
+              if(!$("#dateRendreEE").val() || !$("#timeRendreEE").val()){
+                    $('#tableEE').closest('.form-group').addClass('has-error');
+                    return false;
+
+            }
               $.ajax({
                 url: 'rendreFromEquipe/'+idMatFromEquipe,
                 type: 'post',
                 dataType: 'json',
-                data: {"_token": $('meta[name="csrf-token"]').attr('content')},
+                data: {"_token": $('meta[name="csrf-token"]').attr('content'),"affectLineE":affectLineE,"dateRNDE":dateRNDE},
                 success:function(response) {
                   $('#rendreMaterielsEquipes').modal('hide');
                   manageAffectEquipes.ajax.reload(null, false);
