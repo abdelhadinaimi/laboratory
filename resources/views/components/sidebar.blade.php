@@ -71,6 +71,15 @@
         </li>
       @endif
 
+      @if(Auth::user()->role->nom == 'admin' )
+          <li class="{{ $active ==  'Partenaires' ? 'active':''}}">
+          <a href="{{url('partenaires')}}">
+            <i class="fa fa-envelope"></i> 
+            <span>Partenaires</span>
+          </a>
+        </li>
+      @endif
+
           @if(Auth::user()->role->nom == 'admin' )
 
           <li class="{{ $active ==  'Paramètres' ? 'active':''}}">

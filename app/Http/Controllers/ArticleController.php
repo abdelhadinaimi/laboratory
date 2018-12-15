@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Article;
 use App\User;
+use App\Contact;
 use App\ArticleUser;
+use App\ArticleContact;
 use App\Parametre;
 use Auth;
 use App\Http\Requests\articleRequest;
@@ -34,12 +36,13 @@ class ArticleController extends Controller
     {
     	$labo = Parametre::find('1');
 	 	$article = Article::find($id);
-	 	$membres = Article::find($id)->users()->orderBy('name')->get();
-
+		$membres = $article->users()->orderBy('name')->get();
+		$contacts = $article->contacts()->orderBy('nom')->get();
 	 	return view('article.details')->with([
 	 		'article' => $article,
-	 		'membres'=>$membres,
-	 		'labo'=>$labo,
+			'membres' => $membres,
+			'contacts' => $contacts,
+	 		'labo' => $labo,
 	 	]);;
     }
 
@@ -50,9 +53,10 @@ class ArticleController extends Controller
 	 	// if( Auth::user()->role->nom == 'admin')
             {
 	 	$membres = User::all();
-	 	$article = Article::all();
+		$article = Article::all();
+		$contacts = Contact::all(); 
 
-	 	return view('article.create',['membres'=>$membres],['labo'=>$labo]);
+	 	return view('article.create',['membres'=>$membres,'contacts'=>$contacts],['labo'=>$labo]);
 			 }
             // else{
             //     return view('errors.403');
@@ -99,7 +103,14 @@ class ArticleController extends Controller
 		 	$article_user->article_id = $article->id;
 		 	$article_user->user_id = $value;
 	 	    $article_user->save();
+		}
 
+		$contacts =  $request->input('contacts');
+        foreach ($contacts as $key => $value) {
+	 		$article_contact = new ArticleContact();
+		 	$article_contact->article_id = $article->id;
+		 	$article_contact->contact_id = $value;
+	 	    $article_contact->save();
          } 
 
 	 	return redirect('articles');
@@ -112,13 +123,16 @@ class ArticleController extends Controller
 	 public function edit($id){
 
 	 	$article = Article::find($id);
-	 	$membres = User::all();
+		$membres = User::all();
+		$contacts = Contact::all(); 
+
 	 	$labo = Parametre::find('1');
 
 	 	$this->authorize('update', $article);
 
 	 	return view('article.edit')->with([
-	 		'article' => $article,
+			'article' => $article,
+			'contacts' => $contacts, 
 	 		'membres'=>$membres,
 	 		'labo'=>$labo,
 	 	]);;
@@ -155,19 +169,27 @@ class ArticleController extends Controller
 	 	
 	 	$article->save();
 
-	 	$members =  $request->input('membre');
-        $article_user = ArticleUser::where('article_id',$id);
+		$members =  $request->input('membre');
+		$article_user = ArticleUser::where('article_id',$id);
         $article_user->delete();
-        
-        foreach ($members as $key => $value) {
+    
+		foreach ($members as $key => $value) {
             $article_user = new ArticleUser();
             $article_user->article_id = $article->id;
             $article_user->user_id = $value;
             $article_user->save();
+		} 
 
-         } 
-
-	 	
+		$contacts =  $request->input('contacts');
+		$article_user = ArticleContact::where('article_id',$id);
+        $article_user->delete();
+    
+		foreach ($contacts as $key => $value) {
+			$article_contact = new ArticleContact();
+			$article_contact->article_id = $article->id;
+			$article_contact->contact_id = $value;
+			$article_contact->save();
+         }  
 
 	 	return redirect('articles');
     }
