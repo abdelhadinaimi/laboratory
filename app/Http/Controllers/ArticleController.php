@@ -181,8 +181,8 @@ class ArticleController extends Controller
 		} 
 
 		$contacts =  $request->input('contacts');
-		$article_user = ArticleContact::where('article_id',$id);
-        $article_user->delete();
+		$article_contacts = ArticleContact::where('article_id',$id);
+        $article_contacts->delete();
     
 		foreach ($contacts as $key => $value) {
 			$article_contact = new ArticleContact();
