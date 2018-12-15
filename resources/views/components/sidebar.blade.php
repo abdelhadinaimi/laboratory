@@ -45,6 +45,14 @@
             <span>Projets</span>
           </a>
         </li>
+
+        <li class="{{ $active ==  'Actualites' ? 'active':''}}">
+          <a href="{{url('actualites')}}">
+            <i class="fa fa-newspaper-o"></i> 
+            <span>Actualites</span>
+          </a>
+        </li>
+
         @if(Auth::user()->role->nom == 'admin' )
           <li class="{{ $active ==  'Materiels' ? 'active':''}}">
           <a href="{{url('materiels')}}">
@@ -54,6 +62,15 @@
         </li>
       @endif
         
+      @if(Auth::user()->role->nom == 'admin' )
+          <li class="{{ $active ==  'Messages' ? 'active':''}}">
+          <a href="{{url('messages')}}">
+            <i class="fa fa-envelope"></i> 
+            <span>Messages</span>
+          </a>
+        </li>
+      @endif
+
           @if(Auth::user()->role->nom == 'admin' )
 
           <li class="{{ $active ==  'Paramètres' ? 'active':''}}">

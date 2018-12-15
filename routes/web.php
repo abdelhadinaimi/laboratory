@@ -95,6 +95,17 @@ Route::get('projets/{id}/edit','ProjetController@edit');
 Route::put('projets/{id}','ProjetController@update');
 Route::delete('projets/{id}','ProjetController@destroy');
 
+Route::get('actualites','ActualiteController@index');
+Route::get('actualites/create','ActualiteController@create');
+Route::post('actualites','ActualiteController@store');
+Route::get('actualites/{id}/edit','ActualiteController@edit');
+Route::get('actualites/{id}/details','ActualiteController@details');
+Route::put('actualites/{id}','ActualiteController@update');
+Route::delete('actualites/{id}','ActualiteController@destroy');
+
+Route::get('messages','MessageController@index');
+Route::delete('message/{id}','MessageController@delete');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -166,6 +177,7 @@ Route::get('/front/publications','FrontController@getAllPubs')->name('publicatio
 Route::get('front/profiles/{id}','FrontController@profiles');
 Route::get('autocomplete','FrontController@autocomplete');
 Route::get('/front/actualites','FrontController@actualites');
+Route::get('front/actualites/{id}/details','FrontController@detailActual');
 Route::get('/front/projets','FrontController@projets');
 Route::get('/front/projet/{id}','FrontController@projet');
 Route::get('/front/contact',function(){

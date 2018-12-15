@@ -53,6 +53,13 @@ class FrontController extends Controller{
         ]);;
     }
 
+public function detailActual($id)
+{
+    $detail = Actualite::find($id);
+    return view('front.details')->with([
+            'actualite' => $detail
+        ]);
+}
     //return toutes les publications
      public function getAllPubs()
     {
@@ -142,9 +149,11 @@ class FrontController extends Controller{
             'latestActs' => $latestActualite
         ]);
     }
-    public function actualites()
+    public function actualites(Request $req)
     {
-        $actualites = Actualite::all();  
+        $term = $req->input('term');
+        $actualites = Actualite::orderBy('id', 'desc')->get();  
+        $actualites = Actualite::orderBy('id', 'desc')->search($term)->paginate(5);
         $latestActualite = Actualite::orderBy('id', 'desc')->take(5)->get(); 
         return view('front.actualite')->with([
             'actualites' => $actualites,
@@ -170,16 +179,18 @@ class FrontController extends Controller{
     }
 
     public function contact(messageRequest $request){
+        $validated = $request->validated();
         $message = new Message();
-
-        $message->nom = $request->input('nom');
-        $message->email = $request->input('email');
-        $message->telephone = $request->input('telephone');
-        $message->sujet = $request->input('sujet');
-        $message->msg = $request->input('msg');
+        $message->nom = $validated['nom'];
+        $message->email = $validated['email'];
+        $message->telephone = $validated['telephone'];
+        $message->sujet = $validated['sujet'];
+        $message->msg = $validated['msg'];
 
         $message->save();
-        return redirect('front/contact');
-
+        return redirect('front/contact')->with([
+            'success' => true
+        ]);
+        
     }
 }

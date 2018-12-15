@@ -3,7 +3,12 @@
 @section('title','Actualite')
 
 @section('content')
-
+   @component('components.breadcrumbs')
+        @slot('title')
+            @yield('title')
+        @endslot
+        @yield('title')    
+    @endcomponent
   <!-- Start Blog List Section -->
     <div class="layer-stretch">
         <div class="layer-wrapper">
@@ -16,32 +21,24 @@
                                  @endcomponent
                             @endforeach
 
-       
-       
-                    <ul class="theme-pagination">
-                        <li><a href="#" class="active">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">5</a></li>
-                        <li><a href="#">...</a></li>
-                        <li><a href="#">10</a></li>
-                    </ul>
+                 {{$actualites->links('vendor.pagination.default')}}
                 </div>
                 <div class="col-lg-4">
                     <div class="theme-material-card text-center">
+                    <form action="" method="GET">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label form-input">
-                            <input class="mdl-textfield__input" type="text" id="sidebar-search">
+                            <input class="mdl-textfield__input" type="text" id="sidebar-search" name="term">
                             <label class="mdl-textfield__label" for="sidebar-search">Rechercher</label>
                             <button class="fa fa-search search-button"></button>
                         </div>
+                    </form>
                     </div>
                     <div class="theme-material-card">
                         <div class="sub-ttl">Post récent</div>
                         @foreach($latestActs as $latestAct)
-                        <a href="#" class="row blog-recent">
+                        <a href="{{url('/front/actualites/'.$latestAct->id).'/details'}}" class="row blog-recent">
                             <div class="col-4 blog-recent-img">
-                                <img class="img-responsive img-thumbnail" src="{{asset('uploads/'.'recent-1'.'.jpg')}}" alt="">
+                                <img class="img-responsive img-thumbnail" src="{{asset($latestAct->photo)}}" alt="">
                             </div>
                             <div class="col-8 blog-recent-post">
                                 <h4>{{$latestAct->titre}}</h4>

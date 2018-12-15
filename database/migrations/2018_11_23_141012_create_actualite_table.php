@@ -13,9 +13,10 @@ class CreateActualiteTable extends Migration
      */
     public function up()
     {
-        Schema::create('Actualite', function (Blueprint $table) {
+        Schema::create('actualite', function (Blueprint $table) {
             $table->increments('id');
             $table->string('titre',45)->nullable();
+            $table->string('description',150)->nullable();
             $table->longText('content')->nullable();
             $table->string('photo')->nullable();
             $table->timestamps();
@@ -29,6 +30,6 @@ class CreateActualiteTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('Actualite');
+        Schema::dropIfExists('actualite');
     }
 }
