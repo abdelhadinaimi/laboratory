@@ -375,6 +375,8 @@ class ComposerStaticInitc4a3b668e15bc31216c179cbf4f6f57d
         'App\\Http\\Requests\\userEditRequest' => __DIR__ . '/../..' . '/app/Http/Requests/userEditRequest.php',
         'App\\Http\\Requests\\userRequest' => __DIR__ . '/../..' . '/app/Http/Requests/userRequest.php',
         'App\\Materiel' => __DIR__ . '/../..' . '/app/Materiel.php',
+        'App\\MaterielEquipe' => __DIR__ . '/../..' . '/app/MaterielEquipe.php',
+        'App\\MaterielMembre' => __DIR__ . '/../..' . '/app/MaterielMembre.php',
         'App\\Message' => __DIR__ . '/../..' . '/app/Message.php',
         'App\\Parametre' => __DIR__ . '/../..' . '/app/Parametre.php',
         'App\\Policies\\ArticlePolicy' => __DIR__ . '/../..' . '/app/Policies/ArticlePolicy.php',

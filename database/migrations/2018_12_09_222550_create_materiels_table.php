@@ -16,11 +16,12 @@ class CreateMaterielsTable extends Migration
          Schema::create('materiels', function (Blueprint $table) {
             $table->increments('id');
             $table->string('reference',12)->unique();
-            $table->integer('categorie_id')->unsigned();
+            $table->integer('categorie_id')->unsigned()->nullable();
             $table->string('description',45)->nullable();
+            $table->integer('etat')->default('0');
             $table->foreign('categorie_id')
             ->references('id')->on('categories')
-            ->onDelete('cascade');
+            ->onDelete('set null');
             $table->timestamps();
         });
     }

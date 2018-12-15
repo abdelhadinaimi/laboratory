@@ -427,8 +427,7 @@
 
   
 </script>
-<script type="text/javascript" src="{{asset('js/categorie.js')}}"></script>
-<script type="text/javascript" src="{{asset('js/materiel.js')}}"></script>
+
 @yield('scripts')
 <script>
   $(document).ready(function() {

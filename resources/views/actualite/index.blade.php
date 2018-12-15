@@ -18,8 +18,7 @@
 
 @section('asidebar')
 @component('components.sidebar',['active' => 'Actualites']) @endcomponent
-
-  @endsection
+@endsection
 
 @section('content')
 

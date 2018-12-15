@@ -88,7 +88,6 @@ function editCat(idCat,libelle){
                 data: {"_token": $('meta[name="csrf-token"]').attr('content'),"catLib":nvCatLib},
                 success:function(response) {
                   manageCat.ajax.reload(null, false);
-                           $("#editCatForm")[0].reset();
                            $(".text-danger").remove();
                            $('.form-group').removeClass('has-error').removeClass('has-success');
                            $('#edit-cat-messages').html('<div class="alert alert-success">'+

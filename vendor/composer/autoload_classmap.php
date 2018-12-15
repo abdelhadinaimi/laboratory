@@ -47,6 +47,8 @@ return array(
     'App\\Http\\Requests\\userEditRequest' => $baseDir . '/app/Http/Requests/userEditRequest.php',
     'App\\Http\\Requests\\userRequest' => $baseDir . '/app/Http/Requests/userRequest.php',
     'App\\Materiel' => $baseDir . '/app/Materiel.php',
+    'App\\MaterielEquipe' => $baseDir . '/app/MaterielEquipe.php',
+    'App\\MaterielMembre' => $baseDir . '/app/MaterielMembre.php',
     'App\\Message' => $baseDir . '/app/Message.php',
     'App\\Parametre' => $baseDir . '/app/Parametre.php',
     'App\\Policies\\ArticlePolicy' => $baseDir . '/app/Policies/ArticlePolicy.php',

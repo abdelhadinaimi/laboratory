@@ -26,9 +26,21 @@ Route::get('materiels','MaterielController@index');
 Route::get('getCat','MaterielController@getCategories');
 Route::get('getMat','MaterielController@getMateriels');
 Route::get('getInformationMat/{id}','MaterielController@getMat');
+Route::get('getSmallCat','MaterielController@getSmallCat');
+Route::get('getAffecterEquipes','MaterielController@getEquipes');
+Route::get('getAffecterMembres','MaterielController@getMembres');
+Route::get('getHistoriqueMembres','MaterielController@getHistoriqueMembres');
+Route::get('getHistoriqueEquipes','MaterielController@getHistoriqueEquipes');
 
 Route::post('createCat','MaterielController@createCategorie');
 Route::post('createMat','MaterielController@createMateriel');
+
+Route::post('affecterForMembre/{id}','MaterielController@affecterForMembre');
+Route::post('affecterForEquipe/{id}','MaterielController@affecterForEquipe');
+
+Route::post('rendreFromMembre/{id}','MaterielController@rendreFromMembre');
+Route::post('rendreFromEquipe/{id}','MaterielController@rendreFromEquipe');
+
 
 Route::post('deleteCat','MaterielController@deleteCategorie');
 Route::post('deleteMat','MaterielController@deleteMateriel');
