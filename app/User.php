@@ -59,4 +59,6 @@ class User extends Authenticatable
         //foreign key de role-id dans la table users
         return $this->belongsTo(Role::class);
     }
+
+ 
 }
