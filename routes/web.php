@@ -26,21 +26,9 @@ Route::get('materiels','MaterielController@index');
 Route::get('getCat','MaterielController@getCategories');
 Route::get('getMat','MaterielController@getMateriels');
 Route::get('getInformationMat/{id}','MaterielController@getMat');
-Route::get('getSmallCat','MaterielController@getSmallCat');
-Route::get('getAffecterEquipes','MaterielController@getEquipes');
-Route::get('getAffecterMembres','MaterielController@getMembres');
-Route::get('getHistoriqueMembres','MaterielController@getHistoriqueMembres');
-Route::get('getHistoriqueEquipes','MaterielController@getHistoriqueEquipes');
 
 Route::post('createCat','MaterielController@createCategorie');
 Route::post('createMat','MaterielController@createMateriel');
-
-Route::post('affecterForMembre/{id}','MaterielController@affecterForMembre');
-Route::post('affecterForEquipe/{id}','MaterielController@affecterForEquipe');
-
-Route::post('rendreFromMembre/{id}','MaterielController@rendreFromMembre');
-Route::post('rendreFromEquipe/{id}','MaterielController@rendreFromEquipe');
-
 
 Route::post('deleteCat','MaterielController@deleteCategorie');
 Route::post('deleteMat','MaterielController@deleteMateriel');
@@ -103,17 +91,6 @@ Route::get('actualites/{id}/details','ActualiteController@details');
 Route::put('actualites/{id}','ActualiteController@update');
 Route::delete('actualites/{id}','ActualiteController@destroy');
 
-Route::get('partenaires','PartenaireController@index');
-Route::get('partenaires/all','PartenaireController@all');
-Route::post('partenaires/create','PartenaireController@create');
-Route::post('partenaires/{id}/edit','PartenaireController@edit');
-Route::delete('partenaires/{id}','PartenaireController@delete');
-
-Route::get('contacts/all','ContactController@all');
-Route::post('contacts/create','ContactController@create');
-Route::post('contacts/{id}/edit','ContactController@edit');
-Route::delete('contacts/{id}','ContactController@delete');
-
 Route::get('messages','MessageController@index');
 Route::delete('message/{id}','MessageController@delete');
 
@@ -151,6 +128,22 @@ Route::get('/statistics',function(){
 	return response()->json(["annee"=>$annee,
 							 "article"=> $article,
 							 "these"=> $these
+							]);
+});
+//Stat pie
+Route::get('/statPie',function(){
+
+	$nmbrEquipe = DB::table('equipes')->distinct('id')->count();
+	$equipes = Equipe::pluck('intitule');
+	$nombres = DB::table('equipes')
+			->join('users', 'equipes.id', '=', 'users.equipe_id')
+			->select('equipes.id as id', DB::raw("count(users.equipe_id) as count"))
+			->groupBy('equipes.id')
+			->get();
+  
+	return response()->json(["nombres"=>$nombres,
+							 "equipes"=> $equipes,
+							 "nmbrEquipe"=>$nmbrEquipe
 							]);
 });
 

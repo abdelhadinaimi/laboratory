@@ -239,7 +239,7 @@
 <script src="{{ asset('labo/bower_components/jquery-slimscroll/jquery.slimscroll.min.js') }}"></script>
 <!-- FastClick -->
 <script src="{{ asset('labo/bower_components/fastclick/lib/fastclick.js') }}"></script>
-<script src="{{ asset('labo/bower_components/Chart.js/Chart.js') }}"></script>
+<script src="{{ asset('labo/bower_components/Chart.js/Chart.min.js') }}"></script>
 <!-- AdminLTE App -->
 <script src="{{ asset('labo/dist/js/adminlte.min.js') }}"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
@@ -355,6 +355,7 @@
       url:'/statistics',
       success:function(data,status){
          console.log(data.annee);
+         console.log(data.these);
          //areaChartData.labels = data.res;
          var areaChartData = {
       labels  : data.annee,
@@ -422,12 +423,81 @@
       }
     });
 
-  })
+  });
 
+$(document).ready(function() {
+   $.ajax({
+      
+      type: "get",
+      url: "/statPie",
+      success: function(data) {
+         console.log(data);
+         var coloR = [];
+         var nombres = [];
 
+         var dynamicColors = function() {
+            var r = Math.floor(Math.random() * 255);
+            var g = Math.floor(Math.random() * 255);
+            var b = Math.floor(Math.random() * 255);
+            return "rgb(" + r + "," + g + "," + b + ")";
+         };
+
+         for (var i=0;i<data.nmbrEquipe;i++) {
+            coloR.push(dynamicColors());
+
+         }
+         console.log(coloR);
+         for (var i = 0; i <data.nmbrEquipe; i++) {
+           nombres.push(data["nombres"][i].count);
+         }
+         console.log(nombres);
+         console.log(data.equipes);
+         var options = {
+    title : {
+      display : true,
+      position : "top",
+      text : "Nombre membre d'équipe",
+      fontSize : 18,
+      fontColor : "#111"
+    },
+    legend : {
+      display : true,
+      position : "bottom"
+    }
+  };
+         var chartData = {
+
+            labels: data.equipes,
+            datasets: [{
+               label: 'nombres ',
+               //strokeColor:backGround,
+
+               backgroundColor: coloR,
+
+               borderColor: 'rgba(200, 200, 200, 0.75)',
+               //hoverBackgroundColor: 'rgba(200, 200, 200, 1)',
+               hoverBorderColor: 'rgba(200, 200, 200, 1)',
+               data: nombres
+            }]
+         };
+         console.log(chartData);
+         var ctx = $('#statPie');
+         var barGraph = new Chart(ctx, {
+            type: 'pie',
+            data: chartData,
+            options: options
+         });
+      },
+      error: function(data) {
+
+         console.log(data);
+      },
+   });
+});
   
 </script>
-
+<script type="text/javascript" src="{{asset('js/categorie.js')}}"></script>
+<script type="text/javascript" src="{{asset('js/materiel.js')}}"></script>
 @yield('scripts')
 <script>
   $(document).ready(function() {
