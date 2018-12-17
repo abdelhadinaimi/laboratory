@@ -146,6 +146,26 @@ Route::get('/statPie',function(){
 							 "nmbrEquipe"=>$nmbrEquipe
 							]);
 });
+//Stat These
+Route::get('/statThese',function(){
+
+	$year = date('Y');
+
+	$years = array();
+	$debuThese = array();
+	$finThese = array();
+	for ($x = 10; $x>-1 ; $x--)
+	{
+	    $years[] = $year-$x;
+	    $debuThese[] = DB::table('theses')->where(DB::raw("DATE_FORMAT(STR_TO_DATE(date_debut,'%m/%d/%Y'),'%Y')"),$year-$x)->count();
+	    $finThese[] = DB::table('theses')->where(DB::raw("DATE_FORMAT(STR_TO_DATE(date_soutenance,'%m/%d/%Y'),'%Y')"),$year-$x)->count();
+	}
+  
+	return response()->json(["years"=>$years,
+							 "debuThese"=> $debuThese,
+							 "finThese"=> $finThese
+							]);
+});
 
 Route::any('/search',function(){
 
