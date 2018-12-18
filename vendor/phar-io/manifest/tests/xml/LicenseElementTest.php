@@ -2,7 +2,7 @@
 
 namespace PharIo\Manifest;
 
-class LicenseElementTest extends \PHPUnit\Framework\TestCase {
+class LicenseElementTest extends \PHPUnit_Framework_TestCase {
     /**
      * @var LicenseElement
      */

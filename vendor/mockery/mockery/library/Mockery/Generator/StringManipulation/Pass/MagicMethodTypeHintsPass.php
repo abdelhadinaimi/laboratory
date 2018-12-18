@@ -50,7 +50,7 @@ class MagicMethodTypeHintsPass implements Pass
     /**
      * Apply implementation.
      *
-     * @param string $code
+     * @param $code
      * @param MockConfiguration $config
      * @return string
      */
@@ -90,7 +90,7 @@ class MagicMethodTypeHintsPass implements Pass
      * Applies type hints of magic methods from
      * class to the passed code.
      *
-     * @param int $code
+     * @param $code
      * @param Method $method
      * @return string
      */
@@ -113,7 +113,7 @@ class MagicMethodTypeHintsPass implements Pass
     /**
      * Checks if the method is declared withing code.
      *
-     * @param int $code
+     * @param $code
      * @param Method $method
      * @return boolean
      */
@@ -129,12 +129,13 @@ class MagicMethodTypeHintsPass implements Pass
      * Returns the method original parameters, as they're
      * described in the $code string.
      *
-     * @param int $code
+     * @param $code
      * @param Method $method
      * @return array
      */
     private function getOriginalParameters($code, Method $method)
     {
+        $methodName = $method->getName();
         $matches = [];
         $parameterMatches = [];
 
@@ -203,6 +204,7 @@ class MagicMethodTypeHintsPass implements Pass
      */
     private function getDeclarationRegex($methodName)
     {
+        $method = strtolower($methodName);
         return "/public\s+(?:static\s+)?function\s+$methodName\s*\(.*\)\s*(?=\{)/i";
     }
 }

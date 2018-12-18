@@ -1,21 +1,12 @@
 <?php
-/*
- * This file is part of PHPUnit.
- *
- * (c) Sebastian Bergmann <sebastian@phpunit.de>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
 use PHPUnit\Framework\TestCase;
 
 class BeforeAndAfterTest extends TestCase
 {
     public static $beforeWasRun;
-
     public static $afterWasRun;
 
-    public static function resetProperties(): void
+    public static function resetProperties()
     {
         self::$beforeWasRun = 0;
         self::$afterWasRun  = 0;
@@ -24,7 +15,7 @@ class BeforeAndAfterTest extends TestCase
     /**
      * @before
      */
-    public function initialSetup(): void
+    public function initialSetup()
     {
         self::$beforeWasRun++;
     }
@@ -32,16 +23,15 @@ class BeforeAndAfterTest extends TestCase
     /**
      * @after
      */
-    public function finalTeardown(): void
+    public function finalTeardown()
     {
         self::$afterWasRun++;
     }
 
-    public function test1(): void
+    public function test1()
     {
     }
-
-    public function test2(): void
+    public function test2()
     {
     }
 }

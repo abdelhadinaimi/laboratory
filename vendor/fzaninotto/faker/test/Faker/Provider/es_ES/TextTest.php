@@ -4,9 +4,8 @@ namespace Faker\Test\Provider\es_ES;
 
 use Faker\Generator;
 use Faker\Provider\es_ES\Text;
-use PHPUnit\Framework\TestCase;
 
-class TextTest extends TestCase
+class TextTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @var Generator

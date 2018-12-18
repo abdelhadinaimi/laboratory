@@ -30,7 +30,7 @@ class Swift_Plugins_BandwidthMonitorPlugin implements Swift_Events_SendListener,
     private $in = 0;
 
     /** Bound byte streams */
-    private $mirrors = [];
+    private $mirrors = array();
 
     /**
      * Not used.
@@ -41,6 +41,8 @@ class Swift_Plugins_BandwidthMonitorPlugin implements Swift_Events_SendListener,
 
     /**
      * Invoked immediately after the Message is sent.
+     *
+     * @param Swift_Events_SendEvent $evt
      */
     public function sendPerformed(Swift_Events_SendEvent $evt)
     {
@@ -50,6 +52,8 @@ class Swift_Plugins_BandwidthMonitorPlugin implements Swift_Events_SendListener,
 
     /**
      * Invoked immediately following a command being sent.
+     *
+     * @param Swift_Events_CommandEvent $evt
      */
     public function commandSent(Swift_Events_CommandEvent $evt)
     {
@@ -59,6 +63,8 @@ class Swift_Plugins_BandwidthMonitorPlugin implements Swift_Events_SendListener,
 
     /**
      * Invoked immediately following a response coming back.
+     *
+     * @param Swift_Events_ResponseEvent $evt
      */
     public function responseReceived(Swift_Events_ResponseEvent $evt)
     {
@@ -91,6 +97,8 @@ class Swift_Plugins_BandwidthMonitorPlugin implements Swift_Events_SendListener,
      *
      * The stream acts as an observer, receiving all data that is written.
      * All {@link write()} and {@link flushBuffers()} operations will be mirrored.
+     *
+     * @param Swift_InputByteStream $is
      */
     public function bind(Swift_InputByteStream $is)
     {
@@ -103,6 +111,8 @@ class Swift_Plugins_BandwidthMonitorPlugin implements Swift_Events_SendListener,
      * If $is is not bound, no errors will be raised.
      * If the stream currently has any buffered data it will be written to $is
      * before unbinding occurs.
+     *
+     * @param Swift_InputByteStream $is
      */
     public function unbind(Swift_InputByteStream $is)
     {

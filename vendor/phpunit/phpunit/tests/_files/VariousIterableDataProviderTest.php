@@ -1,14 +1,16 @@
 <?php
-/*
- * This file is part of PHPUnit.
- *
- * (c) Sebastian Bergmann <sebastian@phpunit.de>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
+
 class VariousIterableDataProviderTest
 {
+    /**
+     * @dataProvider asArrayProvider
+     * @dataProvider asIteratorProvider
+     * @dataProvider asTraversableProvider
+     */
+    public function test()
+    {
+    }
+
     public static function asArrayProvider()
     {
         return [
@@ -21,9 +23,7 @@ class VariousIterableDataProviderTest
     public static function asIteratorProvider()
     {
         yield ['D'];
-
         yield ['E'];
-
         yield ['F'];
     }
 
@@ -34,14 +34,5 @@ class VariousIterableDataProviderTest
             ['H'],
             ['I'],
         ]);
-    }
-
-    /**
-     * @dataProvider asArrayProvider
-     * @dataProvider asIteratorProvider
-     * @dataProvider asTraversableProvider
-     */
-    public function test(): void
-    {
     }
 }

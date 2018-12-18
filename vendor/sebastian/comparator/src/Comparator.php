@@ -7,6 +7,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 namespace SebastianBergmann\Comparator;
 
 use SebastianBergmann\Exporter\Exporter;
@@ -31,6 +32,9 @@ abstract class Comparator
         $this->exporter = new Exporter;
     }
 
+    /**
+     * @param Factory $factory
+     */
     public function setFactory(Factory $factory)
     {
         $this->factory = $factory;

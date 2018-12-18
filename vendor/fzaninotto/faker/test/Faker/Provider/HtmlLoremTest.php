@@ -4,9 +4,8 @@ namespace Faker\Test\Provider;
 
 use Faker\Generator;
 use Faker\Provider\HtmlLorem;
-use PHPUnit\Framework\TestCase;
 
-class HtmlLoremTest extends TestCase
+class HtmlLoremTest extends \PHPUnit_Framework_TestCase
 {
 
     public function testProvider()

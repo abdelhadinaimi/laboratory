@@ -11,6 +11,7 @@ use Illuminate\Database\SQLiteConnection;
 use Illuminate\Database\PostgresConnection;
 use Illuminate\Database\SqlServerConnection;
 use Illuminate\Contracts\Container\Container;
+use Illuminate\Contracts\Debug\ExceptionHandler;
 
 class ConnectionFactory
 {
@@ -181,7 +182,9 @@ class ConnectionFactory
                 try {
                     return $this->createConnector($config)->connect($config);
                 } catch (PDOException $e) {
-                    continue;
+                    if (count($hosts) - 1 === $key && $this->container->bound(ExceptionHandler::class)) {
+                        $this->container->make(ExceptionHandler::class)->report($e);
+                    }
                 }
             }
 

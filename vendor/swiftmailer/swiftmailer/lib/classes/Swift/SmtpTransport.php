@@ -23,20 +23,22 @@
 class Swift_SmtpTransport extends Swift_Transport_EsmtpTransport
 {
     /**
+     * Create a new SmtpTransport, optionally with $host, $port and $security.
+     *
      * @param string $host
      * @param int    $port
-     * @param string $encryption
+     * @param string $security
      */
-    public function __construct($host = 'localhost', $port = 25, $encryption = null)
+    public function __construct($host = 'localhost', $port = 25, $security = null)
     {
         call_user_func_array(
-            [$this, 'Swift_Transport_EsmtpTransport::__construct'],
+            array($this, 'Swift_Transport_EsmtpTransport::__construct'),
             Swift_DependencyContainer::getInstance()
                 ->createDependenciesFor('transport.smtp')
             );
 
         $this->setHost($host);
         $this->setPort($port);
-        $this->setEncryption($encryption);
+        $this->setEncryption($security);
     }
 }

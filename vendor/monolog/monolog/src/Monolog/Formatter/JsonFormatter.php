@@ -12,7 +12,6 @@
 namespace Monolog\Formatter;
 
 use Exception;
-use Monolog\Utils;
 use Throwable;
 
 /**
@@ -139,23 +138,18 @@ class JsonFormatter extends NormalizerFormatter
      *
      * @return mixed
      */
-    protected function normalize($data, $depth = 0)
+    protected function normalize($data)
     {
-        if ($depth > 9) {
-            return 'Over 9 levels deep, aborting normalization';
-        }
-
         if (is_array($data) || $data instanceof \Traversable) {
             $normalized = array();
 
             $count = 1;
             foreach ($data as $key => $value) {
-                if ($count++ > 1000) {
-                    $normalized['...'] = 'Over 1000 items ('.count($data).' total), aborting normalization';
+                if ($count++ >= 1000) {
+                    $normalized['...'] = 'Over 1000 items, aborting normalization';
                     break;
                 }
-
-                $normalized[$key] = $this->normalize($value, $depth+1);
+                $normalized[$key] = $this->normalize($value);
             }
 
             return $normalized;
@@ -180,11 +174,11 @@ class JsonFormatter extends NormalizerFormatter
     {
         // TODO 2.0 only check for Throwable
         if (!$e instanceof Exception && !$e instanceof Throwable) {
-            throw new \InvalidArgumentException('Exception/Throwable expected, got '.gettype($e).' / '.Utils::getClass($e));
+            throw new \InvalidArgumentException('Exception/Throwable expected, got '.gettype($e).' / '.get_class($e));
         }
 
         $data = array(
-            'class' => Utils::getClass($e),
+            'class' => get_class($e),
             'message' => $e->getMessage(),
             'code' => $e->getCode(),
             'file' => $e->getFile().':'.$e->getLine(),

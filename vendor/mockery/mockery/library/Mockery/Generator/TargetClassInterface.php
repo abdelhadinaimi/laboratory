@@ -27,7 +27,7 @@ interface TargetClassInterface
      * TargetClassInterface's
      * implementation.
      *
-     * @param string $name
+     * @param $name
      * @return TargetClassInterface
      */
     public static function factory($name);
@@ -92,7 +92,7 @@ interface TargetClassInterface
      * Returns whether the targetClass is in
      * the passed interface.
      *
-     * @param mixed $interface
+     * @param $interface
      * @return boolean
      */
     public function implementsInterface($interface);

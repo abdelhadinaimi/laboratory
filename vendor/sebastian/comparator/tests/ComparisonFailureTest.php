@@ -7,18 +7,17 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 namespace SebastianBergmann\Comparator;
 
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \SebastianBergmann\Comparator\ComparisonFailure
- *
- * @uses \SebastianBergmann\Comparator\Factory
+ * @covers SebastianBergmann\Comparator\ComparisonFailure
  */
 final class ComparisonFailureTest extends TestCase
 {
-    public function testComparisonFailure(): void
+    public function testComparisonFailure()
     {
         $actual   = "\nB\n";
         $expected = "\nA\n";
@@ -50,7 +49,7 @@ final class ComparisonFailureTest extends TestCase
         $this->assertSame($message . $diff, $failure->toString());
     }
 
-    public function testDiffNotPossible(): void
+    public function testDiffNotPossible()
     {
         $failure = new ComparisonFailure('a', 'b', false, false, true, 'test');
         $this->assertSame('', $failure->getDiff());

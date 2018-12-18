@@ -15,8 +15,7 @@ class DownCommand extends Command
      * @var string
      */
     protected $signature = 'down {--message= : The message for the maintenance mode. }
-                                 {--retry= : The number of seconds after which the request may be retried.}
-                                 {--allow=* : IP or networks allowed to access the application while in maintenance mode.}';
+                                 {--retry= : The number of seconds after which the request may be retried.}';
 
     /**
      * The console command description.
@@ -51,7 +50,6 @@ class DownCommand extends Command
             'time' => $this->currentTime(),
             'message' => $this->option('message'),
             'retry' => $this->getRetryTime(),
-            'allowed' => $this->option('allow'),
         ];
     }
 

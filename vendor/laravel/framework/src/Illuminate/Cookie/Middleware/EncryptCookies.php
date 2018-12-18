@@ -26,13 +26,6 @@ class EncryptCookies
     protected $except = [];
 
     /**
-     * Indicates if cookies should be serialized.
-     *
-     * @var bool
-     */
-    protected static $serialize = false;
-
-    /**
      * Create a new CookieGuard instance.
      *
      * @param  \Illuminate\Contracts\Encryption\Encrypter  $encrypter
@@ -59,7 +52,7 @@ class EncryptCookies
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Closure  $next
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return mixed
      */
     public function handle($request, Closure $next)
     {
@@ -80,7 +73,7 @@ class EncryptCookies
             }
 
             try {
-                $request->cookies->set($key, $this->decryptCookie($key, $cookie));
+                $request->cookies->set($key, $this->decryptCookie($cookie));
             } catch (DecryptException $e) {
                 $request->cookies->set($key, null);
             }
@@ -92,15 +85,14 @@ class EncryptCookies
     /**
      * Decrypt the given cookie and return the value.
      *
-     * @param  string  $name
      * @param  string|array  $cookie
      * @return string|array
      */
-    protected function decryptCookie($name, $cookie)
+    protected function decryptCookie($cookie)
     {
         return is_array($cookie)
                         ? $this->decryptArray($cookie)
-                        : $this->encrypter->decrypt($cookie, static::serialized($name));
+                        : $this->encrypter->decrypt($cookie);
     }
 
     /**
@@ -115,7 +107,7 @@ class EncryptCookies
 
         foreach ($cookie as $key => $value) {
             if (is_string($value)) {
-                $decrypted[$key] = $this->encrypter->decrypt($value, static::serialized($key));
+                $decrypted[$key] = $this->encrypter->decrypt($value);
             }
         }
 
@@ -136,7 +128,7 @@ class EncryptCookies
             }
 
             $response->headers->setCookie($this->duplicate(
-                $cookie, $this->encrypter->encrypt($cookie->getValue(), static::serialized($cookie->getName()))
+                $cookie, $this->encrypter->encrypt($cookie->getValue())
             ));
         }
 
@@ -168,16 +160,5 @@ class EncryptCookies
     public function isDisabled($name)
     {
         return in_array($name, $this->except);
-    }
-
-    /**
-     * Determine if the cookie contents should be serialized.
-     *
-     * @param  string  $name
-     * @return bool
-     */
-    public static function serialized($name)
-    {
-        return static::$serialize;
     }
 }

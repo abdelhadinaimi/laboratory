@@ -135,7 +135,9 @@ class HasManyThrough extends Relation
      */
     public function throughParentSoftDeletes()
     {
-        return in_array(SoftDeletes::class, class_uses_recursive($this->throughParent));
+        return in_array(SoftDeletes::class, class_uses_recursive(
+            get_class($this->throughParent)
+        ));
     }
 
     /**
@@ -324,7 +326,7 @@ class HasManyThrough extends Relation
         $result = $this->find($id, $columns);
 
         if (is_array($id)) {
-            if (count($result) === count(array_unique($id))) {
+            if (count($result) == count(array_unique($id))) {
                 return $result;
             }
         } elseif (! is_null($result)) {
@@ -352,9 +354,16 @@ class HasManyThrough extends Relation
      */
     public function get($columns = ['*'])
     {
-        $builder = $this->prepareQueryBuilder($columns);
+        // First we'll add the proper select columns onto the query so it is run with
+        // the proper columns. Then, we will get the results and hydrate out pivot
+        // models with the result of those columns as a separate model relation.
+        $columns = $this->query->getQuery()->columns ? [] : $columns;
 
-        $models = $builder->getModels();
+        $builder = $this->query->applyScopes();
+
+        $models = $builder->addSelect(
+            $this->shouldSelect($columns)
+        )->getModels();
 
         // If we actually found models we will also eager load any relationships that
         // have been specified as needing to be eager loaded. This will solve the
@@ -414,61 +423,6 @@ class HasManyThrough extends Relation
     }
 
     /**
-     * Chunk the results of the query.
-     *
-     * @param  int  $count
-     * @param  callable  $callback
-     * @return bool
-     */
-    public function chunk($count, callable $callback)
-    {
-        return $this->prepareQueryBuilder()->chunk($count, $callback);
-    }
-
-    /**
-     * Get a generator for the given query.
-     *
-     * @return \Generator
-     */
-    public function cursor()
-    {
-        return $this->prepareQueryBuilder()->cursor();
-    }
-
-    /**
-     * Execute a callback over each item while chunking.
-     *
-     * @param  callable  $callback
-     * @param  int  $count
-     * @return bool
-     */
-    public function each(callable $callback, $count = 1000)
-    {
-        return $this->chunk($count, function ($results) use ($callback) {
-            foreach ($results as $key => $value) {
-                if ($callback($value, $key) === false) {
-                    return false;
-                }
-            }
-        });
-    }
-
-    /**
-     * Prepare the query builder for query execution.
-     *
-     * @param  array  $columns
-     * @return \Illuminate\Database\Eloquent\Builder
-     */
-    protected function prepareQueryBuilder($columns = ['*'])
-    {
-        $builder = $this->query->applyScopes();
-
-        return $builder->addSelect(
-            $this->shouldSelect($builder->getQuery()->columns ? [] : $columns)
-        );
-    }
-
-    /**
      * Add the constraints for a relationship query.
      *
      * @param  \Illuminate\Database\Eloquent\Builder  $query
@@ -510,7 +464,7 @@ class HasManyThrough extends Relation
         $query->getModel()->setTable($hash);
 
         return $query->select($columns)->whereColumn(
-            $parentQuery->getQuery()->from.'.'.$this->localKey, '=', $this->getQualifiedFirstKeyName()
+            $parentQuery->getQuery()->from.'.'.$query->getModel()->getKeyName(), '=', $this->getQualifiedFirstKeyName()
         );
     }
 

@@ -524,7 +524,7 @@ class Str
     /**
      * Generate a UUID (version 4).
      *
-     * @return \Ramsey\Uuid\UuidInterface
+     * @return \Ramsey\Uuid\Uuid
      */
     public static function uuid()
     {
@@ -534,7 +534,7 @@ class Str
     /**
      * Generate a time-ordered UUID (version 4).
      *
-     * @return \Ramsey\Uuid\UuidInterface
+     * @return \Ramsey\Uuid\Uuid
      */
     public static function orderedUuid()
     {

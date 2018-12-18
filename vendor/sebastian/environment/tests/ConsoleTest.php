@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php
 /*
  * This file is part of sebastian/environment.
  *
@@ -7,6 +7,9 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
+declare(strict_types=1);
+
 namespace SebastianBergmann\Environment;
 
 use PHPUnit\Framework\TestCase;
@@ -21,7 +24,7 @@ final class ConsoleTest extends TestCase
      */
     private $console;
 
-    protected function setUp(): void
+    protected function setUp()/*: void*/
     {
         $this->console = new Console;
     }
@@ -30,7 +33,7 @@ final class ConsoleTest extends TestCase
      * @todo Now that this component is PHP 7-only and uses return type declarations
      * this test makes even less sense than before
      */
-    public function testCanDetectIfStdoutIsInteractiveByDefault(): void
+    public function testCanDetectIfStdoutIsInteractiveByDefault()/*: void*/
     {
         $this->assertInternalType('boolean', $this->console->isInteractive());
     }
@@ -39,16 +42,16 @@ final class ConsoleTest extends TestCase
      * @todo Now that this component is PHP 7-only and uses return type declarations
      * this test makes even less sense than before
      */
-    public function testCanDetectIfFileDescriptorIsInteractive(): void
+    public function testCanDetectIfFileDescriptorIsInteractive()/*: void*/
     {
-        $this->assertInternalType('boolean', $this->console->isInteractive(\STDOUT));
+        $this->assertInternalType('boolean', $this->console->isInteractive(STDOUT));
     }
 
     /**
      * @todo Now that this component is PHP 7-only and uses return type declarations
      * this test makes even less sense than before
      */
-    public function testCanDetectColorSupport(): void
+    public function testCanDetectColorSupport()/*: void*/
     {
         $this->assertInternalType('boolean', $this->console->hasColorSupport());
     }
@@ -57,7 +60,7 @@ final class ConsoleTest extends TestCase
      * @todo Now that this component is PHP 7-only and uses return type declarations
      * this test makes even less sense than before
      */
-    public function testCanDetectNumberOfColumns(): void
+    public function testCanDetectNumberOfColumns()/*: void*/
     {
         $this->assertInternalType('integer', $this->console->getNumberOfColumns());
     }

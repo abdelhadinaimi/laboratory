@@ -11,13 +11,6 @@ class FinalMethod
     {
     }
 
-    /**
-     * @final
-     */
-    public function finalMethod2()
-    {
-    }
-
     public function anotherMethod()
     {
     }

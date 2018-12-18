@@ -26,11 +26,6 @@ class Inspector
     private $previousExceptionInspector;
 
     /**
-     * @var \Throwable[]
-     */
-    private $previousExceptions;
-
-    /**
      * @param \Throwable $exception The exception to inspect
      */
     public function __construct($exception)
@@ -60,28 +55,6 @@ class Inspector
     public function getExceptionMessage()
     {
         return $this->extractDocrefUrl($this->exception->getMessage())['message'];
-    }
-
-    /**
-     * @return string[]
-     */
-    public function getPreviousExceptionMessages()
-    {
-        return array_map(function ($prev) {
-            /** @var \Throwable $prev */
-            return $this->extractDocrefUrl($prev->getMessage())['message'];
-        }, $this->getPreviousExceptions());
-    }
-
-    /**
-     * @return int[]
-     */
-    public function getPreviousExceptionCodes()
-    {
-        return array_map(function ($prev) {
-            /** @var \Throwable $prev */
-            return $prev->getCode();
-        }, $this->getPreviousExceptions());
     }
 
     /**
@@ -142,26 +115,6 @@ class Inspector
         }
 
         return $this->previousExceptionInspector;
-    }
-
-
-    /**
-     * Returns an array of all previous exceptions for this inspector's exception
-     * @return \Throwable[]
-     */
-    public function getPreviousExceptions()
-    {
-        if ($this->previousExceptions === null) {
-            $this->previousExceptions = [];
-
-            $prev = $this->exception->getPrevious();
-            while ($prev !== null) {
-                $this->previousExceptions[] = $prev;
-                $prev = $prev->getPrevious();
-            }
-        }
-
-        return $this->previousExceptions;
     }
 
     /**
@@ -235,7 +188,7 @@ class Inspector
      *
      * If xdebug is installed
      *
-     * @param \Throwable $e
+     * @param  \Throwable $exception
      * @return array
      */
     protected function getTrace($e)

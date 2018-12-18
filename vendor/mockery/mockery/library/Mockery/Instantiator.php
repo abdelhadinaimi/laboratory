@@ -47,6 +47,7 @@ final class Instantiator
     {
         $factory    = $this->buildFactory($className);
         $instance   = $factory();
+        $reflection = new ReflectionClass($instance);
 
         return $instance;
     }

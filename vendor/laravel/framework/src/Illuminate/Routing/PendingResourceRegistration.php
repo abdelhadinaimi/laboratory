@@ -33,13 +33,6 @@ class PendingResourceRegistration
     protected $options = [];
 
     /**
-     * The resource's registration status.
-     *
-     * @var bool
-     */
-    protected $registered = false;
-
-    /**
      * Create a new pending resource registration instance.
      *
      * @param  \Illuminate\Routing\ResourceRegistrar  $registrar
@@ -150,28 +143,12 @@ class PendingResourceRegistration
     }
 
     /**
-     * Register the resource route.
-     *
-     * @return \Illuminate\Routing\RouteCollection
-     */
-    public function register()
-    {
-        $this->registered = true;
-
-        return $this->registrar->register(
-            $this->name, $this->controller, $this->options
-        );
-    }
-
-    /**
      * Handle the object's destruction.
      *
      * @return void
      */
     public function __destruct()
     {
-        if (! $this->registered) {
-            $this->register();
-        }
+        $this->registrar->register($this->name, $this->controller, $this->options);
     }
 }

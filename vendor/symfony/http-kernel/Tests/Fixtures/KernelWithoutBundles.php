@@ -26,11 +26,6 @@ class KernelWithoutBundles extends Kernel
     {
     }
 
-    public function getProjectDir()
-    {
-        return __DIR__;
-    }
-
     protected function build(ContainerBuilder $container)
     {
         $container->setParameter('test_executed', true);

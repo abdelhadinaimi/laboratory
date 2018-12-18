@@ -152,7 +152,7 @@ class Blueprint
     /**
      * Add the commands that are implied by the blueprint's state.
      *
-     * @param  \Illuminate\Database\Schema\Grammars\Grammar  $grammar
+     * @param  \Illuminate\Database\Grammar  $grammar
      * @return void
      */
     protected function addImpliedCommands(Grammar $grammar)
@@ -203,7 +203,7 @@ class Blueprint
     /**
      * Add the fluent commands specified on any columns.
      *
-     * @param  \Illuminate\Database\Schema\Grammars\Grammar  $grammar
+     * @param  \Illuminate\Database\Grammar  $grammar
      * @return void
      */
     public function addFluentCommands(Grammar $grammar)
@@ -355,18 +355,6 @@ class Blueprint
     public function dropForeign($index)
     {
         return $this->dropIndexCommand('dropForeign', 'foreign', $index);
-    }
-
-    /**
-     * Indicate that the given indexes should be renamed.
-     *
-     * @param  string  $from
-     * @param  string  $to
-     * @return \Illuminate\Support\Fluent
-     */
-    public function renameIndex($from, $to)
-    {
-        return $this->addCommand('renameIndex', compact('from', 'to'));
     }
 
     /**
@@ -1062,12 +1050,11 @@ class Blueprint
      * Create a new point column on the table.
      *
      * @param  string  $column
-     * @param  int|null  $srid
      * @return \Illuminate\Support\Fluent
      */
-    public function point($column, $srid = null)
+    public function point($column)
     {
-        return $this->addColumn('point', $column, compact('srid'));
+        return $this->addColumn('point', $column);
     }
 
     /**

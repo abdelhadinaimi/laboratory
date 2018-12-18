@@ -311,8 +311,6 @@ class UrlGenerator implements UrlGeneratorContract
             $parameters = $parameters + ['expires' => $this->availableAt($expiration)];
         }
 
-        ksort($parameters);
-
         $key = call_user_func($this->keyResolver);
 
         return $this->route($name, $parameters + [

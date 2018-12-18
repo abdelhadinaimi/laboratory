@@ -7,24 +7,21 @@ use Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
 use Mockery\Adapter\Phpunit\MockeryTestCase;
 use Mockery\Exception\BadMethodCallException;
 
-class BaseClassStub
+class BaseClassStub 
 {
     use MockeryPHPUnitIntegration;
 
-    public function finish()
-    {
+    function finish() {
         $this->checkMockeryExceptions();
     }
 
-    public function markAsRisky()
-    {
-    }
+    function markAsRisky() {}
 };
 
 class MockeryPHPUnitIntegrationTest extends MockeryTestCase
 {
-    /**
-     * @test
+    /** 
+     * @test 
      * @requires PHPUnit 5.7.6
      */
     public function it_marks_a_passing_test_as_risky_if_we_threw_exceptions()
@@ -39,10 +36,10 @@ class MockeryPHPUnitIntegrationTest extends MockeryTestCase
         $test = spy(BaseClassStub::class)->makePartial();
         $test->finish();
 
-        $test->shouldHaveReceived()->markAsRisky();
+        $test->shouldHaveReceived()->markAsRisky(m::type("string"));
     }
 
-    /**
+    /** 
      * @test
      * @requires PHPUnit 5.7.6
      */
@@ -58,6 +55,6 @@ class MockeryPHPUnitIntegrationTest extends MockeryTestCase
         $test = spy(BaseClassStub::class)->makePartial();
         $test->finish();
 
-        $test->shouldNotHaveReceived()->markAsRisky();
+        $test->shouldNotHaveReceived()->markAsRisky(m::any());
     }
 }

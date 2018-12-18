@@ -68,7 +68,7 @@ class ResourceRegistrar
      * @param  string  $name
      * @param  string  $controller
      * @param  array   $options
-     * @return \Illuminate\Routing\RouteCollection
+     * @return void
      */
     public function register($name, $controller, array $options = [])
     {
@@ -92,15 +92,9 @@ class ResourceRegistrar
 
         $defaults = $this->resourceDefaults;
 
-        $collection = new RouteCollection;
-
         foreach ($this->getResourceMethods($defaults, $options) as $m) {
-            $collection->add($this->{'addResource'.ucfirst($m)}(
-                $name, $base, $controller, $options
-            ));
+            $this->{'addResource'.ucfirst($m)}($name, $base, $controller, $options);
         }
-
-        return $collection;
     }
 
     /**

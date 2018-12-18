@@ -29,9 +29,9 @@ class Swift_Bug206Test extends \PHPUnit\Framework\TestCase
 
     private function doTestHeaderIsFullyEncoded($email, $name, $expected)
     {
-        $mailboxHeader = $this->factory->createMailboxHeader('To', [
+        $mailboxHeader = $this->factory->createMailboxHeader('To', array(
             $email => $name,
-        ]);
+        ));
 
         $headerBody = substr($mailboxHeader->toString(), 3, strlen($expected));
 

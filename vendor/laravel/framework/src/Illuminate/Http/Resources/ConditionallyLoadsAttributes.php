@@ -28,7 +28,7 @@ trait ConditionallyLoadsAttributes
             }
 
             if (is_numeric($key) && $value instanceof MergeValue) {
-                return $this->mergeData($data, $index, $this->filter($value->data), $numericKeys);
+                return $this->merge($data, $index, $this->filter($value->data), $numericKeys);
             }
 
             if ($value instanceof self && is_null($value->resource)) {
@@ -48,7 +48,7 @@ trait ConditionallyLoadsAttributes
      * @param  bool  $numericKeys
      * @return array
      */
-    protected function mergeData($data, $index, $merge, $numericKeys)
+    protected function merge($data, $index, $merge, $numericKeys)
     {
         if ($numericKeys) {
             return $this->removeMissingValues(array_merge(
@@ -102,22 +102,11 @@ trait ConditionallyLoadsAttributes
     }
 
     /**
-     * Merge a value into the array.
-     *
-     * @param  mixed  $value
-     * @return \Illuminate\Http\Resources\MergeValue|mixed
-     */
-    protected function merge($value)
-    {
-        return $this->mergeWhen(true, $value);
-    }
-
-    /**
      * Merge a value based on a given condition.
      *
      * @param  bool  $condition
      * @param  mixed  $value
-     * @return \Illuminate\Http\Resources\MergeValue|mixed
+     * @return \Illuminate\Http\Resources\MissingValue|mixed
      */
     protected function mergeWhen($condition, $value)
     {
@@ -152,7 +141,7 @@ trait ConditionallyLoadsAttributes
         }
 
         if (! $this->resource->relationLoaded($relationship)) {
-            return value($default);
+            return $default;
         }
 
         if (func_num_args() === 1) {

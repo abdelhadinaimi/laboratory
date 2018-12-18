@@ -34,12 +34,14 @@ class Swift_Mime_Headers_ParameterizedHeader extends Swift_Mime_Headers_Unstruct
      *
      * @var string[]
      */
-    private $params = [];
+    private $params = array();
 
     /**
      * Creates a new ParameterizedHeader with $name.
      *
-     * @param string $name
+     * @param string                   $name
+     * @param Swift_Mime_HeaderEncoder $encoder
+     * @param Swift_Encoder            $paramEncoder, optional
      */
     public function __construct($name, Swift_Mime_HeaderEncoder $encoder, Swift_Encoder $paramEncoder = null)
     {
@@ -81,7 +83,7 @@ class Swift_Mime_Headers_ParameterizedHeader extends Swift_Mime_Headers_Unstruct
      */
     public function setParameter($parameter, $value)
     {
-        $this->setParameters(array_merge($this->getParameters(), [$parameter => $value]));
+        $this->setParameters(array_merge($this->getParameters(), array($parameter => $value)));
     }
 
     /**
@@ -209,14 +211,14 @@ class Swift_Mime_Headers_ParameterizedHeader extends Swift_Mime_Headers_Unstruct
             }
         }
 
-        $valueLines = isset($this->paramEncoder) ? explode("\r\n", $value) : [$value];
+        $valueLines = isset($this->paramEncoder) ? explode("\r\n", $value) : array($value);
 
         // Need to add indices
         if (count($valueLines) > 1) {
-            $paramLines = [];
+            $paramLines = array();
             foreach ($valueLines as $i => $line) {
                 $paramLines[] = $name.'*'.$i.
-                    $this->getEndOfParameterValue($line, true, 0 == $i);
+                    $this->getEndOfParameterValue($line, true, $i == 0);
             }
 
             return implode(";\r\n ", $paramLines);

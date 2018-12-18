@@ -35,7 +35,6 @@ class IsJson extends Constraint
         }
 
         \json_decode($other);
-
         if (\json_last_error()) {
             return false;
         }

@@ -4,9 +4,8 @@ namespace Faker\Test\Provider\ja_JP;
 
 use Faker\Generator;
 use Faker\Provider\ja_JP\PhoneNumber;
-use PHPUnit\Framework\TestCase;
 
-class PhoneNumberTest extends TestCase
+class PhoneNumberTest extends \PHPUnit_Framework_TestCase
 {
     public function testPhoneNumber()
     {

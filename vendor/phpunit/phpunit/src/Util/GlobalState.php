@@ -23,7 +23,7 @@ final class GlobalState
         '_COOKIE',
         '_SERVER',
         '_FILES',
-        '_REQUEST',
+        '_REQUEST'
     ];
 
     public static function getIncludedFilesAsString(): string
@@ -129,7 +129,7 @@ final class GlobalState
         $blacklist[] = 'GLOBALS';
 
         foreach (\array_keys($GLOBALS) as $key) {
-            if (!$GLOBALS[$key] instanceof Closure && !\in_array($key, $blacklist, true)) {
+            if (!$GLOBALS[$key] instanceof Closure && !\in_array($key, $blacklist)) {
                 $result .= \sprintf(
                     '$GLOBALS[\'%s\'] = %s;' . "\n",
                     $key,

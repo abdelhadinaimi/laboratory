@@ -21,7 +21,7 @@ class BrowserConsoleHandlerTest extends TestCase
 {
     protected function setUp()
     {
-        BrowserConsoleHandler::resetStatic();
+        BrowserConsoleHandler::reset();
     }
 
     protected function generateScript()

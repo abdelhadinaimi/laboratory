@@ -1,18 +1,10 @@
 <?php
-/*
- * This file is part of PHPUnit.
- *
- * (c) Sebastian Bergmann <sebastian@phpunit.de>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
 use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\TestCase;
 
 class ExceptionStackTest extends TestCase
 {
-    public function testPrintingChildException(): void
+    public function testPrintingChildException()
     {
         try {
             $this->assertEquals([1], [2], 'message');
@@ -23,7 +15,7 @@ class ExceptionStackTest extends TestCase
         }
     }
 
-    public function testNestedExceptions(): void
+    public function testNestedExceptions()
     {
         $exceptionThree = new Exception('Three');
         $exceptionTwo   = new InvalidArgumentException('Two', 0, $exceptionThree);

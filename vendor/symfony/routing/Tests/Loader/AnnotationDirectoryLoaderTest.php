@@ -11,8 +11,8 @@
 
 namespace Symfony\Component\Routing\Tests\Loader;
 
-use Symfony\Component\Config\FileLocator;
 use Symfony\Component\Routing\Loader\AnnotationDirectoryLoader;
+use Symfony\Component\Config\FileLocator;
 
 class AnnotationDirectoryLoaderTest extends AbstractAnnotationLoaderTest
 {
@@ -29,17 +29,11 @@ class AnnotationDirectoryLoaderTest extends AbstractAnnotationLoaderTest
 
     public function testLoad()
     {
-        $this->reader->expects($this->exactly(3))->method('getClassAnnotation');
+        $this->reader->expects($this->exactly(4))->method('getClassAnnotation');
 
         $this->reader
             ->expects($this->any())
             ->method('getMethodAnnotations')
-            ->will($this->returnValue(array()))
-        ;
-
-        $this->reader
-            ->expects($this->any())
-            ->method('getClassAnnotations')
             ->will($this->returnValue(array()))
         ;
 
@@ -51,18 +45,13 @@ class AnnotationDirectoryLoaderTest extends AbstractAnnotationLoaderTest
         $this->expectAnnotationsToBeReadFrom(array(
             'Symfony\Component\Routing\Tests\Fixtures\AnnotatedClasses\BarClass',
             'Symfony\Component\Routing\Tests\Fixtures\AnnotatedClasses\BazClass',
+            'Symfony\Component\Routing\Tests\Fixtures\AnnotatedClasses\BazClass',
             'Symfony\Component\Routing\Tests\Fixtures\AnnotatedClasses\FooClass',
         ));
 
         $this->reader
             ->expects($this->any())
             ->method('getMethodAnnotations')
-            ->will($this->returnValue(array()))
-        ;
-
-        $this->reader
-            ->expects($this->any())
-            ->method('getClassAnnotations')
             ->will($this->returnValue(array()))
         ;
 
@@ -100,10 +89,10 @@ class AnnotationDirectoryLoaderTest extends AbstractAnnotationLoaderTest
 
     private function expectAnnotationsToBeReadFrom(array $classes)
     {
-        $this->reader->expects($this->exactly(\count($classes)))
+        $this->reader->expects($this->exactly(count($classes)))
             ->method('getClassAnnotation')
             ->with($this->callback(function (\ReflectionClass $class) use ($classes) {
-                return \in_array($class->getName(), $classes);
+                return in_array($class->getName(), $classes);
             }));
     }
 }

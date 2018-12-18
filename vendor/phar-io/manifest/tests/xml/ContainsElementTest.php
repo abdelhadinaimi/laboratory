@@ -5,7 +5,7 @@ namespace PharIo\Manifest;
 use DOMDocument;
 use DOMElement;
 
-class ContainsElementTest extends \PHPUnit\Framework\TestCase {
+class ContainsElementTest extends \PHPUnit_Framework_TestCase {
     /**
      * @var DOMElement
      */

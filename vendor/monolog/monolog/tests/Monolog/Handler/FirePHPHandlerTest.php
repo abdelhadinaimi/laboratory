@@ -21,7 +21,7 @@ class FirePHPHandlerTest extends TestCase
 {
     public function setUp()
     {
-        TestFirePHPHandler::resetStatic();
+        TestFirePHPHandler::reset();
         $_SERVER['HTTP_USER_AGENT'] = 'Monolog Test; FirePHP/1.0';
     }
 
@@ -77,7 +77,7 @@ class TestFirePHPHandler extends FirePHPHandler
 {
     protected $headers = array();
 
-    public static function resetStatic()
+    public static function reset()
     {
         self::$initialized = false;
         self::$sendHeaders = true;

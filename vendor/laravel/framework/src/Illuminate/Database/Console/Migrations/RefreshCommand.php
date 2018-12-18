@@ -61,7 +61,6 @@ class RefreshCommand extends Command
         $this->call('migrate', [
             '--database' => $database,
             '--path' => $path,
-            '--realpath' => $this->input->getOption('realpath'),
             '--force' => $force,
         ]);
 
@@ -84,7 +83,6 @@ class RefreshCommand extends Command
         $this->call('migrate:rollback', [
             '--database' => $database,
             '--path' => $path,
-            '--realpath' => $this->input->getOption('realpath'),
             '--step' => $step,
             '--force' => $force,
         ]);
@@ -103,7 +101,6 @@ class RefreshCommand extends Command
         $this->call('migrate:reset', [
             '--database' => $database,
             '--path' => $path,
-            '--realpath' => $this->input->getOption('realpath'),
             '--force' => $force,
         ]);
     }

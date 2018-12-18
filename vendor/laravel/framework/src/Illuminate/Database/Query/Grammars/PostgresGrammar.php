@@ -3,6 +3,7 @@
 namespace Illuminate\Database\Query\Grammars;
 
 use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 use Illuminate\Database\Query\Builder;
 
 class PostgresGrammar extends Grammar
@@ -14,10 +15,9 @@ class PostgresGrammar extends Grammar
      */
     protected $operators = [
         '=', '<', '>', '<=', '>=', '<>', '!=',
-        'like', 'not like', 'between', 'ilike', 'not ilike',
-        '~', '&', '|', '#', '<<', '>>', '<<=', '>>=',
+        'like', 'not like', 'ilike',
+        '&', '|', '#', '<<', '>>', '>>=', '=<<',
         '&&', '@>', '<@', '?', '?|', '?&', '||', '-', '-', '#-',
-        'is distinct from', 'is not distinct from',
     ];
 
     /**
@@ -61,20 +61,6 @@ class PostgresGrammar extends Grammar
         $value = $this->parameter($where['value']);
 
         return 'extract('.$type.' from '.$this->wrap($where['column']).') '.$where['operator'].' '.$value;
-    }
-
-    /**
-     * Compile a "JSON contains" statement into SQL.
-     *
-     * @param  string  $column
-     * @param  string  $value
-     * @return string
-     */
-    protected function compileJsonContains($column, $value)
-    {
-        $column = str_replace('->>', '->', $this->wrap($column));
-
-        return '('.$column.')::jsonb @> '.$value;
     }
 
     /**
@@ -299,6 +285,28 @@ class PostgresGrammar extends Grammar
     }
 
     /**
+     * Wrap a single string in keyword identifiers.
+     *
+     * @param  string  $value
+     * @return string
+     */
+    protected function wrapValue($value)
+    {
+        if ($value === '*') {
+            return $value;
+        }
+
+        // If the given value is a JSON selector we will wrap it differently than a
+        // traditional value. We will need to split this path and wrap each part
+        // wrapped, etc. Otherwise, we will simply wrap the value as a string.
+        if (Str::contains($value, '->')) {
+            return $this->wrapJsonSelector($value);
+        }
+
+        return '"'.str_replace('"', '""', $value).'"';
+    }
+
+    /**
      * Wrap the given JSON selector.
      *
      * @param  string  $value
@@ -308,7 +316,7 @@ class PostgresGrammar extends Grammar
     {
         $path = explode('->', $value);
 
-        $field = $this->wrapSegments(explode('.', array_shift($path)));
+        $field = $this->wrapValue(array_shift($path));
 
         $wrappedPath = $this->wrapJsonPathAttributes($path);
 

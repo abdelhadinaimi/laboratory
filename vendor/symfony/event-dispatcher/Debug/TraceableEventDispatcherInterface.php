@@ -12,14 +12,11 @@
 namespace Symfony\Component\EventDispatcher\Debug;
 
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
-use Symfony\Contracts\Service\ResetInterface;
 
 /**
- * @deprecated since Symfony 4.1
- *
  * @author Fabien Potencier <fabien@symfony.com>
  */
-interface TraceableEventDispatcherInterface extends EventDispatcherInterface, ResetInterface
+interface TraceableEventDispatcherInterface extends EventDispatcherInterface
 {
     /**
      * Gets the called listeners.
@@ -34,4 +31,9 @@ interface TraceableEventDispatcherInterface extends EventDispatcherInterface, Re
      * @return array An array of not called listeners
      */
     public function getNotCalledListeners();
+
+    /**
+     * Resets the trace.
+     */
+    public function reset();
 }

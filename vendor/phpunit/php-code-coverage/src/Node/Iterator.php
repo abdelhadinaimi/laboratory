@@ -7,6 +7,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 namespace SebastianBergmann\CodeCoverage\Node;
 
 /**
@@ -81,6 +82,8 @@ final class Iterator implements \RecursiveIterator
 
     /**
      * Checks whether the current element has children.
+     *
+     * @return bool
      */
     public function hasChildren(): bool
     {

@@ -46,9 +46,25 @@ class Version {
     }
 
     /**
+     * @param array $matches
+     */
+    private function parseVersion(array $matches) {
+        $this->major = new VersionNumber($matches['Major']);
+        $this->minor = new VersionNumber($matches['Minor']);
+        $this->patch = isset($matches['Patch']) ? new VersionNumber($matches['Patch']) : new VersionNumber(null);
+
+        if (isset($matches['ReleaseType'])) {
+            $preReleaseNumber = isset($matches['ReleaseTypeCount']) ? (int) $matches['ReleaseTypeCount'] : null;
+
+            $this->preReleaseSuffix = new PreReleaseSuffix($matches['ReleaseType'], $preReleaseNumber);
+        }
+    }
+
+    /**
      * @return PreReleaseSuffix
      */
-    public function getPreReleaseSuffix() {
+    public function getPreReleaseSuffix()
+    {
         return $this->preReleaseSuffix;
     }
 
@@ -57,13 +73,6 @@ class Version {
      */
     public function getVersionString() {
         return $this->versionString;
-    }
-
-    /**
-     * @return bool
-     */
-    public function hasPreReleaseSuffix() {
-        return $this->preReleaseSuffix !== null;
     }
 
     /**
@@ -88,7 +97,7 @@ class Version {
             return true;
         }
 
-        if ($version->getPatch()->getValue() > $this->getPatch()->getValue()) {
+        if ($version->getPatch()->getValue() >= $this->getPatch()->getValue()) {
             return false;
         }
 
@@ -96,19 +105,7 @@ class Version {
             return true;
         }
 
-        if (!$version->hasPreReleaseSuffix() && !$this->hasPreReleaseSuffix()) {
-            return false;
-        }
-
-        if ($version->hasPreReleaseSuffix() && !$this->hasPreReleaseSuffix()) {
-            return true;
-        }
-
-        if (!$version->hasPreReleaseSuffix() && $this->hasPreReleaseSuffix()) {
-            return false;
-        }
-
-        return $this->getPreReleaseSuffix()->isGreaterThan($version->getPreReleaseSuffix());
+        return false;
     }
 
     /**
@@ -133,19 +130,6 @@ class Version {
     }
 
     /**
-     * @param array $matches
-     */
-    private function parseVersion(array $matches) {
-        $this->major = new VersionNumber($matches['Major']);
-        $this->minor = new VersionNumber($matches['Minor']);
-        $this->patch = isset($matches['Patch']) ? new VersionNumber($matches['Patch']) : new VersionNumber(null);
-
-        if (isset($matches['PreReleaseSuffix'])) {
-            $this->preReleaseSuffix = new PreReleaseSuffix($matches['PreReleaseSuffix']);
-        }
-    }
-
-    /**
      * @param string $version
      *
      * @throws InvalidVersionException
@@ -160,7 +144,10 @@ class Version {
             )?
             (?:
                 -
-                (?<PreReleaseSuffix>(?:(dev|beta|b|RC|alpha|a|patch|p)\.?\d*))
+                (?<ReleaseType>(?:(dev|beta|b|RC|alpha|a|patch|p)))
+                (?:
+                    (?<ReleaseTypeCount>[0-9])
+                )?
             )?       
         $/x';
 

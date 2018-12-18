@@ -19,8 +19,8 @@ if (!function_exists('dump')) {
     {
         VarDumper::dump($var);
 
-        foreach ($moreVars as $v) {
-            VarDumper::dump($v);
+        foreach ($moreVars as $var) {
+            VarDumper::dump($var);
         }
 
         if (1 < func_num_args()) {
@@ -28,16 +28,5 @@ if (!function_exists('dump')) {
         }
 
         return $var;
-    }
-}
-
-if (!function_exists('dd')) {
-    function dd(...$vars)
-    {
-        foreach ($vars as $v) {
-            VarDumper::dump($v);
-        }
-
-        die(1);
     }
 }

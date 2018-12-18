@@ -4,12 +4,11 @@ namespace Illuminate\Redis\Connections;
 
 use Redis;
 use Closure;
-use Illuminate\Contracts\Redis\Connection as ConnectionContract;
 
 /**
  * @mixin \Redis
  */
-class PhpRedisConnection extends Connection implements ConnectionContract
+class PhpRedisConnection extends Connection
 {
     /**
      * Create a new PhpRedis connection.
@@ -140,7 +139,7 @@ class PhpRedisConnection extends Connection implements ConnectionContract
      */
     public function hsetnx($hash, $key, $value)
     {
-        return (int) $this->client->hSetNx($hash, $key, $value);
+        return (int) $this->client->hsetnx($hash, $key, $value);
     }
 
     /**
@@ -309,7 +308,7 @@ class PhpRedisConnection extends Connection implements ConnectionContract
     }
 
     /**
-     * Evaluate a script and return its result.
+     * Evaluate a script and retunr its result.
      *
      * @param  string  $script
      * @param  int  $numberOfKeys

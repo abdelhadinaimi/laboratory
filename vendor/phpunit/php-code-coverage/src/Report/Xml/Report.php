@@ -7,6 +7,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 namespace SebastianBergmann\CodeCoverage\Report\Xml;
 
 final class Report extends File
@@ -14,10 +15,10 @@ final class Report extends File
     public function __construct(string $name)
     {
         $dom = new \DOMDocument();
-        $dom->loadXML('<?xml version="1.0" ?><phpunit xmlns="https://schema.phpunit.de/coverage/1.0"><file /></phpunit>');
+        $dom->loadXML('<?xml version="1.0" ?><phpunit xmlns="http://schema.phpunit.de/coverage/1.0"><file /></phpunit>');
 
         $contextNode = $dom->getElementsByTagNameNS(
-            'https://schema.phpunit.de/coverage/1.0',
+            'http://schema.phpunit.de/coverage/1.0',
             'file'
         )->item(0);
 
@@ -35,7 +36,7 @@ final class Report extends File
     {
         $node = $this->getContextNode()->appendChild(
             $this->getDomDocument()->createElementNS(
-                'https://schema.phpunit.de/coverage/1.0',
+                'http://schema.phpunit.de/coverage/1.0',
                 'function'
             )
         );
@@ -56,14 +57,14 @@ final class Report extends File
     public function getSource(): Source
     {
         $source = $this->getContextNode()->getElementsByTagNameNS(
-            'https://schema.phpunit.de/coverage/1.0',
+            'http://schema.phpunit.de/coverage/1.0',
             'source'
         )->item(0);
 
         if (!$source) {
             $source = $this->getContextNode()->appendChild(
                 $this->getDomDocument()->createElementNS(
-                    'https://schema.phpunit.de/coverage/1.0',
+                    'http://schema.phpunit.de/coverage/1.0',
                     'source'
                 )
             );
@@ -82,7 +83,7 @@ final class Report extends File
     {
         $node = $this->getContextNode()->appendChild(
             $this->getDomDocument()->createElementNS(
-                'https://schema.phpunit.de/coverage/1.0',
+                'http://schema.phpunit.de/coverage/1.0',
                 $tagName
             )
         );

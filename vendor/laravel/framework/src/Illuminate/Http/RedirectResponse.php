@@ -26,7 +26,7 @@ class RedirectResponse extends BaseRedirectResponse
     protected $request;
 
     /**
-     * The session store instance.
+     * The session store implementation.
      *
      * @var \Illuminate\Session\Store
      */
@@ -192,7 +192,7 @@ class RedirectResponse extends BaseRedirectResponse
     }
 
     /**
-     * Get the session store instance.
+     * Get the session store implementation.
      *
      * @return \Illuminate\Session\Store|null
      */
@@ -202,7 +202,7 @@ class RedirectResponse extends BaseRedirectResponse
     }
 
     /**
-     * Set the session store instance.
+     * Set the session store implementation.
      *
      * @param  \Illuminate\Session\Store  $session
      * @return void

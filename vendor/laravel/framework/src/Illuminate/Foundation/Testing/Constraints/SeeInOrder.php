@@ -43,10 +43,6 @@ class SeeInOrder extends Constraint
         $position = 0;
 
         foreach ($values as $value) {
-            if (empty($value)) {
-                continue;
-            }
-
             $valuePosition = mb_strpos($this->content, $value, $position);
 
             if ($valuePosition === false || $valuePosition < $position) {

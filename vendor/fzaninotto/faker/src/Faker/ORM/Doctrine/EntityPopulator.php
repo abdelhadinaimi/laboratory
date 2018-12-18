@@ -211,7 +211,7 @@ class EntityPopulator
                 }
                 // Try a standard setter if it's available, otherwise fall back on reflection
                 $setter = sprintf("set%s", ucfirst($field));
-                if (is_callable(array($obj, $setter))) {
+                if (method_exists($obj, $setter)) {
                     $obj->$setter($value);
                 } else {
                     $this->class->reflFields[$field]->setValue($obj, $value);

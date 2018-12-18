@@ -14,12 +14,12 @@
         }
     ],
     "require": {
-        "php": ">=5.5.9",
-        "ext-fileinfo": "*"
+        "php": ">=5.5.9"
     },
     "require-dev": {
+        "ext-fileinfo": "*",
         "phpspec/phpspec": "^3.4",
-        "phpunit/phpunit": "^5.7.10"
+        "phpunit/phpunit": "^5.7"
     },
     "autoload": {
         "psr-4": {

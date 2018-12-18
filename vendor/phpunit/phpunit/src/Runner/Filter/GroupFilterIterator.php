@@ -16,7 +16,7 @@ use RecursiveIterator;
 abstract class GroupFilterIterator extends RecursiveFilterIterator
 {
     /**
-     * @var string[]
+     * @var array
      */
     protected $groupTests = [];
 
@@ -25,9 +25,11 @@ abstract class GroupFilterIterator extends RecursiveFilterIterator
         parent::__construct($iterator);
 
         foreach ($suite->getGroupDetails() as $group => $tests) {
-            if (\in_array($group, $groups, true)) {
+            if (\in_array($group, $groups)) {
                 $testHashes = \array_map(
-                    'spl_object_hash',
+                    function ($test) {
+                        return \spl_object_hash($test);
+                    },
                     $tests
                 );
 

@@ -60,13 +60,10 @@ class ViewCacheCommand extends Command
      */
     protected function bladeFilesIn(array $paths)
     {
-        return collect(
-            Finder::create()
-                ->in($paths)
-                ->exclude('vendor')
-                ->name('*.blade.php')
-                ->files()
-        );
+        return collect(Finder::create()->
+                    in($paths)
+                    ->exclude('vendor')
+                    ->name('*.blade.php')->files());
     }
 
     /**

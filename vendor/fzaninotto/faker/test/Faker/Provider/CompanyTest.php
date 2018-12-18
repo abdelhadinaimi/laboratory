@@ -5,9 +5,8 @@ namespace Faker\Test\Provider;
 use Faker\Generator;
 use Faker\Provider\Company;
 use Faker\Provider\Lorem;
-use PHPUnit\Framework\TestCase;
 
-class CompanyTest extends TestCase
+class CompanyTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @var Generator

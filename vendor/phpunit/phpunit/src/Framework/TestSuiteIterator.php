@@ -14,18 +14,21 @@ use RecursiveIterator;
 /**
  * Iterator for test suites.
  */
-final class TestSuiteIterator implements RecursiveIterator
+class TestSuiteIterator implements RecursiveIterator
 {
     /**
      * @var int
      */
-    private $position;
+    protected $position;
 
     /**
      * @var Test[]
      */
-    private $tests;
+    protected $tests;
 
+    /**
+     * @param TestSuite $testSuite
+     */
     public function __construct(TestSuite $testSuite)
     {
         $this->tests = $testSuite->tests();

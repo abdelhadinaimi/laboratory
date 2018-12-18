@@ -3,35 +3,33 @@
 namespace Faker\Test\Provider;
 
 use Faker\Provider\Base as BaseProvider;
-use PHPUnit\Framework\TestCase;
-use Traversable;
 
-class BaseTest extends TestCase
+class BaseTest extends \PHPUnit_Framework_TestCase
 {
     public function testRandomDigitReturnsInteger()
     {
-        $this->assertInternalType('integer', BaseProvider::randomDigit());
+        $this->assertTrue(is_integer(BaseProvider::randomDigit()));
     }
 
     public function testRandomDigitReturnsDigit()
     {
-        $this->assertGreaterThanOrEqual(0, BaseProvider::randomDigit());
-        $this->assertLessThan(10, BaseProvider::randomDigit());
+        $this->assertTrue(BaseProvider::randomDigit() >= 0);
+        $this->assertTrue(BaseProvider::randomDigit() < 10);
     }
 
     public function testRandomDigitNotNullReturnsNotNullDigit()
     {
-        $this->assertGreaterThan(0, BaseProvider::randomDigitNotNull());
-        $this->assertLessThan(10, BaseProvider::randomDigitNotNull());
+        $this->assertTrue(BaseProvider::randomDigitNotNull() > 0);
+        $this->assertTrue(BaseProvider::randomDigitNotNull() < 10);
     }
 
 
     public function testRandomDigitNotReturnsValidDigit()
     {
         for ($i = 0; $i <= 9; $i++) {
-            $this->assertGreaterThanOrEqual(0, BaseProvider::randomDigitNot($i));
-            $this->assertLessThan(10, BaseProvider::randomDigitNot($i));
-            $this->assertNotSame(BaseProvider::randomDigitNot($i), $i);
+            $this->assertTrue(BaseProvider::randomDigitNot($i) >= 0);
+            $this->assertTrue(BaseProvider::randomDigitNot($i) < 10);
+            $this->assertTrue(BaseProvider::randomDigitNot($i) !== $i);
         }
     }
 
@@ -53,14 +51,14 @@ class BaseTest extends TestCase
 
     public function testRandomNumberReturnsInteger()
     {
-        $this->assertInternalType('integer', BaseProvider::randomNumber());
-        $this->assertInternalType('integer', BaseProvider::randomNumber(5, false));
+        $this->assertTrue(is_integer(BaseProvider::randomNumber()));
+        $this->assertTrue(is_integer(BaseProvider::randomNumber(5, false)));
     }
 
     public function testRandomNumberReturnsDigit()
     {
-        $this->assertGreaterThanOrEqual(0, BaseProvider::randomNumber(3));
-        $this->assertLessThan(1000, BaseProvider::randomNumber(3));
+        $this->assertTrue(BaseProvider::randomNumber(3) >= 0);
+        $this->assertTrue(BaseProvider::randomNumber(3) < 1000);
     }
 
     public function testRandomNumberAcceptsStrictParamToEnforceNumberSize()
@@ -100,7 +98,7 @@ class BaseTest extends TestCase
 
     public function testRandomLetterReturnsString()
     {
-        $this->assertInternalType('string', BaseProvider::randomLetter());
+        $this->assertTrue(is_string(BaseProvider::randomLetter()));
     }
 
     public function testRandomLetterReturnsSingleLetter()
@@ -111,12 +109,12 @@ class BaseTest extends TestCase
     public function testRandomLetterReturnsLowercaseLetter()
     {
         $lowercaseLetters = 'abcdefghijklmnopqrstuvwxyz';
-        $this->assertNotFalse(strpos($lowercaseLetters, BaseProvider::randomLetter()));
+        $this->assertTrue(strpos($lowercaseLetters, BaseProvider::randomLetter()) !== false);
     }
 
     public function testRandomAsciiReturnsString()
     {
-        $this->assertInternalType('string', BaseProvider::randomAscii());
+        $this->assertTrue(is_string(BaseProvider::randomAscii()));
     }
 
     public function testRandomAsciiReturnsSingleCharacter()
@@ -127,17 +125,12 @@ class BaseTest extends TestCase
     public function testRandomAsciiReturnsAsciiCharacter()
     {
         $lowercaseLetters = '!"#$%&\'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~';
-        $this->assertNotFalse(strpos($lowercaseLetters, BaseProvider::randomAscii()));
+        $this->assertTrue(strpos($lowercaseLetters, BaseProvider::randomAscii()) !== false);
     }
 
     public function testRandomElementReturnsNullWhenArrayEmpty()
     {
         $this->assertNull(BaseProvider::randomElement(array()));
-    }
-
-    public function testRandomElementReturnsNullWhenCollectionEmpty()
-    {
-        $this->assertNull(BaseProvider::randomElement(new Collection(array())));
     }
 
     public function testRandomElementReturnsElementFromArray()
@@ -150,12 +143,6 @@ class BaseTest extends TestCase
     {
         $elements = array('tata' => '23', 'toto' => 'e', 'tutu' => 32, 'titi' => '#');
         $this->assertContains(BaseProvider::randomElement($elements), $elements);
-    }
-
-    public function testRandomElementReturnsElementFromCollection()
-    {
-        $collection = new Collection(array('one', 'two', 'three'));
-        $this->assertContains(BaseProvider::randomElement($collection), $collection);
     }
 
     public function testShuffleReturnsStringWhenPassedAStringArgument()
@@ -565,8 +552,4 @@ class BaseTest extends TestCase
         $this->assertCount(3, $allowDuplicates);
         $this->assertContainsOnly('string', $allowDuplicates);
     }
-}
-
-class Collection extends \ArrayObject
-{
 }

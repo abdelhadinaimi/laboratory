@@ -328,14 +328,8 @@ class Router implements RegistrarContract, BindingRegistrar
      */
     public function apiResource($name, $controller, array $options = [])
     {
-        $only = ['index', 'show', 'store', 'update', 'destroy'];
-
-        if (isset($options['except'])) {
-            $only = array_diff($only, (array) $options['except']);
-        }
-
         return $this->resource($name, $controller, array_merge([
-            'only' => $only,
+            'only' => ['index', 'show', 'store', 'update', 'destroy'],
         ], $options));
     }
 
@@ -425,7 +419,7 @@ class Router implements RegistrarContract, BindingRegistrar
      * @param  \Closure|array|string|null  $action
      * @return \Illuminate\Routing\Route
      */
-    public function addRoute($methods, $uri, $action)
+    protected function addRoute($methods, $uri, $action)
     {
         return $this->routes->add($this->createRoute($methods, $uri, $action));
     }
@@ -626,8 +620,8 @@ class Router implements RegistrarContract, BindingRegistrar
     /**
      * Return the response for the given route.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Illuminate\Routing\Route  $route
+     * @param  Route  $route
+     * @param  Request  $request
      * @return mixed
      */
     protected function runRoute(Request $request, Route $route)

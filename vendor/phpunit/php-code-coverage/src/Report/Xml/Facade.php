@@ -7,6 +7,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 namespace SebastianBergmann\CodeCoverage\Report\Xml;
 
 use SebastianBergmann\CodeCoverage\CodeCoverage;
@@ -44,8 +45,8 @@ final class Facade
      */
     public function process(CodeCoverage $coverage, string $target): void
     {
-        if (\substr($target, -1, 1) !== \DIRECTORY_SEPARATOR) {
-            $target .= \DIRECTORY_SEPARATOR;
+        if (\substr($target, -1, 1) !== DIRECTORY_SEPARATOR) {
+            $target .= DIRECTORY_SEPARATOR;
         }
 
         $this->target = $target;
@@ -89,7 +90,7 @@ final class Facade
                     "'$directory' exists but is not writable."
                 );
             }
-        } elseif (!$this->createDirectory($directory)) {
+        } elseif (!@\mkdir($directory, 0777, true)) {
             throw new RuntimeException(
                 "'$directory' could not be created."
             );
@@ -278,10 +279,5 @@ final class Facade
         $this->initTargetDirectory(\dirname($filename));
 
         $document->save($filename);
-    }
-
-    private function createDirectory(string $directory): bool
-    {
-        return !(!\is_dir($directory) && !@\mkdir($directory, 0777, true) && !\is_dir($directory));
     }
 }

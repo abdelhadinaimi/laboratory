@@ -4,9 +4,8 @@ namespace Faker\Test\Provider\ja_JP;
 
 use Faker\Generator;
 use Faker\Provider\ja_JP\Person;
-use PHPUnit\Framework\TestCase;
 
-class PersonTest extends TestCase
+class PersonTest extends \PHPUnit_Framework_TestCase
 {
     public function testKanaNameMaleReturns()
     {

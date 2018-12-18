@@ -52,7 +52,8 @@ class Swift_Transport_FailoverTransport extends Swift_Transport_LoadBalancedTran
      * Recipient/sender data will be retrieved from the Message API.
      * The return value is the number of recipients who were accepted for delivery.
      *
-     * @param string[] $failedRecipients An array of failures by-reference
+     * @param Swift_Mime_SimpleMessage $message
+     * @param string[]           $failedRecipients An array of failures by-reference
      *
      * @return int
      */
@@ -79,7 +80,7 @@ class Swift_Transport_FailoverTransport extends Swift_Transport_LoadBalancedTran
             }
         }
 
-        if (0 == count($this->transports)) {
+        if (count($this->transports) == 0) {
             throw new Swift_TransportException(
                 'All Transports in FailoverTransport failed, or no Transports available'
                 );

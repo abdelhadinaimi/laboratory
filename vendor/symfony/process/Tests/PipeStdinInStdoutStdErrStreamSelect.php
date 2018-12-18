@@ -35,22 +35,22 @@ while ($read || $write) {
     }
 
     if (in_array(STDOUT, $w) && strlen($out) > 0) {
-        $written = fwrite(STDOUT, (string) $out, 32768);
+        $written = fwrite(STDOUT, (binary) $out, 32768);
         if (false === $written) {
             die(ERR_WRITE_FAILED);
         }
-        $out = (string) substr($out, $written);
+        $out = (binary) substr($out, $written);
     }
     if (null === $read && '' === $out) {
         $write = array_diff($write, array(STDOUT));
     }
 
     if (in_array(STDERR, $w) && strlen($err) > 0) {
-        $written = fwrite(STDERR, (string) $err, 32768);
+        $written = fwrite(STDERR, (binary) $err, 32768);
         if (false === $written) {
             die(ERR_WRITE_FAILED);
         }
-        $err = (string) substr($err, $written);
+        $err = (binary) substr($err, $written);
     }
     if (null === $read && '' === $err) {
         $write = array_diff($write, array(STDERR));

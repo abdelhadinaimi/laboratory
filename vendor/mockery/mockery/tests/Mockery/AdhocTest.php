@@ -39,31 +39,31 @@ class Mockery_AdhocTest extends MockeryTestCase
     public function testSimplestMockCreation()
     {
         $m = $this->container->mock('MockeryTest_NameOfExistingClass');
-        $this->assertInstanceOf(MockeryTest_NameOfExistingClass::class, $m);
+        $this->assertTrue($m instanceof MockeryTest_NameOfExistingClass);
     }
 
     public function testMockeryInterfaceForClass()
     {
         $m = $this->container->mock('SplFileInfo');
-        $this->assertInstanceOf(\Mockery\MockInterface::class, $m);
+        $this->assertTrue($m instanceof \Mockery\MockInterface);
     }
 
     public function testMockeryInterfaceForNonExistingClass()
     {
         $m = $this->container->mock('ABC_IDontExist');
-        $this->assertInstanceOf(\Mockery\MockInterface::class, $m);
+        $this->assertTrue($m instanceof \Mockery\MockInterface);
     }
 
     public function testMockeryInterfaceForInterface()
     {
         $m = $this->container->mock('MockeryTest_NameOfInterface');
-        $this->assertInstanceOf(\Mockery\MockInterface::class, $m);
+        $this->assertTrue($m instanceof \Mockery\MockInterface);
     }
 
     public function testMockeryInterfaceForAbstract()
     {
         $m = $this->container->mock('MockeryTest_NameOfAbstract');
-        $this->assertInstanceOf(\Mockery\MockInterface::class, $m);
+        $this->assertTrue($m instanceof \Mockery\MockInterface);
     }
 
     public function testInvalidCountExceptionThrowsRuntimeExceptionOnIllegalComparativeSymbol()

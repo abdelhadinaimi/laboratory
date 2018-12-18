@@ -15,7 +15,6 @@ final class FileUtils
     public static function getFileContent(string $file): string
     {
         $content = @\file_get_contents($file);
-
         if (false === $content) {
             $error = \error_get_last();
 

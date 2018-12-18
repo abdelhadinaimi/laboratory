@@ -62,34 +62,25 @@ class PusherBroadcaster extends Broadcaster
     {
         if (Str::startsWith($request->channel_name, 'private')) {
             return $this->decodePusherResponse(
-                $request, $this->pusher->socket_auth($request->channel_name, $request->socket_id)
+                $this->pusher->socket_auth($request->channel_name, $request->socket_id)
             );
         }
 
         return $this->decodePusherResponse(
-            $request,
             $this->pusher->presence_auth(
-                $request->channel_name, $request->socket_id,
-                $request->user()->getAuthIdentifier(), $result
-            )
+                $request->channel_name, $request->socket_id, $request->user()->getAuthIdentifier(), $result)
         );
     }
 
     /**
      * Decode the given Pusher response.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @param  mixed  $response
      * @return array
      */
-    protected function decodePusherResponse($request, $response)
+    protected function decodePusherResponse($response)
     {
-        if (! $request->input('callback', false)) {
-            return json_decode($response, true);
-        }
-
-        return response()->json(json_decode($response, true))
-                    ->withCallback($request->callback);
+        return json_decode($response, true);
     }
 
     /**

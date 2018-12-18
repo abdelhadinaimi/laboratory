@@ -41,16 +41,6 @@ trait GuardHelpers
     }
 
     /**
-     * Determine if the guard has a user instance.
-     *
-     * @return bool
-     */
-    public function hasUser()
-    {
-        return ! is_null($this->user);
-    }
-
-    /**
      * Determine if the current user is authenticated.
      *
      * @return bool

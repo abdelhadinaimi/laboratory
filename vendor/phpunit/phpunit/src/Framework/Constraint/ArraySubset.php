@@ -54,6 +54,8 @@ class ArraySubset extends Constraint
      *
      * @throws ExpectationFailedException
      * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
+     *
+     * @return mixed
      */
     public function evaluate($other, $description = '', $returnResult = false)
     {
@@ -78,8 +80,8 @@ class ArraySubset extends Constraint
             $f = new ComparisonFailure(
                 $patched,
                 $other,
-                \var_export($patched, true),
-                \var_export($other, true)
+                \print_r($patched, true),
+                \print_r($other, true)
             );
 
             $this->fail($other, $description, $f);

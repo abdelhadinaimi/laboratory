@@ -221,7 +221,7 @@ class ExpectationTest extends MockeryTestCase
     public function testReturnsUndefined()
     {
         $this->mock->shouldReceive('foo')->andReturnUndefined();
-        $this->assertInstanceOf(\Mockery\Undefined::class, $this->mock->foo());
+        $this->assertTrue($this->mock->foo() instanceof \Mockery\Undefined);
     }
 
     public function testReturnsValuesSetAsArray()
@@ -885,8 +885,8 @@ class ExpectationTest extends MockeryTestCase
         $s = $this->mock->shouldReceive('start')->ordered();
         $m = $this->mock->shouldReceive('mid')->ordered('foobar');
         $e = $this->mock->shouldReceive('end')->ordered();
-        $this->assertLessThan($m->getOrderNumber(), $s->getOrderNumber());
-        $this->assertLessThan($e->getOrderNumber(), $m->getOrderNumber());
+        $this->assertTrue($s->getOrderNumber() < $m->getOrderNumber());
+        $this->assertTrue($m->getOrderNumber() < $e->getOrderNumber());
     }
 
     /**
@@ -1078,23 +1078,6 @@ class ExpectationTest extends MockeryTestCase
         $this->mock->foo();
         $this->mock->foo(1);
         $this->mock->foo(1, 2, 3);
-    }
-
-    public function testAndAnyOtherConstraintMatchesTheRestOfTheArguments()
-    {
-        $this->mock->shouldReceive('foo')->with(1, 2, Mockery::andAnyOthers())->twice();
-        $this->mock->foo(1, 2, 3, 4, 5);
-        $this->mock->foo(1, 'str', 3, 4);
-    }
-
-    /**
-     * @expectedException \Mockery\Exception
-     */
-    public function testAndAnyOtherConstraintDoesNotPreventMatchingOfRegularArguments()
-    {
-        $this->mock->shouldReceive('foo')->with(1, 2, Mockery::andAnyOthers());
-        $this->mock->foo(10, 2, 3, 4, 5);
-        Mockery::close();
     }
 
     public function testArrayConstraintMatchesArgument()
@@ -1714,23 +1697,23 @@ class ExpectationTest extends MockeryTestCase
     public function testReturnUndefinedIfIgnoreMissingMethodsSet()
     {
         $this->mock->shouldIgnoreMissing()->asUndefined();
-        $this->assertInstanceOf(\Mockery\Undefined::class, $this->mock->g(1, 2));
+        $this->assertTrue($this->mock->g(1, 2) instanceof \Mockery\Undefined);
     }
 
     public function testReturnAsUndefinedAllowsForInfiniteSelfReturningChain()
     {
         $this->mock->shouldIgnoreMissing()->asUndefined();
-        $this->assertInstanceOf(\Mockery\Undefined::class, $this->mock->g(1, 2)->a()->b()->c());
+        $this->assertTrue($this->mock->g(1, 2)->a()->b()->c() instanceof \Mockery\Undefined);
     }
 
     public function testShouldIgnoreMissingFluentInterface()
     {
-        $this->assertInstanceOf(\Mockery\MockInterface::class, $this->mock->shouldIgnoreMissing());
+        $this->assertTrue($this->mock->shouldIgnoreMissing() instanceof \Mockery\MockInterface);
     }
 
     public function testShouldIgnoreMissingAsUndefinedFluentInterface()
     {
-        $this->assertInstanceOf(\Mockery\MockInterface::class, $this->mock->shouldIgnoreMissing()->asUndefined());
+        $this->assertTrue($this->mock->shouldIgnoreMissing()->asUndefined() instanceof \Mockery\MockInterface);
     }
 
     public function testShouldIgnoreMissingAsDefinedProxiesToUndefinedAllowingToString()
@@ -1762,7 +1745,7 @@ class ExpectationTest extends MockeryTestCase
     public function testOptionalMockRetrieval()
     {
         $m = mock('f')->shouldReceive('foo')->with(1)->andReturn(3)->mock();
-        $this->assertInstanceOf(\Mockery\MockInterface::class, $m);
+        $this->assertTrue($m instanceof \Mockery\MockInterface);
     }
 
     public function testNotConstraintMatchesArgument()
@@ -1947,6 +1930,7 @@ class ExpectationTest extends MockeryTestCase
         $this->assertTrue($service->addBookmark('http://example.com/3', 'some_tag3'));
         $this->assertTrue($service->hasBookmarksTagged('php'));
         $this->assertTrue($service->hasBookmarksTagged('php'));
+
     }
 
     public function testAnExampleWithSomeExpectationAmendsOnCallCounts_PHPUnitTest()
@@ -1997,14 +1981,6 @@ class ExpectationTest extends MockeryTestCase
         $this->assertSame('Spam!', $demeter->doitWithArgs());
     }
 
-    public function testShouldNotReceiveCanBeAddedToCompositeExpectation()
-    {
-        $mock = mock('Foo');
-        $mock->shouldReceive('a')->once()->andReturn('Spam!')
-             ->shouldNotReceive('b');
-        $mock->a();
-    }
-
     public function testPassthruEnsuresRealMethodCalledForReturnValues()
     {
         $mock = mock('MockeryTest_SubjectCall1');
@@ -2020,9 +1996,9 @@ class ExpectationTest extends MockeryTestCase
         $mock->hasBookmarksTagged("padraic");
     }
 
-    public function testMakePartialExpectationBasedOnArgs()
+    public function testShouldDeferMissingExpectationBasedOnArgs()
     {
-        $mock = mock("MockeryTest_SubjectCall1")->makePartial();
+        $mock = mock("MockeryTest_SubjectCall1")->shouldDeferMissing();
 
         $this->assertEquals('bar', $mock->foo());
         $this->assertEquals('bar', $mock->foo("baz"));
@@ -2037,6 +2013,7 @@ class ExpectationTest extends MockeryTestCase
         $this->assertEquals('456', $mock->foo());
         $this->assertEquals('123', $mock->foo("baz"));
         $this->assertEquals('bar', $mock->foo("qux"));
+
     }
 
     public function testCanReturnSelf()
@@ -2048,13 +2025,13 @@ class ExpectationTest extends MockeryTestCase
     public function testReturnsTrueIfTrueIsReturnValue()
     {
         $this->mock->shouldReceive("foo")->andReturnTrue();
-        $this->assertTrue($this->mock->foo());
+        $this->assertSame(true, $this->mock->foo());
     }
 
     public function testReturnsFalseIfFalseIsReturnValue()
     {
         $this->mock->shouldReceive("foo")->andReturnFalse();
-        $this->assertFalse($this->mock->foo());
+        $this->assertSame(false, $this->mock->foo());
     }
 
     public function testExpectationCanBeOverridden()

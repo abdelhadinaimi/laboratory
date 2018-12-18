@@ -2,13 +2,8 @@
 
 namespace Illuminate\Notifications\Events;
 
-use Illuminate\Bus\Queueable;
-use Illuminate\Queue\SerializesModels;
-
 class NotificationFailed
 {
-    use Queueable, SerializesModels;
-
     /**
      * The notifiable entity who received the notification.
      *

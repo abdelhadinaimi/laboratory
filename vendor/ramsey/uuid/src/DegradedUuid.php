@@ -24,9 +24,6 @@ use Ramsey\Uuid\Exception\UnsupportedOperationException;
  */
 class DegradedUuid extends Uuid
 {
-    /**
-     * @inheritdoc
-     */
     public function getDateTime()
     {
         if ($this->getVersion() != 1) {

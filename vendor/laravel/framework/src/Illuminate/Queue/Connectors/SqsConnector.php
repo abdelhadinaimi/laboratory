@@ -19,7 +19,7 @@ class SqsConnector implements ConnectorInterface
         $config = $this->getDefaultConfiguration($config);
 
         if ($config['key'] && $config['secret']) {
-            $config['credentials'] = Arr::only($config, ['key', 'secret', 'token']);
+            $config['credentials'] = Arr::only($config, ['key', 'secret']);
         }
 
         return new SqsQueue(

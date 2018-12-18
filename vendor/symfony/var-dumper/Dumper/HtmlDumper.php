@@ -23,41 +23,6 @@ class HtmlDumper extends CliDumper
 {
     public static $defaultOutput = 'php://output';
 
-    protected static $themes = array(
-        'dark' => array(
-            'default' => 'background-color:#18171B; color:#FF8400; line-height:1.2em; font:12px Menlo, Monaco, Consolas, monospace; word-wrap: break-word; white-space: pre-wrap; position:relative; z-index:99999; word-break: break-all',
-            'num' => 'font-weight:bold; color:#1299DA',
-            'const' => 'font-weight:bold',
-            'str' => 'font-weight:bold; color:#56DB3A',
-            'note' => 'color:#1299DA',
-            'ref' => 'color:#A0A0A0',
-            'public' => 'color:#FFFFFF',
-            'protected' => 'color:#FFFFFF',
-            'private' => 'color:#FFFFFF',
-            'meta' => 'color:#B729D9',
-            'key' => 'color:#56DB3A',
-            'index' => 'color:#1299DA',
-            'ellipsis' => 'color:#FF8400',
-            'ns' => 'user-select:none;',
-        ),
-        'light' => array(
-            'default' => 'background:none; color:#CC7832; line-height:1.2em; font:12px Menlo, Monaco, Consolas, monospace; word-wrap: break-word; white-space: pre-wrap; position:relative; z-index:99999; word-break: break-all',
-            'num' => 'font-weight:bold; color:#1299DA',
-            'const' => 'font-weight:bold',
-            'str' => 'font-weight:bold; color:#629755;',
-            'note' => 'color:#6897BB',
-            'ref' => 'color:#6E6E6E',
-            'public' => 'color:#262626',
-            'protected' => 'color:#262626',
-            'private' => 'color:#262626',
-            'meta' => 'color:#B729D9',
-            'key' => 'color:#789339',
-            'index' => 'color:#1299DA',
-            'ellipsis' => 'color:#CC7832',
-            'ns' => 'user-select:none;',
-        ),
-    );
-
     protected $dumpHeader;
     protected $dumpPrefix = '<pre class=sf-dump id=%s data-indent-pad="%s">';
     protected $dumpSuffix = '</pre><script>Sfdump(%s)</script>';
@@ -65,7 +30,21 @@ class HtmlDumper extends CliDumper
     protected $colors = true;
     protected $headerIsDumped = false;
     protected $lastDepth = -1;
-    protected $styles;
+    protected $styles = array(
+        'default' => 'background-color:#18171B; color:#FF8400; line-height:1.2em; font:12px Menlo, Monaco, Consolas, monospace; word-wrap: break-word; white-space: pre-wrap; position:relative; z-index:99999; word-break: break-all',
+        'num' => 'font-weight:bold; color:#1299DA',
+        'const' => 'font-weight:bold',
+        'str' => 'font-weight:bold; color:#56DB3A',
+        'note' => 'color:#1299DA',
+        'ref' => 'color:#A0A0A0',
+        'public' => 'color:#FFFFFF',
+        'protected' => 'color:#FFFFFF',
+        'private' => 'color:#FFFFFF',
+        'meta' => 'color:#B729D9',
+        'key' => 'color:#56DB3A',
+        'index' => 'color:#1299DA',
+        'ellipsis' => 'color:#FF8400',
+    );
 
     private $displayOptions = array(
         'maxDepth' => 1,
@@ -82,7 +61,6 @@ class HtmlDumper extends CliDumper
         AbstractDumper::__construct($output, $charset, $flags);
         $this->dumpId = 'sf-dump-'.mt_rand();
         $this->displayOptions['fileLinkFormat'] = ini_get('xdebug.file_link_format') ?: get_cfg_var('xdebug.file_link_format');
-        $this->styles = static::$themes['dark'] ?? self::$themes['dark'];
     }
 
     /**
@@ -92,15 +70,6 @@ class HtmlDumper extends CliDumper
     {
         $this->headerIsDumped = false;
         $this->styles = $styles + $this->styles;
-    }
-
-    public function setTheme(string $themeName)
-    {
-        if (!isset(static::$themes[$themeName])) {
-            throw new \InvalidArgumentException(sprintf('Theme "%s" does not exist in class "%s".', $themeName, static::class));
-        }
-
-        $this->setStyles(static::$themes[$themeName]);
     }
 
     /**
@@ -341,9 +310,6 @@ return function (root, x) {
 
         return "concat(" + parts.join(",") + ", '')";
     }
-    function xpathHasClass(className) {
-        return "contains(concat(' ', normalize-space(@class), ' '), ' " + className +" ')";
-    }
     addEventListener(root, 'mouseover', function (e) {
         if ('' != refStyle.innerHTML) {
             refStyle.innerHTML = '';
@@ -504,9 +470,6 @@ return function (root, x) {
             if (currentNode) {
                 reveal(currentNode);
                 highlight(root, currentNode, state.nodes);
-                if ('scrollIntoView' in currentNode) {
-                    currentNode.scrollIntoView();
-                }
             }
             counter.textContent = (state.isEmpty() ? 0 : state.idx + 1) + ' of ' + state.count();
         }
@@ -553,15 +516,7 @@ return function (root, x) {
                     return;
                 }
 
-                var classMatches = [
-                    "sf-dump-str",
-                    "sf-dump-key",
-                    "sf-dump-public",
-                    "sf-dump-protected",
-                    "sf-dump-private",
-                ].map(xpathHasClass).join(' or ');
-                
-                var xpathResult = doc.evaluate('.//span[' + classMatches + '][contains(translate(child::text(), ' + xpathString(searchQuery.toUpperCase()) + ', ' + xpathString(searchQuery.toLowerCase()) + '), ' + xpathString(searchQuery.toLowerCase()) + ')]', root, null, XPathResult.ORDERED_NODE_ITERATOR_TYPE, null);
+                var xpathResult = doc.evaluate('//pre[@id="' + root.id + '"]//span[@class="sf-dump-str" or @class="sf-dump-key" or @class="sf-dump-public" or @class="sf-dump-protected" or @class="sf-dump-private"][contains(translate(child::text(), ' + xpathString(searchQuery.toUpperCase()) + ', ' + xpathString(searchQuery.toLowerCase()) + '), ' + xpathString(searchQuery.toLowerCase()) + ')]', document, null, XPathResult.ORDERED_NODE_ITERATOR_TYPE, null);
 
                 while (node = xpathResult.iterateNext()) state.nodes.push(node);
                 
@@ -860,10 +815,10 @@ EOHTML
             }
             $label = esc(substr($value, -$attr['ellipsis']));
             $style = str_replace(' title="', " title=\"$v\n", $style);
-            $v = sprintf('<span class=%s>%s</span>', $class, substr($v, 0, -\strlen($label)));
+            $v = sprintf('<span class=%s>%s</span>', $class, substr($v, 0, -strlen($label)));
 
             if (!empty($attr['ellipsis-tail'])) {
-                $tail = \strlen(esc(substr($value, -$attr['ellipsis'], $attr['ellipsis-tail'])));
+                $tail = strlen(esc(substr($value, -$attr['ellipsis'], $attr['ellipsis-tail'])));
                 $v .= sprintf('<span class=sf-dump-ellipsis>%s</span>%s', substr($label, 0, $tail), substr($label, $tail));
             } else {
                 $v .= $label;
@@ -871,22 +826,10 @@ EOHTML
         }
 
         $v = "<span class=sf-dump-{$style}>".preg_replace_callback(static::$controlCharsRx, function ($c) use ($map) {
-            $s = $b = '<span class="sf-dump-default';
+            $s = '<span class=sf-dump-default>';
             $c = $c[$i = 0];
-            if ($ns = "\r" === $c[$i] || "\n" === $c[$i]) {
-                $s .= ' sf-dump-ns';
-            }
-            $s .= '">';
             do {
-                if (("\r" === $c[$i] || "\n" === $c[$i]) !== $ns) {
-                    $s .= '</span>'.$b;
-                    if ($ns = !$ns) {
-                        $s .= ' sf-dump-ns';
-                    }
-                    $s .= '">';
-                }
-
-                $s .= isset($map[$c[$i]]) ? $map[$c[$i]] : sprintf('\x%02X', \ord($c[$i]));
+                $s .= isset($map[$c[$i]]) ? $map[$c[$i]] : sprintf('\x%02X', ord($c[$i]));
             } while (isset($c[++$i]));
 
             return $s.'</span>';
@@ -941,7 +884,7 @@ EOHTML
         $options = $this->extraDisplayOptions + $this->displayOptions;
 
         if ($fmt = $options['fileLinkFormat']) {
-            return \is_string($fmt) ? strtr($fmt, array('%f' => $file, '%l' => $line)) : $fmt->format($file, $line);
+            return is_string($fmt) ? strtr($fmt, array('%f' => $file, '%l' => $line)) : $fmt->format($file, $line);
         }
 
         return false;

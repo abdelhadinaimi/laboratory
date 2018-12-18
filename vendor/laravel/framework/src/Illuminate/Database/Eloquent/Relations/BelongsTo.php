@@ -274,7 +274,7 @@ class BelongsTo extends Relation
         $query->getModel()->setTable($hash);
 
         return $query->whereColumn(
-            $hash.'.'.$this->ownerKey, '=', $this->getQualifiedForeignKey()
+            $hash.'.'.$query->getModel()->getKeyName(), '=', $this->getQualifiedForeignKey()
         );
     }
 

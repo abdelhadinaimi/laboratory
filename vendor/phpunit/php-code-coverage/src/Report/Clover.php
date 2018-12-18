@@ -7,6 +7,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 namespace SebastianBergmann\CodeCoverage\Report;
 
 use SebastianBergmann\CodeCoverage\CodeCoverage;
@@ -90,7 +91,7 @@ final class Clover
                         'crap'        => $method['crap'],
                         'type'        => 'method',
                         'visibility'  => $method['visibility'],
-                        'name'        => $methodName,
+                        'name'        => $methodName
                     ];
                 }
 
@@ -151,7 +152,7 @@ final class Clover
                 }
 
                 $lines[$line] = [
-                    'count' => \count($data), 'type' => 'stmt',
+                    'count' => \count($data), 'type' => 'stmt'
                 ];
             }
 
@@ -234,7 +235,7 @@ final class Clover
         $buffer = $xmlDocument->saveXML();
 
         if ($target !== null) {
-            if (!$this->createDirectory(\dirname($target))) {
+            if (!@\mkdir(\dirname($target), 0777, true) && !\is_dir(\dirname($target))) {
                 throw new \RuntimeException(\sprintf('Directory "%s" was not created', \dirname($target)));
             }
 
@@ -249,10 +250,5 @@ final class Clover
         }
 
         return $buffer;
-    }
-
-    private function createDirectory(string $directory): bool
-    {
-        return !(!\is_dir($directory) && !@\mkdir($directory, 0777, true) && !\is_dir($directory));
     }
 }

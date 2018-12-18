@@ -60,7 +60,6 @@ final class Getopt
 
                 continue;
             }
-
             if (\strlen($arg) > 1 && $arg[1] === '-') {
                 self::parseLongOption(
                     \substr($arg, 2),
@@ -155,16 +154,18 @@ final class Getopt
             }
 
             if (\substr($long_opt, -1) === '=') {
-                /* @noinspection StrlenInEmptyStringCheckContextInspection */
-                if (\substr($long_opt, -2) !== '==' && !\strlen($opt_arg)) {
-                    /* @noinspection ComparisonOperandsOrderInspection */
-                    if (false === $opt_arg = \current($args)) {
-                        throw new Exception(
-                            "option --$opt requires an argument"
-                        );
-                    }
+                if (\substr($long_opt, -2) !== '==') {
+                    /* @noinspection StrlenInEmptyStringCheckContextInspection */
+                    if (!\strlen($opt_arg)) {
+                        /* @noinspection ComparisonOperandsOrderInspection */
+                        if (false === $opt_arg = \current($args)) {
+                            throw new Exception(
+                                "option --$opt requires an argument"
+                            );
+                        }
 
-                    \next($args);
+                        \next($args);
+                    }
                 }
             } elseif ($opt_arg) {
                 throw new Exception(

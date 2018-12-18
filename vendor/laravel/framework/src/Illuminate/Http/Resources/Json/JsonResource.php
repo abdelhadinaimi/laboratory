@@ -60,7 +60,7 @@ class JsonResource implements ArrayAccess, JsonSerializable, Responsable, UrlRou
     /**
      * Create a new resource instance.
      *
-     * @param  mixed  $parameters
+     * @param  dynamic  $parameters
      * @return static
      */
     public static function make(...$parameters)
@@ -110,9 +110,7 @@ class JsonResource implements ArrayAccess, JsonSerializable, Responsable, UrlRou
      */
     public function toArray($request)
     {
-        return is_array($this->resource)
-            ? $this->resource
-            : $this->resource->toArray();
+        return $this->resource->toArray();
     }
 
     /**

@@ -96,6 +96,8 @@ abstract class ResultPrinter extends Printer implements TestListener
 
     /**
      * @param resource $out
+     * @param array    $groups
+     * @param array    $excludeGroups
      *
      * @throws \PHPUnit\Framework\Exception
      */
@@ -231,15 +233,32 @@ abstract class ResultPrinter extends Printer implements TestListener
                 $this->doEndClass();
             }
 
-            $this->currentTestClassPrettified = $this->prettifier->prettifyTestClass($class);
-            $this->testClass                  = $class;
-            $this->tests                      = [];
+            $classAnnotations = \PHPUnit\Util\Test::parseTestMethodAnnotations($class);
+
+            if (isset($classAnnotations['class']['testdox'][0])) {
+                $this->currentTestClassPrettified = $classAnnotations['class']['testdox'][0];
+            } else {
+                $this->currentTestClassPrettified = $this->prettifier->prettifyTestClass($class);
+            }
 
             $this->startClass($class);
+
+            $this->testClass = $class;
+            $this->tests     = [];
         }
 
         if ($test instanceof TestCase) {
-            $this->currentTestMethodPrettified = $this->prettifier->prettifyTestCase($test);
+            $annotations = $test->getAnnotations();
+
+            if (isset($annotations['method']['testdox'][0])) {
+                $this->currentTestMethodPrettified = $annotations['method']['testdox'][0];
+            } else {
+                $this->currentTestMethodPrettified = $this->prettifier->prettifyTestMethod($test->getName(false));
+            }
+
+            if ($test->usesDataProvider()) {
+                $this->currentTestMethodPrettified .= ' ' . $test->dataDescription();
+            }
         }
 
         $this->testStatus = BaseTestRunner::STATUS_PASSED;

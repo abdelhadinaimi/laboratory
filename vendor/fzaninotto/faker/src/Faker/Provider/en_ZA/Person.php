@@ -3,6 +3,7 @@
 namespace Faker\Provider\en_ZA;
 
 use Faker\Calculator\Luhn;
+use Faker\Provider\DateTime;
 
 class Person extends \Faker\Provider\Person
 {
@@ -126,18 +127,13 @@ class Person extends \Faker\Provider\Person
         'Pule', 'Hlophe', 'Miya', 'Moagi',
     );
 
-    protected static $titleMale = array('Mr.', 'Dr.', 'Prof.', 'Rev.', 'Hon.');
-
-    protected static $titleFemale = array('Mrs.', 'Ms.', 'Miss', 'Dr.', 'Prof.', 'Rev.', 'Hon.');
-
-    protected static $licenceCodes = array('A', 'A1', 'B', 'C', 'C1', 'C2', 'EB', 'EC', 'EC1', 'I', 'L', 'L1');
-
     /**
      * @link https://en.wikipedia.org/wiki/National_identification_number#South_Africa
      *
-     * @param \DateTime $birthdate
-     * @param bool      $citizen
-     * @param string    $gender
+     * @param int    $minAge
+     * @param int    $maxAge
+     * @param bool   $citizen
+     * @param string $gender
      *
      * @return string
      */
@@ -159,20 +155,10 @@ class Person extends \Faker\Provider\Person
         }
         $sequenceDigits = str_pad(self::randomNumber(3), 3, 0, STR_PAD_BOTH);
         $citizenDigit = ($citizen === true) ? '0' : '1';
-        $raceDigit = self::numberBetween(8, 9);
+        $raceDigit = self::randomNumber(1);
 
         $partialIdNumber = $birthDateString . $genderDigit . $sequenceDigits . $citizenDigit . $raceDigit;
 
         return $partialIdNumber . Luhn::computeCheckDigit($partialIdNumber);
-    }
-
-    /**
-     * @see https://en.wikipedia.org/wiki/Driving_licence_in_South_Africa
-     *
-     * @return string
-     */
-    public function licenceCode()
-    {
-        return static::randomElement(static::$licenceCodes);
     }
 }

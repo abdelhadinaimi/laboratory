@@ -19,7 +19,7 @@ class BankAccountTest extends TestCase
         $this->ba = new BankAccount;
     }
 
-    public function testBalanceIsInitiallyZero(): void
+    public function testBalanceIsInitiallyZero()
     {
         $ba = new BankAccount;
 
@@ -28,7 +28,7 @@ class BankAccountTest extends TestCase
         $this->assertEquals(0, $balance);
     }
 
-    public function testBalanceCannotBecomeNegative(): void
+    public function testBalanceCannotBecomeNegative()
     {
         try {
             $this->ba->withdrawMoney(1);
@@ -41,7 +41,7 @@ class BankAccountTest extends TestCase
         $this->fail();
     }
 
-    public function testBalanceCannotBecomeNegative2(): void
+    public function testBalanceCannotBecomeNegative2()
     {
         try {
             $this->ba->depositMoney(-1);

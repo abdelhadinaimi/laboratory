@@ -220,21 +220,24 @@ class DebugClassLoaderTest extends TestCase
 
     public function testExtendedFinalMethod()
     {
-        $deprecations = array();
-        set_error_handler(function ($type, $msg) use (&$deprecations) { $deprecations[] = $msg; });
-        $e = error_reporting(E_USER_DEPRECATED);
+        set_error_handler(function () { return false; });
+        $e = error_reporting(0);
+        trigger_error('', E_USER_NOTICE);
 
         class_exists(__NAMESPACE__.'\\Fixtures\\ExtendedFinalMethod', true);
 
         error_reporting($e);
         restore_error_handler();
 
+        $lastError = error_get_last();
+        unset($lastError['file'], $lastError['line']);
+
         $xError = array(
-            'The "Symfony\Component\Debug\Tests\Fixtures\FinalMethod::finalMethod()" method is considered final. It may change without further notice as of its next major version. You should not extend it from "Symfony\Component\Debug\Tests\Fixtures\ExtendedFinalMethod".',
-            'The "Symfony\Component\Debug\Tests\Fixtures\FinalMethod::finalMethod2()" method is considered final. It may change without further notice as of its next major version. You should not extend it from "Symfony\Component\Debug\Tests\Fixtures\ExtendedFinalMethod".',
+            'type' => E_USER_DEPRECATED,
+            'message' => 'The "Symfony\Component\Debug\Tests\Fixtures\FinalMethod::finalMethod()" method is considered final. It may change without further notice as of its next major version. You should not extend it from "Symfony\Component\Debug\Tests\Fixtures\ExtendedFinalMethod".',
         );
 
-        $this->assertSame($xError, $deprecations);
+        $this->assertSame($xError, $lastError);
     }
 
     public function testExtendedDeprecatedMethodDoesntTriggerAnyNotice()
@@ -266,43 +269,11 @@ class DebugClassLoaderTest extends TestCase
         restore_error_handler();
 
         $this->assertSame($deprecations, array(
-            'The "Symfony\Component\Debug\Tests\Fixtures\InternalInterface" interface is considered internal. It may change without further notice. You should not use it from "Test\Symfony\Component\Debug\Tests\ExtendsInternalsParent".',
             'The "Symfony\Component\Debug\Tests\Fixtures\InternalClass" class is considered internal. It may change without further notice. You should not use it from "Test\Symfony\Component\Debug\Tests\ExtendsInternalsParent".',
+            'The "Symfony\Component\Debug\Tests\Fixtures\InternalInterface" interface is considered internal. It may change without further notice. You should not use it from "Test\Symfony\Component\Debug\Tests\ExtendsInternalsParent".',
             'The "Symfony\Component\Debug\Tests\Fixtures\InternalTrait" trait is considered internal. It may change without further notice. You should not use it from "Test\Symfony\Component\Debug\Tests\ExtendsInternals".',
-            'The "Symfony\Component\Debug\Tests\Fixtures\InternalClass::internalMethod()" method is considered internal. It may change without further notice. You should not extend it from "Test\Symfony\Component\Debug\Tests\ExtendsInternals".',
+            'The "Symfony\Component\Debug\Tests\Fixtures\InternalTrait2::internalMethod()" method is considered internal. It may change without further notice. You should not extend it from "Test\Symfony\Component\Debug\Tests\ExtendsInternals".',
         ));
-    }
-
-    public function testExtendedMethodDefinesNewParameters()
-    {
-        $deprecations = array();
-        set_error_handler(function ($type, $msg) use (&$deprecations) { $deprecations[] = $msg; });
-        $e = error_reporting(E_USER_DEPRECATED);
-
-        class_exists(__NAMESPACE__.'\\Fixtures\SubClassWithAnnotatedParameters', true);
-
-        error_reporting($e);
-        restore_error_handler();
-
-        $this->assertSame(array(
-            'The "Symfony\Component\Debug\Tests\Fixtures\SubClassWithAnnotatedParameters::quzMethod()" method will require a new "Quz $quz" argument in the next major version of its parent class "Symfony\Component\Debug\Tests\Fixtures\ClassWithAnnotatedParameters", not defining it is deprecated.',
-            'The "Symfony\Component\Debug\Tests\Fixtures\SubClassWithAnnotatedParameters::whereAmI()" method will require a new "bool $matrix" argument in the next major version of its parent class "Symfony\Component\Debug\Tests\Fixtures\InterfaceWithAnnotatedParameters", not defining it is deprecated.',
-            'The "Symfony\Component\Debug\Tests\Fixtures\SubClassWithAnnotatedParameters::isSymfony()" method will require a new "true $yes" argument in the next major version of its parent class "Symfony\Component\Debug\Tests\Fixtures\ClassWithAnnotatedParameters", not defining it is deprecated.',
-        ), $deprecations);
-    }
-
-    public function testUseTraitWithInternalMethod()
-    {
-        $deprecations = array();
-        set_error_handler(function ($type, $msg) use (&$deprecations) { $deprecations[] = $msg; });
-        $e = error_reporting(E_USER_DEPRECATED);
-
-        class_exists('Test\\'.__NAMESPACE__.'\\UseTraitWithInternalMethod', true);
-
-        error_reporting($e);
-        restore_error_handler();
-
-        $this->assertSame(array(), $deprecations);
     }
 }
 
@@ -357,8 +328,6 @@ class ClassLoader
             }');
         } elseif ('Test\\'.__NAMESPACE__.'\ExtendsInternalsParent' === $class) {
             eval('namespace Test\\'.__NAMESPACE__.'; class ExtendsInternalsParent extends \\'.__NAMESPACE__.'\Fixtures\InternalClass implements \\'.__NAMESPACE__.'\Fixtures\InternalInterface { }');
-        } elseif ('Test\\'.__NAMESPACE__.'\UseTraitWithInternalMethod' === $class) {
-            eval('namespace Test\\'.__NAMESPACE__.'; class UseTraitWithInternalMethod { use \\'.__NAMESPACE__.'\Fixtures\TraitWithInternalMethod; }');
         }
     }
 }

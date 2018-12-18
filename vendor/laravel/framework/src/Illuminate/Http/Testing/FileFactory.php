@@ -2,8 +2,6 @@
 
 namespace Illuminate\Http\Testing;
 
-use Illuminate\Support\Str;
-
 class FileFactory
 {
     /**
@@ -30,9 +28,7 @@ class FileFactory
      */
     public function image($name, $width = 10, $height = 10)
     {
-        return new File($name, $this->generateImage(
-            $width, $height, Str::endsWith(Str::lower($name), ['.jpg', '.jpeg']) ? 'jpeg' : 'png'
-        ));
+        return new File($name, $this->generateImage($width, $height));
     }
 
     /**
@@ -40,24 +36,14 @@ class FileFactory
      *
      * @param  int  $width
      * @param  int  $height
-     * @param  string  $type
      * @return resource
      */
-    protected function generateImage($width, $height, $type)
+    protected function generateImage($width, $height)
     {
-        return tap(tmpfile(), function ($temp) use ($width, $height, $type) {
+        return tap(tmpfile(), function ($temp) use ($width, $height) {
             ob_start();
 
-            $image = imagecreatetruecolor($width, $height);
-
-            switch ($type) {
-                case 'jpeg':
-                    imagejpeg($image);
-                    break;
-                case 'png':
-                    imagepng($image);
-                    break;
-            }
+            imagepng(imagecreatetruecolor($width, $height));
 
             fwrite($temp, ob_get_clean());
         });

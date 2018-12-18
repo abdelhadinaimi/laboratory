@@ -4,9 +4,8 @@ namespace Faker\Test\Provider\zh_TW;
 
 use Faker\Generator;
 use Faker\Provider\zh_TW\Person;
-use PHPUnit\Framework\TestCase;
 
-class PersonTest extends TestCase
+class PersonTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @var Generator

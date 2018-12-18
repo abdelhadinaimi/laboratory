@@ -20,14 +20,14 @@ class Swift_Transport_LoadBalancedTransport implements Swift_Transport
      *
      * @var Swift_Transport[]
      */
-    private $deadTransports = [];
+    private $deadTransports = array();
 
     /**
      * The Transports which are used in rotation.
      *
      * @var Swift_Transport[]
      */
-    protected $transports = [];
+    protected $transports = array();
 
     /**
      * The Transport used in the last successful send operation.
@@ -49,7 +49,7 @@ class Swift_Transport_LoadBalancedTransport implements Swift_Transport
     public function setTransports(array $transports)
     {
         $this->transports = $transports;
-        $this->deadTransports = [];
+        $this->deadTransports = array();
     }
 
     /**
@@ -120,7 +120,8 @@ class Swift_Transport_LoadBalancedTransport implements Swift_Transport
      * Recipient/sender data will be retrieved from the Message API.
      * The return value is the number of recipients who were accepted for delivery.
      *
-     * @param string[] $failedRecipients An array of failures by-reference
+     * @param Swift_Mime_SimpleMessage $message
+     * @param string[]           $failedRecipients An array of failures by-reference
      *
      * @return int
      */
@@ -145,7 +146,7 @@ class Swift_Transport_LoadBalancedTransport implements Swift_Transport
             }
         }
 
-        if (0 == count($this->transports)) {
+        if (count($this->transports) == 0) {
             throw new Swift_TransportException(
                 'All Transports in LoadBalancedTransport failed, or no Transports available'
                 );
@@ -156,6 +157,8 @@ class Swift_Transport_LoadBalancedTransport implements Swift_Transport
 
     /**
      * Register a plugin.
+     *
+     * @param Swift_Events_EventListener $plugin
      */
     public function registerPlugin(Swift_Events_EventListener $plugin)
     {

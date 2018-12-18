@@ -24,7 +24,7 @@ class ExpectsHigherOrderMessage extends HigherOrderMessage
 {
     public function __construct(MockInterface $mock)
     {
-        parent::__construct($mock, "shouldReceive");
+        return parent::__construct($mock, "shouldReceive");
     }
     /**
      * @return \Mockery\Expectation

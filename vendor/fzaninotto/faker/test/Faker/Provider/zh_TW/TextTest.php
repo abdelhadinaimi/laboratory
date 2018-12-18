@@ -2,9 +2,7 @@
 
 namespace Faker\Test\Provider\zh_TW;
 
-use PHPUnit\Framework\TestCase;
-
-class TextTest extends TestCase
+class TextTest extends \PHPUnit_Framework_TestCase
 {
     private $textClass;
 

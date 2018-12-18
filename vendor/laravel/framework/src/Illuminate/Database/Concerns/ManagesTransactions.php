@@ -26,7 +26,7 @@ trait ManagesTransactions
             // catch any exception we can rollback this transaction so that none of this
             // gets actually persisted to a database or stored in a permanent fashion.
             try {
-                return tap($callback($this), function () {
+                return tap($callback($this), function ($result) {
                     $this->commit();
                 });
             }
@@ -166,8 +166,6 @@ trait ManagesTransactions
      *
      * @param  int|null  $toLevel
      * @return void
-     *
-     * @throws \Exception
      */
     public function rollBack($toLevel = null)
     {
@@ -185,11 +183,7 @@ trait ManagesTransactions
         // Next, we will actually perform this rollback within this database and fire the
         // rollback event. We will also set the current transaction level to the given
         // level that was passed into this method so it will be right from here out.
-        try {
-            $this->performRollBack($toLevel);
-        } catch (Exception $e) {
-            $this->handleRollBackException($e);
-        }
+        $this->performRollBack($toLevel);
 
         $this->transactions = $toLevel;
 
@@ -211,22 +205,6 @@ trait ManagesTransactions
                 $this->queryGrammar->compileSavepointRollBack('trans'.($toLevel + 1))
             );
         }
-    }
-
-    /**
-     * Handle an exception from a rollback.
-     *
-     * @param \Exception  $e
-     *
-     * @throws \Exception
-     */
-    protected function handleRollBackException($e)
-    {
-        if ($this->causedByLostConnection($e)) {
-            $this->transactions = 0;
-        }
-
-        throw $e;
     }
 
     /**

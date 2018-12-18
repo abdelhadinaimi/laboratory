@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of Collision.
+ * This file is part of PhpStorm.
  *
  * (c) Nuno Maduro <enunomaduro@gmail.com>
  *

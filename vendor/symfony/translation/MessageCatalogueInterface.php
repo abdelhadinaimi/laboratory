@@ -20,8 +20,6 @@ use Symfony\Component\Config\Resource\ResourceInterface;
  */
 interface MessageCatalogueInterface
 {
-    const INTL_DOMAIN_SUFFIX = '+intl-icu';
-
     /**
      * Gets the catalogue locale.
      *
@@ -107,7 +105,7 @@ interface MessageCatalogueInterface
      *
      * The two catalogues must have the same locale.
      */
-    public function addCatalogue(self $catalogue);
+    public function addCatalogue(MessageCatalogueInterface $catalogue);
 
     /**
      * Merges translations from the given Catalogue into the current one
@@ -115,7 +113,7 @@ interface MessageCatalogueInterface
      *
      * This is used to provide default translations when they do not exist for the current locale.
      */
-    public function addFallbackCatalogue(self $catalogue);
+    public function addFallbackCatalogue(MessageCatalogueInterface $catalogue);
 
     /**
      * Gets the fallback catalogue.

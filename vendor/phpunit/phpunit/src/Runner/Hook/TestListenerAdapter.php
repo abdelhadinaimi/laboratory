@@ -7,6 +7,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 namespace PHPUnit\Runner;
 
 use PHPUnit\Framework\AssertionFailedError;
@@ -112,17 +113,13 @@ final class TestListenerAdapter implements TestListener
 
     public function endTest(Test $test, float $time): void
     {
-        if ($this->lastTestWasNotSuccessful !== true) {
-            foreach ($this->hooks as $hook) {
-                if ($hook instanceof AfterSuccessfulTestHook) {
-                    $hook->executeAfterSuccessfulTest(TestUtil::describeAsString($test), $time);
-                }
-            }
+        if ($this->lastTestWasNotSuccessful === true) {
+            return;
         }
 
         foreach ($this->hooks as $hook) {
-            if ($hook instanceof AfterTestHook) {
-                $hook->executeAfterTest(TestUtil::describeAsString($test), $time);
+            if ($hook instanceof AfterSuccessfulTestHook) {
+                $hook->executeAfterSuccessfulTest(TestUtil::describeAsString($test), $time);
             }
         }
     }

@@ -25,7 +25,7 @@ class SendQueuedNotifications implements ShouldQueue
     public $notification;
 
     /**
-     * All of the channels to send the notification to.
+     * All of the channels to send the notification too.
      *
      * @var array
      */

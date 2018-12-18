@@ -7,25 +7,26 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 namespace SebastianBergmann\Comparator;
 
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \SebastianBergmann\Comparator\ArrayComparator<extended>
+ * @coversDefaultClass SebastianBergmann\Comparator\ArrayComparator
  *
- * @uses \SebastianBergmann\Comparator\Comparator
- * @uses \SebastianBergmann\Comparator\Factory
- * @uses \SebastianBergmann\Comparator\ComparisonFailure
+ * @uses SebastianBergmann\Comparator\Comparator
+ * @uses SebastianBergmann\Comparator\Factory
+ * @uses SebastianBergmann\Comparator\ComparisonFailure
  */
-final class ArrayComparatorTest extends TestCase
+class ArrayComparatorTest extends TestCase
 {
     /**
      * @var ArrayComparator
      */
     private $comparator;
 
-    protected function setUp(): void
+    protected function setUp()
     {
         $this->comparator = new ArrayComparator;
         $this->comparator->setFactory(new Factory);
@@ -34,89 +35,92 @@ final class ArrayComparatorTest extends TestCase
     public function acceptsFailsProvider()
     {
         return [
-            [[], null],
-            [null, []],
-            [null, null]
+          [[], null],
+          [null, []],
+          [null, null]
         ];
     }
 
     public function assertEqualsSucceedsProvider()
     {
         return [
-            [
-                ['a' => 1, 'b' => 2],
-                ['b' => 2, 'a' => 1]
-            ],
-            [
-                [1],
-                ['1']
-            ],
-            [
-                [3, 2, 1],
-                [2, 3, 1],
-                0,
-                true
-            ],
-            [
-                [2.3],
-                [2.5],
-                0.5
-            ],
-            [
-                [[2.3]],
-                [[2.5]],
-                0.5
-            ],
-            [
-                [new Struct(2.3)],
-                [new Struct(2.5)],
-                0.5
-            ],
+          [
+            ['a' => 1, 'b' => 2],
+            ['b' => 2, 'a' => 1]
+          ],
+          [
+            [1],
+            ['1']
+          ],
+          [
+            [3, 2, 1],
+            [2, 3, 1],
+            0,
+            true
+          ],
+          [
+            [2.3],
+            [2.5],
+            0.5
+          ],
+          [
+            [[2.3]],
+            [[2.5]],
+            0.5
+          ],
+          [
+            [new Struct(2.3)],
+            [new Struct(2.5)],
+            0.5
+          ],
         ];
     }
 
     public function assertEqualsFailsProvider()
     {
         return [
-            [
-                [],
-                [0 => 1]
-            ],
-            [
-                [0 => 1],
-                []
-            ],
-            [
-                [0 => null],
-                []
-            ],
-            [
-                [0 => 1, 1 => 2],
-                [0 => 1, 1 => 3]
-            ],
-            [
-                ['a', 'b' => [1, 2]],
-                ['a', 'b' => [2, 1]]
-            ],
-            [
-                [2.3],
-                [4.2],
-                0.5
-            ],
-            [
-                [[2.3]],
-                [[4.2]],
-                0.5
-            ],
-            [
-                [new Struct(2.3)],
-                [new Struct(4.2)],
-                0.5
-            ]
+          [
+            [],
+            [0 => 1]
+          ],
+          [
+            [0 => 1],
+            []
+          ],
+          [
+            [0 => null],
+            []
+          ],
+          [
+            [0 => 1, 1 => 2],
+            [0 => 1, 1 => 3]
+          ],
+          [
+            ['a', 'b' => [1, 2]],
+            ['a', 'b' => [2, 1]]
+          ],
+          [
+            [2.3],
+            [4.2],
+            0.5
+          ],
+          [
+            [[2.3]],
+            [[4.2]],
+            0.5
+          ],
+          [
+            [new Struct(2.3)],
+            [new Struct(4.2)],
+            0.5
+          ]
         ];
     }
 
-    public function testAcceptsSucceeds(): void
+    /**
+     * @covers  ::accepts
+     */
+    public function testAcceptsSucceeds()
     {
         $this->assertTrue(
           $this->comparator->accepts([], [])
@@ -124,9 +128,10 @@ final class ArrayComparatorTest extends TestCase
     }
 
     /**
+     * @covers       ::accepts
      * @dataProvider acceptsFailsProvider
      */
-    public function testAcceptsFails($expected, $actual): void
+    public function testAcceptsFails($expected, $actual)
     {
         $this->assertFalse(
           $this->comparator->accepts($expected, $actual)
@@ -134,9 +139,10 @@ final class ArrayComparatorTest extends TestCase
     }
 
     /**
+     * @covers       ::assertEquals
      * @dataProvider assertEqualsSucceedsProvider
      */
-    public function testAssertEqualsSucceeds($expected, $actual, $delta = 0.0, $canonicalize = false): void
+    public function testAssertEqualsSucceeds($expected, $actual, $delta = 0.0, $canonicalize = false)
     {
         $exception = null;
 
@@ -149,9 +155,10 @@ final class ArrayComparatorTest extends TestCase
     }
 
     /**
+     * @covers       ::assertEquals
      * @dataProvider assertEqualsFailsProvider
      */
-    public function testAssertEqualsFails($expected, $actual, $delta = 0.0, $canonicalize = false): void
+    public function testAssertEqualsFails($expected, $actual, $delta = 0.0, $canonicalize = false)
     {
         $this->expectException(ComparisonFailure::class);
         $this->expectExceptionMessage('Failed asserting that two arrays are equal');

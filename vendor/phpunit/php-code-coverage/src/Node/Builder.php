@@ -7,6 +7,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 namespace SebastianBergmann\CodeCoverage\Node;
 
 use SebastianBergmann\CodeCoverage\CodeCoverage;
@@ -38,7 +39,7 @@ final class Builder
             if (\substr($key, -2) == '/f') {
                 $key = \substr($key, 0, -2);
 
-                if (\file_exists($root->getPath() . \DIRECTORY_SEPARATOR . $key)) {
+                if (\file_exists($root->getPath() . DIRECTORY_SEPARATOR . $key)) {
                     $root->addFile($key, $value, $tests, $cacheTokens);
                 }
             } else {
@@ -93,7 +94,7 @@ final class Builder
         $result = [];
 
         foreach ($files as $path => $file) {
-            $path    = \explode(\DIRECTORY_SEPARATOR, $path);
+            $path    = \explode('/', $path);
             $pointer = &$result;
             $max     = \count($path);
 
@@ -160,7 +161,7 @@ final class Builder
         $paths      = \array_keys($files);
 
         if (\count($files) === 1) {
-            $commonPath                  = \dirname($paths[0]) . \DIRECTORY_SEPARATOR;
+            $commonPath                  = \dirname($paths[0]) . '/';
             $files[\basename($paths[0])] = $files[$paths[0]];
 
             unset($files[$paths[0]]);
@@ -174,12 +175,12 @@ final class Builder
             // strip phar:// prefixes
             if (\strpos($paths[$i], 'phar://') === 0) {
                 $paths[$i] = \substr($paths[$i], 7);
-                $paths[$i] = \str_replace('/', \DIRECTORY_SEPARATOR, $paths[$i]);
+                $paths[$i] = \str_replace('/', DIRECTORY_SEPARATOR, $paths[$i]);
             }
-            $paths[$i] = \explode(\DIRECTORY_SEPARATOR, $paths[$i]);
+            $paths[$i] = \explode(DIRECTORY_SEPARATOR, $paths[$i]);
 
             if (empty($paths[$i][0])) {
-                $paths[$i][0] = \DIRECTORY_SEPARATOR;
+                $paths[$i][0] = DIRECTORY_SEPARATOR;
             }
         }
 
@@ -200,8 +201,8 @@ final class Builder
             if (!$done) {
                 $commonPath .= $paths[0][0];
 
-                if ($paths[0][0] != \DIRECTORY_SEPARATOR) {
-                    $commonPath .= \DIRECTORY_SEPARATOR;
+                if ($paths[0][0] != DIRECTORY_SEPARATOR) {
+                    $commonPath .= DIRECTORY_SEPARATOR;
                 }
 
                 for ($i = 0; $i < $max; $i++) {
@@ -214,7 +215,7 @@ final class Builder
         $max      = \count($original);
 
         for ($i = 0; $i < $max; $i++) {
-            $files[\implode(\DIRECTORY_SEPARATOR, $paths[$i])] = $files[$original[$i]];
+            $files[\implode('/', $paths[$i])] = $files[$original[$i]];
             unset($files[$original[$i]]);
         }
 

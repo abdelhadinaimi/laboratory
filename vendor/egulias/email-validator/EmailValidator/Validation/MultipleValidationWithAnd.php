@@ -62,8 +62,7 @@ class MultipleValidationWithAnd implements EmailValidation
         $errors = [];
         foreach ($this->validations as $validation) {
             $emailLexer->reset();
-            $validationResult = $validation->isValid($email, $emailLexer);
-            $result = $result && $validationResult;
+            $result = $result && $validation->isValid($email, $emailLexer);
             $this->warnings = array_merge($this->warnings, $validation->getWarnings());
             $errors = $this->addNewError($validation->getError(), $errors);
 

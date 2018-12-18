@@ -61,7 +61,7 @@ class CacheManager implements FactoryContract
     /**
      * Get a cache driver instance.
      *
-     * @param  string|null  $driver
+     * @param  string  $driver
      * @return mixed
      */
     public function driver($driver = null)

@@ -45,7 +45,7 @@ class MongoDbSessionHandlerTest extends TestCase
             'data_field' => 'data',
             'time_field' => 'time',
             'expiry_field' => 'expires_at',
-            'database' => 'sf-test',
+            'database' => 'sf2-test',
             'collection' => 'session-test',
         );
 

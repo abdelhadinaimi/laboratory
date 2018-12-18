@@ -19,14 +19,9 @@ class Payment extends \Faker\Provider\Payment
      */
     public function vat($spacedNationalPrefix = true)
     {
-        $siren = Company::siren(false);
-        $key = (12 + 3 * ($siren % 97)) % 97;
-        $pattern = "%s%'.02d%s";
-        if ($spacedNationalPrefix) {
-            $siren = trim(chunk_split($siren, 3, ' '));
-            $pattern = "%s %'.02d %s";
-        }
-        return sprintf($pattern, 'FR', $key, $siren);
+        $prefix = ($spacedNationalPrefix) ? "FR " : "FR";
+
+        return sprintf("%s%s%s%s", $prefix, self::randomNumber(2, true), $this->siren($spacedNationalPrefix));
     }
 
     /**

@@ -1,5 +1,5 @@
 var refTmp;
-    
+
 
 function removeMat($idMat){
     $('#body-removeMat').attr('role',$idMat);
@@ -24,17 +24,7 @@ function removeMat($idMat){
     function affecterMat($idMat){
         updateLists();
        $('#body-affecter').attr('role',$idMat);
-    var da = new Date(),        
-      hd = da.getHours(),
-      md = da.getMinutes();
-         if(hd < 10) hd = '0' + hd; 
-  if(md < 10) md = '0' + md; 
-  $('#timeAffect').each(function(){ 
-    $(this).attr({'value': hd + ':' + md});
-  });
-    var today = moment().format('YYYY-MM-DD');
 
- $('#dateAffect').val(today);
       
     }
 
@@ -42,17 +32,7 @@ function removeMat($idMat){
         updateLists();
        $('#body-RendreMatMembre').attr('role',$idMat);
        $('#body-RendreMatMembre').attr('role2',$idAffectM);
-        var d = new Date(),        
-      h = d.getHours(),
-      m = d.getMinutes();
-         if(h < 10) h = '0' + h; 
-  if(m < 10) m = '0' + m; 
-  $('#timeRendre').each(function(){ 
-    $(this).attr({'value': h + ':' + m});
-  });
-      var todayy = moment().format('YYYY-MM-DD');
 
- $('#dateRendre').val(todayy);
 
       
     }
@@ -60,16 +40,7 @@ function removeMat($idMat){
         updateLists();
        $('#body-RendreMatEquipe').attr('role',$idMat);
        $('#body-RendreMatEquipe').attr('role2',$idAffectE);
-        var s = new Date(),        
-      hs = s.getHours(),
-      ms = s.getMinutes();
-         if(hs < 10) hs = '0' + hs; 
-  if(ms < 10) ms = '0' + ms; 
-  $('#timeRendreEE').each(function(){ 
-    $(this).attr({'value': hs + ':' + ms});
-  });
-      var todayyy = moment().format('YYYY-MM-DD');
- $('#dateRendreEE').val(todayyy);
+
       
     }
    

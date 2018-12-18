@@ -7,6 +7,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 namespace SebastianBergmann\CodeCoverage\Report\Xml;
 
 use TheSeer\Tokenizer\NamespaceUri;
@@ -18,6 +19,9 @@ final class Source
     /** @var \DOMElement */
     private $context;
 
+    /**
+     * @param \DOMElement $context
+     */
     public function __construct(\DOMElement $context)
     {
         $this->context = $context;

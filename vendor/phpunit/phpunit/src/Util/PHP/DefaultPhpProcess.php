@@ -99,9 +99,9 @@ class DefaultPhpProcess extends AbstractPhpProcess
 
         \fclose($pipes[0]);
 
-        $stderr = $stdout = '';
-
         if ($this->timeout) {
+            $stderr = $stdout = '';
+
             unset($pipes[0]);
 
             while (true) {
@@ -114,7 +114,6 @@ class DefaultPhpProcess extends AbstractPhpProcess
                 if ($n === false) {
                     break;
                 }
-
                 if ($n === 0) {
                     \proc_terminate($process, 9);
 
@@ -125,7 +124,6 @@ class DefaultPhpProcess extends AbstractPhpProcess
                         )
                     );
                 }
-
                 if ($n > 0) {
                     foreach ($r as $pipe) {
                         $pipeOffset = 0;

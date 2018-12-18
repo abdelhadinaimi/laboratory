@@ -1,12 +1,4 @@
 <?php
-/*
- * This file is part of PHPUnit.
- *
- * (c) Sebastian Bergmann <sebastian@phpunit.de>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
 use PHPUnit\Framework\TestCase;
 
 class ClonedDependencyTest extends TestCase
@@ -28,7 +20,7 @@ class ClonedDependencyTest extends TestCase
     /**
      * @depends testOne
      */
-    public function testTwo($dependency): void
+    public function testTwo($dependency)
     {
         $this->assertSame(self::$dependency, $dependency);
     }
@@ -36,7 +28,7 @@ class ClonedDependencyTest extends TestCase
     /**
      * @depends !clone testOne
      */
-    public function testThree($dependency): void
+    public function testThree($dependency)
     {
         $this->assertSame(self::$dependency, $dependency);
     }
@@ -44,7 +36,7 @@ class ClonedDependencyTest extends TestCase
     /**
      * @depends clone testOne
      */
-    public function testFour($dependency): void
+    public function testFour($dependency)
     {
         $this->assertNotSame(self::$dependency, $dependency);
     }
@@ -52,7 +44,7 @@ class ClonedDependencyTest extends TestCase
     /**
      * @depends !shallowClone testOne
      */
-    public function testFive($dependency): void
+    public function testFive($dependency)
     {
         $this->assertSame(self::$dependency, $dependency);
     }
@@ -60,7 +52,7 @@ class ClonedDependencyTest extends TestCase
     /**
      * @depends shallowClone testOne
      */
-    public function testSix($dependency): void
+    public function testSix($dependency)
     {
         $this->assertNotSame(self::$dependency, $dependency);
     }

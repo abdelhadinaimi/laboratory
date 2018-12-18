@@ -2,7 +2,7 @@
 
 namespace PharIo\Manifest;
 
-class AuthorElementTest extends \PHPUnit\Framework\TestCase {
+class AuthorElementTest extends \PHPUnit_Framework_TestCase {
     /**
      * @var AuthorElement
      */

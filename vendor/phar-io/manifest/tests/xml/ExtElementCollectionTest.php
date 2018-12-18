@@ -4,7 +4,7 @@ namespace PharIo\Manifest;
 
 use DOMDocument;
 
-class ExtElementCollectionTest extends \PHPUnit\Framework\TestCase {
+class ExtElementCollectionTest extends \PHPUnit_Framework_TestCase {
     public function testComponentElementCanBeRetrievedFromCollection() {
         $dom = new DOMDocument();
         $dom->loadXML('<?xml version="1.0" ?><ext xmlns="https://phar.io/xml/manifest/1.0" />');

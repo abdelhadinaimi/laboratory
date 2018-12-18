@@ -77,7 +77,7 @@ class ProphecySubjectPatch implements ClassPatchInterface
             $__call->addArgument(new ArgumentNode('name'));
             $__call->addArgument(new ArgumentNode('arguments'));
 
-            $node->addMethod($__call, true);
+            $node->addMethod($__call);
         }
 
         $__call->setCode(<<<PHP
@@ -88,8 +88,8 @@ throw new \Prophecy\Exception\Doubler\MethodNotFoundException(
 PHP
         );
 
-        $node->addMethod($prophecySetter, true);
-        $node->addMethod($prophecyGetter, true);
+        $node->addMethod($prophecySetter);
+        $node->addMethod($prophecyGetter);
     }
 
     /**

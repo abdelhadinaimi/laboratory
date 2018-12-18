@@ -40,7 +40,7 @@ class FilterHandler extends AbstractHandler
     /**
      * Whether the messages that are handled can bubble up the stack or not
      *
-     * @var bool
+     * @var Boolean
      */
     protected $bubble;
 
@@ -48,7 +48,7 @@ class FilterHandler extends AbstractHandler
      * @param callable|HandlerInterface $handler        Handler or factory callable($record, $this).
      * @param int|array                 $minLevelOrList A list of levels to accept or a minimum level if maxLevel is provided
      * @param int                       $maxLevel       Maximum level to accept, only used if $minLevelOrList is not an array
-     * @param bool                      $bubble         Whether the messages that are handled can bubble up the stack or not
+     * @param Boolean                   $bubble         Whether the messages that are handled can bubble up the stack or not
      */
     public function __construct($handler, $minLevelOrList = Logger::DEBUG, $maxLevel = Logger::EMERGENCY, $bubble = true)
     {

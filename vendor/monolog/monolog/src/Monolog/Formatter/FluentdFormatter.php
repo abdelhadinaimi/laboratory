@@ -62,7 +62,6 @@ class FluentdFormatter implements FormatterInterface
 
         $message = array(
             'message' => $record['message'],
-            'context' => $record['context'],
             'extra' => $record['extra'],
         );
 

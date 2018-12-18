@@ -94,7 +94,7 @@ trait InteractsWithInput
     /**
      * Determine if the request contains any of the given inputs.
      *
-     * @param  string|array  $keys
+     * @param  string|array  $key
      * @return bool
      */
     public function hasAny($keys)

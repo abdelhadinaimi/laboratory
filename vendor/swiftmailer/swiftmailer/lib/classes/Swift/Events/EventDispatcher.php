@@ -34,7 +34,7 @@ interface Swift_Events_EventDispatcher
      *
      * @return Swift_Events_CommandEvent
      */
-    public function createCommandEvent(Swift_Transport $source, $command, $successCodes = []);
+    public function createCommandEvent(Swift_Transport $source, $command, $successCodes = array());
 
     /**
      * Create a new ResponseEvent for $source and $response.

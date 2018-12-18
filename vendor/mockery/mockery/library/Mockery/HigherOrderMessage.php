@@ -39,11 +39,12 @@ class HigherOrderMessage
      */
     public function __call($method, $args)
     {
-        if ($this->method === 'shouldNotHaveReceived') {
-            return $this->mock->{$this->method}($method, $args);
+        $expectation = $this->mock->{$this->method}($method);
+
+        if ($this->method !== "shouldNotHaveReceived") {
+            return $expectation->withArgs($args);
         }
 
-        $expectation = $this->mock->{$this->method}($method);
-        return $expectation->withArgs($args);
+        return $expectation;
     }
 }

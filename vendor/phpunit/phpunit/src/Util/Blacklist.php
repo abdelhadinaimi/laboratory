@@ -7,11 +7,13 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 namespace PHPUnit\Util;
 
 use Composer\Autoload\ClassLoader;
 use DeepCopy\DeepCopy;
 use Doctrine\Instantiator\Instantiator;
+use File_Iterator;
 use PHP_Token;
 use phpDocumentor\Reflection\DocBlock;
 use PHPUnit\Framework\MockObject\Generator;
@@ -23,7 +25,6 @@ use SebastianBergmann\Comparator\Comparator;
 use SebastianBergmann\Diff\Diff;
 use SebastianBergmann\Environment\Runtime;
 use SebastianBergmann\Exporter\Exporter;
-use SebastianBergmann\FileIterator\Facade as FileIteratorFacade;
 use SebastianBergmann\GlobalState\Snapshot;
 use SebastianBergmann\Invoker\Invoker;
 use SebastianBergmann\RecursionContext\Context;
@@ -40,7 +41,7 @@ final class Blacklist
      * @var array
      */
     public static $blacklistedClassNames = [
-        FileIteratorFacade::class     => 1,
+        File_Iterator::class          => 1,
         Timer::class                  => 1,
         PHP_Token::class              => 1,
         TestCase::class               => 2,
@@ -61,7 +62,7 @@ final class Blacklist
         Instantiator::class           => 1,
         DocBlock::class               => 1,
         Prophet::class                => 1,
-        DeepCopy::class               => 1,
+        DeepCopy::class               => 1
     ];
 
     /**
@@ -117,7 +118,7 @@ final class Blacklist
             }
 
             // Hide process isolation workaround on Windows.
-            if (\DIRECTORY_SEPARATOR === '\\') {
+            if (DIRECTORY_SEPARATOR === '\\') {
                 // tempnam() prefix is limited to first 3 chars.
                 // @see https://php.net/manual/en/function.tempnam.php
                 self::$directories[] = \sys_get_temp_dir() . '\\PHP';

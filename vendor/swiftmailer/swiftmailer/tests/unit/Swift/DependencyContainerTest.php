@@ -78,17 +78,11 @@ class Swift_DependencyContainerTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals($a, $b);
     }
 
-    public function testRegisterAndLookupArray()
-    {
-        $this->container->register('One')->asArray();
-        $this->assertSame([], $this->container->lookup('One'));
-    }
-
     public function testNewInstanceWithDependencies()
     {
         $this->container->register('foo')->asValue('FOO');
         $this->container->register('one')->asNewInstanceOf('One')
-            ->withDependencies(['foo']);
+            ->withDependencies(array('foo'));
         $obj = $this->container->lookup('one');
         $this->assertSame('FOO', $obj->arg1);
     }
@@ -98,7 +92,7 @@ class Swift_DependencyContainerTest extends \PHPUnit\Framework\TestCase
         $this->container->register('foo')->asValue('FOO');
         $this->container->register('bar')->asValue(42);
         $this->container->register('one')->asNewInstanceOf('One')
-            ->withDependencies(['foo', 'bar']);
+            ->withDependencies(array('foo', 'bar'));
         $obj = $this->container->lookup('one');
         $this->assertSame('FOO', $obj->arg1);
         $this->assertSame(42, $obj->arg2);
@@ -109,7 +103,7 @@ class Swift_DependencyContainerTest extends \PHPUnit\Framework\TestCase
         $this->container->register('foo')->asValue('FOO');
         $this->container->register('one')->asNewInstanceOf('One');
         $this->container->register('two')->asNewInstanceOf('One')
-            ->withDependencies(['one', 'foo']);
+            ->withDependencies(array('one', 'foo'));
         $obj = $this->container->lookup('two');
         $this->assertEquals($this->container->lookup('one'), $obj->arg1);
         $this->assertSame('FOO', $obj->arg2);
@@ -143,10 +137,10 @@ class Swift_DependencyContainerTest extends \PHPUnit\Framework\TestCase
         $this->container->register('foo')->asValue('FOO');
         $this->container->register('one')->asNewInstanceOf('One');
         $this->container->register('two')->asNewInstanceOf('One')
-            ->withDependencies(['one', 'foo']);
+            ->withDependencies(array('one', 'foo'));
         $deps = $this->container->createDependenciesFor('two');
         $this->assertEquals(
-            [$this->container->lookup('one'), 'FOO'], $deps
+            array($this->container->lookup('one'), 'FOO'), $deps
             );
     }
 
@@ -155,20 +149,11 @@ class Swift_DependencyContainerTest extends \PHPUnit\Framework\TestCase
         $this->container->register('foo')->asValue('FOO');
         $this->container->register('one')->asNewInstanceOf('One');
         $this->container->register('two')->asNewInstanceOf('One')
-            ->withDependencies([['one', 'foo'], 'foo']);
+            ->withDependencies(array(array('one', 'foo'), 'foo'));
 
         $obj = $this->container->lookup('two');
-        $this->assertEquals([$this->container->lookup('one'), 'FOO'], $obj->arg1);
+        $this->assertEquals(array($this->container->lookup('one'), 'FOO'), $obj->arg1);
         $this->assertSame('FOO', $obj->arg2);
-    }
-
-    public function testArrayWithDependencies()
-    {
-        $this->container->register('foo')->asValue('FOO');
-        $this->container->register('bar')->asValue(42);
-        $this->container->register('one')->asArray('One')
-            ->withDependencies(['foo', 'bar']);
-        $this->assertSame(['FOO', 42], $this->container->lookup('one'));
     }
 
     public function testAliasCanBeSet()

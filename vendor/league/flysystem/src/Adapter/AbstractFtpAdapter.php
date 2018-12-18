@@ -72,6 +72,11 @@ abstract class AbstractFtpAdapter extends AbstractAdapter
     protected $systemType;
 
     /**
+     * @var bool
+     */
+    protected $alternativeRecursion = false;
+
+    /**
      * @var SafeStorage
      */
     protected $safeStorage;

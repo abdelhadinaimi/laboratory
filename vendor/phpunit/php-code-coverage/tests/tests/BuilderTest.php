@@ -10,9 +10,6 @@
 
 namespace SebastianBergmann\CodeCoverage\Report;
 
-use SebastianBergmann\CodeCoverage\Driver\Driver;
-use SebastianBergmann\CodeCoverage\CodeCoverage;
-use SebastianBergmann\CodeCoverage\Filter;
 use SebastianBergmann\CodeCoverage\TestCase;
 use SebastianBergmann\CodeCoverage\Node\Builder;
 
@@ -128,25 +125,8 @@ class BuilderTest extends TestCase
         $this->assertEquals([], $root->getFunctions());
     }
 
-    public function testNotCrashParsing()
-    {
-        $coverage = $this->getCoverageForCrashParsing();
-        $root = $coverage->getReport();
-
-        $expectedPath = rtrim(TEST_FILES_PATH, DIRECTORY_SEPARATOR);
-        $this->assertEquals($expectedPath, $root->getName());
-        $this->assertEquals($expectedPath, $root->getPath());
-        $this->assertEquals(2, $root->getNumExecutableLines());
-        $this->assertEquals(0, $root->getNumExecutedLines());
-        $data = $coverage->getData();
-        $expectedFile = $expectedPath . DIRECTORY_SEPARATOR . 'Crash.php';
-        $this->assertSame([$expectedFile => [1 => [], 2 => []]], $data);
-    }
-
     public function testBuildDirectoryStructure()
     {
-        $s = \DIRECTORY_SEPARATOR;
-
         $method = new \ReflectionMethod(
             Builder::class,
             'buildDirectoryStructure'
@@ -158,23 +138,12 @@ class BuilderTest extends TestCase
             [
                 'src' => [
                     'Money.php/f'    => [],
-                    'MoneyBag.php/f' => [],
-                    'Foo' => [
-                        'Bar' => [
-                            'Baz' => [
-                                'Foo.php/f' => [],
-                            ],
-                        ],
-                    ],
+                    'MoneyBag.php/f' => []
                 ]
             ],
             $method->invoke(
                 $this->factory,
-                [
-                    "src{$s}Money.php" => [],
-                    "src{$s}MoneyBag.php" => [],
-                    "src{$s}Foo{$s}Bar{$s}Baz{$s}Foo.php" => [],
-                ]
+                ['src/Money.php' => [], 'src/MoneyBag.php' => []]
             )
         );
     }
@@ -199,52 +168,45 @@ class BuilderTest extends TestCase
 
     public function reducePathsProvider()
     {
-        $s = \DIRECTORY_SEPARATOR;
-
-        yield [
-            [],
-            ".",
-            []
+        return [
+            [
+                [
+                    'Money.php'    => [],
+                    'MoneyBag.php' => []
+                ],
+                '/home/sb/Money',
+                [
+                    '/home/sb/Money/Money.php'    => [],
+                    '/home/sb/Money/MoneyBag.php' => []
+                ]
+            ],
+            [
+                [
+                    'Money.php' => []
+                ],
+                '/home/sb/Money/',
+                [
+                    '/home/sb/Money/Money.php' => []
+                ]
+            ],
+            [
+                [],
+                '.',
+                []
+            ],
+            [
+                [
+                    'Money.php'          => [],
+                    'MoneyBag.php'       => [],
+                    'Cash.phar/Cash.php' => [],
+                ],
+                '/home/sb/Money',
+                [
+                    '/home/sb/Money/Money.php'                 => [],
+                    '/home/sb/Money/MoneyBag.php'              => [],
+                    'phar:///home/sb/Money/Cash.phar/Cash.php' => [],
+                ],
+            ],
         ];
-
-        $prefixes = ["C:$s", "$s"];
-
-        foreach($prefixes as $p){
-            yield [
-                [
-                    "Money.php" => []
-                ],
-                "{$p}home{$s}sb{$s}Money{$s}",
-                [
-                    "{$p}home{$s}sb{$s}Money{$s}Money.php" => []
-                ]
-            ];
-
-            yield [
-                [
-                    "Money.php"    => [],
-                    "MoneyBag.php" => []
-                ],
-                "{$p}home{$s}sb{$s}Money",
-                [
-                    "{$p}home{$s}sb{$s}Money{$s}Money.php"    => [],
-                    "{$p}home{$s}sb{$s}Money{$s}MoneyBag.php" => []
-                ]
-            ];
-
-            yield [
-                [
-                    "Money.php"          => [],
-                    "MoneyBag.php"       => [],
-                    "Cash.phar{$s}Cash.php" => [],
-                ],
-                "{$p}home{$s}sb{$s}Money",
-                [
-                    "{$p}home{$s}sb{$s}Money{$s}Money.php"                 => [],
-                    "{$p}home{$s}sb{$s}Money{$s}MoneyBag.php"              => [],
-                    "phar://{$p}home{$s}sb{$s}Money{$s}Cash.phar{$s}Cash.php" => [],
-                ],
-            ];
-        }
     }
 }

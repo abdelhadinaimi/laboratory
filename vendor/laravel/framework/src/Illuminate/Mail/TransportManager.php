@@ -91,7 +91,7 @@ class TransportManager extends Manager
     protected function addSesCredentials(array $config)
     {
         if ($config['key'] && $config['secret']) {
-            $config['credentials'] = Arr::only($config, ['key', 'secret', 'token']);
+            $config['credentials'] = Arr::only($config, ['key', 'secret']);
         }
 
         return $config;

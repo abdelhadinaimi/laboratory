@@ -2,7 +2,7 @@
 
 namespace PharIo\Manifest;
 
-class ComponentElementTest extends \PHPUnit\Framework\TestCase {
+class ComponentElementTest extends \PHPUnit_Framework_TestCase {
     /**
      * @var ComponentElement
      */

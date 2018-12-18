@@ -145,12 +145,10 @@ class Factory implements FactoryContract
      * @param  array   $data
      * @param  array   $mergeData
      * @return \Illuminate\Contracts\View\View
-     *
-     * @throws \InvalidArgumentException
      */
     public function first(array $views, $data = [], $mergeData = [])
     {
-        $view = Arr::first($views, function ($view) {
+        $view = collect($views)->first(function ($view) {
             return $this->exists($view);
         });
 

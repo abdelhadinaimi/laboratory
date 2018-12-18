@@ -3,9 +3,8 @@
 namespace Faker\Test\Provider;
 
 use Faker\Provider\Miscellaneous;
-use PHPUnit\Framework\TestCase;
 
-class MiscellaneousTest extends TestCase
+class MiscellaneousTest extends \PHPUnit_Framework_TestCase
 {
     public function testBoolean()
     {

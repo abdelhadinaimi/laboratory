@@ -7,6 +7,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 namespace PHPUnit\Util;
 
 use PHPUnit\Framework\TestCase;
@@ -17,7 +18,7 @@ final class TextTestListRenderer
 {
     public function render(TestSuite $suite): string
     {
-        $buffer = 'Available test(s):' . \PHP_EOL;
+        $buffer = 'Available test(s):' . PHP_EOL;
 
         foreach (new \RecursiveIteratorIterator($suite->getIterator()) as $test) {
             if ($test instanceof TestCase) {
@@ -33,7 +34,7 @@ final class TextTestListRenderer
             }
 
             $buffer .= \sprintf(
-                ' - %s' . \PHP_EOL,
+                ' - %s' . PHP_EOL,
                 $name
             );
         }

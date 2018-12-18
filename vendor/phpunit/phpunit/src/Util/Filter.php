@@ -54,7 +54,6 @@ final class Filter
 
         foreach ($eTrace as $frame) {
             if (isset($frame['file']) && \is_file($frame['file']) &&
-                (empty($GLOBALS['__PHPUNIT_ISOLATION_BLACKLIST']) || !\in_array($frame['file'], $GLOBALS['__PHPUNIT_ISOLATION_BLACKLIST'])) &&
                 !$blacklist->isBlacklisted($frame['file']) &&
                 ($prefix === false || \strpos($frame['file'], $prefix) !== 0) &&
                 $frame['file'] !== $script) {

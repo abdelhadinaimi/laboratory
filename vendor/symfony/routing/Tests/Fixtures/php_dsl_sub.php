@@ -6,7 +6,6 @@ return function (RoutingConfigurator $routes) {
     $add = $routes->collection('c_')
         ->prefix('pub');
 
-    $add('root', '/');
     $add('bar', '/bar');
 
     $add->collection('pub_')

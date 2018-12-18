@@ -209,17 +209,14 @@ class Person extends \Faker\Provider\Person
             $birthDate = DateTime::dateTimeBetween();
         }
 
-        do {
-            $population = mt_rand(1000, 2000);
-            $century = self::getCenturyByYear((int) $birthDate->format('Y'));
+        $population = mt_rand(1000, 2000);
+        $century    = self::getCenturyByYear((int) $birthDate->format('Y'));
 
-            $iin = $birthDate->format('ymd');
-            $iin .= (string) self::$genderCenturyMap[$gender][$century];
-            $iin .= (string) $population;
-            $checksum = self::checkSum($iin);
-        } while ($checksum === 10);
+        $iin  = $birthDate->format('ymd');
+        $iin .= (string) self::$genderCenturyMap[$gender][$century];
+        $iin .= (string) $population;
 
-        return $iin . (string) $checksum;
+        return  $iin . (string) self::checkSum($iin);
     }
 
     /**

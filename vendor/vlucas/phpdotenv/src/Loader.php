@@ -29,13 +29,6 @@ class Loader
     protected $immutable;
 
     /**
-     * The list of environment variables declared inside the 'env' file.
-     *
-     * @var array
-     */
-    public $variableNames = array();
-
-    /**
      * Create a new loader instance.
      *
      * @param string $filePath
@@ -47,29 +40,6 @@ class Loader
     {
         $this->filePath = $filePath;
         $this->immutable = $immutable;
-    }
-
-    /**
-     * Set immutable value.
-     *
-     * @param bool $immutable
-     * @return $this
-     */
-    public function setImmutable($immutable = false)
-    {
-        $this->immutable = $immutable;
-
-        return $this;
-    }
-
-    /**
-     * Get immutable value.
-     *
-     * @return bool
-     */
-    public function getImmutable()
-    {
-        return $this->immutable;
     }
 
     /**
@@ -122,7 +92,9 @@ class Loader
      */
     protected function normaliseEnvironmentVariable($name, $value)
     {
-        list($name, $value) = $this->processFilters($name, $value);
+        list($name, $value) = $this->splitCompoundStringIntoParts($name, $value);
+        list($name, $value) = $this->sanitiseVariableName($name, $value);
+        list($name, $value) = $this->sanitiseVariableValue($name, $value);
 
         $value = $this->resolveNestedVariables($value);
 
@@ -132,7 +104,7 @@ class Loader
     /**
      * Process the runtime filters.
      *
-     * Called from `normaliseEnvironmentVariable` and the `VariableFactory`, passed as a callback in `$this->loadFromFile()`.
+     * Called from the `VariableFactory`, passed as a callback in `$this->loadFromFile()`.
      *
      * @param string $name
      * @param string $value
@@ -175,9 +147,7 @@ class Loader
      */
     protected function isComment($line)
     {
-        $line = ltrim($line);
-
-        return isset($line[0]) && $line[0] === '#';
+        return strpos(ltrim($line), '#') === 0;
     }
 
     /**
@@ -233,16 +203,16 @@ class Loader
             $quote = $value[0];
             $regexPattern = sprintf(
                 '/^
-                %1$s           # match a quote at the start of the value
-                (              # capturing sub-pattern used
-                 (?:           # we do not need to capture this
-                  [^%1$s\\\\]* # any character other than a quote or backslash
-                  |\\\\\\\\    # or two backslashes together
-                  |\\\\%1$s    # or an escaped quote e.g \"
-                 )*            # as many characters that match the previous rules
-                )              # end of the capturing sub-pattern
-                %1$s           # and the closing quote
-                .*$            # and discard any string after the closing quote
+                %1$s          # match a quote at the start of the value
+                (             # capturing sub-pattern used
+                 (?:          # we do not need to capture this
+                  [^%1$s\\\\] # any character other than a quote or backslash
+                  |\\\\\\\\   # or two backslashes together
+                  |\\\\%1$s   # or an escaped quote e.g \"
+                 )*           # as many characters that match the previous rules
+                )             # end of the capturing sub-pattern
+                %1$s          # and the closing quote
+                .*$           # and discard any string after the closing quote
                 /mx',
                 $quote
             );
@@ -255,12 +225,7 @@ class Loader
 
             // Unquoted values cannot contain whitespace
             if (preg_match('/\s+/', $value) > 0) {
-                // Check if value is a comment (usually triggered when empty value with comment)
-                if (preg_match('/^#/', $value) > 0) {
-                    $value = '';
-                } else {
-                    throw new InvalidFileException('Dotenv values containing spaces must be surrounded by quotes.');
-                }
+                throw new InvalidFileException('Dotenv values containing spaces must be surrounded by quotes.');
             }
         }
 
@@ -270,7 +235,7 @@ class Loader
     /**
      * Resolve the nested variables.
      *
-     * Look for ${varname} patterns in the variable value and replace with an
+     * Look for {$varname} patterns in the variable value and replace with an
      * existing environment variable.
      *
      * @param string $value
@@ -282,7 +247,7 @@ class Loader
         if (strpos($value, '$') !== false) {
             $loader = $this;
             $value = preg_replace_callback(
-                '/\${([a-zA-Z0-9_.]+)}/',
+                '/\${([a-zA-Z0-9_]+)}/',
                 function ($matchedPatterns) use ($loader) {
                     $nestedVariable = $loader->getEnvironmentVariable($matchedPatterns[1]);
                     if ($nestedVariable === null) {
@@ -322,7 +287,7 @@ class Loader
      */
     protected function beginsWithAQuote($value)
     {
-        return isset($value[0]) && ($value[0] === '"' || $value[0] === '\'');
+        return strpbrk($value[0], '"\'') !== false;
     }
 
     /**
@@ -363,8 +328,6 @@ class Loader
     public function setEnvironmentVariable($name, $value = null)
     {
         list($name, $value) = $this->normaliseEnvironmentVariable($name, $value);
-
-        $this->variableNames[] = $name;
 
         // Don't overwrite existing environment variables if we're immutable
         // Ruby's dotenv does this with `ENV[key] ||= value`.

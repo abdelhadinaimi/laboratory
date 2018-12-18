@@ -20,6 +20,8 @@ class Swift_Plugins_LoggerPlugin implements Swift_Events_CommandListener, Swift_
 
     /**
      * Create a new LoggerPlugin using $logger.
+     *
+     * @param Swift_Plugins_Logger $logger
      */
     public function __construct(Swift_Plugins_Logger $logger)
     {
@@ -56,6 +58,8 @@ class Swift_Plugins_LoggerPlugin implements Swift_Events_CommandListener, Swift_
 
     /**
      * Invoked immediately following a command being sent.
+     *
+     * @param Swift_Events_CommandEvent $evt
      */
     public function commandSent(Swift_Events_CommandEvent $evt)
     {
@@ -65,6 +69,8 @@ class Swift_Plugins_LoggerPlugin implements Swift_Events_CommandListener, Swift_
 
     /**
      * Invoked immediately following a response coming back.
+     *
+     * @param Swift_Events_ResponseEvent $evt
      */
     public function responseReceived(Swift_Events_ResponseEvent $evt)
     {
@@ -74,6 +80,8 @@ class Swift_Plugins_LoggerPlugin implements Swift_Events_CommandListener, Swift_
 
     /**
      * Invoked just before a Transport is started.
+     *
+     * @param Swift_Events_TransportChangeEvent $evt
      */
     public function beforeTransportStarted(Swift_Events_TransportChangeEvent $evt)
     {
@@ -83,6 +91,8 @@ class Swift_Plugins_LoggerPlugin implements Swift_Events_CommandListener, Swift_
 
     /**
      * Invoked immediately after the Transport is started.
+     *
+     * @param Swift_Events_TransportChangeEvent $evt
      */
     public function transportStarted(Swift_Events_TransportChangeEvent $evt)
     {
@@ -92,6 +102,8 @@ class Swift_Plugins_LoggerPlugin implements Swift_Events_CommandListener, Swift_
 
     /**
      * Invoked just before a Transport is stopped.
+     *
+     * @param Swift_Events_TransportChangeEvent $evt
      */
     public function beforeTransportStopped(Swift_Events_TransportChangeEvent $evt)
     {
@@ -101,6 +113,8 @@ class Swift_Plugins_LoggerPlugin implements Swift_Events_CommandListener, Swift_
 
     /**
      * Invoked immediately after the Transport is stopped.
+     *
+     * @param Swift_Events_TransportChangeEvent $evt
      */
     public function transportStopped(Swift_Events_TransportChangeEvent $evt)
     {
@@ -110,6 +124,8 @@ class Swift_Plugins_LoggerPlugin implements Swift_Events_CommandListener, Swift_
 
     /**
      * Invoked as a TransportException is thrown in the Transport system.
+     *
+     * @param Swift_Events_TransportExceptionEvent $evt
      */
     public function exceptionThrown(Swift_Events_TransportExceptionEvent $evt)
     {

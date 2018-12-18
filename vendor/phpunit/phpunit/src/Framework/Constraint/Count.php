@@ -20,7 +20,7 @@ class Count extends Constraint
     /**
      * @var int
      */
-    private $expectedCount;
+    private $expectedCount = 0;
 
     public function __construct(int $expected)
     {
@@ -40,6 +40,8 @@ class Count extends Constraint
     /**
      * Evaluates the constraint for parameter $other. Returns true if the
      * constraint is met, false otherwise.
+     *
+     * @param mixed $other
      */
     protected function matches($other): bool
     {

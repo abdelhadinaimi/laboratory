@@ -35,8 +35,6 @@ class Parser
      *
      * @param  string  $expression
      * @return string
-     *
-     * @throws \InvalidArgumentException
      */
     protected static function name($expression)
     {

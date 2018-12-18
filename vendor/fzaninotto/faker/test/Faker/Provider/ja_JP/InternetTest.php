@@ -4,9 +4,8 @@ namespace Faker\Test\Provider\ja_JP;
 
 use Faker\Generator;
 use Faker\Provider\ja_JP\Internet;
-use PHPUnit\Framework\TestCase;
 
-class InternetTest extends TestCase
+class InternetTest extends \PHPUnit_Framework_TestCase
 {
     public function testUserName()
     {

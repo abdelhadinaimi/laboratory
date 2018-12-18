@@ -229,7 +229,7 @@ class QueueFake extends QueueManager implements Queue
      */
     public function size($queue = null)
     {
-        return count($this->jobs);
+        return 0;
     }
 
     /**

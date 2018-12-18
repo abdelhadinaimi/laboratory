@@ -139,18 +139,6 @@ class Base
         $max = $int1 < $int2 ? $int2 : $int1;
         return mt_rand($min, $max);
     }
-    
-    /**
-     * Returns the passed value
-     *
-     * @param mixed $value
-     *
-     * @return mixed
-     */
-    public static function passthrough($value)
-    {
-        return $value;
-    }
 
     /**
      * Returns a random letter from a to z
@@ -180,19 +168,9 @@ class Base
      *
      * @return array New array with $count elements from $array
      */
-    public static function randomElements($array = array('a', 'b', 'c'), $count = 1, $allowDuplicates = false)
+    public static function randomElements(array $array = array('a', 'b', 'c'), $count = 1, $allowDuplicates = false)
     {
-        $traversables = array();
-
-        if ($array instanceof \Traversable) {
-            foreach ($array as $element) {
-                $traversables[] = $element;
-            }
-        }
-
-        $arr = count($traversables) ? $traversables : $array;
-
-        $allKeys = array_keys($arr);
+        $allKeys = array_keys($array);
         $numKeys = count($allKeys);
 
         if (!$allowDuplicates && $numKeys < $count) {
@@ -213,7 +191,7 @@ class Base
                 $keys[$num] = true;
             }
 
-            $elements[] = $arr[$allKeys[$num]];
+            $elements[] = $array[$allKeys[$num]];
             $numElements++;
         }
 
@@ -228,7 +206,7 @@ class Base
      */
     public static function randomElement($array = array('a', 'b', 'c'))
     {
-        if (!$array || ($array instanceof \Traversable && !count($array))) {
+        if (!$array) {
             return null;
         }
         $elements = static::randomElements($array, 1);

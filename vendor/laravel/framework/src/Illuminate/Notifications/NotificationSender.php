@@ -2,7 +2,7 @@
 
 namespace Illuminate\Notifications;
 
-use Illuminate\Support\Str;
+use Ramsey\Uuid\Uuid;
 use Illuminate\Support\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -83,7 +83,7 @@ class NotificationSender
                 continue;
             }
 
-            $notificationId = Str::uuid()->toString();
+            $notificationId = Uuid::uuid4()->toString();
 
             foreach ((array) $viaChannels as $channel) {
                 $this->sendToNotifiable($notifiable, $notificationId, clone $original, $channel);
@@ -146,7 +146,7 @@ class NotificationSender
         $original = clone $notification;
 
         foreach ($notifiables as $notifiable) {
-            $notificationId = Str::uuid()->toString();
+            $notificationId = Uuid::uuid4()->toString();
 
             foreach ($original->via($notifiable) as $channel) {
                 $notification = clone $original;

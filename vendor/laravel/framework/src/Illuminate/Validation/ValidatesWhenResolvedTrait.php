@@ -16,13 +16,11 @@ trait ValidatesWhenResolvedTrait
     {
         $this->prepareForValidation();
 
-        if (! $this->passesAuthorization()) {
-            $this->failedAuthorization();
-        }
-
         $instance = $this->getValidatorInstance();
 
-        if (! $instance->passes()) {
+        if (! $this->passesAuthorization()) {
+            $this->failedAuthorization();
+        } elseif (! $instance->passes()) {
             $this->failedValidation($instance);
         }
     }

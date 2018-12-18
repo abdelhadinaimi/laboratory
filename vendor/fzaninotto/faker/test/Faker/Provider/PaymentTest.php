@@ -9,9 +9,8 @@ use Faker\Provider\Base as BaseProvider;
 use Faker\Provider\DateTime as DateTimeProvider;
 use Faker\Provider\Payment as PaymentProvider;
 use Faker\Provider\Person as PersonProvider;
-use PHPUnit\Framework\TestCase;
 
-class PaymentTest extends TestCase
+class PaymentTest extends \PHPUnit_Framework_TestCase
 {
     private $faker;
 
@@ -48,15 +47,14 @@ class PaymentTest extends TestCase
 
     public function testCreditCardTypeReturnsValidVendorName()
     {
-        $this->assertContains($this->faker->creditCardType, array('Visa', 'Visa Retired', 'MasterCard', 'American Express', 'Discover Card'));
+        $this->assertTrue(in_array($this->faker->creditCardType, array('Visa', 'MasterCard', 'American Express', 'Discover Card')));
     }
 
     public function creditCardNumberProvider()
     {
         return array(
             array('Discover Card', '/^6011\d{12}$/'),
-            array('Visa', '/^4\d{15}$/'),
-            array('Visa Retired', '/^4\d{12}$/'),
+            array('Visa', '/^4\d{12,15}$/'),
             array('MasterCard', '/^(5[1-5]|2[2-7])\d{14}$/')
         );
     }

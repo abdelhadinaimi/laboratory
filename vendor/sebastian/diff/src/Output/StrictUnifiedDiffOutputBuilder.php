@@ -20,15 +20,6 @@ use SebastianBergmann\Diff\Differ;
  */
 final class StrictUnifiedDiffOutputBuilder implements DiffOutputBuilderInterface
 {
-    private static $default = [
-        'collapseRanges'      => true, // ranges of length one are rendered with the trailing `,1`
-        'commonLineThreshold' => 6,    // number of same lines before ending a new hunk and creating a new one (if needed)
-        'contextLines'        => 3,    // like `diff:  -u, -U NUM, --unified[=NUM]`, for patch/git apply compatibility best to keep at least @ 3
-        'fromFile'            => null,
-        'fromFileDate'        => null,
-        'toFile'              => null,
-        'toFileDate'          => null,
-    ];
     /**
      * @var bool
      */
@@ -53,6 +44,16 @@ final class StrictUnifiedDiffOutputBuilder implements DiffOutputBuilderInterface
      * @var int >= 0
      */
     private $contextLines;
+
+    private static $default = [
+        'collapseRanges'      => true, // ranges of length one are rendered with the trailing `,1`
+        'commonLineThreshold' => 6,    // number of same lines before ending a new hunk and creating a new one (if needed)
+        'contextLines'        => 3,    // like `diff:  -u, -U NUM, --unified[=NUM]`, for patch/git apply compatibility best to keep at least @ 3
+        'fromFile'            => null,
+        'fromFileDate'        => null,
+        'toFile'              => null,
+        'toFileDate'          => null,
+    ];
 
     public function __construct(array $options = [])
     {
@@ -136,7 +137,6 @@ final class StrictUnifiedDiffOutputBuilder implements DiffOutputBuilderInterface
 
         if (0 === $diff[$upperLimit - 1][1]) {
             $lc = \substr($diff[$upperLimit - 1][0], -1);
-
             if ("\n" !== $lc) {
                 \array_splice($diff, $upperLimit, 0, [["\n\\ No newline at end of file\n", Differ::NO_LINE_END_EOF_WARNING]]);
             }
@@ -144,12 +144,10 @@ final class StrictUnifiedDiffOutputBuilder implements DiffOutputBuilderInterface
             // search back for the last `+` and `-` line,
             // check if has trailing linebreak, else add under it warning under it
             $toFind = [1 => true, 2 => true];
-
             for ($i = $upperLimit - 1; $i >= 0; --$i) {
                 if (isset($toFind[$diff[$i][1]])) {
                     unset($toFind[$diff[$i][1]]);
                     $lc = \substr($diff[$i][0], -1);
-
                     if ("\n" !== $lc) {
                         \array_splice($diff, $i + 1, 0, [["\n\\ No newline at end of file\n", Differ::NO_LINE_END_EOF_WARNING]]);
                     }
@@ -288,7 +286,6 @@ final class StrictUnifiedDiffOutputBuilder implements DiffOutputBuilderInterface
         }
 
         \fwrite($output, ' +' . $toStart);
-
         if (!$this->collapseRanges || 1 !== $toRange) {
             \fwrite($output, ',' . $toRange);
         }

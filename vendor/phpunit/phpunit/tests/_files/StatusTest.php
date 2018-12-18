@@ -1,12 +1,4 @@
 <?php
-/*
- * This file is part of PHPUnit.
- *
- * (c) Sebastian Bergmann <sebastian@phpunit.de>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
 namespace vendor\project;
 
 use PHPUnit\Framework\TestCase;
@@ -14,36 +6,36 @@ use PHPUnit\Framework\Warning;
 
 class StatusTest extends TestCase
 {
-    public function testSuccess(): void
+    public function testSuccess()
     {
         $this->assertTrue(true);
     }
 
-    public function testFailure(): void
+    public function testFailure()
     {
         $this->assertTrue(false);
     }
 
-    public function testError(): void
+    public function testError()
     {
         throw new \RuntimeException;
     }
 
-    public function testIncomplete(): void
+    public function testIncomplete()
     {
         $this->markTestIncomplete();
     }
 
-    public function testSkipped(): void
+    public function testSkipped()
     {
         $this->markTestSkipped();
     }
 
-    public function testRisky(): void
+    public function testRisky()
     {
     }
 
-    public function testWarning(): void
+    public function testWarning()
     {
         throw new Warning;
     }
