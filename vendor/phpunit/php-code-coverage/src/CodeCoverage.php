@@ -7,7 +7,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace SebastianBergmann\CodeCoverage;
 
 use PHPUnit\Framework\TestCase;
@@ -139,12 +138,12 @@ final class CodeCoverage
      */
     public function __construct(Driver $driver = null, Filter $filter = null)
     {
-        if ($driver === null) {
-            $driver = $this->selectDriver();
-        }
-
         if ($filter === null) {
             $filter = new Filter;
+        }
+
+        if ($driver === null) {
+            $driver = $this->selectDriver($filter);
         }
 
         $this->driver = $driver;
@@ -189,7 +188,6 @@ final class CodeCoverage
 
     /**
      * Returns the collected code coverage data.
-     * Set $raw = true to bypass all filters.
      */
     public function getData(bool $raw = false): array
     {
@@ -229,7 +227,6 @@ final class CodeCoverage
      * Start collection of code coverage information.
      *
      * @param PhptTestCase|string|TestCase $id
-     * @param bool                         $clear
      *
      * @throws RuntimeException
      */
@@ -321,7 +318,7 @@ final class CodeCoverage
         }
 
         $size   = 'unknown';
-        $status = null;
+        $status = -1;
 
         if ($id instanceof TestCase) {
             $_size = $id->getSize();
@@ -380,37 +377,24 @@ final class CodeCoverage
                 continue;
             }
 
-            if ((\count($lines) > 0) && (\count($this->data[$file]) > 0) && (\count($lines) != \count($this->data[$file]))) {
-                if (\count($lines) > \count($ours = $this->data[$file])) {
-                    // More lines in the one being added in
-                    $lines = \array_filter(
-                        $lines,
-                        function ($value, $key) use ($ours) {
-                            return \array_key_exists($key, $ours);
-                        },
-                        \ARRAY_FILTER_USE_BOTH
-                    );
-                } else {
-                    // More lines in the one we currently have
-                    $this->data[$file] = \array_filter(
-                        $this->data[$file],
-                        function ($value, $key) use ($lines) {
-                            return \array_key_exists($key, $lines);
-                        },
-                        \ARRAY_FILTER_USE_BOTH
-                    );
-                }
-            }
+            // we should compare the lines if any of two contains data
+            $compareLineNumbers = \array_unique(
+                \array_merge(
+                    \array_keys($this->data[$file]),
+                    \array_keys($that->data[$file])
+                )
+            );
 
-            foreach ($lines as $line => $data) {
-                if ($data !== null) {
-                    if (!isset($this->data[$file][$line])) {
-                        $this->data[$file][$line] = $data;
-                    } else {
-                        $this->data[$file][$line] = \array_unique(
-                            \array_merge($this->data[$file][$line], $data)
-                        );
-                    }
+            foreach ($compareLineNumbers as $line) {
+                $thatPriority = $this->getLinePriority($that->data[$file], $line);
+                $thisPriority = $this->getLinePriority($this->data[$file], $line);
+
+                if ($thatPriority > $thisPriority) {
+                    $this->data[$file][$line] = $that->data[$file][$line];
+                } elseif ($thatPriority === $thisPriority && \is_array($this->data[$file][$line])) {
+                    $this->data[$file][$line] = \array_unique(
+                        \array_merge($this->data[$file][$line], $that->data[$file][$line])
+                    );
                 }
             }
         }
@@ -472,6 +456,38 @@ final class CodeCoverage
     public function setUnintentionallyCoveredSubclassesWhitelist(array $whitelist): void
     {
         $this->unintentionallyCoveredSubclassesWhitelist = $whitelist;
+    }
+
+    /**
+     * Determine the priority for a line
+     *
+     * 1 = the line is not set
+     * 2 = the line has not been tested
+     * 3 = the line is dead code
+     * 4 = the line has been tested
+     *
+     * During a merge, a higher number is better.
+     *
+     * @param array $data
+     * @param int   $line
+     *
+     * @return int
+     */
+    private function getLinePriority($data, $line)
+    {
+        if (!\array_key_exists($line, $data)) {
+            return 1;
+        }
+
+        if (\is_array($data[$line]) && \count($data[$line]) === 0) {
+            return 2;
+        }
+
+        if ($data[$line] === null) {
+            return 3;
+        }
+
+        return 4;
     }
 
     /**
@@ -596,6 +612,17 @@ final class CodeCoverage
             return $this->ignoredLines[$fileName];
         }
 
+        try {
+            return $this->getLinesToBeIgnoredInner($fileName);
+        } catch (\OutOfBoundsException $e) {
+            // This can happen with PHP_Token_Stream if the file is syntactically invalid,
+            // and probably affects a file that wasn't executed.
+            return [];
+        }
+    }
+
+    private function getLinesToBeIgnoredInner(string $fileName): array
+    {
         $this->ignoredLines[$fileName] = [];
 
         $lines = \file($fileName);
@@ -862,7 +889,7 @@ final class CodeCoverage
     /**
      * @throws RuntimeException
      */
-    private function selectDriver(): Driver
+    private function selectDriver(Filter $filter): Driver
     {
         $runtime = new Runtime;
 
@@ -875,7 +902,7 @@ final class CodeCoverage
         }
 
         if ($runtime->hasXdebug()) {
-            return new Xdebug;
+            return new Xdebug($filter);
         }
 
         throw new RuntimeException('No code coverage driver available');

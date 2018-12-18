@@ -162,7 +162,11 @@ class RedisQueue extends Queue implements QueueContract
     {
         $this->migrate($prefixed = $this->getQueue($queue));
 
-        list($job, $reserved) = $this->retrieveNextJob($prefixed);
+        if (empty($nextJob = $this->retrieveNextJob($prefixed))) {
+            return;
+        }
+
+        list($job, $reserved) = $nextJob;
 
         if ($reserved) {
             return new RedisJob(
@@ -229,7 +233,7 @@ class RedisQueue extends Queue implements QueueContract
     {
         $rawBody = $this->getConnection()->blpop($queue, $this->blockFor);
 
-        if (! is_null($rawBody)) {
+        if (! empty($rawBody)) {
             $payload = json_decode($rawBody[1], true);
 
             $payload['attempts']++;

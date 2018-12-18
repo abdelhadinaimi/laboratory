@@ -10,7 +10,7 @@
 namespace PHPUnit\Framework\Constraint;
 
 use PHPUnit\Framework\ExpectationFailedException;
-use SebastianBergmann;
+use SebastianBergmann\Comparator\ComparisonFailure;
 
 /**
  * Constraint that asserts that one value is identical to another.
@@ -35,9 +35,6 @@ class IsIdentical extends Constraint
      */
     private $value;
 
-    /**
-     * @param mixed $value
-     */
     public function __construct($value)
     {
         parent::__construct();
@@ -60,9 +57,7 @@ class IsIdentical extends Constraint
      * @param bool   $returnResult Whether to return a result or throw an exception
      *
      * @throws ExpectationFailedException
-     * @throws SebastianBergmann\RecursionContext\InvalidArgumentException
-     *
-     * @return mixed
+     * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
      */
     public function evaluate($other, $description = '', $returnResult = false)
     {
@@ -83,7 +78,7 @@ class IsIdentical extends Constraint
 
             // if both values are strings, make sure a diff is generated
             if (\is_string($this->value) && \is_string($other)) {
-                $f = new SebastianBergmann\Comparator\ComparisonFailure(
+                $f = new ComparisonFailure(
                     $this->value,
                     $other,
                     \sprintf("'%s'", $this->value),
@@ -93,7 +88,7 @@ class IsIdentical extends Constraint
 
             // if both values are array, make sure a diff is generated
             if (\is_array($this->value) && \is_array($other)) {
-                $f = new SebastianBergmann\Comparator\ComparisonFailure(
+                $f = new ComparisonFailure(
                     $this->value,
                     $other,
                     $this->exporter->export($this->value),
@@ -108,7 +103,7 @@ class IsIdentical extends Constraint
     /**
      * Returns a string representation of the constraint.
      *
-     * @throws SebastianBergmann\RecursionContext\InvalidArgumentException
+     * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
      */
     public function toString(): string
     {
@@ -128,7 +123,7 @@ class IsIdentical extends Constraint
      *
      * @param mixed $other evaluated value or object
      *
-     * @throws SebastianBergmann\RecursionContext\InvalidArgumentException
+     * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
      */
     protected function failureDescription($other): string
     {
