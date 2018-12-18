@@ -92,17 +92,7 @@
                             </span>
                           </div>
                         </div>
-                  </div> 
-
-
-                  <div class="form-group ">
-                        <label class="col-xs-3 control-label">Partenaires</label>  
-                        <div class="col-xs-9 inputGroupContainer">
-                          <div style="width: 70%">
-                            <input  name="partenaires" class="form-control" placeholder="Partenaire" type="text" value="{{old('partenaires')}}">
-                          </div>
-                        </div>
-                  </div> 
+                  </div>
 
                   <div class="form-group ">
                         <label class="col-xs-3 control-label">Chef du projet (*)</label>  
@@ -143,6 +133,29 @@
                             </span>
                       </div>
                     </div>
+                  </div>
+
+                  <div class="form-group ">
+                        <label class="col-xs-3 control-label">Membres externes</label>  
+                        <div class="col-xs-9 inputGroupContainer @if($errors->get('contacts[]')) has-error @endif">
+                          <div style="width: 70%">
+                            <select name="contacts[]" class="form-control select2" multiple="multiple">
+                              
+                               @foreach($contacts as $contact)
+                              <option value="{{$contact->id}}">
+                                {{$contact->nom}} {{$contact->prenom}}
+                              </option>
+                               @endforeach
+                            </select>
+                            <span class="help-block">
+                                @if($errors->get('contacts[]'))
+                                  @foreach($errors->get('contacts[]') as $message)
+                                    <li> {{ $message }} </li>
+                                  @endforeach
+                                @endif
+                            </span>
+                          </div>
+                        </div>
                   </div>
 
 
