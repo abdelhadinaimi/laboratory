@@ -7,7 +7,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace PHPUnit\Framework\Constraint;
 
 use SebastianBergmann\Diff\Differ;
@@ -26,11 +25,24 @@ class StringMatchesFormatDescription extends RegularExpression
     {
         parent::__construct(
             $this->createPatternFromFormat(
-                \preg_replace('/\r\n/', "\n", $string)
+                $this->convertNewlines($string)
             )
         );
 
         $this->string = $string;
+    }
+
+    /**
+     * Evaluates the constraint for parameter $other. Returns true if the
+     * constraint is met, false otherwise.
+     *
+     * @param mixed $other value or object to evaluate
+     */
+    protected function matches($other): bool
+    {
+        return parent::matches(
+            $this->convertNewlines($other)
+        );
     }
 
     protected function failureDescription($other): string
@@ -40,8 +52,8 @@ class StringMatchesFormatDescription extends RegularExpression
 
     protected function additionalFailureDescription($other): string
     {
-        $from = \preg_split('(\r\n|\r|\n)', $this->string);
-        $to   = \preg_split('(\r\n|\r|\n)', $other);
+        $from = \explode("\n", $this->string);
+        $to   = \explode("\n", $this->convertNewlines($other));
 
         foreach ($from as $index => $line) {
             if (isset($to[$index]) && $line !== $to[$index]) {
@@ -63,38 +75,29 @@ class StringMatchesFormatDescription extends RegularExpression
 
     private function createPatternFromFormat(string $string): string
     {
-        $string = \preg_replace(
+        $string = \strtr(
+            \preg_quote($string, '/'),
             [
-                '/(?<!%)%e/',
-                '/(?<!%)%s/',
-                '/(?<!%)%S/',
-                '/(?<!%)%a/',
-                '/(?<!%)%A/',
-                '/(?<!%)%w/',
-                '/(?<!%)%i/',
-                '/(?<!%)%d/',
-                '/(?<!%)%x/',
-                '/(?<!%)%f/',
-                '/(?<!%)%c/'
-            ],
-            [
-                \str_replace('\\', '\\\\', '\\' . DIRECTORY_SEPARATOR),
-                '[^\r\n]+',
-                '[^\r\n]*',
-                '.+',
-                '.*',
-                '\s*',
-                '[+-]?\d+',
-                '\d+',
-                '[0-9a-fA-F]+',
-                '[+-]?\.?\d+\.?\d*(?:[Ee][+-]?\d+)?',
-                '.'
-            ],
-            \preg_quote($string, '/')
+                '%%' => '%',
+                '%e' => '\\' . \DIRECTORY_SEPARATOR,
+                '%s' => '[^\r\n]+',
+                '%S' => '[^\r\n]*',
+                '%a' => '.+',
+                '%A' => '.*',
+                '%w' => '\s*',
+                '%i' => '[+-]?\d+',
+                '%d' => '\d+',
+                '%x' => '[0-9a-fA-F]+',
+                '%f' => '[+-]?\.?\d+\.?\d*(?:[Ee][+-]?\d+)?',
+                '%c' => '.',
+            ]
         );
 
-        $string = \str_replace('%%', '%', $string);
-
         return '/^' . $string . '$/s';
+    }
+
+    private function convertNewlines($text): string
+    {
+        return \preg_replace('/\r\n/', "\n", $text);
     }
 }

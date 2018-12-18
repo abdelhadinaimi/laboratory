@@ -238,34 +238,6 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
                     0 => 'BankAccountTest::testBalanceIsInitiallyZero',
                     1 => 'BankAccountTest::testDepositWithdrawMoney'
                 ],
-                13 => [],
-                16 => [],
-                22 => [
-                    0 => 'BankAccountTest::testBalanceCannotBecomeNegative2',
-                    1 => 'BankAccountTest::testDepositWithdrawMoney'
-                ],
-                24 => [
-                    0 => 'BankAccountTest::testDepositWithdrawMoney',
-                ],
-                29 => [
-                    0 => 'BankAccountTest::testBalanceCannotBecomeNegative',
-                    1 => 'BankAccountTest::testDepositWithdrawMoney'
-                ],
-                31 => [
-                    0 => 'BankAccountTest::testDepositWithdrawMoney'
-                ],
-            ]
-        ];
-    }
-
-    protected function getExpectedDataArrayForBankAccount2()
-    {
-        return [
-            TEST_FILES_PATH . 'BankAccount.php' => [
-                8 => [
-                    0 => 'BankAccountTest::testBalanceIsInitiallyZero',
-                    1 => 'BankAccountTest::testDepositWithdrawMoney'
-                ],
                 9  => null,
                 13 => [],
                 14 => [],
@@ -283,6 +255,40 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
                 29 => [
                     0 => 'BankAccountTest::testBalanceCannotBecomeNegative',
                     1 => 'BankAccountTest::testDepositWithdrawMoney'
+                ],
+                31 => [
+                    0 => 'BankAccountTest::testDepositWithdrawMoney'
+                ],
+                32 => null
+            ]
+        ];
+    }
+
+    protected function getExpectedDataArrayForBankAccountInReverseOrder()
+    {
+        return [
+            TEST_FILES_PATH . 'BankAccount.php' => [
+                8 => [
+                    0 => 'BankAccountTest::testDepositWithdrawMoney',
+                    1 => 'BankAccountTest::testBalanceIsInitiallyZero'
+                ],
+                9  => null,
+                13 => [],
+                14 => [],
+                15 => [],
+                16 => [],
+                18 => [],
+                22 => [
+                    0 => 'BankAccountTest::testBalanceCannotBecomeNegative2',
+                    1 => 'BankAccountTest::testDepositWithdrawMoney'
+                ],
+                24 => [
+                    0 => 'BankAccountTest::testDepositWithdrawMoney',
+                ],
+                25 => null,
+                29 => [
+                    0 => 'BankAccountTest::testDepositWithdrawMoney',
+                    1 => 'BankAccountTest::testBalanceCannotBecomeNegative'
                 ],
                 31 => [
                     0 => 'BankAccountTest::testDepositWithdrawMoney'
@@ -368,4 +374,27 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
 
         return $stub;
     }
+
+    protected function getCoverageForCrashParsing()
+    {
+        $filter = new Filter;
+        $filter->addFileToWhitelist(TEST_FILES_PATH . 'Crash.php');
+
+        // This is a file with invalid syntax, so it isn't executed.
+        return new CodeCoverage(
+            $this->setUpXdebugStubForCrashParsing(),
+            $filter
+        );
+    }
+
+    protected function setUpXdebugStubForCrashParsing()
+    {
+        $stub = $this->createMock(Driver::class);
+
+        $stub->expects($this->any())
+            ->method('stop')
+            ->will($this->returnValue([]));
+        return $stub;
+    }
+
 }

@@ -7,7 +7,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace SebastianBergmann\CodeCoverage\Report\Html;
 
 use SebastianBergmann\CodeCoverage\CodeCoverage;
@@ -94,7 +93,7 @@ final class Facade
             $id = $node->getId();
 
             if ($node instanceof DirectoryNode) {
-                if (!@\mkdir($target . $id, 0777, true) && !\is_dir($target . $id)) {
+                if (!$this->createDirectory($target . $id)) {
                     throw new \RuntimeException(\sprintf('Directory "%s" was not created', $target . $id));
                 }
 
@@ -103,7 +102,7 @@ final class Facade
             } else {
                 $dir = \dirname($target . $id);
 
-                if (!@\mkdir($dir, 0777, true) && !\is_dir($dir)) {
+                if (!$this->createDirectory($dir)) {
                     throw new \RuntimeException(\sprintf('Directory "%s" was not created', $dir));
                 }
 
@@ -121,34 +120,22 @@ final class Facade
     {
         $dir = $this->getDirectory($target . '.css');
 
-        \file_put_contents(
-            $dir . 'bootstrap.min.css',
-            \str_replace(
-                'url(../fonts/',
-                'url(../.fonts/',
-                \file_get_contents($this->templatePath . 'css/bootstrap.min.css')
-            )
-
-        );
-
+        \copy($this->templatePath . 'css/bootstrap.min.css', $dir . 'bootstrap.min.css');
         \copy($this->templatePath . 'css/nv.d3.min.css', $dir . 'nv.d3.min.css');
         \copy($this->templatePath . 'css/style.css', $dir . 'style.css');
+        \copy($this->templatePath . 'css/custom.css', $dir . 'custom.css');
+        \copy($this->templatePath . 'css/octicons.css', $dir . 'octicons.css');
 
-        $dir = $this->getDirectory($target . '.fonts');
-        \copy($this->templatePath . 'fonts/glyphicons-halflings-regular.eot', $dir . 'glyphicons-halflings-regular.eot');
-        \copy($this->templatePath . 'fonts/glyphicons-halflings-regular.svg', $dir . 'glyphicons-halflings-regular.svg');
-        \copy($this->templatePath . 'fonts/glyphicons-halflings-regular.ttf', $dir . 'glyphicons-halflings-regular.ttf');
-        \copy($this->templatePath . 'fonts/glyphicons-halflings-regular.woff', $dir . 'glyphicons-halflings-regular.woff');
-        \copy($this->templatePath . 'fonts/glyphicons-halflings-regular.woff2', $dir . 'glyphicons-halflings-regular.woff2');
+        $dir = $this->getDirectory($target . '.icons');
+        \copy($this->templatePath . 'icons/file-code.svg', $dir . 'file-code.svg');
+        \copy($this->templatePath . 'icons/file-directory.svg', $dir . 'file-directory.svg');
 
         $dir = $this->getDirectory($target . '.js');
         \copy($this->templatePath . 'js/bootstrap.min.js', $dir . 'bootstrap.min.js');
+        \copy($this->templatePath . 'js/popper.min.js', $dir . 'popper.min.js');
         \copy($this->templatePath . 'js/d3.min.js', $dir . 'd3.min.js');
-        \copy($this->templatePath . 'js/holder.min.js', $dir . 'holder.min.js');
-        \copy($this->templatePath . 'js/html5shiv.min.js', $dir . 'html5shiv.min.js');
         \copy($this->templatePath . 'js/jquery.min.js', $dir . 'jquery.min.js');
         \copy($this->templatePath . 'js/nv.d3.min.js', $dir . 'nv.d3.min.js');
-        \copy($this->templatePath . 'js/respond.min.js', $dir . 'respond.min.js');
         \copy($this->templatePath . 'js/file.js', $dir . 'file.js');
     }
 
@@ -157,11 +144,11 @@ final class Facade
      */
     private function getDirectory(string $directory): string
     {
-        if (\substr($directory, -1, 1) != DIRECTORY_SEPARATOR) {
-            $directory .= DIRECTORY_SEPARATOR;
+        if (\substr($directory, -1, 1) != \DIRECTORY_SEPARATOR) {
+            $directory .= \DIRECTORY_SEPARATOR;
         }
 
-        if (!@\mkdir($directory, 0777, true) && !\is_dir($directory)) {
+        if (!$this->createDirectory($directory)) {
             throw new RuntimeException(
                 \sprintf(
                     'Directory "%s" does not exist.',
@@ -171,5 +158,10 @@ final class Facade
         }
 
         return $directory;
+    }
+
+    private function createDirectory(string $directory): bool
+    {
+        return !(!\is_dir($directory) && !@\mkdir($directory, 0777, true) && !\is_dir($directory));
     }
 }
