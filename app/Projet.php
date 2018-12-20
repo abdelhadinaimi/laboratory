@@ -22,6 +22,6 @@ class Projet extends Model
 
     public function contacts()
     {
-        return $this->belongsToMany('App\Contact');
+        return $this->belongsToMany('App\Contact','projet_contact');
     }
 }

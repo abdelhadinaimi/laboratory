@@ -78,18 +78,19 @@ class ActualiteController extends Controller
     }
       public function update(actualiteRequest $request , $id)
     {
-        $these = Actualite::find($id);
+        $actualite = Actualite::find($id);
         $labo = Parametre::find('1');
         if($request->hasFile('img')){
             $file = $request->file('img');
             $file_name = time().'.'.$file->getClientOriginalExtension();
             $file->move(public_path('/uploads/photo'),$file_name);
+            $actualite->photo = 'uploads/photo/'.$file_name;
 
         }
         $actualite->titre = $request->input('titre');
 	 	$actualite->description = $request->input('description');
 	 	$actualite->content = $request->input('content');
-	 	$actualite->photo = 'uploads/photo/'.$file_name;
+
 	 	$actualite->save();
 
   

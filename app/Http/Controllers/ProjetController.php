@@ -6,8 +6,10 @@ use Illuminate\Http\Request;
 use App\Http\Requests\projetRequest;
 use App\Projet;
 use App\User;
+use App\Contact;
 use Auth;
 use App\ProjetUser;
+use App\ProjetContact;
 use App\Parametre;
 use Illuminate\Http\UploadedFile;
 
@@ -33,11 +35,13 @@ class ProjetController extends Controller
     {
         $labo =  Parametre::find('1');
         $projet = Projet::find($id);
-        $membres = Projet::find($id)->users()->orderBy('name')->get();
+        $membres = $projet->users()->orderBy('name')->get();
+        $contacts = $projet->contacts()->orderBy('nom')->get();
 
         return view('projet.details')->with([
             'projet' => $projet,
             'membres'=>$membres,
+            'contacts'=>$contacts,
             'labo'=>$labo,
         ]);;
     } 
@@ -46,11 +50,13 @@ class ProjetController extends Controller
 	 public function create()
      {
         $labo =  Parametre::find('1');
+        
         if( Auth::user()->role->nom == 'admin')
             {
     	 	 $membres = User::all();
              $projet = Projet::all();
-    	 	return view('projet.create', ['membres' => $membres],['labo'=>$labo]);
+             $contacts = Contact::all(); 
+    	 	return view('projet.create', ['membres' => $membres,'contacts'=>$contacts],['labo'=>$labo]);
             }
              else{
                 return view('errors.403',['labo'=>$labo]);
@@ -91,6 +97,13 @@ class ProjetController extends Controller
 
          } 
 
+         $contacts =  $request->input('contacts');
+        foreach ($contacts as $key => $value) {
+	 		$projet_contact = new ProjetContact();
+		 	$projet_contact->projet_id = $projet->id;
+		 	$projet_contact->contact_id = $value;
+	 	    $projet_contact->save();
+         } 
 	 	return redirect('projets');
 
 
@@ -100,14 +113,16 @@ class ProjetController extends Controller
 	 public function edit($id){
 
 	 	$projet = Projet::find($id);
-	 	 $membres = User::all();
-         $labo =  Parametre::find('1');
+        $membres = User::all();
+        $contacts = Contact::all(); 
+        $labo =  Parametre::find('1');
 
          $this->authorize('update', $projet);
 
 	 	return view('projet.edit')->with([
             'projet' => $projet,
             'membres' => $membres,
+            'contacts'=>$contacts,
             'labo'=>$labo,
         ]);;
 	 	
@@ -149,7 +164,16 @@ class ProjetController extends Controller
 
          } 
 
-
+        $contacts =  $request->input('contacts');
+		$projet_contacts = ProjetContact::where('projet_id',$id);
+        $projet_contacts->delete();
+    
+		foreach ($contacts as $key => $value) {
+			$projet_contact = new ProjetContact();
+			$projet_contact->projet_id = $projet->id;
+			$projet_contact->contact_id = $value;
+			$projet_contact->save();
+        }  
 	 	return redirect('projets');
 
     }

@@ -501,6 +501,16 @@ $(document).ready(function() {
       type: "get",
       url: "/statThese",
       success: function(data) {
+        var colorDebut = [],
+            colorFin = [],
+            borderDebut = [],
+            borderFin = [];
+        for (var i = 0; i <=10; i++) {
+          colorDebut.push("rgba(10, 20, 30, 0.3)");
+          colorFin.push("rgba(50, 150, 250, 0.3)");
+          borderDebut.push("rgba(10, 20, 30, 1)");
+          borderFin.push("rgba(50, 150, 250, 1)");
+        }
          console.log(data);
          var options = {
           title : {
@@ -528,63 +538,15 @@ $(document).ready(function() {
             {
               label : "debut these",
               data : data.debuThese,
-              backgroundColor : [
-                "rgba(10, 20, 30, 0.3)",
-                "rgba(10, 20, 30, 0.3)",
-                "rgba(10, 20, 30, 0.3)",
-                "rgba(10, 20, 30, 0.3)",
-                "rgba(10, 20, 30, 0.3)",
-                "rgba(10, 20, 30, 0.3)",
-                "rgba(10, 20, 30, 0.3)",
-                "rgba(10, 20, 30, 0.3)",
-                "rgba(10, 20, 30, 0.3)",
-                "rgba(10, 20, 30, 0.3)"
-
-              ],
-              borderColor : [
-                "rgba(10, 20, 30, 1)",
-                "rgba(10, 20, 30, 1)",
-                "rgba(10, 20, 30, 1)",
-                "rgba(10, 20, 30, 1)",
-                "rgba(10, 20, 30, 1)",
-                "rgba(10, 20, 30, 1)",
-                "rgba(10, 20, 30, 1)",
-                "rgba(10, 20, 30, 1)",
-                "rgba(10, 20, 30, 1)",
-                "rgba(10, 20, 30, 1)"
-
-              ],
+              backgroundColor : colorDebut,
+              borderColor : borderDebut,
               borderWidth : 1
             },
             {
               label : "Fin these",
               data : data.finThese,
-              backgroundColor : [
-                "rgba(50, 150, 250, 0.3)",
-                "rgba(50, 150, 250, 0.3)",
-                "rgba(50, 150, 250, 0.3)",
-                "rgba(50, 150, 250, 0.3)",
-                "rgba(50, 150, 250, 0.3)",
-                "rgba(50, 150, 250, 0.3)",
-                "rgba(50, 150, 250, 0.3)",
-                "rgba(50, 150, 250, 0.3)",
-                "rgba(50, 150, 250, 0.3)",
-                "rgba(50, 150, 250, 0.3)"
-
-              ],
-              borderColor : [
-                "rgba(50, 150, 250, 1)",
-                "rgba(50, 150, 250, 1)",
-                "rgba(50, 150, 250, 1)",
-                "rgba(50, 150, 250, 1)",
-                "rgba(50, 150, 250, 1)",
-                "rgba(50, 150, 250, 1)",
-                "rgba(50, 150, 250, 1)",
-                "rgba(50, 150, 250, 1)",
-                "rgba(50, 150, 250, 1)",
-                "rgba(50, 150, 250, 1)"
-
-              ],
+              backgroundColor : colorFin,
+              borderColor : borderFin,
               borderWidth : 1
             }
           ]

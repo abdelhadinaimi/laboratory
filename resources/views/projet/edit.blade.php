@@ -73,17 +73,6 @@
                         </div>
                   </div>
 
-                  
-
-                  <div class="form-group ">
-                        <label class="col-xs-3 control-label">Partenaires</label>  
-                        <div class="col-xs-9 inputGroupContainer">
-                          <div style="width: 70%">
-                            <input  name="partenaires" class="form-control" value="{{ $projet -> partenaires}}" type="text">
-                          </div>
-                        </div>
-                  </div> 
-
                   <div class="form-group ">
                         <label class="col-xs-3 control-label">Chef du projet</label>  
                         <div class="col-xs-9 inputGroupContainer">
@@ -113,6 +102,36 @@
                            @foreach($membres as $membre)
                               <option value="{{$membre->id}}">{{$membre->name}} {{$membre->prenom}}</option>
                            @endforeach
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="col-md-3 control-label">Membres externes</label>
+                    <div class="col-md-9 inputGroupContainer">
+                      <div style="width: 70%">
+                        <select name="contacts[]" class="form-control select2" multiple="multiple" data-placeholder="Selectionnez les Membres Externes">
+                          <option>
+                             @foreach ($projet->contacts as $contact) 
+                              <option value="{{$contact->id}}" selected>
+                                  {{ $contact->nom }} {{ $contact->prenom }}
+                              </option>
+                            @endforeach
+                          </option>
+                          <?php 
+                          $allContacts = $contacts;
+                          foreach($allContacts as $k => $contact){
+                            foreach($projet->contacts as $selected){
+                              if($contact->id == $selected->id){
+                                unset($allContacts[$k]);
+                              }
+                            }
+                          }
+                        ?>
+                         @foreach($allContacts as $contact)
+                              <option value="{{$contact['id']}}">{{$contact['nom']}} {{$contact['prenom']}}</option>
+                          @endforeach
                         </select>
                       </div>
                     </div>
