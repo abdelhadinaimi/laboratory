@@ -149,9 +149,14 @@
                 <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
               </div>
             </div>
-                     <div class="box-body">
+            <div class="box-body">
               <div class="chart">
                 <canvas id="statPie" style="height:230px"></canvas>
+              </div>
+            </div>
+            <div class="box-body">
+              <div class="chart">
+                <canvas id="stat-equipe-article" style="height:230px"></canvas>
               </div>
             </div>
         </div>
