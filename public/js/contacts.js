@@ -19,15 +19,17 @@ function editCont(idCont) {
     bodyEdit.attr('role', data[0]);
     bodyEdit.find("#editContNom").val(data[1]);
     bodyEdit.find("#editContPrenom").val(data[2]);
-    bodyEdit.find("#editContEmail").val(data[3]);
-    bodyEdit.find("#editContNum").val(data[4]);
-    bodyEdit.find("#editContDesc").val(data[5]);
-    bodyEdit.find("#editContPart").val(data[7]);
+    bodyEdit.find("#editContFonction").val(data[3]);
+    bodyEdit.find("#editContNature").val(data[4]);
+    bodyEdit.find("#editContEmail").val(data[5]);
+    bodyEdit.find("#editContNum").val(data[6]);
+    bodyEdit.find("#editContDesc").val(data[7]);
+    bodyEdit.find("#editContPart").val(data[9]);
 }
 var manageCont = $("#gererCont").DataTable({
     'ajax': 'contacts/all',
     'columnDefs': [{
-        "targets": [0,7],
+        "targets": [0,9],
         "visible": false,
         "searchable": false
     }],

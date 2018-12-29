@@ -1,4 +1,4 @@
-/vendor/
+vendor/
 node_modules/
 npm-debug.log
 yarn-error.log
@@ -8,3 +8,4 @@ yarn-error.log
 .env.example
 
 /config/database.php
+public/uploads/photo/*

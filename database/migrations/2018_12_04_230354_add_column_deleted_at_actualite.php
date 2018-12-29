@@ -13,7 +13,7 @@ class AddColumnDeletedAtActualite extends Migration
      */
     public function up()
     {
-        Schema::table('Actualite', function (Blueprint $table) {
+        Schema::table('actualite', function (Blueprint $table) {
             $table->datetime('deleted_at')->nullable();
         });
     }
@@ -25,7 +25,7 @@ class AddColumnDeletedAtActualite extends Migration
      */
     public function down()
     {
-         Schema::table('Actualite', function (Blueprint $table) {
+         Schema::table('actualite', function (Blueprint $table) {
             $table->dropColumn('deleted_at');
         });
     }

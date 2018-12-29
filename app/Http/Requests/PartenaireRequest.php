@@ -25,9 +25,12 @@ class PartenaireRequest extends FormRequest
     {
         return [
             'nom' => 'required|max:255',
+            'type' => 'required|max:255',
             'description' => 'max:255',
             'email' => 'max:255',  
             'num_tel' => 'max:15',   
+            'pays' => 'max:255',
+            'ville' => 'max:255',
              ];
     }
 }
