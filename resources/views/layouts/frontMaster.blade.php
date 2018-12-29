@@ -24,6 +24,23 @@
     <link rel="stylesheet" href="{{ asset('css/flexslider.css')}}" />
     <!-- Custom Main Stylesheet CSS -->
     <link rel="stylesheet" href="{{ asset('css/style.css')}}">
+    <style type="text/css">
+        .map-container{
+overflow:hidden;
+position:relative;
+height:0;
+border-radius: 10px;
+
+}
+.map-container iframe{
+left:0;
+top:0;
+height:100%;
+width:100%;
+position:absolute;
+border-style: solid;
+}
+    </style>
 </head>
 
 <body>
@@ -65,6 +82,9 @@
                                     <a href="{{url('front')}}" class="mdl-button mdl-js-button mdl-js-ripple-effect">Accueil</a>
                                 </li>
                                 <li>
+                                    <a href="{{url('front/presentation')}}" class="mdl-button mdl-js-button mdl-js-ripple-effect">Présentation</a>
+                                </li>
+                                <li>
                                     <a href="{{url('front/actualites')}}" class="mdl-button mdl-js-button mdl-js-ripple-effect">Actualités</a>
                                 </li>
                                 <li>
@@ -103,13 +123,24 @@
                     <div class="footer-container footer-a">
                         <div class="tbl">
                             <div class="tbl-row">
+                                                                    <div id="map-container-google-1" class="z-depth-1-half map-container" style="height: 200px">
+  <iframe src="https://maps.google.com/maps?q=University+Abou+Bekr+Belkaid+New+Pole&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0"
+    style="border:0" allowfullscreen></iframe>
+</div>
+                            </div>
+                        </div>
+                        <div class="tbl">
+
+                            <div class="tbl-row">
                                 <div class="tbl-cell"><i class="fa fa-map-marker"></i></div>
+
                                 <div class="tbl-cell">
                                     <p class="paragraph-medium paragraph-white">
                                         Université de Tlemcen<br />
                                         Rue Luis Pasteur, Rocade(Nouveau pole)<br />
                                         Tlemcen, Algérie    
                                     </p>
+
                                 </div>
                             </div>
                             <div class="tbl-row">
@@ -127,18 +158,20 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4 footer-block">
+               <div class="col-md-4 footer-block">
                     <div class="footer-ttl"><p>Liens rapides</p></div>
                     <div class="footer-container footer-b">
                         <div class="tbl">
                             <div class="tbl-row">
                                 <ul class="tbl-cell">
-                                    <li><a href="event-1.html">Equipes</a></li>
-                                    <li><a href="event-2.html">Publications</a></li>
-                                    <li><a href="contact.html">Projets</a></li>
+                                    <li><a href="/front/actualites">Actualités</a></li>
+                                    <li><a href="/front/equipes">Equipes</a></li>
+                                    <li><a href="/front/publications">Publications</a></li>
+                                    <li><a href="/front/projets">Projets</a></li>
+                                    <li><a href="/front/contact">Contact</a></li>
                                 </ul>
                                 <ul class="tbl-cell">
-                                    <li><a href="login.html">Connectez-vous</a></li>
+                                    <li><a href="/">Connectez-vous</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -165,6 +198,7 @@
                         </ul>
                     </div>
                 </div>
+
             </div>
         </div><!-- End main Footer Section -->
         <!-- Start Copyright Section -->

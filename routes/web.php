@@ -273,3 +273,8 @@ Route::get('/front/contact',function(){
 	return view('front.contact');
 });
 Route::post('/front/contact','FrontController@contact');
+
+
+Route::get('/front/presentation',function(){
+	return view('front.presentation');
+});

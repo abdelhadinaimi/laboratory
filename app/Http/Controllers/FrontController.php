@@ -57,7 +57,6 @@ class FrontController extends Controller{
     public function profiles($id)
     {
         $membre = User::find($id);
-
         return view('front.profiles')->with([
             'membre' => $membre,
         ]);;
