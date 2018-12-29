@@ -13,11 +13,11 @@
         <li><a href="{{url('Actualite')}}">Actualité</a></li>
         <li class="active">Modifier</li>
       </ol>
-
 @endsection
-
 @section('asidebar')
 @component('components.sidebar',['active' => 'Actualites']) @endcomponent
+@endsection
+
 @section('content')
 
     <div class="row">
@@ -26,7 +26,8 @@
             
           <div class="container col-xs-12">
 
-            <form class="well form-horizontal" action=" {{url('actualites')}} " method="post"  id="contact_form" enctype="multipart/form-data">
+            <form class="well form-horizontal" action=" {{url('actualites/'.$actualite->id) }} " method="post"  id="contact_form" >
+              <input type="hidden" name="_method" value="PUT">
               {{ csrf_field() }}
               <fieldset>
 

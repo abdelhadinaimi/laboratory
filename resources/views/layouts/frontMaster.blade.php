@@ -190,6 +190,8 @@
     <script src="{{ asset('js/jquery-scrolltofixed.min.js')}}"></script>
     <!--Custom JavaScript for Klinik Template-->
     <script src="{{ asset('js/smoothscroll.min.js')}}"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.6/ScrollMagic.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.6/plugins/debug.addIndicators.min.js"></script>
     <script src="{{ asset('js/custom.js')}}"></script>
     @yield('scripts')
 </body>
