@@ -31,6 +31,8 @@ class ContactController extends Controller
                 $contact->id,
                 $contact->nom,
                 $contact->prenom,
+                $contact->fonction,
+                $contact->nature,
                 $contact->email,
                 $contact->num_tel,
                 $contact->description,
@@ -50,6 +52,8 @@ class ContactController extends Controller
 
         $contact->nom = $validated['nom'];
         $contact->prenom = $validated['prenom'];
+        $contact->fonction = $validated['fonction'];
+        $contact->nature = $validated['nature'];
         $contact->email = $validated['email'];
         $contact->num_tel = $validated['num_tel'];
         $contact->description = $validated['description'];
@@ -65,6 +69,8 @@ class ContactController extends Controller
 
         $contact->nom = $validated['nom'];
         $contact->prenom = $validated['prenom'];
+        $contact->fonction = $validated['fonction'];
+        $contact->nature = $validated['nature'];
         $contact->email = $validated['email'];
         $contact->num_tel = $validated['num_tel'];
         $contact->description = $validated['description'];

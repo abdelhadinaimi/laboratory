@@ -17,6 +17,8 @@
                     <th>ID</th>
                     <th>Nom</th>
                     <th>Prenom</th>
+                    <th>Fonction</th>
+                    <th>Nature</th>
                     <th>Email</th>
                     <th>Numero Telephone</th>
                     <th>Description</th>
@@ -54,6 +56,26 @@
                   <label class="col-sm-1 control-label">: </label>
                   <div class="col-sm-8">
                        <input type="text" class="form-control" id="contPrenom" name="prenom" autocomplete="off">
+                   </div>
+              </div>
+              <div class="form-group">
+                  <label class="col-sm-3 control-label">Fonction </label>
+                  <label class="col-sm-1 control-label">: </label>
+                  <div class="col-sm-8">
+                       <input type="text" class="form-control" id="contFonction" name="fonction" autocomplete="off">
+                   </div>
+              </div>
+              <div class="form-group">
+                  <label class="col-sm-3 control-label">Nature </label>
+                  <label class="col-sm-1 control-label">: </label>
+                  <div class="col-sm-8">
+                  <select id="contNature" name="nature" class="form-control">
+                      <option value="Rédaction">Rédaction</option>
+                      <option value="Projet">Projet</option>
+                      <option value="Stage">Stage</option>
+                      <option value="Encadrement">Encadrement</option>
+                      <option value="Autre">Autre</option>
+                    </select>
                    </div>
               </div>
               <div class="form-group">
@@ -122,6 +144,26 @@
                   <label class="col-sm-1 control-label">: </label>
                   <div class="col-sm-8">
                        <input type="text" class="form-control" id="editContPrenom" name="prenom" autocomplete="off">
+                   </div>
+              </div>
+              <div class="form-group">
+                  <label class="col-sm-3 control-label">Fonction </label>
+                  <label class="col-sm-1 control-label">: </label>
+                  <div class="col-sm-8">
+                       <input type="text" class="form-control" id="editContFonction" name="fonction" autocomplete="off">
+                   </div>
+              </div>
+              <div class="form-group">
+                  <label class="col-sm-3 control-label">Nature </label>
+                  <label class="col-sm-1 control-label">: </label>
+                  <div class="col-sm-8">
+                  <select id="editContNature" name="nature" class="form-control">
+                      <option value="Rédaction">Rédaction</option>
+                      <option value="Projet">Projet</option>
+                      <option value="Stage">Stage</option>
+                      <option value="Encadrement">Encadrement</option>
+                      <option value="Autre">Autre</option>
+                    </select>
                    </div>
               </div>
               <div class="form-group">

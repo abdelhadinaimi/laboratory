@@ -22,6 +22,8 @@
                                     aria-selected="false">Membres</a></li>
                             <li class="nav-item"><a class="nav-link" href="#projets" role="tab" data-toggle="tab"
                                     aria-selected="false">Projets</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#partenaires" role="tab" data-toggle="tab"
+                                    aria-selected="false">Partenaires</a></li>
                         </ul>
                         <div class="tab-content">
                             <div role="tabpanel" class="tab-pane active" id="description">
@@ -67,9 +69,24 @@
                                                 ])
                                             @endcomponent
                                         @endforeach
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+
+                            <div role="tabpanel" class="tab-pane" id="partenaires">
+                                <div class="p-2">
+                                    <h2>Partenaires</h2>
+                                    <div class="row">
+                                        @foreach($partenaires as $partenaire)
+                                                <div class="col-sm-4 p-2"> 
+                                                    <img src="{{asset($partenaire->photo)}}" class="img-thumbnail trobon-image"/>
+                                                    <p class="font-18">{{$partenaire->nom}}</p>
+                                                    
+                                                </div>
+                                        @endforeach
+                                    </div>  
+                                </div>
+                            </div>
                     </div>
                 </div>
             </div>

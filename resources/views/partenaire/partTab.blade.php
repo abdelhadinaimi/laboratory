@@ -16,9 +16,12 @@
                    <tr>
                     <th>ID</th>
                     <th>Nom</th>
+                    <th>Type</th>
                     <th>Description</th>
                     <th>Email</th>
                     <th>Numero Telephone</th>
+                    <th>Pays</th>
+                    <th>Ville</th>
                     <th style="width:15%;">Options</th>
                    </tr>
                </thead>
@@ -47,6 +50,17 @@
                    </div>
               </div>
               <div class="form-group">
+                  <label class="col-sm-3 control-label">Type </label>
+                  <label class="col-sm-1 control-label">: </label>
+                  <div class="col-sm-8">
+                    <select id="partType" name="type" class="form-control">
+                      <option value="Laboratoire">Laboratoire</option>
+                      <option value="Entreprise">Entreprise</option>
+                      <option value="Administration">Administration</option>
+                    </select>
+                   </div>
+              </div>
+              <div class="form-group">
                   <label class="col-sm-3 control-label">Description </label>
                   <label class="col-sm-1 control-label">: </label>
                   <div class="col-sm-8">
@@ -66,7 +80,28 @@
                   <div class="col-sm-8">
                        <input type="text" class="form-control" id="partNum" name="num_tel" autocomplete="off">
                    </div>
-              </div> 
+              </div>
+              <div class="form-group">
+                  <label class="col-sm-3 control-label">Pays </label>
+                  <label class="col-sm-1 control-label">: </label>
+                  <div class="col-sm-8">
+                       <input type="text" class="form-control" id="partPays" name="pays" autocomplete="off">
+                   </div>
+              </div>
+              <div class="form-group">
+                  <label class="col-sm-3 control-label">Ville </label>
+                  <label class="col-sm-1 control-label">: </label>
+                  <div class="col-sm-8">
+                       <input type="text" class="form-control" id="partville" name="ville" autocomplete="off">
+                   </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-3 control-label">Logo</label>
+                <label class="col-sm-1 control-label">: </label>
+                <div class="col-sm-8">
+                  <input type="file" id="partLogo" name="logo" accept="image/*">
+                </div>
+              </div>
         </div> <!-- /modal-body -->
         
           <div class="modal-footer">
@@ -100,6 +135,17 @@
               </div>
             </div>
             <div class="form-group">
+              <label class="col-sm-3 control-label">Type</label>
+              <label class="col-sm-1 control-label">: </label>
+              <div class="col-sm-8">
+              <select id="editPartType" name="type" class="form-control">
+                      <option value="Laboratoire">Laboratoire</option>
+                      <option value="Entreprise">Entreprise</option>
+                      <option value="Administration">Administration</option>
+                    </select>
+              </div>
+            </div>
+            <div class="form-group">
               <label class="col-sm-3 control-label">Description</label>
               <label class="col-sm-1 control-label">: </label>
               <div class="col-sm-8">
@@ -119,8 +165,29 @@
               <div class="col-sm-8">
                 <input type="text" class="form-control" id="editPartNum" name="num_tel" autocomplete="off">
               </div>
-            </div>                  
-            
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3 control-label">Pays</label>
+              <label class="col-sm-1 control-label">: </label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control" id="editPartPays" name="pays" autocomplete="off">
+              </div>
+            </div>      
+            <div class="form-group">
+              <label class="col-sm-3 control-label">Ville</label>
+              <label class="col-sm-1 control-label">: </label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control" id="editPartVille" name="ville" autocomplete="off">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="col-sm-3 control-label">Logo</label>
+              <label class="col-sm-1 control-label">: </label>
+              <div class="col-sm-8">
+                <input type="file" id="editPartLogo" name="logo" accept="image/*">
+              </div>
+            </div>      
           </div>                  
           <!-- /edit brand result -->
 

@@ -6,9 +6,13 @@ function editPart(idPart) {
     var data = managePart.data()[idPart];
     bodyEdit.attr('role', data[0]);
     bodyEdit.find("#editPartNom").val(data[1]);
-    bodyEdit.find("#editPartDesc").val(data[2]);
-    bodyEdit.find("#editPartEmail").val(data[3]);
-    bodyEdit.find("#editPartNum").val(data[4]);
+    bodyEdit.find("#editPartType").val(data[2]);
+    bodyEdit.find("#editPartDesc").val(data[3]);
+    bodyEdit.find("#editPartEmail").val(data[4]);
+    bodyEdit.find("#editPartNum").val(data[5]);
+    bodyEdit.find("#editPartPays").val(data[6]);
+    bodyEdit.find("#editPartVille").val(data[7]);
+
 }
 var managePart = $("#gererPart").DataTable({
     'ajax': 'partenaires/all',
@@ -19,7 +23,8 @@ var managePart = $("#gererPart").DataTable({
     }],
     "autoWidth": false
 });
-$("#submitPartForm").unbind('submit').bind('submit', function () {
+$("#submitPartForm").unbind('submit').bind('submit', function (e) {
+    e.preventDefault();
     var partNom = $("#partNom");
     if (partNom.val() == "") {
         if (partNom.siblings().length == 0) {
@@ -29,12 +34,15 @@ $("#submitPartForm").unbind('submit').bind('submit', function () {
     }
     else {
         var form = $(this);
+        var formData = new FormData(form[0]);
         $("#createPartBtn").button('loading');
         $.ajax({
             url: form.attr('action'),
             type: form.attr('method'),
-            data: form.serialize(),
-            dataType: 'json',
+            data: formData,
+            async: false,
+            processData: false,
+            contentType: false,
             success: function (response) {
                 $("#createPartBtn").button('reset');
                 if (response.success == true) {
@@ -91,12 +99,14 @@ $('#editPartForm').unbind('submit').bind('submit', function (e) {
         }
     }
     else {
-        var form = $(this);
+        var formData = new FormData($(this)[0]);
         $.ajax({
             url: 'partenaires/' + idPart + '/edit',
             type: 'post',
-            data: form.serialize(),
-            dataType: 'json',
+            data: formData,
+            async: false,
+            processData: false,
+            contentType: false,
             success: function (response) {
                 managePart.ajax.reload(null, false);
                 $(".text-danger").remove();

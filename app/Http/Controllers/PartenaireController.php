@@ -37,9 +37,12 @@ class PartenaireController extends Controller
         	$output['data'][] = array(
                 $partenaire->id,
                 $partenaire->nom,
+                $partenaire->type,
                 $partenaire->description,
                 $partenaire->email,
                 $partenaire->num_tel,
+                $partenaire->pays,
+                $partenaire->ville,
  		        $button_Action	
              ); 
             $i++;
@@ -54,9 +57,22 @@ class PartenaireController extends Controller
 
         $partenaire->nom = $validated['nom'];
         $partenaire->description = $validated['description'];
+        $partenaire->type = $validated['type'];
         $partenaire->email = $validated['email'];
         $partenaire->num_tel = $validated['num_tel'];
+        $partenaire->pays = $validated['pays'];
+        $partenaire->ville = $validated['ville'];
 
+        if($request->hasFile('logo')){
+            $file = $request->file('logo');
+            $file_name = 'part' . time().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path('/uploads/photo'),$file_name);
+
+        }
+        else{
+            $file_name="partenaire.png";
+        }
+        $partenaire->photo = 'uploads/photo/'.$file_name;
         $partenaire->save();
         $valid = array("success" => true);
         return response()->json($valid);
@@ -68,9 +84,22 @@ class PartenaireController extends Controller
 
         $partenaire->nom = $validated['nom'];
         $partenaire->description = $validated['description'];
+        $partenaire->type = $validated['type'];
         $partenaire->email = $validated['email'];
         $partenaire->num_tel = $validated['num_tel'];
+        $partenaire->pays = $validated['pays'];
+        $partenaire->ville = $validated['ville'];
 
+        if($request->hasFile('logo')){
+            $file = $request->file('logo');
+            $file_name = 'part' . time().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path('/uploads/photo'),$file_name);
+
+        }
+        else{
+            $file_name="partenaire.png";
+        }
+        $partenaire->photo = 'uploads/photo/'.$file_name;
         $partenaire->save();
         $valid = array("success" => true);
         return response()->json($valid);
