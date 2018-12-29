@@ -10,6 +10,8 @@ function editCat(idCat,libelle){
     $(function () {
         
            var manageCat = $("#gererCat").DataTable({
+              destroy: true,
+
             'ajax': 'getCat',
              'order': []   
              });
