@@ -117,6 +117,20 @@ Route::delete('contacts/{id}','ContactController@delete');
 Route::get('messages','MessageController@index');
 Route::delete('message/{id}','MessageController@delete');
 
+
+Route::get('stages','StageController@index');
+Route::get('getStages','StageController@getStages');
+Route::post('deleteStage','StageController@deleteStage');
+Route::post('createStage','StageController@createStage');
+Route::post('editStage/{id}','StageController@editStage');
+
+
+
+Route::get('getListPartenaires','StageController@getListPartenaires');
+Route::get('getListContacts/{id}','StageController@getListContacts');
+
+
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
