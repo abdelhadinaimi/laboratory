@@ -26,9 +26,21 @@ Route::get('materiels','MaterielController@index');
 Route::get('getCat','MaterielController@getCategories');
 Route::get('getMat','MaterielController@getMateriels');
 Route::get('getInformationMat/{id}','MaterielController@getMat');
+Route::get('getSmallCat','MaterielController@getSmallCat');
+Route::get('getAffecterEquipes','MaterielController@getEquipes');
+Route::get('getAffecterMembres','MaterielController@getMembres');
+Route::get('getHistoriqueMembres','MaterielController@getHistoriqueMembres');
+Route::get('getHistoriqueEquipes','MaterielController@getHistoriqueEquipes');
 
 Route::post('createCat','MaterielController@createCategorie');
 Route::post('createMat','MaterielController@createMateriel');
+
+Route::post('affecterForMembre/{id}','MaterielController@affecterForMembre');
+Route::post('affecterForEquipe/{id}','MaterielController@affecterForEquipe');
+
+Route::post('rendreFromMembre/{id}','MaterielController@rendreFromMembre');
+Route::post('rendreFromEquipe/{id}','MaterielController@rendreFromEquipe');
+
 
 Route::post('deleteCat','MaterielController@deleteCategorie');
 Route::post('deleteMat','MaterielController@deleteMateriel');
@@ -102,7 +114,6 @@ Route::post('contacts/create','ContactController@create');
 Route::post('contacts/{id}/edit','ContactController@edit');
 Route::delete('contacts/{id}','ContactController@delete');
 
-
 Route::get('messages','MessageController@index');
 Route::delete('message/{id}','MessageController@delete');
 
@@ -142,6 +153,7 @@ Route::get('/statistics',function(){
 							 "these"=> $these
 							]);
 });
+
 //Stat pie
 //SELECT count(users.id),equipes.intitule FROM `equipes`,`users`,`article_user`,`articles` WHERE users.equipe_id=equipes.id AND article_user.user_id=users.id AND year(articles.created_at)=2018 and articles.id=article_user.article_id GROUP BY equipes.id
 Route::get('/stat-bar-article',function(){

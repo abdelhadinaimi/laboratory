@@ -136,15 +136,18 @@ function removeMat($idMat){
 $(function () {
       
            var manageMat = $("#tableMat").DataTable({
+                destroy: true,
             'ajax': 'getMat',
              'order': []   
              });
             var manageAffectMembres = $("#tableAffectMembres").DataTable({
+                  destroy: true,
             'ajax': 'getHistoriqueMembres',
              'order': []   
              });
 
             var manageAffectEquipes = $("#tableAffectEquipes").DataTable({
+                  destroy: true,
             'ajax': 'getHistoriqueEquipes',
              'order': []   
              });
