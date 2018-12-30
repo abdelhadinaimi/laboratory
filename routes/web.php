@@ -20,12 +20,22 @@ use Illuminate\Support\Facades\Input;
 Route::get('/', function () {
     return view('auth/login');
 });
-
 //Traitement materiels
 Route::get('materiels','MaterielController@index');
 Route::get('getCat','MaterielController@getCategories');
 Route::get('getMat','MaterielController@getMateriels');
 Route::get('getInformationMat/{id}','MaterielController@getMat');
+
+//Traitement modulesdeleteMod
+Route::get('modules','ModuleController@index');
+Route::post('createModule','ModuleController@createModule');
+Route::post('deleteModule','ModuleController@deleteModule');
+Route::post('editMod/{id}','ModuleController@editModule');
+Route::get('module/{id}','CourController@index');
+Route::get('module/getCours/{id}','CourController@getCours');
+Route::post('module/createCours/{id}','CourController@createCour');
+Route::post('module/deleteCour/{idCours}','CourController@deleteCour');
+Route::post('module/editCour/{id}','CourController@editCour');
 
 Route::post('createCat','MaterielController@createCategorie');
 Route::post('createMat','MaterielController@createMateriel');

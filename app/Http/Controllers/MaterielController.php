@@ -18,41 +18,60 @@ class MaterielController extends Controller
         ]);;
     }
     public function getCategories(){
-    	$output = array('data' => array());
+        $output = array('data' => array());
         $categories = Categorie::all();
         foreach ($categories as $categorie)
         {
-        	$button_Action = '<!-- Single button -->
-	              <div class="btn-group">
-	                  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-	                      Action <span class="caret"></span>
-	                  </button>
-	                 <ul class="dropdown-menu">
-	                    <li><a type="button" data-toggle="modal" id="editCategoriesModalBtn" data-target="#editCategoriesModal" onclick="editCat('.$categorie->id.');"> <i class="glyphicon glyphicon-edit"></i> Editer</a></li>
-	                   <li><a type="button" data-toggle="modal" data-target="#removeCategoriesModal" id="removeCategoriesModalBtn" onclick="removeCat('.$categorie->id.');"> <i class="glyphicon glyphicon-trash"></i> Supprimer</a></li>          
-	                 </ul>
-	             </div>';
-        	$output['data'][] = array( 		
- 		       $categorie->libelle,
- 		       $button_Action	
- 		    ); 
+            $button_Action = '<!-- Single button -->
+                  <div class="btn-group">
+                      <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          Action <span class="caret"></span>
+                      </button>
+                     <ul class="dropdown-menu">
+                        <li><a type="button" data-toggle="modal" id="editCategoriesModalBtn" data-target="#editCategoriesModal" onclick="editCat('.$categorie->id.',\''.$categorie->libelle.'\');" style="cursor:pointer;"> <i class="glyphicon glyphicon-edit"></i> Editer</a></li>
+                       <li><a type="button" data-toggle="modal" data-target="#removeCategoriesModal" id="removeCategoriesModalBtn" onclick="removeCat('.$categorie->id.');" style="cursor:pointer;"> <i class="glyphicon glyphicon-trash"></i> Supprimer</a></li>          
+                     </ul>
+                 </div>';
+                 $count = Materiel::where('categorie_id','=',$categorie->id)->count();
+                 $label="";
+                  if($count > 0)
+                     $label = "<span class='label label-success'>Dispoible</span>";
+                 else
+                     $label = "<span class='label label-danger'>Non Dispo</span>";
+            $output['data'][] = array(      
+               $categorie->libelle,
+               $count,
+               $label,
+               $button_Action   
+            ); 
         }
       return response()->json($output);
     }
     public function createCategorie(Request $request){
-    	$categorie = new Categorie();
-    	$categorie->libelle = $request->input('catLib');
-    	$categorie->save();
-    	$valid['success'] = array('success' => false, 'messages' => array());
-	 	$valid['success'] = true;
-		$valid['messages'] = "Ajout réussi";	
-	    return response()->json($valid);
+        $categorie = Categorie::firstOrNew([
+         'libelle' => $request->input('catLib')
+        ]);
+        if(!$categorie->id)
+          {
+           $categorie->save();
+           $valid['success'] = array('success' => false, 'messages' => array());
+           $valid['success'] = true;
+           $valid['messages'] = "Ajout réussi";
+           }
+        else
+        {
+            $valid['success'] = array('success' => false, 'messages' => array());
+           $valid['success'] = false;
+           $valid['messages'] = "Ajout échoué Catégorie déja existe";
+        }
+
+        return response()->json($valid);
     }
     function deleteCategorie(Request $request){
     	Categorie::destroy($request->input('idCat'));
     	$valid['success'] = array('success' => false, 'messages' => array());
 	 	$valid['success'] = true;
-		$valid['messages'] = "Ajout réussi";	
+		$valid['messages'] = "Suppression Effectuée";	
 	    return response()->json($valid);
     }
     function editCategorie($id,Request $request){

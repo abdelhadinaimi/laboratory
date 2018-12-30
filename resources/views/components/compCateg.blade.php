@@ -15,6 +15,8 @@
                <thead>
                    <tr>              
                       <th>Libellé</th>
+                      <th>Qt Stock</th>
+                      <th>Disponibilité</th>
                       <th style="width:15%;">Options</th>
                    </tr>
                </thead>
@@ -45,8 +47,8 @@
         </div> <!-- /modal-body -->
         
           <div class="modal-footer">
-             <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
-             <button type="submit" class="btn btn-primary" id="createCatBtn" data-loading-text="Loading..." autocomplete="off">Ajouter</button>
+             <button type="button" class="btn btn-default" data-dismiss="modal"><i class="glyphicon glyphicon-remove-sign"></i> Fermer</button>
+             <button type="submit" class="btn btn-primary" id="createCatBtn" data-loading-text="Loading..." autocomplete="off"><i class="glyphicon glyphicon-ok-sign"></i> Ajouter</button>
            </div>
          </form>
     </div>
@@ -82,7 +84,7 @@
         <div class="modal-footer editBrandFooter">
           <button type="button" class="btn btn-default" data-dismiss="modal"> <i class="glyphicon glyphicon-remove-sign"></i> Fermer</button>
           
-          <button type="submit" class="btn btn-success" id="editCatBtn" data-loading-text="Loading..." autocomplete="off"> <i class="glyphicon glyphicon-ok-sign"></i> Editer</button>
+          <button type="submit" class="btn btn-primary" id="editCatBtn" data-loading-text="Loading..." autocomplete="off"> <i class="glyphicon glyphicon-ok-sign"></i> Editer</button>
         </div>
         <!-- /modal-footer -->
       </form>

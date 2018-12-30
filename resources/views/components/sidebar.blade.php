@@ -71,6 +71,15 @@
         </li>
       @endif
 
+      @if(Auth::user()->role->nom == 'admin' )
+          <li class="{{ $active ==  'cours' ? 'active':''}}">
+          <a href="{{url('modules')}}">
+            <i class="fa fa-envelope"></i> 
+            <span>Mes Cours</span>
+          </a>
+        </li>
+      @endif
+
           @if(Auth::user()->role->nom == 'admin' )
 
           <li class="{{ $active ==  'Paramètres' ? 'active':''}}">
