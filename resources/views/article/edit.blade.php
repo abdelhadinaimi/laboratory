@@ -22,17 +22,16 @@
 
 @section('content')
 
-
     <div class="row" style="padding-top: 30px">
       <div class="col-xs-12">
         <div class="box">
             
           <div class="container col-xs-12">
 
-            <form class="well form-horizontal" action=" {{url('articles/'. $article->id) }}" method="post"  id="contact_form">
+           <form class="well form-horizontal" action=" {{url('articles/'. $article->id) }}" method="post"  id="contact_form">
               <input type="hidden" name="_method" value="PUT">
             	{{ csrf_field() }}
-              <fieldset>
+              <fieldset> 
 
                 <!-- Form Name -->
                 <legend><center><h2><b>Modifier article</b></h2></center></legend><br>
@@ -74,7 +73,7 @@
                   </div>
 
                   <div class="form-group">
-                    <label class="col-md-3 control-label">Membres</label>
+                    <label class="col-md-3 control-label">Membres internes</label>
                     <div class="col-md-9 inputGroupContainer">
                       <div style="width: 70%">
                         <select name="membre[]" class="form-control select2" multiple="multiple" data-placeholder="Selectionnez les Membres Internes">
@@ -85,8 +84,48 @@
                               </option>
                             @endforeach
                           </option>
-                         @foreach($membres as $membre)
+                          <?php 
+                          $allMembres = $membres;
+                          foreach($allMembres as $k => $membre){
+                            foreach($article->users as $selected){
+                              if($membre->id == $selected->id){
+                                unset($allMembres[$k]);
+                              }
+                            }
+                          }
+                        ?>
+                         @foreach($allMembres as $membre)
                               <option value="{{$membre->id}}">{{$membre->name}} {{$membre->prenom}}</option>
+                          @endforeach
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="col-md-3 control-label">Membres externes</label>
+                    <div class="col-md-9 inputGroupContainer">
+                      <div style="width: 70%">
+                        <select name="contacts[]" class="form-control select2" multiple="multiple" data-placeholder="Selectionnez les Membres Externes">
+                          <option>
+                             @foreach ($article->contacts as $contact) 
+                              <option value="{{$contact->id}}" selected>
+                                  {{ $contact->nom }} {{ $contact->prenom }}
+                              </option>
+                            @endforeach
+                          </option>
+                          <?php 
+                          $allContacts = $contacts;
+                          foreach($allContacts as $k => $contact){
+                            foreach($article->contacts as $selected){
+                              if($contact->id == $selected->id){
+                                unset($allContacts[$k]);
+                              }
+                            }
+                          }
+                        ?>
+                         @foreach($allContacts as $contact)
+                              <option value="{{$contact['id']}}">{{$contact['nom']}} {{$contact['prenom']}}</option>
                           @endforeach
                         </select>
                       </div>

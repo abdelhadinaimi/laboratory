@@ -11,8 +11,13 @@ class Article extends Model
 
      protected $dates = ['deleted_at'];
 
-      public function users()
+    public function users()
     {
         return $this->belongsToMany('App\User');
+    }
+
+    public function contacts()
+    {
+        return $this->belongsToMany('App\Contact');
     }
 }

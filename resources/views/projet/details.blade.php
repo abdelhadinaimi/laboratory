@@ -61,18 +61,7 @@
                 </div>
 
                   <strong><i class="margin-r-5"></i></strong>
-                  <hr>
-
-                  <div class="col-md-3">
-                    <strong><i class="fa fa-group  margin-r-5"></i>Partenaires</strong>
-                  </div>
-                  <div class="col-md-9">
-                    <p class="text-muted">
-                      {{$projet->partenaires}}
-                    </p>
-                  </div>
-
-                  <strong><i class="margin-r-5"></i></strong>
+              
                 <hr>
                 <div class="col-md-3">
                   <strong><i class="fa fa-user  margin-r-5"></i>Chef du projet</strong>                
@@ -98,6 +87,21 @@
 
                   <strong><i class="margin-r-5"></i></strong>
                 <hr>
+                @if(count($contacts) != 0)
+                  <div class="col-md-3 " style="padding-top: 20px">
+                    <strong><i class="fa fa-user margin-r-5"></i> Membres externes</strong>
+                  </div>
+                  <div class="col-md-9" style="padding-top: 20px">
+                    @foreach($contacts as $contact)
+                      <ul>
+                          <li>{{ $contact->nom }} {{ $contact->prenom }}</li>
+                      </ul>
+                    @endforeach
+                  </div>
+                  <strong><i class="margin-r-5"></i></strong>
+                  <hr>
+                @endif
+                
                 @if($projet->lien)
                 <div class="row">
                 <div class="col-md-3">

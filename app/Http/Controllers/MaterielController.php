@@ -7,6 +7,11 @@ use App\Http\Controllers\Controller;
 use App\Parametre;
 use App\Categorie;
 use App\Materiel;
+use App\Equipe;
+use App\User;
+use App\MaterielMembre;
+use App\MaterielEquipe;
+use Carbon\Carbon;
 class MaterielController extends Controller
 {
     public function index()
@@ -93,15 +98,22 @@ class MaterielController extends Controller
                       </button>
                      <ul class="dropdown-menu">
                         <li><a type="button" data-toggle="modal" id="editMaterielsModalBtn" data-target="#editMaterielsModal" onclick="editMat('.$materiel->id.');"> <i class="glyphicon glyphicon-edit"></i> Editer</a></li>
-                       <li><a type="button" data-toggle="modal" data-target="#removeMatModal" id="removeMaterielsModalBtn" onclick="removeMat('.$materiel->id.');"> <i class="glyphicon glyphicon-trash"></i> Supprimer</a></li>          
+                       <li><a type="button" data-toggle="modal" data-target="#removeMatModal" id="removeMaterielsModalBtn" onclick="removeMat('.$materiel->id.');"> <i class="glyphicon glyphicon-trash"></i> Supprimer</a></li>';
+                     
+                 if($materiel->etat==0){
+                  $button_Action=$button_Action.'<li><a type="button" data-toggle="modal" data-target="#affecterMatModal" id="affecterMaterielsModalBtn" onclick="affecterMat('.$materiel->id.');"> <i class="glyphicon glyphicon-export"></i> Affecter</a></li>          
                      </ul>
                  </div>';
+                 }
+                 else{
+                  $button_Action=$button_Action.'</ul></div>';
+                 }
             $output['data'][] = array(
-               $materiel->id,
                 $materiel->reference,
-               $materiel->categorie->libelle,
+               ($materiel->categorie!=null)?$materiel->categorie->libelle:"",
                $materiel->description,
-               $button_Action   
+               ($materiel->etat==0)?"<h4><span class=\" col-md-4 label label-success\">Libre</span></h4>":"<h4><span class=\" col-md-4 label label-danger\">Affecté</span></h4>",
+              $button_Action   
             ); 
         }
       return response()->json($output);
@@ -110,7 +122,7 @@ class MaterielController extends Controller
     public function createMateriel(Request $request){
         $Materiel = new Materiel();
         $Materiel->categorie_id = $request->input('catMat');
-        $Materiel->reference = $request->input('RefMat');
+        $Materiel->reference = strtoupper($request->input('RefMat'));
         $Materiel->description = $request->input('DescMat');
         $Materiel->save();
         $valid['success'] = array('success' => false, 'messages' => array());
@@ -130,7 +142,7 @@ class MaterielController extends Controller
      function editMateriel($id,Request $request){
          $materiel = Materiel::find($id);
          $materiel->categorie_id = $request->input('selectCatEdit');
-         $materiel->reference = $request->input('RefMatEdit');
+         $materiel->reference = strtoupper($request->input('RefMatEdit'));
          $materiel->description = $request->input('DescMatEdit');
          $materiel->save();
          return response()->json(array('success' => true,'message' => "Materiel mis à jour"));
@@ -149,4 +161,147 @@ class MaterielController extends Controller
               return response()->json($output);
 
         }
+       public function getSmallCat(){
+        $output = array('data' => array());
+        $categories = Categorie::all();
+        foreach ($categories as $categorie)
+        {
+            $output['data'][] = array(
+               $categorie->id,
+                $categorie->libelle,
+                
+            ); 
+        }
+      return response()->json($output);
     }
+
+        public function getEquipes(){
+        $output = array('data' => array());
+        $equipes = Equipe::all();
+        foreach ($equipes as $equipe)
+        {
+            $output['data'][] = array(
+               $equipe->id,
+                $equipe->achronymes,
+                
+            ); 
+        }
+      return response()->json($output);
+    }
+
+    public function getMembres(){
+        $output = array('data' => array());
+        $membres = User::all();
+        foreach ($membres as $membre)
+        {
+            $output['data'][] = array(
+               $membre->id,
+                $membre->name,
+                $membre->prenom,
+            ); 
+        }
+      return response()->json($output);
+    }
+
+
+
+        public function getHistoriqueMembres(){
+            $output = array('data' => array());
+            $affectMembres = MaterielMembre::all();
+          foreach ($affectMembres as $affectMembre)
+          {
+             $button_Action = '<!-- Single button -->
+                  <div class="btn-group">
+                      <button type="button" class="btn btn-default"  data-target="#rendreMaterielsMembres" dropdown-toggle" onclick="rendreMatMembre('.$affectMembre->materiel_id.',\''.$affectMembre->id.'\');" id="rendreMaterielsModalBtn" data-toggle="modal" aria-haspopup="true" aria-expanded="false" >
+                          <i class="glyphicon glyphicon-import"></i> Libérer
+                      </button>
+                 </div>';
+            $output['data'][] = array(
+               //rendre('.$affectMembre->materiel_id.');
+               $affectMembre->materiel->reference,
+               $affectMembre->materiel->categorie->libelle,
+               $affectMembre->user->name." ".$affectMembre->user->prenom,
+               $affectMembre->dateAffectation,
+               $affectMembre->dateRetour,
+               (($affectMembre->materiel->etat==1) && ($affectMembre->dateRetour==null) )?$button_Action:""
+            ); 
+          }
+
+              return response()->json($output);
+
+    }
+       public function getHistoriqueEquipes(){
+            $output = array('data' => array());
+            $affectEquipes = MaterielEquipe::all();
+          foreach ($affectEquipes as $affectEquipe)
+          {
+             $button_Action = '<!-- Single button -->
+                  <div class="btn-group">
+                      <button type="button" class="btn btn-default"  data-target="#rendreMaterielsEquipes" dropdown-toggle" id="rendreMaterielsModalBtn" data-toggle="modal" aria-haspopup="true" aria-expanded="false" onclick="rendreMatEquipe('.$affectEquipe->materiel_id.',\''.$affectEquipe->id.'\');">
+                          <i class="glyphicon glyphicon-import"></i> Libérer
+                      </button>
+                 </div>';
+            $output['data'][] = array(
+               $affectEquipe->materiel->reference,
+               $affectEquipe->materiel->categorie->libelle,
+               $affectEquipe->equipe->achronymes,
+               $affectEquipe->dateAffectation,
+               $affectEquipe->dateRetour,
+               (($affectEquipe->materiel->etat==1) && ($affectEquipe->dateRetour==null) )?$button_Action:""
+            ); 
+          }
+
+              return response()->json($output);
+
+    }
+
+    public function affecterForEquipe($id,Request $request){
+        $Materiel = new MaterielEquipe();
+        $Materiel->materiel_id = $id;
+        $Materiel->equipe_id = $request->input('selected');
+        $Materiel->dateAffectation = $request->input('dateAFF');
+        $Materiel->save();
+        Materiel::where('id', $id)->update( array('etat'=>'1'));
+        $valid['success'] = array('success' => false, 'messages' => array());
+        $valid['success'] = true;
+        $valid['messages'] = "Ajout réussi";    
+        return response()->json($valid);
+    }
+    public function affecterForMembre($id,Request $request){
+        $Materiel = new MaterielMembre();
+        $Materiel->materiel_id = $id;
+        $Materiel->user_id = $request->input('selected');
+        $Materiel->dateAffectation = $request->input('dateAFF');
+        $Materiel->save();
+        Materiel::where('id', $id)->update( array('etat'=>'1'));
+        $valid['success'] = array('success' => false, 'messages' => array());
+        $valid['success'] = true;
+        $valid['messages'] = "Ajout réussi";    
+        return response()->json($valid);
+    }
+    
+    public function rendreFromMembre($id,Request $request){
+        Materiel::where('id', $id)->update( array('etat'=>'0'));
+        $affectLineM = $request->input('affectLineM');
+        $dateRND = $request->input('dateRND');
+
+        MaterielMembre::where('id', $affectLineM)->update( array('dateRetour'=>$dateRND));
+
+        $valid['success'] = array('success' => false, 'messages' => array());
+        $valid['success'] = true;
+        $valid['messages'] = "opération réussie";    
+        return response()->json($valid);
+    }
+
+    public function rendreFromEquipe($id,Request $request){
+       Materiel::where('id', $id)->update( array('etat'=>'0'));
+        $affectLineE = $request->input('affectLineE');
+        $dateRNDE = $request->input('dateRNDE');
+        MaterielEquipe::where('id', $affectLineE)->update( array('dateRetour'=>$dateRNDE));
+        $valid['success'] = array('success' => false, 'messages' => array());
+        $valid['success'] = true;
+        $valid['messages'] = "opération réussie";    
+        return response()->json($valid);
+    }
+
+}

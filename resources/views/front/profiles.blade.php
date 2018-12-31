@@ -36,7 +36,12 @@
                                 <li class="nav-item">
                                     <a class="nav-link" href="#projets" role="tab" data-toggle="tab">Projets</a>
                                 </li>
-                               
+                                @if($membre->these)
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#these" role="tab" data-toggle="tab">Thèse</a>
+                                </li>
+                                @endif
+
                             </ul>
                             <div class="tab-content">
                                 <div role="tabpanel" class="tab-pane active" id="profile">
@@ -115,7 +120,46 @@
                               </div>  
                                     </div>
                                 </div>
-                        
+                            <div role="tabpanel" class="tab-pane" id="these">
+                                    @if($membre->these)
+
+                                    <div class="p-2">
+                                        <h5>Thèse [<i class="fa fa-file-pdf-o"></i> <a href="{{$membre->these->detail}}">Détails</a>]</h5>
+                                                 <div class="row">
+                                    <div class="col-md-6">
+                     
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label form-input-icon">
+                            <i class="fa fa-mortar-board"></i>
+                            <input class="mdl-textfield__input" readonly="true" value="{{$membre->these->titre}}" type="text" id="profile-birthdate">
+                            <label class="mdl-textfield__label" for="profile-birthdate">Titre</label>
+                        </div>
+                      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label form-input-icon">
+                            <i class="fa fa-comment"></i>
+                            <input class="mdl-textfield__input" readonly="true" value="{{$membre->these->sujet}}" type="text" >
+                            <label class="mdl-textfield__label" for="profile-mobile">Sujet</label>
+                        </div>
+                    
+                       
+                        </div>
+                                 <div class="col-md-6">
+                     
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label form-input-icon">
+                            <i class="fa fa-user"></i>
+                            <input class="mdl-textfield__input" readonly="true" value="{{$membre->these->encadreur_int}} @if($membre->these->encadreur_ext),{{$membre->these->encadreur_ext}} @endif" type="text" id="profile-birthdate">
+                            <label class="mdl-textfield__label" for="profile-birthdate">Encadreurs</label>
+                        </div>
+                      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label form-input-icon">
+                            <i class="fa fa-user"></i>
+                            <input class="mdl-textfield__input" readonly="true" value="{{$membre->these->coencadreur_int}}@if($membre->these->coencadreur_ext) ,{{$membre->these->coencadreur_ext}}@endif" type="text" >
+                            <label class="mdl-textfield__label" for="profile-mobile">Co-encadreurs</label>
+                        </div>
+                    
+                       
+                        </div>
+                              </div>  
+                                    </div>
+                                    @endif
+                                </div>
                             </div> 
                         </div>
                         </div>

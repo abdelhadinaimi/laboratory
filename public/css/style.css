@@ -208,8 +208,11 @@ blockquote {
 /* Added by Abdelhadi */
 
 .trobon-image{
-  min-height: 100px;
-  max-height: 100px;
+  min-height: 220px;
+  max-height: 220px;
+
+  min-width: 240px;
+  max-width: 240px;
 }
 
 /* Add by CHERIFI */
@@ -1799,8 +1802,8 @@ blockquote {
 .hdr-logo a {
   display: inline-block; }
   .hdr-logo a img {
-    max-width: 200px;
-    height: 40px; }
+    max-width: 230px;
+    height: 65px; }
 
 .menu {
   position: relative;

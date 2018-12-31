@@ -44,7 +44,6 @@
                 <tr>
                   <th>Intitulé</th>
                   <th>Type</th>
-                  <th>Partenaires</th>
                   <th>Chef</th>
                   <th>Membres</th>
                   <th>Actions</th>
@@ -56,7 +55,6 @@
                   <tr>
                     <td>{{ $projet->intitule }}</td>
                     <td>{{ $projet->type }}</td>
-                    <td>{{ $projet->partenaires }}</td>
                     <td><a href="{{url('membres/'.$projet->chef_id.'/details')}}">{{ $projet->chef->name}} {{ $projet->chef->prenom}}</a></td>
                     <td>
                       @foreach ($projet->users as $user) 
@@ -126,7 +124,6 @@
                  <tr>
                   <th>Intitulé</th>
                   <th>Type</th>
-                  <th>Partenaires</th>
                   <th>Chef</th>
                   <th>Membres</th>
                   <th>Actions</th>

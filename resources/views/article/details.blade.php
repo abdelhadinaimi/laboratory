@@ -73,13 +73,17 @@
                     @endforeach
                   </div>
                 </div>
-                @if($article->membres_ext)
+                @if(count($contacts) != 0)
                 <div class="row">
                   <div class="col-md-3 " style="padding-top: 20px">
                     <strong><i class="fa fa-user margin-r-5"></i> Membres externes</strong>
                   </div>
                   <div class="col-md-9" style="padding-top: 20px">
-                    {{$article->membres_ext}}
+                    @foreach($contacts as $contact)
+                      <ul>
+                          <li>{{ $contact->nom }} {{ $contact->prenom }}</li>
+                      </ul>
+                    @endforeach
                   </div>
                 </div>
                 @endif

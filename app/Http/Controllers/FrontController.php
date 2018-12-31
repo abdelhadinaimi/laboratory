@@ -28,26 +28,35 @@ class FrontController extends Controller{
     public function equipe($id)
     {   
         $equipe = Equipe::find($id);
-        $projets = DB::table('users')
-            ->select('projets.id','projets.intitule','projets.resume')
-            ->distinct()
-            ->where('users.equipe_id','=',$equipe->id)
-            ->join('projet_user', 'users.id', '=', 'projet_user.user_id')
-            ->join('projets','projets.id', '=', 'projet_user.projet_id')
-            ->get();
-               
+        $projets = array();
+        foreach($equipe->membres as $user){
+            foreach($user->projets as $projet){
+                if(!in_array($projet,$projets)){
+                    $projets[] = $projet;
+                }
+            }
+        }
+        $partenaires = array();
+        foreach($projets as $projet){
+            foreach($projet->contacts as $contact){
+                $part = $contact->partenaire;
+                if(!in_array($part,$partenaires)){
+                    $partenaires[] = $part;
+                }
+            }
+        }
         return view('front.equipe')->with([ 
             'equipe' => $equipe,
             'membres' => $equipe->membres,
             'chef' => $equipe->chef,
-            'projets' =>  $projets
+            'projets' =>  $projets,
+            'partenaires' => $partenaires
         ]);
     }
 
     public function profiles($id)
     {
         $membre = User::find($id);
-
         return view('front.profiles')->with([
             'membre' => $membre,
         ]);;

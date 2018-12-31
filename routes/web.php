@@ -25,6 +25,11 @@ Route::get('materiels','MaterielController@index');
 Route::get('getCat','MaterielController@getCategories');
 Route::get('getMat','MaterielController@getMateriels');
 Route::get('getInformationMat/{id}','MaterielController@getMat');
+Route::get('getSmallCat','MaterielController@getSmallCat');
+Route::get('getAffecterEquipes','MaterielController@getEquipes');
+Route::get('getAffecterMembres','MaterielController@getMembres');
+Route::get('getHistoriqueMembres','MaterielController@getHistoriqueMembres');
+Route::get('getHistoriqueEquipes','MaterielController@getHistoriqueEquipes');
 
 //Traitement modulesdeleteMod
 Route::get('modules','ModuleController@index');
@@ -39,6 +44,13 @@ Route::post('module/editCour/{id}','CourController@editCour');
 
 Route::post('createCat','MaterielController@createCategorie');
 Route::post('createMat','MaterielController@createMateriel');
+
+Route::post('affecterForMembre/{id}','MaterielController@affecterForMembre');
+Route::post('affecterForEquipe/{id}','MaterielController@affecterForEquipe');
+
+Route::post('rendreFromMembre/{id}','MaterielController@rendreFromMembre');
+Route::post('rendreFromEquipe/{id}','MaterielController@rendreFromEquipe');
+
 
 Route::post('deleteCat','MaterielController@deleteCategorie');
 Route::post('deleteMat','MaterielController@deleteMateriel');
@@ -101,8 +113,33 @@ Route::get('actualites/{id}/details','ActualiteController@details');
 Route::put('actualites/{id}','ActualiteController@update');
 Route::delete('actualites/{id}','ActualiteController@destroy');
 
+Route::get('partenaires','PartenaireController@index');
+Route::get('partenaires/all','PartenaireController@all');
+Route::post('partenaires/create','PartenaireController@create');
+Route::post('partenaires/{id}/edit','PartenaireController@edit');
+Route::delete('partenaires/{id}','PartenaireController@delete');
+
+Route::get('contacts/all','ContactController@all');
+Route::post('contacts/create','ContactController@create');
+Route::post('contacts/{id}/edit','ContactController@edit');
+Route::delete('contacts/{id}','ContactController@delete');
+
 Route::get('messages','MessageController@index');
 Route::delete('message/{id}','MessageController@delete');
+
+
+Route::get('stages','StageController@index');
+Route::get('getStages','StageController@getStages');
+Route::post('deleteStage','StageController@deleteStage');
+Route::post('createStage','StageController@createStage');
+Route::post('editStage/{id}','StageController@editStage');
+
+
+
+Route::get('getListPartenaires','StageController@getListPartenaires');
+Route::get('getListContacts/{id}','StageController@getListContacts');
+
+
 
 Auth::routes();
 
@@ -138,6 +175,96 @@ Route::get('/statistics',function(){
 	return response()->json(["annee"=>$annee,
 							 "article"=> $article,
 							 "these"=> $these
+							]);
+});
+
+//Stat pie
+//SELECT count(users.id),equipes.intitule FROM `equipes`,`users`,`article_user`,`articles` WHERE users.equipe_id=equipes.id AND article_user.user_id=users.id AND year(articles.created_at)=2018 and articles.id=article_user.article_id GROUP BY equipes.id
+Route::get('/stat-bar-article',function(){
+	$year = date('Y');
+	$years = array();
+	$equipes = Equipe::pluck('intitule');
+	for ($x = 10; $x>=0 ; $x--)
+	{
+	    $years[] = $year-$x;
+	    
+	}
+	$nombres = Equipe::join('users', 'equipes.id', '=', 'users.equipe_id')
+			->join('article_user','article_user.user_id','=','users.id')
+			->join('articles','articles.id','=','article_user.article_id')
+			->select('equipes.id as id','equipes.intitule as intitule', DB::raw("count(users.equipe_id) as count"),DB::raw('YEAR(articles.created_at) year'))
+			->groupBy('equipes.id','year')
+			->get();
+
+  
+	return response()->json(["nombres"=>$nombres,
+						     "equipes"=>$equipes,
+							 "years"=>$years
+							]);
+});
+Route::get('/stat-bar-stacked-article',function(){
+	$year = date('Y');
+	$years = array();
+	for ($x = 10; $x>-1 ; $x--)
+	{
+	    $years[] = $year-$x;    
+    }
+    $countArticle = Article::select('id','type', DB::raw('count(type) as count'),'annee')
+             ->groupBy('annee','type')
+             ->orderBy('id','ASC')
+             ->get();
+    $type = Article::distinct('type')->pluck('type');
+  
+	return response()->json(["countArticle"=>$countArticle,
+							 "years"=> $years
+							]);
+});
+Route::get('/statPie',function(){
+
+	$nmbrEquipe = Equipe::distinct('id')->count();
+	$equipes = Equipe::pluck('intitule');
+	$nombres = Equipe::join('users', 'equipes.id', '=', 'users.equipe_id')
+			->select('equipes.id as id', DB::raw("count(users.equipe_id) as count"))
+			->groupBy('equipes.id')
+			->get();
+  
+	return response()->json(["nombres"=>$nombres,
+							 "equipes"=> $equipes,
+							 "nmbrEquipe"=>$nmbrEquipe
+							]);
+});
+//Stat pie
+Route::get('/stat-pie-article',function(){
+
+	$countArticle= DB::table('articles')
+             ->select('id','type', DB::raw('count(type) as count'))
+             ->groupBy('type')
+             ->orderBy('id','asc')
+             ->get();
+    $type = Article::distinct('type')->pluck('type');
+  
+	return response()->json(["countArticle"=>$countArticle,
+							 "type"=> $type
+							]);
+});
+//Stat These
+Route::get('/statThese',function(){
+
+	$year = date('Y');
+
+	$years = array();
+	$debuThese = array();
+	$finThese = array();
+	for ($x = 10; $x>-1 ; $x--)
+	{
+	    $years[] = $year-$x;
+	    $debuThese[] = DB::table('theses')->where(DB::raw("DATE_FORMAT(STR_TO_DATE(date_debut,'%m/%d/%Y'),'%Y')"),$year-$x)->count();
+	    $finThese[] = DB::table('theses')->where(DB::raw("DATE_FORMAT(STR_TO_DATE(date_soutenance,'%m/%d/%Y'),'%Y')"),$year-$x)->count();
+	}
+  
+	return response()->json(["years"=>$years,
+							 "debuThese"=> $debuThese,
+							 "finThese"=> $finThese
 							]);
 });
 
@@ -182,3 +309,8 @@ Route::get('/front/contact',function(){
 	return view('front.contact');
 });
 Route::post('/front/contact','FrontController@contact');
+
+
+Route::get('/front/presentation',function(){
+	return view('front.presentation');
+});

@@ -15,8 +15,13 @@ class Projet extends Model
     {
         return $this->belongsTo('App\User');
     }
-     public function users()
+    public function users()
     {
         return $this->belongsToMany('App\User');
+    }
+
+    public function contacts()
+    {
+        return $this->belongsToMany('App\Contact','projet_contact');
     }
 }
