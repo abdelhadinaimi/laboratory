@@ -15,9 +15,11 @@ function editCat(idCat,libelle){
             'ajax': 'getCat',
              'order': []   
              });
-           $("#submitCatForm").unbind('submit').bind('submit', function() {
+            $("#submitCatForm").unbind('submit').bind('submit', function() {
               var catLib = $("#catLib").val();
               if(catLib == "") {
+                  $(".text-danger").remove();
+                  $('.form-group').removeClass('has-error').removeClass('has-success');
                   $("#catLib").after('<p class="text-danger">Saissisz le libellé</p>');
                   $('#catLib').closest('.form-group').addClass('has-error');
               }
@@ -27,7 +29,7 @@ function editCat(idCat,libelle){
                 $.ajax({
                   url : form.attr('action'),
                   type: form.attr('method'),
-                  data: form.serialize(),
+                  data: {"_token": $('meta[name="csrf-token"]').attr('content'),"catLib":catLib},
                   dataType: 'json',
                   success:function(response) {
                    $("#createCatBtn").button('reset');
@@ -46,6 +48,17 @@ function editCat(idCat,libelle){
                         });
                        }); // /.alert
                     }  // if
+                    else{
+                      $('#add-cat-messages').html('<div class="alert alert-danger">'+
+            '<button type="button" class="close" data-dismiss="alert">&times;</button>'+
+            '<strong><i class="glyphicon glyphicon-remove"></i></strong> '+ response.messages +
+          '</div>');
+                    $(".alert-danger").delay(500).show(10, function() {
+                       $(this).delay(5000).hide(10, function() {
+                       $(this).remove();
+                        });
+                       }); // /.alert
+                    }
                   } // /success
                   }); // /ajax
                }
