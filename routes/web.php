@@ -317,3 +317,6 @@ Route::get('/front/presentation',function(){
 
 /* ----- front cours ----- */
 Route::get('/frontCours/{id}','FrontCoursController@index');
+Route::get('/frontCours/module/{id}','FrontCoursController@cours');
+Route::get('/frontCours/module/download/{file}', 'FrontCoursController@download');
+

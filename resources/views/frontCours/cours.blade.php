@@ -3,162 +3,62 @@
 @section('title','Cours')
 
 @section('content')
-
-  <!-- Jumbotron Header 
-      <header class="jumbotron my-4" style="background: #002040;">
-        <div class="page-ttl">
-        <div class="layer-stretch">
-            <div class="page-ttl-container">
-            <div class="row justify-content-center">
-            <div class="col-md-3">
-
-                <img src=" {{asset($membre->photo)}}" class="rounded-circle profileImage">
-                </div>
-                <div class="col-md-5 align-self-center ">
-                <table width="100%">
-                  <tr><td  style="border-bottom: solid;border-color: #FFF;border-width: thin;" align="left"><h3 style="color: #FFF;">{{$membre->prenom}} {{$membre->name}}  </h3></td></tr>
-                    <tr><td  style="border-bottom: solid;border-color: #FFF;border-width: thin;" align="left"><h5 style="color: #FFF;">Grade : {{$membre->grade}}</h5></td></tr>
-                    <tr><td  style="border-bottom: solid;border-color: #FFF;border-width: thin;" align="left"><h5 style="color: #FFF;">Equipe de recherche : {{$membre->equipe->achronymes}}</h5></td></tr>
-                </table>
-                </div>
-            </div>
-            </div>
-        </div>
-    </div>
-      </header>
-
-
-      Page Features -->
-     <!-- <div class="row text-center">
-  	@foreach($modules as $module)
-
-        <div class="col-lg-3 col-md-6 mb-4">
-          <div class="card">
-            
-            <div class="card-body">
-              <h4 class="card-title">{{$module->libelle}}</h4>
-              <p class="card-text">{{$module->description}}</p>
-            </div>
-            <div class="card-footer">
-              <a href="#" class="btn btn-primary">Find Out More!</a>
-            </div>
-          </div>
-        </div>
-         @endforeach-->
-
-<div class="col-sm-12">
-                                <div class="theme-material-card">
-                                    <div class="sub-ttl">Page Personnal</div>
-                                    <div class="row font-16">
-                                        <div class="col-4">
-                                            <div class="list-group list-primary" id="list-tab" role="tablist">
-                                                <a class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list" href="#list-home" role="tab" aria-controls="home">A propos</a>
-                                                <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="profile">Articles</a>
-                                                <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" href="#list-messages" role="tab" aria-controls="messages">Projects</a>
-                                                <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#list-settings" role="tab" aria-controls="settings">Module</a>
-                                            </div>
-                                        </div>
-                                        <div class="col-8">
-                                            <div class="tab-content" id="nav-tabContent">
-                                                <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">
-                                                <div class="page-ttl-container">
-            <div class="row justify-content-center">
-            <div class="col-md-3">
-
-                <img src=" {{asset($membre->photo)}}" class="rounded-circle profileImage">
-                </div>
-                <div class="col-md-5 align-self-center" style="
-    margin: auto;
-">
-                <table width="100%">
-                  <tr><td  style="border-bottom: solid;border-color: #FFF;border-width: thin;" align="left"><h3 style="color: #FFF;">{{$membre->prenom}} {{$membre->name}}  </h3></td></tr>
-                    <tr><td  style="border-bottom: solid;border-color: #FFF;border-width: thin;" align="left"><h5 style="color: #FFF;">Grade : {{$membre->grade}}</h5></td></tr>
-                    <tr><td  style="border-bottom: solid;border-color: #FFF;border-width: thin;" align="left"><h5 style="color: #FFF;">Equipe de recherche : {{$membre->equipe->achronymes}}</h5></td></tr>
-                </table>
-                </div>
-            </div>
-            </div>  <div class="col-md-6">
-                     
-                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label form-input-icon">
-                            <i class="fa fa-calendar"></i>
-                            <input class="mdl-textfield__input" readonly="true" value="{{$membre->date_naissance}}" type="text" id="profile-birthdate">
-                            <label class="mdl-textfield__label" for="profile-birthdate">Date de naissance</label>
-                        </div>
-                      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label form-input-icon">
-                            <i class="fa fa-phone"></i>
-                            <input class="mdl-textfield__input" readonly="true" value="{{$membre->num_tel}}" type="text" >
-                            <label class="mdl-textfield__label" for="profile-mobile">N°Téléphone</label>
-                        </div>
-                    
-                       
-                        </div>
-                    <div class="col-md-6">
-                        
-                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label form-input-icon">
-                            <i class="fa fa-envelope-o"></i>
-                            <input class="mdl-textfield__input" readonly="true" value="{{$membre->email}}" type="text"  id="profile-email">
-                            <label class="mdl-textfield__label " for="profile-email">Email</label>
-                        </div>
-                    </div></div>
-                                                <div class="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">
-                                                <div class="p-2">
-                                        <h5>Articles</h5>
-                                                 <div class="row">
-                        @foreach ($membre->articles as $article) 
-                        <?php $type = str_replace(' ','',$article->type); ?>
-                        
-                        @component('components.article',[
-                            'pub' => $article,
-                            'type' => $type,
-                            'photo' => $membre->photo,
-                            'users' => $article->users,
-                            'size' => 3])
-                        @endcomponent
-
-
-                        @endforeach
-                        
+        <div class="theme-material-card">
+        	<div class="sub-ttl font-28">Listes des cours de {{$module->libelle}}</div>
+                            <div class="theme-accordion-container">
+                            	@foreach ($cours as $cour) 
+                                <div class="theme-accordion">
+                                    <div class="theme-accordion-hdr">
+                                        <h4 class="color-green"><i class="fa fa-graduation-cap"></i> {{$cour->libelle}}</h4>
+                                        <div class="theme-accordion-control"><i class="fa fa-plus"></i></div>
                                     </div>
-                                    </div>
-                                </div>
-                             
-
-                                                <div class="tab-pane fade" id="list-messages" role="tabpanel" aria-labelledby="list-messages-list">   <div role="tabpanel" class="tab-pane" id="projets">
-                                    <div class="p-2">
-                                        <h5>Projets</h5>
-                                                 <div class="row">
-                            @foreach ($membre->projets as $projet) 
-                                @component('components.projet',[
-                                    'projet' => $projet,
-                                    'size' => 3
-                                    ])
-                                @endcomponent
-                                        
-                            @endforeach
-                         
-                              </div>  
-                                    </div></div></div>
-                                                <div class="tab-pane fade" id="list-settings" role="tabpanel" aria-labelledby="list-settings-list"><div class="row text-center">
-  	@foreach($modules as $module)
-
-        <div class="col-lg-3 col-md-6 mb-4">
-          <div class="card">
-            
-            <div class="card-body">
-              <h4 class="card-title">{{$module->libelle}}</h4>
-              <p class="card-text">{{$module->description}}</p>
-            </div>
-            <div class="card-footer">
-              <a href="#" class="btn btn-secondary">cours</a>
-            </div>
-          </div>
-        </div>
-         @endforeach</div></div>
+                                    <div class="theme-accordion-bdy">
+                                        <div class="row service-accordian">
+                   
+                                            <div class="col-lg-6">
+                                            	<h3><strong>{{$cour->description}}</strong></h3>
+                                            	<?php 
+                                            		$fileName = explode("/", $cour->fiche);
+                                            		$fileName = end($fileName);
+                                            	 ?>
+                                            	<div class="row">
+                                            		<div class="col-md-2"><a href="{{URL::asset($cour->fiche)}}" target="_blank"><i class="fa fa-eye"></i> afficher</a> </div>
+                                            		<div class="col-md-2"><a href="download/{{$fileName}}">
+                                            			<i class="fa fa-download"></i> Telecharger</a></div>
+                                            	</div>
+                                            	<br>
+                                            	
+                                                
                                             </div>
+                                            <div class="col-lg-6">
+                                            	<h3><strong>fichier joints:</strong></h3>
+                                            	<?php 
+                                            		$joinFiles = explode(" ", $cour->joins);
+                                            		$lenthJoins = sizeof($joinFiles)-1;
+                                            		array_pop($joinFiles);
+                                            	 ?>
+                                            	
+                                                @foreach ($joinFiles as $joinFile)
+                                                <?php 
+                                            		$fileName = explode("/", $joinFile);
+                                            		$fileName = end($fileName);
+                                            	 ?>
+                                            	 {{$fileName}}
+                                            	 <div class="row">
+                                            		<div class="col-md-4"><a href="{{URL::asset($joinFile)}}" target="_blank"><i class="fa fa-eye"></i> afficher</a> </div>
+                                            		<div class="col-md-4"><a href="download/{{$fileName}}">
+                                            			<i class="fa fa-download"></i> Telecharger</a></div>
+                                            	</div>
+
+                                                @endforeach
+                                                
+                                            </div>
+                                            <p class="pull-right" style="color: #25c1d0;">publie à {{$cour->pub_time}}</p>
                                         </div>
                                     </div>
                                 </div>
+                                 @endforeach
                             </div>
+                        </div>
 
-
-      @endsection
+@endsection

@@ -2102,7 +2102,6 @@ blockquote {
   top: 0;
   left: 0;
   width: 100%;
-  background-color: rgba(51, 51, 51, 0.3);
   z-index: 11; }
   #header-transparent .menu li a {
     color: #FFF; }

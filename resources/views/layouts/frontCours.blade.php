@@ -34,18 +34,29 @@
     padding-top: 56px;
   }
 }
-table{
-  background: #25c1d0;
-}
+
 
 </style>
 </head>
 <body>
+    <header id="header-transparent">
+        <div class="layer-stretch hdr-center">
+            <div class="row align-items-center">
 
+                <div class="col">
+                    <div class="hdr-center-logo text-center">
+                        <a class="d-inline-block"><img src="{{asset('univTlmc.png')}}" alt="" style="height: 60px !important;"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
 
 
     <!-- Page Content -->
-    <div class="container">
+    <div class="container" style="
+    padding-top: 50px;
+">
             @yield('content')
 
     </div>
@@ -74,7 +85,7 @@ table{
 <script src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.6/plugins/debug.addIndicators.min.js"></script>
     <script src="{{ asset('js/custom.js')}}"></script>
     <!--<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>!-->
-
+@yield('scripts')
   </body>
 
 </html>
