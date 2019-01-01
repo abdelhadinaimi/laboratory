@@ -61,6 +61,14 @@
           </a>
         </li>
       @endif
+      @if(Auth::user()->role->nom == 'admin' )
+          <li class="{{ $active ==  'Stages' ? 'active':''}}">
+          <a href="{{url('stages')}}">
+            <i class="fa fa-folder-open-o"></i> 
+            <span>Stages</span>
+          </a>
+        </li>
+      @endif
         
       @if(Auth::user()->role->nom == 'admin' )
           <li class="{{ $active ==  'Messages' ? 'active':''}}">
