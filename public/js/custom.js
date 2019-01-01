@@ -136,6 +136,65 @@ $(document).ready(function()
 			});
 		}
 	}
+	 $(window).on('load', function () {
+        $('.slider-wrapper').flexslider({
+            animation: "fade",
+            animationLoop: true,
+            pauseOnHover: true,
+            keyboard: true,
+            controlNav: false
+        });
+        $('.slider-height').removeClass();
+    });
+
+    $('[data-toggle="tooltip"]').tooltip()
+
+    //*************************************************
+    //ThemeSlider  ************************************
+    //*************************************************
+    $('.theme-flexslider').flexslider({
+        animation: "slide",
+        animationLoop: true,
+        pauseOnHover: true
+    });
+
+    $(".theme-owlslider").owlCarousel({
+        items: 1,
+        dots: true
+    });
+    //Testimonial Slider
+    $("#testimonial-slider").owlCarousel({
+        items: 1,
+        dots: true
+    });
+
+    //Home Doctor Slider
+    $("#hm-doctor-slider").owlCarousel({
+        center: true,
+        autoplay: true,
+        items: 3,
+        margin: 10,
+        loop: true,
+        smartSpeed: 1000,
+        autoplayTimeout: 3000,
+        autoplayHoverPause: true,
+        responsiveClass: true,
+        responsive: {
+            0: {
+                items: 1,
+                nav: true
+            },
+            600: {
+                items: 2,
+                nav: false
+            },
+            992: {
+                items: 3,
+                nav: false
+            }
+        }
+    });
+
 
 	/* 
 

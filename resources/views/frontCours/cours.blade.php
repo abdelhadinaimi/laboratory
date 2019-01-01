@@ -22,9 +22,9 @@
                                             		$fileName = end($fileName);
                                             	 ?>
                                             	<div class="row">
-                                            		<div class="col-md-2"><a href="{{URL::asset($cour->fiche)}}" target="_blank"><i class="fa fa-eye"></i> afficher</a> </div>
+                                            		<div class="col-md-2"><a href="{{URL::asset($cour->fiche)}}" target="_blank"><i class="fa fa-eye"></i>afficher</a> </div>
                                             		<div class="col-md-2"><a href="download/{{$fileName}}">
-                                            			<i class="fa fa-download"></i> Telecharger</a></div>
+                                            			<i class="fa fa-download"></i>Telecharger</a></div>
                                             	</div>
                                             	<br>
                                             	
@@ -45,9 +45,9 @@
                                             	 ?>
                                             	 {{$fileName}}
                                             	 <div class="row">
-                                            		<div class="col-md-4"><a href="{{URL::asset($joinFile)}}" target="_blank"><i class="fa fa-eye"></i> afficher</a> </div>
+                                            		<div class="col-md-4"><a href="{{URL::asset($joinFile)}}" target="_blank"><i class="fa fa-eye"></i>afficher</a> </div>
                                             		<div class="col-md-4"><a href="download/{{$fileName}}">
-                                            			<i class="fa fa-download"></i> Telecharger</a></div>
+                                            			<i class="fa fa-download"></i>Telecharger</a></div>
                                             	</div>
 
                                                 @endforeach
