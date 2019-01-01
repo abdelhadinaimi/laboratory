@@ -314,3 +314,6 @@ Route::post('/front/contact','FrontController@contact');
 Route::get('/front/presentation',function(){
 	return view('front.presentation');
 });
+
+/* ----- front cours ----- */
+Route::get('/frontCours/{id}','FrontCoursController@index');
