@@ -26,7 +26,7 @@
             
           <div class="container col-xs-12">
 
-            <form class="well form-horizontal" action=" {{url('actualites/'.$actualite->id) }} " method="post"  id="contact_form" >
+            <form class="well form-horizontal" action=" {{url('actualites/'.$actualite->id) }} " method="post"  id="contact_form" enctype="multipart/form-data">
               <input type="hidden" name="_method" value="PUT">
               {{ csrf_field() }}
               <fieldset>
@@ -70,7 +70,7 @@
                       <label class="col-md-3 control-label">Photo</label>
                       <div class="col-md-9 inputGroupContainer">
                         <div style="width: 70%">
-                          <input name="img" type="file" value="{{asset('$actualite->photo')}}" >
+                          <input name="img" type="file">
                         </div>
                       </div>
                   </div>
