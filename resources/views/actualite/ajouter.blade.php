@@ -103,3 +103,35 @@
       </div>
 
 @endsection
+
+@section('scripts')
+<script>
+$(document).ready(function() {
+var IMAGE_PATH = '{{ public_path(("/uploads/photo/")) }}';
+
+$.ajaxSetup({
+    headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content')     }
+});
+$('#summernote').summernote({
+    height: 400,
+    onImageUpload: function(files) {
+        data = new FormData();
+        data.append("image", files[0]);
+        $.ajax({
+            data: data,
+            type: "POST",
+            url: '{{ public_path(("/uploads/photo/")) }}',
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function(filename) {
+                var file_path = IMAGE_PATH + filename;
+                console.log(file_path);
+                $('#summernote').summernote("insertImage", file_path);
+            }
+        });
+    }
+  });
+});
+</script>
+@endsection
