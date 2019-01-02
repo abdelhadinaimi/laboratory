@@ -8,4 +8,4 @@ yarn-error.log
 .env.example
 
 /config/database.php
-public/uploads/photo/*
+public/uploads/**
