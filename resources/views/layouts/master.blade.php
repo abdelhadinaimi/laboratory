@@ -262,39 +262,8 @@
 <script src="{{ asset('labo/plugins/iCheck/icheck.min.js')}}"></script>
 
 <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.js"></script>
-<script type="text/javascript" src="{{asset('js/categorie.js')}}"></script>
-<script type="text/javascript" src="{{asset('js/materiel.js')}}"></script>
+
 <script type="text/javascript" src="{{asset('js/stats.js')}}"></script>
 @yield('scripts')
-<script>
-  $(document).ready(function() {
-var IMAGE_PATH = '{{ public_path(("/uploads/photo/")) }}';
-
-$.ajaxSetup({
-    headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content')     }
-});
-$('#summernote').summernote({
-    height: 400,
-    onImageUpload: function(files) {
-        data = new FormData();
-        data.append("image", files[0]);
-        $.ajax({
-            data: data,
-            type: "POST",
-            url: '{{ public_path(("/uploads/photo/")) }}',
-            cache: false,
-            contentType: false,
-            processData: false,
-            success: function(filename) {
-                var file_path = IMAGE_PATH + filename;
-                console.log(file_path);
-                $('#summernote').summernote("insertImage", file_path);
-            }
-        });
-    }
-  });
-});
-</script>
-
 </body>
 </html>
