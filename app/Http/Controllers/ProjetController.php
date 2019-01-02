@@ -77,6 +77,18 @@ class ProjetController extends Controller
             $projet->detail = '/uploads/projet/'.$file_name;
         }
 
+        
+        if($request->hasFile('photo')){
+            $file = $request->file('photo');
+            $file_name = 'photo' . time().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path('/uploads/projet/photo'),$file_name);
+            $projet->photo = 'uploads/projet/photo/'.$file_name;
+
+        }
+        else{
+            $projet->photo = 'images/articlelong.png';
+        }
+
 	 	$projet->intitule = $request->input('intitule');
 	 	$projet->resume = $request->input('resume');
 	 	$projet->type = $request->input('type');
@@ -141,6 +153,13 @@ class ProjetController extends Controller
             $file->move(public_path('/uploads/projet'),$file_name);
 	 	     $projet->detail = '/uploads/projet/'.$file_name;
 
+        }
+
+        if($request->hasFile('photo')){
+            $file = $request->file('photo');
+            $file_name = 'photo' . time().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path('/uploads/projet/photo'),$file_name);
+            $projet->photo = 'projet/photo/'.$file_name;
         }
 
         $projet->intitule = $request->input('intitule');

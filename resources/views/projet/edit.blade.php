@@ -157,6 +157,15 @@
                       </div>
                   </div>
 
+                  <div class="form-group">
+                      <label class="col-md-3 control-label">Photo</label>
+                      <div class="col-md-9 inputGroupContainer">
+                        <div style="width: 70%">
+                          <input name="photo" type="file" accept="image/*"> 
+                        </div>
+                      </div>
+                  </div>
+
               </fieldset>
 
               <div class="row" style="padding-top: 30px; margin-left: 35%;">

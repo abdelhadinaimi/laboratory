@@ -74,6 +74,7 @@
                             </div>
                         </div>
                         <hr/>
+                        @if($projet->lien)
                         <div class="row container">
                             <div class="col-md-3">
                                 <strong>Lien</strong>
@@ -82,6 +83,8 @@
                                 <p class="text-muted"><a href="{{ url($projet->lien)}}">{{$projet->lien}}</a></p>
                             </div>
                         </div>
+                        @endif
+                        @if($projet->detail)
                         <div class="row container">
                             <div class="col-md-3">
                                 <strong>Detail</strong>
@@ -90,6 +93,7 @@
                                 <p class="text-muted"><a href="{{ url($projet->detail)}}">Lien Fichier</a></p>
                             </div>
                         </div>
+                        @endif
                     </div>
                 </div>
             </div>
