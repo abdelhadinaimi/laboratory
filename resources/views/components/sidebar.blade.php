@@ -48,7 +48,7 @@
 
         <li class="{{ $active ==  'Actualites' ? 'active':''}}">
           <a href="{{url('actualites')}}">
-            <i class="fa fa-newspaper-o"></i> 
+            <i class="fa fa-info-circle"></i> 
             <span>Actualites</span>
           </a>
         </li>
@@ -56,15 +56,25 @@
         @if(Auth::user()->role->nom == 'admin' )
           <li class="{{ $active ==  'Materiels' ? 'active':''}}">
           <a href="{{url('materiels')}}">
-            <i class="fa fa-folder-open-o"></i> 
+            <i class="fa fa-keyboard-o"></i> 
             <span>Materiels</span>
           </a>
         </li>
       @endif
+
+      @if(Auth::user()->role->nom == 'admin' )
+          <li class="{{ $active ==  'Partenaires' ? 'active':''}}">
+          <a href="{{url('partenaires')}}">
+            <i class="fa fa-suitcase"></i> 
+            <span>Partenaires</span>
+          </a>
+        </li>
+      @endif
+
       @if(Auth::user()->role->nom == 'admin' )
           <li class="{{ $active ==  'Stages' ? 'active':''}}">
           <a href="{{url('stages')}}">
-            <i class="fa fa-folder-open-o"></i> 
+            <i class="fa fa-graduation-cap"></i> 
             <span>Stages</span>
           </a>
         </li>
@@ -80,28 +90,18 @@
       @endif
       
       @if(Auth::user()->role->nom == 'admin' )
-          <li class="{{ $active ==  'Stages' ? 'active':''}}">
-          <a href="{{url('stages')}}">
-            <i class="fa fa-envelope"></i> 
-            <span>Stages</span>
-          </a>
-        </li>
-      @endif
-
-      @if(Auth::user()->role->nom == 'admin' )
           <li class="{{ $active ==  'cours' ? 'active':''}}">
           <a href="{{url('modules')}}">
-            <i class="fa fa-envelope"></i> 
+            <i class="fa fa-file-pdf-o"></i> 
             <span>Mes Cours</span>
           </a>
         </li>
       @endif
 
-          @if(Auth::user()->role->nom == 'admin' )
-
-          <li class="{{ $active ==  'Paramètres' ? 'active':''}}">
-          <a href="{{url('parametre')}}">
-            <i class="fa fa-gears"></i> 
-            <span>Paramètres</span></a>
-          </li>
-          @endif
+      @if(Auth::user()->role->nom == 'admin' )
+      <li class="{{ $active ==  'Paramètres' ? 'active':''}}">
+        <a href="{{url('parametre')}}">
+          <i class="fa fa-gears"></i> 
+          <span>Paramètres</span></a>
+        </li>
+      @endif
