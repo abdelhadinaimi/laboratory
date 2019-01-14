@@ -2,7 +2,7 @@
 <div class="col-md-{{$size}}" style="padding-bottom: 30px;">
     <div class="card" style="height:100%;">
     <div class="theme-block-picture">
-            <img src="{{asset($projet->photo)}}" alt="" class="trobon-image">
+            <img src="{{asset($projet->photo)}}" style="max-height: 250px;">
         </div>
         <div class="card-body">
             <h4 class="card-title"><a href="{{url('/front/projet/'.$projet->id)}}">{{$projet->intitule}}</a></h4>

@@ -75,13 +75,13 @@
                           <div style="width: 70%">
                             <select name="type" class="form-control select">
                               <option></option>
-                              <option>Poster</option>
-                              <option>Article court</option>
-                              <option>Article long</option>
-                              <option>Publication(Revue)</option>
-                              <option>Chapitre d'un livre</option>
-                              <option>Livre</option>
-                              <option>Brevet</option>
+                              <option>poster</option>
+                              <option>article court</option>
+                              <option>article long</option>
+                              <option>revue</option>
+                              <option>chapitre</option>
+                              <option>livre</option>
+                              <option>brevet</option>
                             </select>
                             <span class="help-block">
                                 @if($errors->get('type'))

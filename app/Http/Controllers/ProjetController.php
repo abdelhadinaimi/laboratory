@@ -78,15 +78,15 @@ class ProjetController extends Controller
         }
 
         
-        if($request->hasFile('photo')){
+        if($request->hasFile('photo')) {
             $file = $request->file('photo');
-            $file_name = 'photo' . time().'.'.$file->getClientOriginalExtension();
-            $file->move(public_path('/uploads/projet/photo'),$file_name);
-            $projet->photo = 'uploads/projet/photo/'.$file_name;
+            $file_name = 'photo' . time() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('/uploads/projet/photo'), $file_name);
+            $projet->photo = 'uploads/projet/photo/' . $file_name;
 
         }
         else{
-            $projet->photo = 'images/articlelong.png';
+            $projet->photo = 'uploads/images/projet.png';
         }
 
 	 	$projet->intitule = $request->input('intitule');
@@ -157,9 +157,9 @@ class ProjetController extends Controller
 
         if($request->hasFile('photo')){
             $file = $request->file('photo');
-            $file_name = 'photo' . time().'.'.$file->getClientOriginalExtension();
-            $file->move(public_path('/uploads/projet/photo'),$file_name);
-            $projet->photo = 'projet/photo/'.$file_name;
+            $file_name = 'photo' . time() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('/uploads/projet/photo'), $file_name);
+            $projet->photo = 'uploads/projet/photo/' . $file_name;
         }
 
         $projet->intitule = $request->input('intitule');
@@ -186,13 +186,15 @@ class ProjetController extends Controller
         $contacts =  $request->input('contacts');
 		$projet_contacts = ProjetContact::where('projet_id',$id);
         $projet_contacts->delete();
-    
-		foreach ($contacts as $key => $value) {
-			$projet_contact = new ProjetContact();
-			$projet_contact->projet_id = $projet->id;
-			$projet_contact->contact_id = $value;
-			$projet_contact->save();
-        }  
+        if($contacts){
+            foreach ($contacts as $key => $value) {
+                $projet_contact = new ProjetContact();
+                $projet_contact->projet_id = $projet->id;
+                $projet_contact->contact_id = $value;
+                $projet_contact->save();
+            }
+        }
+
 	 	return redirect('projets');
 
     }
