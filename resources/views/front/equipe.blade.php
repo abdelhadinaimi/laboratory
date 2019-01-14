@@ -28,14 +28,14 @@
                         <div class="tab-content">
                             <div role="tabpanel" class="tab-pane active" id="description">
                                 <div class="p-2">
-                                    <h2>Description</h2>
+                                    <h5>Description</h5>
                                     <div class="theme-img"><img src="{{ asset('uploads/'.$equipe->achronymes.'.jpg')}}" alt=""></div>
                                     <p class="font-18">{{$equipe->resume}}</p>
                                 </div>
                             </div>
                             <div role="tabpanel" class="tab-pane" id="membres">
                                 <div class="p-2">
-                                    <h2>Membres de l'equipe</h2>
+                                    <h5>Membres de l'equipe</h5>
                                     <div class="row">
                                         <div class="col-sm-2 p-2"> 
                                             <a href="{{url('/front/profiles/'.$chef->id)}}">
@@ -60,7 +60,7 @@
                             </div>
                             <div role="tabpanel" class="tab-pane" id="projets">
                                 <div class="p-2">
-                                    <h2>Projets</h2>
+                                    <h5>Projets</h5>
                                     <div class="row">
                                         @foreach ($projets as $projet)
                                             @component('components.projet',[
@@ -75,7 +75,7 @@
 
                             <div role="tabpanel" class="tab-pane" id="partenaires">
                                 <div class="p-2">
-                                    <h2>Partenaires</h2>
+                                    <h5>Partenaires</h5>
                                     <div class="row">
                                         @foreach($partenaires as $partenaire)
                                                 <div class="col-sm-4 p-2"> 
@@ -91,5 +91,6 @@
                 </div>
             </div>
         </div>
-    </div> 
+    </div>
+    </div>
 @endsection

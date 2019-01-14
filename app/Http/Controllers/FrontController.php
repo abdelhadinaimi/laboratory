@@ -128,7 +128,7 @@ public function detailActual($id)
             }
 
      //traiter pagination
-        $pubs = $pubs->paginate(2)->appends(['type' => request('type'), 'equipe_id' => request('equipe_id'),'from' => request('from'),'to' => request('to') , 'term' => request('term')]);
+        $pubs = $pubs->paginate(6)->appends(['type' => request('type'), 'equipe_id' => request('equipe_id'),'from' => request('from'),'to' => request('to') , 'term' => request('term')]);
         return view('front.publications', compact('pubs', 'equipes', 'compteurs', 'types'));
     }
     public function autocomplete(){
@@ -162,8 +162,8 @@ public function detailActual($id)
     {
         $term = $req->input('term');
         $actualites = Actualite::orderBy('id', 'desc')->get();  
-        $actualites = Actualite::orderBy('id', 'desc')->search($term)->paginate(5);
-        $latestActualite = Actualite::orderBy('id', 'desc')->take(5)->get(); 
+        $actualites = Actualite::orderBy('id', 'desc')->search($term)->paginate(4);
+        $latestActualite = Actualite::orderBy('id', 'desc')->take(5)->get();
         return view('front.actualite')->with([
             'actualites' => $actualites,
             'latestActs'  => $latestActualite
