@@ -17,16 +17,10 @@ class ContactController extends Controller
         foreach ($contacts as $contact)
         {
             $button_Action = 
-            '<!-- Single button -->
-	              <div class="btn-group">
-	                  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-	                      Action <span class="caret"></span>
-	                  </button>
-	                 <ul class="dropdown-menu">
-	                    <li><a type="button" data-toggle="modal" id="editContactsModalBtn" data-target="#editContactsModal" onclick="editCont('.$i.');"> <i class="glyphicon glyphicon-edit"></i> Editer</a></li>
-	                   <li><a type="button" data-toggle="modal" data-target="#removeContactsModal" id="removeContactsModalBtn" onclick="removeCont('.$contact->id.');"> <i class="glyphicon glyphicon-trash"></i> Supprimer</a></li>          
-	                 </ul>
-	             </div>';
+            '<div>
+                <a type="button" class="btn btn-default" data-toggle="modal" id="editContactsModalBtn" data-target="#editContactsModal" onclick="editCont('.$i.');"> <i class="fa fa-edit"></i></a>
+                <a type="button" class="btn btn-danger" data-toggle="modal" data-target="#removeContactsModal" id="removeContactsModalBtn" onclick="removeCont('.$contact->id.');"> <i class="fa fa-trash"></i></a>          
+            </div>';
         	$output['data'][] = array(
                 $contact->id,
                 $contact->nom,
