@@ -79,7 +79,7 @@
                                     <div class="row">
                                         @foreach($partenaires as $partenaire)
                                                 <div class="col-sm-4 p-2"> 
-                                                    <img src="{{asset($partenaire->photo)}}" class="img-thumbnail trobon-image"/>
+                                                    <img src="{{asset($partenaire->photo)}}" class="img-thumbnail trobon-image-b"/>
                                                     <p class="font-18">{{$partenaire->nom}}</p>
                                                     
                                                 </div>

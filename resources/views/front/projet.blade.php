@@ -15,6 +15,7 @@
             <div style="width:100%;">
                 <div class="theme-material-card">
                     <div class="box-body">
+                    <img src="{{asset($projet->photo)}}" class="img-thumbnail centered-image" style="max-height:600px;margin-bottom:20px;"/>
                         <div class="row container">
                             <div class="col-md-3">
                                 <strong>Titre</strong>

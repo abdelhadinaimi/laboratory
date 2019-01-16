@@ -214,7 +214,18 @@ blockquote {
   min-width: 120px;
   max-width: 120px;
 }
+.trobon-image-b{
+  min-height: 220px;
+  max-height: 220px;
 
+  min-width: 240px;
+  max-width: 240px;
+}
+.centered-image {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
 /* Add by CHERIFI */
 .profileImage{
   min-width: 220px;
