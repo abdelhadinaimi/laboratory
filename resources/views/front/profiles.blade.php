@@ -16,7 +16,7 @@
                 <table width="100%">
                   <tr><td  style="border-bottom: solid;border-color: #FFF;border-width: thin;" align="left"><h3 style="color: #FFF;">{{$membre->prenom}} {{$membre->name}}  </h3></td></tr>
                     <tr><td  style="border-bottom: solid;border-color: #FFF;border-width: thin;" align="left"><h5 style="color: #FFF;">Grade : {{$membre->grade}}</h5></td></tr>
-                    <tr><td  style="border-bottom: solid;border-color: #FFF;border-width: thin;" align="left"><h5 style="color: #FFF;">Equipe de recherche : {{$membre->equipe->achronymes}}</h5></td></tr>
+                    <tr><td  style="border-bottom: solid;border-color: #FFF;border-width: thin;" align="left"><h5 style="color: #FFF;">Equipe de recherche : @if($membre->equipe){{$membre->equipe->achronymes}}@else Non renseignée @endif</h5></td></tr>
                 </table>
                 </div>
             </div>
@@ -71,8 +71,9 @@
                             <label class="mdl-textfield__label " for="profile-email">Email</label>
                         </div>
                         <div class="row" >
-                   <a href="{{$membre->lien_linkedin}}" style="cursor: pointer;width: 265px;height: 50px;" class="btn btn-outline-info m-2" title="Researchgate"><b>LinkedIn</b><img src="{{asset('/linkedin.png')}}"></a>
-                    <a href="{{$membre->lien_rg}}" style="cursor: pointer;width: 265px;height: 50px;" class="btn btn-outline-info m-2" title="Researchgate"><b>ResearchGate</b> <img src="{{asset('/rg.png')}}"> </a>
+                        <a href="/frontCours/{{$membre->id}}" style="border-radius:20px;cursor: pointer;width: 170px;height: 50px;line-height: 3;" class="btn btn-outline-info m-2" title="Researchgate"><b>Lien personnel</b></a>
+                   <a href="{{$membre->lien_linkedin}}" style="border-radius:20px;cursor: pointer;width: 170px;height: 50px;line-height: 3;" class="btn btn-outline-info m-2" title="Researchgate"><b>LinkedIn</b><img src="{{asset('/linkedin.png')}}"></a>
+                    <a href="{{$membre->lien_rg}}" style="border-radius:20px;cursor: pointer;width: 170px;height: 50px;line-height: 3;" class="btn btn-outline-info m-2" title="Researchgate"><b>ResearchGate</b> <img src="{{asset('/rg.png')}}"> </a>
                 </div>
 
 
@@ -133,11 +134,12 @@
                             <input class="mdl-textfield__input" readonly="true" value="{{$membre->these->titre}}" type="text" id="profile-birthdate">
                             <label class="mdl-textfield__label" for="profile-birthdate">Titre</label>
                         </div>
-                      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label form-input-icon">
-                            <i class="fa fa-comment"></i>
-                            <input class="mdl-textfield__input" readonly="true" value="{{$membre->these->sujet}}" type="text" >
-                            <label class="mdl-textfield__label" for="profile-mobile">Sujet</label>
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label form-input-icon">
+                            <i class="fa fa-calendar"></i>
+                            <input class="mdl-textfield__input" readonly="true" value="@if($membre->these->date_soutenance){{$membre->these->date_soutenance}} @else Non renseigné @endif" type="text" id="profile-birthdate">
+                            <label class="mdl-textfield__label" for="profile-birthdate">Soutenu le</label>
                         </div>
+                      
                     
                        
                         </div>
@@ -156,7 +158,16 @@
                     
                        
                         </div>
-                              </div>  
+                              </div>
+                              <div class="row">
+                              <div class="col-md-12">
+                              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label form-input-icon {!! $errors->has('msg') ? 'is-invalid' : '' !!}">
+                            <i class="fa fa-mortar-board"></i>
+                                            <textarea readonly="true" rows="6" cols="5" class="mdl-textfield__input" id="contact-message" name="msg">{{$membre->these->sujet}}</textarea>
+                                            <label class="mdl-textfield__label" for="contact-message">Sujet</label>
+                                        </div>
+                              </div>
+                              </div>
                                     </div>
                                     @endif
                                 </div>

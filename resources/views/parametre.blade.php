@@ -36,19 +36,82 @@
                         <label class="col-xs-4 control-label">Nom du labo</label>  
                         <div class="col-xs-8 inputGroupContainer">
                           <div style="width: 50%">
-                            <input  name="nom" class="form-control" placeholder="Le nom" type="text">
+                            <input  name="nom" class="form-control" value="@if($labo->nom) {{$labo->nom}} @endif" placeholder="Le nom" type="text">
+                          </div>
+                        </div>
+                  </div>
+                  <div class="form-group ">
+                        <label class="col-xs-4 control-label">Adresse</label>  
+                        <div class="col-xs-8 inputGroupContainer">
+                          <div style="width: 50%">
+                            <input  name="adresse" class="form-control" value="@if($labo->adresse) {{$labo->adresse}} @endif" placeholder="Adresse" type="text">
+                          </div>
+                        </div>
+                  </div>   
+                  <div class="form-group ">
+                        <label class="col-xs-4 control-label">N°TEL</label>  
+                        <div class="col-xs-8 inputGroupContainer">
+                          <div style="width: 50%">
+                            <input  name="numtel" class="form-control" value="@if($labo->numtel) {{$labo->numtel}} @endif" placeholder="Téléphone" type="text">
+                          </div>
+                        </div>
+                  </div>
+                  <div class="form-group ">
+                        <label class="col-xs-4 control-label">Email</label>  
+                        <div class="col-xs-8 inputGroupContainer">
+                          <div style="width: 50%">
+                            <input  name="email" class="form-control" value="@if($labo->email) {{$labo->email}} @endif" placeholder="Email" type="text">
+                          </div>
+                        </div>
+                  </div>
+                  <div class="form-group ">
+                        <label class="col-xs-4 control-label">Lien Google Map</label>  
+                        <div class="col-xs-8 inputGroupContainer">
+                          <div style="width: 50%">
+                            <input  name="map" class="form-control" value="@if($labo->lienMap) {{$labo->lienMap}} @endif" placeholder="Lien Google Map" type="text">
                           </div>
                         </div>
                   </div>  
-
-             
+                  <div class="form-group ">
+                        <label class="col-xs-4 control-label">Lien Facebook</label>  
+                        <div class="col-xs-8 inputGroupContainer">
+                          <div style="width: 50%">
+                            <input  name="facebook" class="form-control" value="@if($labo->facebook) {{$labo->facebook}} @endif" placeholder="facebook" type="text">
+                          </div>
+                        </div>
+                  </div> 
+                  <div class="form-group ">
+                        <label class="col-xs-4 control-label">Lien Twitter</label>  
+                        <div class="col-xs-8 inputGroupContainer">
+                          <div style="width: 50%">
+                            <input  name="twitter" class="form-control" value="@if($labo->twitter) {{$labo->twitter}} @endif" placeholder="Lien Twitter" type="text">
+                          </div>
+                        </div>
+                  </div>
+                  <div class="form-group ">
+                        <label class="col-xs-4 control-label">Lien LinkedIn</label>  
+                        <div class="col-xs-8 inputGroupContainer">
+                          <div style="width: 50%">
+                            <input  name="linkedin" value="@if($labo->linkedin) {{$labo->linkedin}} @endif" class="form-control" placeholder="Lien LinkedIn" type="text">
+                          </div>
+                        </div>
+                  </div> 
                    <div class="form-group" style="padding-top: 20px">
                               <label class="col-md-4 control-label">Logo</label>  
                               <div class="col-md-8 inputGroupContainer">
                               <input name="logo" type="file" accept="image/*">
                              </div>
                      </div>
-                    
+                    <div class="form-group">
+                      <label class="col-md-3 control-label">Présentation</label>
+                      <div class="col-md-9 inputGroupContainer @if($errors->get('content')) has-error @endif" >
+                        <div style="width: 70%">
+                          <textarea name="presentation" class="form-control" rows="3" placeholder="Entrez ..." id="summernote">{{$labo->presentation}}</textarea>
+
+
+                        </div>
+                      </div>
+                  </div>
 
               </fieldset>
 
@@ -62,5 +125,35 @@
        </div>
       </div>
 
+@endsection
+@section('scripts')
+<script>
+$(document).ready(function() {
+var IMAGE_PATH = '{{ public_path(("/uploads/photo/")) }}';
 
+$.ajaxSetup({
+    headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content')     }
+});
+$('#summernote').summernote({
+    height: 600,
+    onImageUpload: function(files) {
+        data = new FormData();
+        data.append("image", files[0]);
+        $.ajax({
+            data: data,
+            type: "POST",
+            url: '{{ public_path(("/uploads/photo/")) }}',
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function(filename) {
+                var file_path = IMAGE_PATH + filename;
+                console.log(file_path);
+                $('#summernote').summernote("insertImage", file_path);
+            }
+        });
+    }
+  });
+});
+</script>
 @endsection
