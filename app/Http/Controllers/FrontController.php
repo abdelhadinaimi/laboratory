@@ -200,6 +200,7 @@ public function detailActual($id)
         $projet = Projet::find($id);
         return view('front.projet')->with([
             'projet' => $projet,
+            'labo' =>Parametre::find('1')
             
 
         ]); 
