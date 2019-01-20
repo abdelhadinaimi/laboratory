@@ -20,7 +20,7 @@
                                 <strong><i class="fa fa-phone"></i>  Telephone</strong>
                             </div>
                             <div class="col-md-9">
-                                <p class="text-muted">+213 43 34 43 34</p>
+                                <p class="text-muted">{{$labo->numtel}}</p>
                             </div>
                         </div>
                         <div class="row container">
@@ -28,7 +28,7 @@
                                 <strong><i class="fa fa-phone"></i>  Fax</strong>
                             </div>
                             <div class="col-md-9">
-                                <p class="text-muted">+213 43 34 43 34</p>
+                                <p class="text-muted">{{$labo->numtel}}</p>
                             </div>
                         </div>
                         <div class="row container">
@@ -36,7 +36,7 @@
                                 <strong><i class="fa fa-envelope-o"></i>  E-Mail</strong>
                             </div>
                             <div class="col-md-9">
-                                <p class="text-muted"><a href="mailto:lrit@univ-tlemcen.dz">lrit@univ-tlemcen.dz</a></p>
+                                <p class="text-muted"><a href="mailto:lrit@univ-tlemcen.dz">{{$labo->email}}</a></p>
                             </div>
                         </div>
                         <div class="row container">
@@ -44,7 +44,7 @@
                                 <strong><i class="fa fa-home"></i>  Address</strong>
                             </div>
                             <div class="col-md-9">
-                                <p class="text-muted">Université de Tlemcen Rue Luis Pasteur, Rocade(Nouveau pole), Tlemcen, Algérie </p>
+                                <p class="text-muted">{{$labo->adresse}} </p>
                             </div>
                         </div>        
                     </div>

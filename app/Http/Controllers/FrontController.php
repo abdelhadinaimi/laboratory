@@ -22,6 +22,8 @@ class FrontController extends Controller{
 
         return view('front.equipes')->with([
             'equipes' => Equipe::all(),
+            'labo' =>Parametre::find('1')
+
         ]);;
     }
 
@@ -50,7 +52,9 @@ class FrontController extends Controller{
             'membres' => $equipe->membres,
             'chef' => $equipe->chef,
             'projets' =>  $projets,
-            'partenaires' => $partenaires
+            'partenaires' => $partenaires,
+            'labo' =>Parametre::find('1')
+
         ]);
     }
 
@@ -59,6 +63,8 @@ class FrontController extends Controller{
         $membre = User::find($id);
         return view('front.profiles')->with([
             'membre' => $membre,
+             'labo' =>Parametre::find('1')
+
         ]);;
     }
 
@@ -66,7 +72,9 @@ public function detailActual($id)
 {
     $detail = Actualite::find($id);
     return view('front.details')->with([
-            'actualite' => $detail
+            'actualite' => $detail,
+                        'labo' =>Parametre::find('1')
+
         ]);
 }
     //return toutes les publications
@@ -129,7 +137,10 @@ public function detailActual($id)
 
      //traiter pagination
         $pubs = $pubs->paginate(6)->appends(['type' => request('type'), 'equipe_id' => request('equipe_id'),'from' => request('from'),'to' => request('to') , 'term' => request('term')]);
-        return view('front.publications', compact('pubs', 'equipes', 'compteurs', 'types'));
+        return view('front.publications',compact('pubs', 'equipes', 'compteurs', 'types'))->with([
+        
+            'labo' =>Parametre::find('1')
+        ]);
     }
     public function autocomplete(){
         $term = request('term');
@@ -155,7 +166,8 @@ public function detailActual($id)
         $latestActualite = Actualite::orderBy('id', 'desc')->take(5)->get(); 
     	return view('front.index')->with([
             'projets' => $users,
-            'latestActs' => $latestActualite
+            'latestActs' => $latestActualite,
+            'labo' =>Parametre::find('1')
         ]);
     }
     public function actualites(Request $req)
@@ -166,7 +178,9 @@ public function detailActual($id)
         $latestActualite = Actualite::orderBy('id', 'desc')->take(5)->get();
         return view('front.actualite')->with([
             'actualites' => $actualites,
-            'latestActs'  => $latestActualite
+            'latestActs'  => $latestActualite,
+             'labo' =>Parametre::find('1')
+
         ]);
     }
 
@@ -174,7 +188,9 @@ public function detailActual($id)
     {
         $projets = Projet::paginate(9);
         return view('front.projets')->with([
-            'projets' => $projets
+            'projets' => $projets,
+            'labo' =>Parametre::find('1')
+
         ]);
 
     }
@@ -183,7 +199,10 @@ public function detailActual($id)
     {
         $projet = Projet::find($id);
         return view('front.projet')->with([
-            'projet' => $projet
+            'projet' => $projet,
+            'labo' =>Parametre::find('1')
+            
+
         ]); 
     }
 

@@ -306,13 +306,22 @@ Route::get('front/actualites/{id}/details','FrontController@detailActual');
 Route::get('/front/projets','FrontController@projets');
 Route::get('/front/projet/{id}','FrontController@projet');
 Route::get('/front/contact',function(){
-	return view('front.contact');
+		$labo = Parametre::find('1'); 
+
+	return view('front.contact')->with([
+            'labo'=>$labo,
+            
+        ]);;
 });
 Route::post('/front/contact','FrontController@contact');
 
 
 Route::get('/front/presentation',function(){
-	return view('front.presentation');
+			$labo = Parametre::find('1'); 
+			return view('front.presentation')->with([
+            'labo'=>$labo,
+            
+        ]);;
 });
 
 /* ----- front cours ----- */

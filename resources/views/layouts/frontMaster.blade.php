@@ -53,9 +53,9 @@ border-style: solid;
                     <div id="hdr-social">
                         <ul class="social-list social-list-sm">
                             <li><a class="width-auto font-13">Suivez-nous : </a></li>
-                            <li><a href="#" target="_blank" id="hdr-facebook" ><i class="fa fa-facebook" ></i></a><span class="mdl-tooltip mdl-tooltip--bottom" data-mdl-for="hdr-facebook">Facebook</span></li>
-                            <li><a href="#" target="_blank" id="hdr-twitter" ><i class="fa fa-twitter" ></i></a><span class="mdl-tooltip mdl-tooltip--bottom" data-mdl-for="hdr-twitter">Twitter</span></li>
-                            <li><a href="#" target="_blank" id="hdr-linkedin" ><i class="fa fa-linkedin" ></i></a><span class="mdl-tooltip mdl-tooltip--bottom" data-mdl-for="hdr-linkedin">Linkedin</span></li>
+                            <li><a href="{{$labo->facebook}}" target="_blank" id="hdr-facebook" ><i class="fa fa-facebook" ></i></a><span class="mdl-tooltip mdl-tooltip--bottom" data-mdl-for="hdr-facebook">Facebook</span></li>
+                            <li><a href="{{$labo->twitter}}" target="_blank" id="hdr-twitter" ><i class="fa fa-twitter" ></i></a><span class="mdl-tooltip mdl-tooltip--bottom" data-mdl-for="hdr-twitter">Twitter</span></li>
+                            <li><a href="{{$labo->linkedin}}" target="_blank" id="hdr-linkedin" ><i class="fa fa-linkedin" ></i></a><span class="mdl-tooltip mdl-tooltip--bottom" data-mdl-for="hdr-linkedin">Linkedin</span></li>
                         </ul>
                     </div>
                 </div>
@@ -123,8 +123,8 @@ border-style: solid;
                     <div class="footer-container footer-a">
                         <div class="tbl">
                             <div class="tbl-row">
-                                                                    <div id="map-container-google-1" class="z-depth-1-half map-container" style="height: 200px">
-  <iframe src="https://maps.google.com/maps?q=University+Abou+Bekr+Belkaid+New+Pole&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0"
+                            <div id="map-container-google-1" class="z-depth-1-half map-container" style="height: 200px">
+  <iframe src="{{$labo->lienMap}}" frameborder="0"
     style="border:0" allowfullscreen></iframe>
 </div>
                             </div>
@@ -136,9 +136,7 @@ border-style: solid;
 
                                 <div class="tbl-cell">
                                     <p class="paragraph-medium paragraph-white">
-                                        Université de Tlemcen<br />
-                                        Rue Luis Pasteur, Rocade(Nouveau pole)<br />
-                                        Tlemcen, Algérie    
+                                        {{$labo->adresse}}   
                                     </p>
 
                                 </div>
@@ -146,13 +144,13 @@ border-style: solid;
                             <div class="tbl-row">
                                 <div class="tbl-cell"><i class="fa fa-phone"></i></div>
                                 <div class="tbl-cell">
-                                    <p class="paragraph-medium paragraph-white">+21343344334</p>
+                                    <p class="paragraph-medium paragraph-white">{{$labo->numtel}}</p>
                                 </div>
                             </div>
                             <div class="tbl-row">
                                 <div class="tbl-cell"><i class="fa fa-envelope"></i></div>
                                 <div class="tbl-cell">
-                                    <p class="paragraph-medium paragraph-white">lrit@univ-tlemcen.dz</p>
+                                    <p class="paragraph-medium paragraph-white">{{$labo->email}}</p>
                                 </div>
                             </div>
                         </div>
@@ -183,15 +181,15 @@ border-style: solid;
                      
                         <ul class="social-list social-list-colored footer-social">
                             <li>
-                                <a href="#" target="_blank" id="footer-facebook" class="fa fa-facebook"></a>
+                                <a href="{{$labo->facebook}}" target="_blank" id="footer-facebook" class="fa fa-facebook"></a>
                                 <span class="mdl-tooltip mdl-tooltip--top" data-mdl-for="footer-facebook">Facebook</span>
                             </li>
                             <li>
-                                <a href="#" target="_blank" id="footer-twitter" class="fa fa-twitter"></a>
+                                <a href="{{$labo->twitter}}" target="_blank" id="footer-twitter" class="fa fa-twitter"></a>
                                 <span class="mdl-tooltip mdl-tooltip--top" data-mdl-for="footer-twitter">Twitter</span>
                             </li>
                             <li>
-                                <a href="#" target="_blank" id="footer-linkedin" class="fa fa-linkedin"></a>
+                                <a href="{{$labo->linkedin}}" target="_blank" id="footer-linkedin" class="fa fa-linkedin"></a>
                                 <span class="mdl-tooltip mdl-tooltip--top" data-mdl-for="footer-linkedin">Linkedin</span>
                             </li>
                         

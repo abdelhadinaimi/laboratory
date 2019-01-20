@@ -37,7 +37,14 @@ class ParametreController extends Controller
             $labo->logo = '/uploads/photo/'.$file_name;
         }
         $labo->nom = $request->input('nom');
-
+        $labo->linkedin = $request->input('linkedin');
+        $labo->twitter = $request->input('twitter');
+        $labo->facebook = $request->input('facebook');
+        $labo->numtel = $request->input('numtel');
+        $labo->adresse = $request->input('adresse');
+        $labo->email = $request->input('email');
+        $labo->lienMap = $request->input('map');
+        $labo->presentation = $request->input('presentation');
         $labo->save();
 
         return redirect('dashboard');
