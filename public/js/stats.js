@@ -68,77 +68,87 @@ $(function () {
     $.ajax({
       type:'get',
       url:'/statistics',
-      success:function(data,status){
-         console.log(data.annee);
-         console.log(data.these);
-         //areaChartData.labels = data.res;
-         var areaChartData = {
-      labels  : data.annee,
-      datasets: [
-        {
-          label               : 'Electronics',
-          fillColor           : 'rgba(210, 214, 222, 1)',
-          strokeColor         : 'rgba(210, 214, 222, 1)',
-          pointColor          : 'rgba(210, 214, 222, 1)',
-          pointStrokeColor    : '#c1c7d1',
-          pointHighlightFill  : '#fff',
-          pointHighlightStroke: 'rgba(220,220,220,1)',
-          data                : data.these
+        success: function(data) {
+            var d = new Date(),test=[];
+            var n = d.getFullYear()-10;
+            console.log(data);
+            var colorBar = [],
+                borderBar = [],
+                intitule = [],
+                count = new Array();
+            for (var i = 0; i < data.equipes.length; i++) {
+                count[i]=new Array(0,0,0,0,0,0,0,0,0,0,0);
+            }
+            for(var i=0; i<data.equipes.length; i++){
+                for(var j=0; j<data.nombres.length; j++){
+                    //console.log(data.nombres[j].type+ " "+typeArticle[i]);
+                    if (data.nombres[j].intitule == data.equipes[i]) {
+                        count[i][data.nombres[j].year-n]=data.nombres[j].count;
+                    }
+                }
+            }
+            var dynamicColors = function() {
+                var r = Math.floor(Math.random() * 255);
+                var g = Math.floor(Math.random() * 255);
+                var b = Math.floor(Math.random() * 255);
+                return "rgb(" + r + "," + g + "," + b + ")";
+            };
+            for (var i = 0; i <data.equipes.length; i++) {
+                colorBar.push(dynamicColors());
+                borderBar.push(dynamicColors());
+
+
+            }
+            console.log(count);
+            var options = {
+                title : {
+                    display : true,
+                    position : "top",
+                    text : "Projet par equipes",
+                    fontSize : 18,
+                    fontColor : "#111"
+                },
+                legend : {
+                    display : true,
+                    position : "bottom"
+                },
+                scales : {
+                    yAxes : [{
+                        ticks : {
+                            min : 0
+                        }
+                    }]
+                }
+            };
+            var dataSett = [];
+            for (var i = 0; i < data.equipes.length; i++) {
+                dataSett[i]={
+                    label : data.equipes[i],
+                    data : count[i],
+                    backgroundColor : colorBar[i],
+                    borderColor : borderBar[i],
+                    borderWidth : 1
+                };
+            }
+            console.log(dataSett);
+            var data = {
+                labels : data.years,
+                datasets : dataSett
+            };
+            //console.log(chartData);
+            var ctx = $('#barChart');
+            var chart = new Chart( ctx, {
+                type : "bar",
+                data : data,
+                options : options
+            });
         },
-        {
-          label               : 'Digital Goods',
-          fillColor           : 'rgba(60,141,188,0.9)',
-          strokeColor         : 'rgba(60,141,188,0.8)',
-          pointColor          : '#3b8bba',
-          pointStrokeColor    : 'rgba(60,141,188,1)',
-          pointHighlightFill  : '#fff',
-          pointHighlightStroke: 'rgba(60,141,188,1)',
-          data                : data.article
-        }
-      ]
-    }
+        error: function(data) {
 
-    
-    var barChartCanvas                   = $('#barChart').get(0).getContext('2d')
-    var barChart                         = new Chart(barChartCanvas)
-    var barChartData                     = areaChartData
-    barChartData.datasets[1].fillColor   = '#00a65a'
-    barChartData.datasets[1].strokeColor = '#00a65a'
-    barChartData.datasets[1].pointColor  = '#00a65a'
-    var barChartOptions                  = {
-      //Boolean - Whether the scale should start at zero, or an order of magnitude down from the lowest value
-      scaleBeginAtZero        : true,
-      //Boolean - Whether grid lines are shown across the chart
-      scaleShowGridLines      : true,
-      //String - Colour of the grid lines
-      scaleGridLineColor      : 'rgba(0,0,0,.05)',
-      //Number - Width of the grid lines
-      scaleGridLineWidth      : 1,
-      //Boolean - Whether to show horizontal lines (except X axis)
-      scaleShowHorizontalLines: true,
-      //Boolean - Whether to show vertical lines (except Y axis)
-      scaleShowVerticalLines  : true,
-      //Boolean - If there is a stroke on each bar
-      barShowStroke           : true,
-      //Number - Pixel width of the bar stroke
-      barStrokeWidth          : 2,
-      //Number - Spacing between each of the X value sets
-      barValueSpacing         : 5,
-      //Number - Spacing between data sets within X values
-      barDatasetSpacing       : 1,
-      //String - A legend template
-      legendTemplate          : '<ul class="<%=name.toLowerCase()%>-legend"><% for (var i=0; i<datasets.length; i++){%><li><span style="background-color:<%=datasets[i].fillColor%>"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>',
-      //Boolean - whether to make the chart responsive
-      responsive              : true,
-      maintainAspectRatio     : true
-    }
-
-    barChartOptions.datasetFill = false
-    barChart.Bar(barChartData, barChartOptions)
-      }
+            console.log(data);
+        },
     });
-
-  });
+});
 
 $(document).ready(function() {
    $.ajax({
@@ -296,7 +306,7 @@ $(document).ready(function() {
           title : {
             display : true,
             position : "top",
-            text : "Bar Graph",
+            text : "Thèses en cours/ soutenus",
             fontSize : 18,
             fontColor : "#111"
           },
@@ -480,7 +490,7 @@ $(document).ready(function() {
           responsive: true,
           title: {
             display: true,
-            text: 'Nombre d`article publies par annee' 
+            text: 'Article publies par types'
           },
           tooltips: {
             mode: 'index',
