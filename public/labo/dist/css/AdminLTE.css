@@ -4990,3 +4990,13 @@ table.text-center th {
     white-space: normal !important;
   }
 }
+.trobon-image {
+  min-height: 240px;
+  max-height: 240px;
+  min-width: 280px;
+  max-width: 280px;
+}
+.centered-image {
+  margin-left: auto;
+  display: block;
+}

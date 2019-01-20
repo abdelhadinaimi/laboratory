@@ -22,6 +22,7 @@
                     <th>Numero Telephone</th>
                     <th>Pays</th>
                     <th>Ville</th>
+                    <th>Photo</th>
                     <th style="width:15%;">Options</th>
                    </tr>
                </thead>
@@ -215,7 +216,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title"><i class="glyphicon glyphicon-trash"></i> Supprimer Partenaire</h4>
+        <h4 class="modal-title"><i class="fa fa-trash"></i> Supprimer Partenaire</h4>
       </div>
       <div class="modal-body" id="body-remove">
         <p>Etes vous sur ?</p>
@@ -228,3 +229,104 @@
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 <!-- /remove brand -->
+
+<div class="modal fade" tabindex="-1" role="dialog" id="infoPartenairesModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title"><i class="fa fa-eye"></i> Info Partenaire</h4>
+      </div>
+      <div class="modal-body" id="body-info">
+        <div class="box-body">
+
+          <div class="row container">
+            <div class="col-sm-4 p-2"> 
+             <img class="img-thumbnail trobon-image centered-image" id="infoPartImage"/>
+            </div>
+          </div>
+
+          <strong><i class="margin-r-5"></i></strong>
+          <div class="row container">
+            
+            <div class="col-md-3">
+                <strong>Nom</strong>
+            </div>
+            <div class="col-md-9">
+              <p class="text-muted" id="infoPartNom"></p>
+            </div>
+          </div>
+
+          <div class="row container">
+            <div class="col-md-3">
+                <strong>Type</strong>
+            </div>
+            <div class="col-md-9">
+              <p class="text-muted" id="infoPartType"></p>
+            </div>
+          </div>
+
+          <div class="row container">
+            <div class="col-md-3">
+                <strong>Description</strong>
+            </div>
+            <div class="col-md-9">
+              <p class="text-muted" id="infoPartDesc"></p>
+            </div>
+          </div>
+          <strong><i class="margin-r-5"></i></strong>
+          <hr/>
+          <div class="row container">
+            <div class="col-md-3">
+                <strong>Email</strong>
+            </div>
+            <div class="col-md-9">
+              <p class="text-muted" id="infoPartEmail"></p>
+            </div>
+          </div>
+
+          <div class="row container">
+            <div class="col-md-3">
+                <strong>Numero Telephone</strong>
+            </div>
+            <div class="col-md-9">
+              <p class="text-muted" id="infoPartNum"></p>
+            </div>
+          </div>
+          <strong><i class="margin-r-5"></i></strong>
+          <hr/>
+          <div class="row container">
+            <div class="col-md-3">
+                <strong>Pays</strong>
+            </div>
+            <div class="col-md-9">
+              <p class="text-muted" id="infoPartPays"></p>
+            </div>
+          </div>
+
+          <div class="row container">
+            <div class="col-md-3">
+                <strong>Ville</strong>
+            </div>
+            <div class="col-md-9">
+              <p class="text-muted" id="infoPartVille"></p>
+            </div>
+          </div>
+          <strong><i class="margin-r-5"></i></strong>
+          <hr/>
+          <div class="row container">
+            <div class="col-md-3">
+                <strong>Contacts</strong>
+            </div>
+            <div class="col-md-9">
+              <ul id="infoPartContacts"></ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer infoPartFooter">
+        <button type="button" class="btn btn-default" data-dismiss="modal"> <i class="glyphicon glyphicon-info-sign"></i> Fermer</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

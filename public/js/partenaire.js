@@ -14,10 +14,33 @@ function editPart(idPart) {
     bodyEdit.find("#editPartVille").val(data[7]);
 
 }
+
+function infoPart(idPart) {
+    var bodyInfo = $('#body-info');
+    var data = managePart.data()[idPart];
+    bodyInfo.attr('role', data[0]);
+    bodyInfo.find("#infoPartNom").text(data[1]);
+    bodyInfo.find("#infoPartType").text(data[2]);
+    bodyInfo.find("#infoPartDesc").text(data[3]);
+    bodyInfo.find("#infoPartEmail").text(data[4]);
+    bodyInfo.find("#infoPartNum").text(data[5]);
+    bodyInfo.find("#infoPartPays").text(data[6]);
+    bodyInfo.find("#infoPartVille").text(data[7]);
+    bodyInfo.find("#infoPartImage").attr("src",data[8]);
+    var contactData = manageCont.data();   
+    var ulContacts = bodyInfo.find("#infoPartContacts");
+    ulContacts.html('');
+    for(var i = 0; i < contactData.length; i++){
+        if(contactData[i][9] === data[0]){
+            ulContacts.append(`<li>${contactData[i][1]} ${contactData[i][2]}</li>`);
+        }
+    }
+
+}
 var managePart = $("#gererPart").DataTable({
     'ajax': 'partenaires/all',
     'columnDefs': [{
-        "targets": [0],
+        "targets": [0,8],
         "visible": false,
         "searchable": false
     }],
