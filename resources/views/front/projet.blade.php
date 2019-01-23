@@ -42,15 +42,21 @@
                                 <p class="text-muted">{{ $projet->type }}</p>
                             </div>
                         </div>
+                        @if($partenaires)
                         <hr/>
                         <div class="row container">
                             <div class="col-md-3">
                                 <strong>Partenaires</strong>
                             </div>
                             <div class="col-md-9">
-                                <p class="text-muted">{{ $projet->partenaires }}</p>
+                                <p class="text-muted">
+                                    @foreach($partenaires as $part)
+                                    {{$part->nom . ", "}}
+                                    @endforeach
+                                </p>
                             </div>
                         </div>
+                        @endif
                         <hr/>
                         <div class="row container">
                             <div class="col-md-3">
@@ -72,6 +78,22 @@
 
                                     @endforeach
                                 </ul>
+                            </div>
+                        </div>
+                        <hr/>
+
+                        <div class="row container">
+                            <div class="col-md-3">
+                                <strong>Membres Externes</strong>
+                            </div>
+                            <div class="col-md-9">
+                                
+                                    @foreach($contacts as $contact)
+                                  <ul>
+                                      <li>{{ $contact->nom }} {{ $contact->prenom }}</li>
+                                  </ul>
+                                @endforeach
+                                
                             </div>
                         </div>
                         <hr/>

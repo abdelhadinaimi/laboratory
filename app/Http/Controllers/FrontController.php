@@ -198,8 +198,18 @@ public function detailActual($id)
     public function projet($id)
     {
         $projet = Projet::find($id);
+        $contacts = $projet->contacts()->orderBy('nom')->get();
+        $partenaires = array();
+        foreach($contacts as $contact){
+            $part = $contact->partenaire;
+            if(!in_array($part,$partenaires)){
+                $partenaires[] = $part;
+            }
+        }
         return view('front.projet')->with([
             'projet' => $projet,
+            'contacts' => $contacts,
+            'partenaires' => $partenaires,
             'labo' =>Parametre::find('1')
             
 
