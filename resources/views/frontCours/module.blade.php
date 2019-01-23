@@ -112,7 +112,7 @@
                             'type' => $type,
                             'photo' => $membre->photo,
                             'users' => $article->users,
-                            'size' => 3])
+                            'size' => 4])
                         @endcomponent
 
 

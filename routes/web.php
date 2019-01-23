@@ -146,36 +146,26 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/statistics',function(){
+    $year = date('Y');
+    $years = array();
+    $equipes = Equipe::pluck('intitule');
+    for ($x = 10; $x>=0 ; $x--)
+    {
+        $years[] = $year-$x;
 
-	$year = date('Y');
-	 $a1 = DB::table('articles')->distinct('id')->where('annee',$year)->count();
-	 $a2 = DB::table('articles')->distinct('id')->where('annee',$year-1)->count();
-	 $a3 = DB::table('articles')->distinct('id')->where('annee',$year-2)->count();
-	 $a4 = DB::table('articles')->distinct('id')->where('annee',$year-3)->count();
-	 $a5 = DB::table('articles')->distinct('id')->where('annee',$year-4)->count();
-	 $a6 = DB::table('articles')->distinct('id')->where('annee',$year-5)->count();
-	 $a7 = DB::table('articles')->distinct('id')->where('annee',$year-6)->count();
+    }
+    $nombres = Equipe::join('users', 'equipes.id', '=', 'users.equipe_id')
+        ->join('article_user','article_user.user_id','=','users.id')
+        ->join('articles','articles.id','=','article_user.article_id')
+        ->select('equipes.id as id','equipes.intitule as intitule', DB::raw("count(users.equipe_id) as count"),DB::raw('YEAR(articles.created_at) year'))
+        ->groupBy('equipes.id','year')
+        ->get();
 
-	 $b1 = DB::table('theses')->where(DB::raw("DATE_FORMAT(STR_TO_DATE(date_debut,'%m/%d/%Y'),'%Y')"),$year)->count();
-	 $b2 = DB::table('theses')->where(DB::raw("DATE_FORMAT(STR_TO_DATE(date_debut,'%m/%d/%Y'),'%Y')"),$year-1)->count();
-	 $b3 = DB::table('theses')->where(DB::raw("DATE_FORMAT(STR_TO_DATE(date_debut,'%m/%d/%Y'),'%Y')"),$year-2)->count();
-	 $b4 = DB::table('theses')->where(DB::raw("DATE_FORMAT(STR_TO_DATE(date_debut,'%m/%d/%Y'),'%Y')"),$year-3)->count();
-	 $b5 = DB::table('theses')->where(DB::raw("DATE_FORMAT(STR_TO_DATE(date_debut,'%m/%d/%Y'),'%Y')"),$year-4)->count();
-	 $b6 = DB::table('theses')->where(DB::raw("DATE_FORMAT(STR_TO_DATE(date_debut,'%m/%d/%Y'),'%Y')"),$year-5)->count();
-	 $b7 = DB::table('theses')->where(DB::raw("DATE_FORMAT(STR_TO_DATE(date_debut,'%m/%d/%Y'),'%Y')"),$year-6)->count();
 
-	 //$date = new Carbon( $these->date_debut );  
-
-	 //$t1 = DB::table('theses')->distinct('id')->where(,$year)->count();
-
-    $annee = [$year-6,$year-5,$year-4,$year-3,$year-2,$year-1,$year];
-    $article = [$a7, $a6, $a5,$a4,$a3,$a2,$a1];
-    $these = [$b7, $b6, $b5,$b4,$b3,$b2,$b1];
-  
-	return response()->json(["annee"=>$annee,
-							 "article"=> $article,
-							 "these"=> $these
-							]);
+    return response()->json(["nombres"=>$nombres,
+        "equipes"=>$equipes,
+        "years"=>$years
+    ]);
 });
 
 //Stat pie
@@ -258,7 +248,8 @@ Route::get('/statThese',function(){
 	for ($x = 10; $x>-1 ; $x--)
 	{
 	    $years[] = $year-$x;
-	    $debuThese[] = DB::table('theses')->where(DB::raw("DATE_FORMAT(STR_TO_DATE(date_debut,'%m/%d/%Y'),'%Y')"),$year-$x)->count();
+	    $debuThese[] = DB::table('theses')->where(DB::raw("DATE_FORMAT(STR_TO_DATE(date_debut,'%m/%d/%Y'),'%Y')"),"<=",$year-$x)
+            ->WhereNull(DB::raw("date_soutenance"))->count();
 	    $finThese[] = DB::table('theses')->where(DB::raw("DATE_FORMAT(STR_TO_DATE(date_soutenance,'%m/%d/%Y'),'%Y')"),$year-$x)->count();
 	}
   
