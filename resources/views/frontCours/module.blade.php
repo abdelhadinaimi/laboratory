@@ -112,7 +112,7 @@
                             'type' => $type,
                             'photo' => $membre->photo,
                             'users' => $article->users,
-                            'size' => 4])
+                            'size' => 6])
                         @endcomponent
 
 
@@ -130,7 +130,7 @@
                             @foreach ($membre->projets as $projet) 
                                 @component('components.projet',[
                                     'projet' => $projet,
-                                    'size' => 3
+                                    'size' => 6
                                     ])
                                 @endcomponent
                                         

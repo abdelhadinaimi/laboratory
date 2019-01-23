@@ -33,7 +33,14 @@ class FrontController extends Controller{
         $projets = array();
         foreach($equipe->membres as $user){
             foreach($user->projets as $projet){
-                if(!in_array($projet,$projets)){
+                $found = false;
+                foreach($projets as $p){
+                    if($p->id == $projet->id){
+                        $found = true;
+                        break;
+                    }
+                }
+                if(!$found){
                     $projets[] = $projet;
                 }
             }
