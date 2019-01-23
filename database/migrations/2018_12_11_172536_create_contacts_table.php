@@ -25,7 +25,7 @@ class CreateContactsTable extends Migration
             $table->integer('partenaire_id')->unsigned()->nullable();
             $table->timestamps();
 
-            $table-> foreign('partenaire_id')->references('id')->on('partenaires')->onDelete('delete');
+            $table-> foreign('partenaire_id')->references('id')->on('partenaires')->onDelete('set null');
         });
     }
 
