@@ -245,7 +245,7 @@ $(document).ready(function() {
                     title : {
                         display : true,
                         position : "top",
-                        text : "Membres par équipe",
+                        text : "Article publier",
                         fontSize : 18,
                         fontColor : "#111"
                     },
@@ -486,10 +486,10 @@ $(function () {
                 var colorBar = [],
                     borderBar = [];
 
-                for (var i = 0; i < data.countArticle.length; i++) {
+                for (var i = 0; i < 7; i++) {
                     var c = dynamicColors();
-                    colorBar.push(c);
-                    borderBar.push(c);
+                    colorBar.push(dynamicColors());
+                    borderBar.push(dynamicColors());
 
                 }
                 var options = {
