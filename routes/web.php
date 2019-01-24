@@ -155,10 +155,11 @@ Route::get('/statistics',function(){
 
     }
     $nombres = Equipe::join('users', 'equipes.id', '=', 'users.equipe_id')
-        ->join('article_user','article_user.user_id','=','users.id')
-        ->join('articles','articles.id','=','article_user.article_id')
-        ->select('equipes.id as id','equipes.intitule as intitule', DB::raw("count(users.equipe_id) as count"),DB::raw('YEAR(articles.created_at) year'))
-        ->groupBy('equipes.id','year')
+        ->join('projet_user','projet_user.user_id','=','users.id')
+        ->join('projets','projets.id','=','projet_user.projet_id')
+        ->whereOr('projets.chef_id','=','users.id')
+        ->select('equipes.id as id','equipes.intitule as intitule', DB::raw("count(DISTINCT  projet_user.projet_id) as count"),DB::raw('YEAR(projets.created_at) year'))
+        ->groupBy('equipes.id','intitule','year')
         ->get();
 
 
@@ -171,97 +172,98 @@ Route::get('/statistics',function(){
 //Stat pie
 //SELECT count(users.id),equipes.intitule FROM `equipes`,`users`,`article_user`,`articles` WHERE users.equipe_id=equipes.id AND article_user.user_id=users.id AND year(articles.created_at)=2018 and articles.id=article_user.article_id GROUP BY equipes.id
 Route::get('/stat-bar-article',function(){
-	$year = date('Y');
-	$years = array();
-	$equipes = Equipe::pluck('intitule');
-	for ($x = 10; $x>=0 ; $x--)
-	{
-	    $years[] = $year-$x;
-	    
-	}
-	$nombres = Equipe::join('users', 'equipes.id', '=', 'users.equipe_id')
-			->join('article_user','article_user.user_id','=','users.id')
-			->join('articles','articles.id','=','article_user.article_id')
-			->select('equipes.id as id','equipes.intitule as intitule', DB::raw("count(users.equipe_id) as count"),DB::raw('YEAR(articles.created_at) year'))
-			->groupBy('equipes.id','year')
-			->get();
+    $year = date('Y');
+    $years = array();
+    $equipes = Equipe::pluck('intitule');
+    for ($x = 10; $x>=0 ; $x--)
+    {
+        $years[] = $year-$x;
 
-  
-	return response()->json(["nombres"=>$nombres,
-						     "equipes"=>$equipes,
-							 "years"=>$years
-							]);
+    }
+    $nombres = Equipe::join('users', 'equipes.id', '=', 'users.equipe_id')
+        ->join('article_user','article_user.user_id','=','users.id')
+        ->join('articles','articles.id','=','article_user.article_id')
+        ->select('equipes.id as id','equipes.intitule as intitule', DB::raw("count(distinct articles.id) as count"),DB::raw('YEAR(articles.created_at) year'))
+        ->groupBy('equipes.id','intitule','year')
+        ->get();
+
+
+    return response()->json(["nombres"=>$nombres,
+        "equipes"=>$equipes,
+        "years"=>$years
+    ]);
 });
 Route::get('/stat-bar-stacked-article',function(){
-	$year = date('Y');
-	$years = array();
-	for ($x = 10; $x>-1 ; $x--)
-	{
-	    $years[] = $year-$x;    
+    $year = date('Y');
+    $years = array();
+    for ($x = 10; $x>-1 ; $x--)
+    {
+        $years[] = $year-$x;
     }
     $countArticle = Article::select('id','type', DB::raw('count(type) as count'),'annee')
-             ->groupBy('annee','type')
-             ->orderBy('id','ASC')
-             ->get();
+        ->groupBy('id','type','annee')
+        ->orderBy('id','ASC')
+        ->get();
     $type = Article::distinct('type')->pluck('type');
-  
-	return response()->json(["countArticle"=>$countArticle,
-							 "years"=> $years
-							]);
+
+    return response()->json(["countArticle"=>$countArticle,
+        "years"=> $years
+    ]);
 });
 Route::get('/statPie',function(){
 
-	$nmbrEquipe = Equipe::distinct('id')->count();
-	$equipes = Equipe::pluck('intitule');
-	$nombres = Equipe::join('users', 'equipes.id', '=', 'users.equipe_id')
-			->select('equipes.id as id', DB::raw("count(users.equipe_id) as count"))
-			->groupBy('equipes.id')
-			->get();
-  
-	return response()->json(["nombres"=>$nombres,
-							 "equipes"=> $equipes,
-							 "nmbrEquipe"=>$nmbrEquipe
-							]);
+    $nmbrEquipe = Equipe::distinct('id')->count();
+    $equipes = Equipe::pluck('intitule');
+    $nombres = Equipe::join('users', 'equipes.id', '=', 'users.equipe_id')
+        ->select('equipes.id as id', DB::raw("count(users.equipe_id) as count"))
+        ->groupBy('equipes.id')
+        ->get();
+
+    return response()->json(["nombres"=>$nombres,
+        "equipes"=> $equipes,
+        "nmbrEquipe"=>$nmbrEquipe
+    ]);
 });
 //Stat pie
 Route::get('/stat-pie-article',function(){
 
-	$countArticle= DB::table('articles')
-             ->select('id','type', DB::raw('count(type) as count'))
-             ->groupBy('type')
-             ->orderBy('id','asc')
-             ->get();
-    $type = Article::distinct('type')->pluck('type');
-  
-	return response()->json(["countArticle"=>$countArticle,
-							 "type"=> $type
-							]);
+    $countArticle= DB::table('articles')
+        ->select('type', DB::raw('count(type) as count'))
+        ->groupBy('type')
+        ->get();
+
+
+    return response()->json(["countArticle"=>$countArticle
+    ]);
 });
 //Stat These
 Route::get('/statThese',function(){
 
-	$year = date('Y');
+    $year = date('Y');
+    $these = array();
+    $years = array();
+    $debuThese = array();
+    $finThese = array();
+    for ($x = 10; $x>-1 ; $x--)
+    {
+        $years[] = $year-$x;
 
-	$years = array();
-	$debuThese = array();
-	$finThese = array();
-	for ($x = 10; $x>-1 ; $x--)
-	{
-	    $years[] = $year-$x;
-	    $debuThese[] = DB::table('theses')->where(DB::raw("DATE_FORMAT(STR_TO_DATE(date_debut,'%m/%d/%Y'),'%Y')"),"<=",$year-$x)
-            ->WhereNull(DB::raw("date_soutenance"))->count();
-	    $finThese[] = DB::table('theses')->where(DB::raw("DATE_FORMAT(STR_TO_DATE(date_soutenance,'%m/%d/%Y'),'%Y')"),$year-$x)->count();
-	}
-  
-	return response()->json(["years"=>$years,
-							 "debuThese"=> $debuThese,
-							 "finThese"=> $finThese
-							]);
+        $finThese[] = DB::table('theses')->where(DB::raw("DATE_FORMAT(STR_TO_DATE(date_soutenance,'%m/%d/%Y'),'%Y')"),$year-$x)->count();
+        $these []= DB::select("SELECT YEAR(STR_TO_DATE(date_debut, \"%m/%d/%Y\")) as debut,
+            YEAR(STR_TO_DATE(date_soutenance, \"%m/%d/%Y\")) as fin,
+            (SELECT count(*) from theses where (YEAR(STR_TO_DATE(date_debut, \"%m/%d/%Y\"))<= ($year-$x) AND YEAR(STR_TO_DATE(date_soutenance, \"%m/%d/%Y\")) > ($year-$x) ) OR (YEAR(STR_TO_DATE(date_debut, \"%m/%d/%Y\"))<= ($year-$x) AND date_soutenance IS NULL ) ) as nombre from theses GROUP by debut,fin");
+    }
+
+    return response()->json(["years"=>$years,
+        "debuThese"=> $debuThese,
+        "finThese"=> $finThese,
+        "these"=>$these
+    ]);
 });
 
 Route::any('/search',function(){
 
-	$labo = Parametre::find('1'); 
+    $labo = Parametre::find('1');
     $q = Input::get ( 'q' );
     $membres = User::where('name','LIKE','%'.$q.'%')->orWhere('prenom','LIKE','%'.$q.'%')->orWhere('email','LIKE','%'.$q.'%')->get();
     $theses = These::where('titre','LIKE','%'.$q.'%')->orWhere('sujet','LIKE','%'.$q.'%')->get();
@@ -269,16 +271,16 @@ Route::any('/search',function(){
     $projets = Projet::where('intitule','LIKE','%'.$q.'%')->orWhere('resume','LIKE','%'.$q.'%')->orWhere('type','LIKE','%'.$q.'%')->get();
     $equipes = Equipe::where('intitule','LIKE','%'.$q.'%')->orWhere('resume','LIKE','%'.$q.'%')->orWhere('achronymes','LIKE','%'.$q.'%')->get();
 
-        // return view('search')->withDetails($user)->withQuery ( $q );
-        return view('search')->with([
-            'membres' => $membres,
-            'theses' => $theses,
-            'articles' => $articles,
-            'projets' => $projets,
-            'equipes' => $equipes,
-            'labo'=>$labo,
-            
-        ]);;
+    // return view('search')->withDetails($user)->withQuery ( $q );
+    return view('search')->with([
+        'membres' => $membres,
+        'theses' => $theses,
+        'articles' => $articles,
+        'projets' => $projets,
+        'equipes' => $equipes,
+        'labo'=>$labo,
+
+    ]);;
 
 });
 
@@ -297,22 +299,22 @@ Route::get('front/actualites/{id}/details','FrontController@detailActual');
 Route::get('/front/projets','FrontController@projets');
 Route::get('/front/projet/{id}','FrontController@projet');
 Route::get('/front/contact',function(){
-		$labo = Parametre::find('1'); 
+    $labo = Parametre::find('1');
 
-	return view('front.contact')->with([
-            'labo'=>$labo,
-            
-        ]);;
+    return view('front.contact')->with([
+        'labo'=>$labo,
+
+    ]);;
 });
 Route::post('/front/contact','FrontController@contact');
 
 
 Route::get('/front/presentation',function(){
-			$labo = Parametre::find('1'); 
-			return view('front.presentation')->with([
-            'labo'=>$labo,
-            
-        ]);;
+    $labo = Parametre::find('1');
+    return view('front.presentation')->with([
+        'labo'=>$labo,
+
+    ]);;
 });
 
 /* ----- front cours ----- */
