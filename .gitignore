@@ -6,6 +6,6 @@ yarn-error.log
 
 .env
 .env.example
-
+.idea/
 /config/database.php
 public/uploads/**
