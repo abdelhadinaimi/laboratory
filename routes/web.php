@@ -228,14 +228,12 @@ Route::get('/statPie',function(){
 Route::get('/stat-pie-article',function(){
 
     $countArticle= DB::table('articles')
-        ->select('id','type', DB::raw('count(type) as count'))
-        ->groupBy('id','type')
-        ->orderBy('id','asc')
+        ->select('type', DB::raw('count(type) as count'))
+        ->groupBy('type')
         ->get();
-    $type = Article::distinct('type')->pluck('type');
 
-    return response()->json(["countArticle"=>$countArticle,
-        "type"=> $type
+
+    return response()->json(["countArticle"=>$countArticle
     ]);
 });
 //Stat These

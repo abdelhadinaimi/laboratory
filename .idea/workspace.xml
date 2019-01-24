@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="33242001-e450-4803-9377-8d74726608f4" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/stats.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/stats.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -19,8 +19,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/web.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-418">
-              <caret line="159" column="17" selection-start-line="159" selection-start-column="17" selection-end-line="159" selection-end-column="17" />
+            <state relative-caret-position="371">
+              <caret line="235" column="58" selection-start-line="235" selection-start-column="58" selection-end-line="235" selection-end-column="58" />
             </state>
           </provider>
         </entry>
@@ -28,8 +28,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/js/stats.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="311">
-              <caret line="488" column="37" selection-start-line="488" selection-start-column="37" selection-end-line="488" selection-end-column="37" />
+            <state relative-caret-position="160">
+              <caret line="241" column="49" selection-start-line="241" selection-start-column="49" selection-end-line="241" selection-end-column="49" />
             </state>
           </provider>
         </entry>
@@ -99,6 +99,8 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>membre</find>
+      <find>article pub</find>
+      <find>stat-pie-article</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -117,10 +119,10 @@
         <option value="$PROJECT_DIR$/public/js/categorie.js" />
         <option value="$PROJECT_DIR$/public/js/materiel.js" />
         <option value="$PROJECT_DIR$/resources/views/layouts/master.blade.php" />
-        <option value="$PROJECT_DIR$/routes/web.php" />
         <option value="$PROJECT_DIR$/resources/views/frontCours/module.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/ArticleController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/ProjetController.php" />
+        <option value="$PROJECT_DIR$/routes/web.php" />
         <option value="$PROJECT_DIR$/public/js/stats.js" />
       </list>
     </option>
@@ -341,12 +343,12 @@
       <workItem from="1548247102023" duration="7248000" />
       <workItem from="1548274738012" duration="1232000" />
       <workItem from="1548284456928" duration="1116000" />
-      <workItem from="1548330254399" duration="1082000" />
+      <workItem from="1548330254399" duration="1799000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2208000" />
+    <option name="totallyTimeSpent" value="2925000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -538,15 +540,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/web.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-418">
-          <caret line="159" column="17" selection-start-line="159" selection-start-column="17" selection-end-line="159" selection-end-column="17" />
+        <state relative-caret-position="371">
+          <caret line="235" column="58" selection-start-line="235" selection-start-column="58" selection-end-line="235" selection-end-column="58" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/js/stats.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="311">
-          <caret line="488" column="37" selection-start-line="488" selection-start-column="37" selection-end-line="488" selection-end-column="37" />
+        <state relative-caret-position="160">
+          <caret line="241" column="49" selection-start-line="241" selection-start-column="49" selection-end-line="241" selection-end-column="49" />
         </state>
       </provider>
     </entry>

@@ -229,23 +229,24 @@ $(document).ready(function() {
             success: function(data) {
                 var coloR = [];
                 var nombres = [];
-
+                var type =[];
                
-
-                for (var i=0;i<data.type.length;i++) {
+    console.log(data);
+                for (var i=0;i<data.countArticle.length;i++) {
                     coloR.push(dynamicColors());
 
                 }
 
                 for (var i = 0; i <data.countArticle.length; i++) {
                     nombres.push(data["countArticle"][i].count);
+                    type.push(data["countArticle"][i].type);
                 }
                 var options = {
                     maintainAspectRatio: false,
                     title : {
                         display : true,
                         position : "top",
-                        text : "Article publier",
+                        text : "Articles publiées",
                         fontSize : 18,
                         fontColor : "#111"
                     },
@@ -256,7 +257,7 @@ $(document).ready(function() {
                 };
                 var chartData = {
 
-                    labels: data.type,
+                    labels: type,
                     datasets: [{
                         label: 'nombres ',
                         //strokeColor:backGround,
