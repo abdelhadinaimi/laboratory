@@ -53,7 +53,7 @@ var manageCours;//Data Table
               var pubTime= $("#pubTime").val();
               $(".text-danger").remove();
               $('.form-group').removeClass('has-error').removeClass('has-success');
-              if(coursLib == ""  || pubTime == "" || joins == "")
+              if(coursLib == ""  || joins == "")
               {
                 if(coursLib == "") {
                   $("#coursLib").after('<p class="text-danger">Saisissez le libellé</p>');
@@ -67,10 +67,6 @@ var manageCours;//Data Table
                   $("#fiche").after('<p class="text-danger">Entrez un fichier</p>');
                   $('#fiche').closest('.form-group').addClass('has-error');
                  }*/
-              if(pubTime == "") {
-                  $("#pubTime").after('<p class="text-danger">Entrez la date du publication</p>');
-                  $('#pubTime').closest('.form-group').addClass('has-error');
-                 }
               }
               else{
                 initialAjax();

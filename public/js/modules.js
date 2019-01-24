@@ -61,7 +61,7 @@ $('#contentMod').on('click','.removeMod',function(){
 $('#contentMod').on('click','.editMod',function(){
    $('#body-edit').attr('role',$(this).attr('role'));
    $('#editModLib').val($(this).parent().find('h3').text());
-   $('#editModDesc').text($(this).parent().find('p').text());
+   $('#editModDesc').val($(this).parent().find('p').text());
 });
 $('#removeModBtn').on('click',function(e){
               $.ajaxSetup({
@@ -117,9 +117,9 @@ $('#editModBtn').on('click',function(e){
                 success:function(response) {
                            $('[role="'+idMod+'"]').parent().find('h3').text(nvModLib);
                            $('[role="'+idMod+'"]').parent().find('p').text(nvModDesc);
-                           $('#editModDesc').text($(this).parent().find('p').text());
-                           $("#editModForm")[0].reset();
-                           $("#editModDesc").val("");
+                           //$('#editModDesc').text($(this).parent().find('p').text());
+                           /*$("#editModForm")[0].reset();
+                           $("#editModDesc").val("");*/
                            $(".text-danger").remove();
                            $('.form-group').removeClass('has-error').removeClass('has-success');
                            $('#edit-mod-messages').html('<div class="alert alert-success">'+

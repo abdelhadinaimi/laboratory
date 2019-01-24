@@ -1,7 +1,7 @@
 
  @extends('layouts.master')
 
-@section('title','LRI | Modules')
+@section('title','LRI | Cours')
 
 @section('header_page')
 
@@ -40,7 +40,7 @@
               </div>
             </div>
            <div class="box-body">
-            <div class="panel panel-default">
+            <div class="panel panel-primary">
               <div class="panel-heading">
                  <div class="page-heading"><b>Cours</b></div>
               </div> <!-- /panel-heading -->
@@ -84,7 +84,7 @@
                  
                <div class="modal-header">
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                  <h4 class="modal-title"><i class="fa fa-plus"></i> Ajouter Module</h4>
+                  <h4 class="modal-title"><i class="fa fa-plus"></i> Ajouter Cours</h4>
                </div>
       <form id="submitModForm" action="createModule" method="POST">
            {{csrf_field()}}
@@ -115,7 +115,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title"><i class="glyphicon glyphicon-trash"></i> Supprimer Module</h4>
+        <h4 class="modal-title"><i class="glyphicon glyphicon-trash"></i> Supprimer Cours</h4>
       </div>
       <div class="modal-body" id="body-remove">
         <p>Etes vous sur ?</p>
@@ -136,7 +136,7 @@
       <form  class="form-horizental" id="editModForm" action="editCat" method="POST">
         <div class="modal-header">
            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-           <h4 class="modal-title"><i class="fa fa-edit"></i> Editer Module</h4>
+           <h4 class="modal-title"><i class="fa fa-edit"></i> Editer Cours</h4>
         </div>
         <div class="modal-body" id="body-edit">
           <div id="edit-mod-messages"></div>

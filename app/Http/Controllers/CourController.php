@@ -65,7 +65,10 @@ class CourController extends Controller
             $fls = substr($fls,0,-1);
             $cour->joins = $fls;
         }
-           $cour->pub_time = $request->input('pubTime');
+          if($request->input('pubTime'))
+              $cour->pub_time = $request->input('pubTime');
+          else
+              $cour->pub_time = date('Y-m-d H:i:s');
            $cour->save();
            $valid['success'] = array('success' => false, 'messages' => array());
            $valid['success'] = true;
