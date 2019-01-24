@@ -6,12 +6,12 @@
 @section('header_page')
 
      <h1>
-       Modules
+       Cours
        <small>Liste</small>
      </h1>
      <ol class="breadcrumb">
        <li><a href="{{url('dashboard')}}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-       <li class="active">Modules</a></li>
+       <li class="active">Cours</a></li>
      </ol>
 
 @endsection
@@ -30,10 +30,10 @@
            <div class="container" style="padding-top: 30px">
               <div class="row" style="padding-bottom: 20px">
                   <div class="box-header col-xs-12">
-                      <h3 class="box-title">Liste des modules</h3>
+                      <h3 class="box-title">Liste des cours</h3>
                       <div class="pull-right">
                          <div class="div-action pull pull-right">
-                             <button class="btn btn-primary button1" data-toggle="modal" data-target="#addModule"> <i class="glyphicon glyphicon-plus-sign"></i>  Ajouter Module </button>
+                             <button class="btn btn-primary button1" data-toggle="modal" data-target="#addModule"> <i class="glyphicon glyphicon-plus-sign"></i>  Ajouter Cours </button>
                          </div>
                       </div>
                   </div>
@@ -42,7 +42,7 @@
            <div class="box-body">
             <div class="panel panel-default">
               <div class="panel-heading">
-                 <div class="page-heading"><b>Modules</b></div>
+                 <div class="page-heading"><b>Cours</b></div>
               </div> <!-- /panel-heading -->
       <div class="panel-body">
             <div class="remove-messages"></div>  

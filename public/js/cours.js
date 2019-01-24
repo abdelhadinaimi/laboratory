@@ -1,45 +1,79 @@
-function removeCat(idCat){
+var manageCours;//Data Table
+//En clickant sur le model on stocke la ref du chapitre à supprimer
+  function removeCat(idCat){
     $('#body-remove').attr('role',idCat);
-}
-function editCat(idCat,libelle,desc,pubTime){
-    $('#body-edit').attr('role',idCat);
+  }
+//En clickant sur le model on stocke la ref du chapitre à modifer
+ function editCat(idCat,libelle,desc,pubTime,joins){
+    $('#body-edit').attr('role',idCat);//stocker la reference
+    afficherFiches(joins);
     $('#editCoursLib').val(libelle);
     $('#editCoursDesc').val(desc);
     $('#editPubTime').val(pubTime);
-}
-/* fin */
-    $(function () {
-           var manageCours = $("#gererCours").DataTable({
+  } 
+  //fonction qui traite la suppression d'une fiche -- param = indice de la fiche  
+  function delFiche(help){
+          var ficheAsupp = help.id;//indice de la fiche
+          /** Incrementer les indices pour eviter les conflits **/
+          var pere = help.parentNode;
+          var frere = pere.nextElementSibling;
+           while(frere)
+            {
+              frere.firstElementChild.nextElementSibling.id -= 1;
+              frere = frere.nextElementSibling;
+            }
+           /***  fin incrémentation ***/
+           /*** Eviter les attaques CSSRF ***/
+             initialAjax();
+             $.ajax({
+                  url : "delFiche/"+ficheAsupp+"/"+$("#body-edit").attr('role'),
+                  type: 'post',
+                  processData:false,
+                  contentType:false,
+                  dataType: 'json',
+                  success:function(response) {
+                       if(response.success == true) {
+                          $("#"+help.id).parent().remove();//supprimer li
+                          manageCours.ajax.reload(null, false);
+                          if($('#modifFiches').html() == "")
+                            $('#modifFiches').html("<p style='color:red'>La liste des chapitres est vides</p>");
+                       }
+                  } // /success
+               });// /ajax
+  }
+/* fin de la fonction delete fiche*/
+            manageCours = $("#gererCours").DataTable({
             'ajax': 'getCours/'+$('#modId').attr('role')+'',
              'order': []   
              });
             $("#submitCoursForm").unbind('submit').bind('submit', function() {
-              $.ajaxSetup({
-              headers: {
-             'X-CSRF-TOKEN': $('input[name="_token"]').val()
-              }
-             });
               var coursLib = $("#coursLib").val();
-              var fiche = $("#fiche").val();
+              var joins = $("#joins").val();
+              //var fiche = $("#fiche").val();
               var pubTime= $("#pubTime").val();
               $(".text-danger").remove();
               $('.form-group').removeClass('has-error').removeClass('has-success');
-              if(coursLib == "" || fiche == "" || pubTime == "")
+              if(coursLib == ""  || pubTime == "" || joins == "")
               {
                 if(coursLib == "") {
                   $("#coursLib").after('<p class="text-danger">Saisissez le libellé</p>');
                   $('#coursLib').closest('.form-group').addClass('has-error');
                 }
-               if(fiche == "") {
+                if(joins == "") {
+                  $("#joins").after('<p class="text-danger">Entrez un fichier</p>');
+                  $('#joins').closest('.form-group').addClass('has-error');
+                }
+               /*if(fiche == "") {
                   $("#fiche").after('<p class="text-danger">Entrez un fichier</p>');
                   $('#fiche').closest('.form-group').addClass('has-error');
-                 }
+                 }*/
               if(pubTime == "") {
                   $("#pubTime").after('<p class="text-danger">Entrez la date du publication</p>');
                   $('#pubTime').closest('.form-group').addClass('has-error');
                  }
               }
               else{
+                initialAjax();
                 var formData = new FormData(this);
                 $("#createCoursBtn").button('loading');
                 $.ajax({
@@ -57,27 +91,8 @@ function editCat(idCat,libelle,desc,pubTime){
                            $("#submitCoursForm")[0].reset();
                            $(".text-danger").remove();
                            $('.form-group').removeClass('has-error').removeClass('has-success');
-                           $('#add-cours-messages').html('<div class="alert alert-success">'+
-            '<button type="button" class="close" data-dismiss="alert">&times;</button>'+
-            '<strong><i class="glyphicon glyphicon-ok-sign"></i></strong> '+ response.messages +
-          '</div>');
-                    $(".alert-success").delay(500).show(10, function() {
-                       $(this).delay(3000).hide(10, function() {
-                       $(this).remove();
-                        });
-                       }); // /.alert
-                    }  // if
-                    else{
-                      $('#add-cours-messages').html('<div class="alert alert-danger">'+
-            '<button type="button" class="close" data-dismiss="alert">&times;</button>'+
-            '<strong><i class="glyphicon glyphicon-remove"></i></strong> '+ response.messages +
-          '</div>');
-                    $(".alert-danger").delay(500).show(10, function() {
-                       $(this).delay(5000).hide(10, function() {
-                       $(this).remove();
-                        });
-                       }); // /.alert
-                    }
+                           avertir('#add-cours-messages',response.messages);
+                     }  // if
                   } // /success
                   }); // /ajax
                }
@@ -85,11 +100,7 @@ function editCat(idCat,libelle,desc,pubTime){
            });
         $('#removeCoursBtn').on('click',function(e){
              var idCours = $("#body-remove").attr('role');
-             $.ajaxSetup({
-              headers: {
-             'X-CSRF-TOKEN': $('input[name="_token"]').val()
-              }
-             });
+             initialAjax();
               $.ajax({
                 url: 'deleteCour/'+idCours,
                 type: 'post',
@@ -97,62 +108,72 @@ function editCat(idCat,libelle,desc,pubTime){
                 success:function(response) {
                   $('#removeCoursModal').modal('hide');
                   manageCours.ajax.reload(null, false);
-                  $('.remove-messages').html('<div class="alert alert-success">'+
-                  '<button type="button" class="close" data-dismiss="alert">&times;</button>'+
-                  '<strong><i class="glyphicon glyphicon-ok-sign"></i></strong> Suppression Effectuée</div>');
-
-                  $(".alert-success").delay(500).show(10, function() {
-                    $(this).delay(3000).hide(10, function() {
-                          $(this).remove();
-                    });
-                  }); // /.alert
+                  avertir('.remove-messages',"Suppression Effectuée");
                 }
              });
         });
-        $("#editCoursForm").unbind('submit').bind('submit', function() {
+    /** Fonction qui traite l'edit d'un chapitre ***/
+   $("#editCoursForm").unbind('submit').bind('submit', function() {
              var idCours = $("#body-edit").attr('role');
              var nvLib = $("#editCoursLib").val();
-             var editFiche = $("#editFiche").val();
              $(".text-danger").remove();
              $('.form-group').removeClass('has-error').removeClass('has-success');
-             if(nvLib == "")
-              { 
-                if(nvLib == ""){
+             if(nvLib == ""){
                   $("#editCoursLib").after('<p class="text-danger">Saisissez le libellé</p>');
                   $('#editCoursLib').closest('.form-group').addClass('has-error');
-                }
              }
              else{
-              $.ajaxSetup({
-              headers: {
-             'X-CSRF-TOKEN': $('input[name="_token"]').val()
-              }
-             });
-              var formData = new FormData(this);
+              initialAjax();
+              var formData = new FormData(this);//importante pour envoyer plusieurs fichiers
               $.ajax({
                 url: 'editCour/'+idCours,
                 type: 'post',
-                  processData:false,
-                  contentType:false,
+                processData:false,
+                contentType:false,
                 data:formData,
-                 dataType: 'json',
+                dataType: 'json',
                 success:function(response) {
                   manageCours.ajax.reload(null, false);
-                           $("#editCoursForm")[0].reset();
-                           $(".text-danger").remove();
-                           $('.form-group').removeClass('has-error').removeClass('has-success');
-                           $('#edit-cours-messages').html('<div class="alert alert-success">'+
-            '<button type="button" class="close" data-dismiss="alert">&times;</button>'+
-            '<strong><i class="glyphicon glyphicon-ok-sign"></i></strong> '+ response.message +
-          '</div>');
-                    $(".alert-success").delay(500).show(10, function() {
-                       $(this).delay(3000).hide(10, function() {
-                       $(this).remove();
-                        });
-                       }); // /.alert
+                  //$("#editCoursForm")[0].reset();
+                  afficherFiches(response.joins);
+                  $(".text-danger").remove();
+                  $('.form-group').removeClass('has-error').removeClass('has-success');
+                  avertir("#edit-cours-messages",response.message);
                 }
              });
            }
-            return false;
-        });
-     });
+       return false;
+  });
+
+   //function qui traite les évenements
+   function avertir(blockApp,repense){
+          $(blockApp).html('<div class="alert alert-success">'+
+            '<button type="button" class="close" data-dismiss="alert">&times;</button>'+
+            '<strong><i class="glyphicon glyphicon-ok-sign"></i></strong> '+ repense +
+          '</div>');
+          $(".alert-success").delay(500).show(10, function() {
+                       $(this).delay(3000).hide(10, function() {
+                          $(this).remove();
+                        });
+           }); // /.alert
+   }
+   function initialAjax(){
+    $.ajaxSetup({
+                headers: {
+                  'X-CSRF-TOKEN': $('input[name="_token"]').val()
+                }
+    });
+  }
+  function afficherFiches(joins){
+    var ficheAajoute ="";
+    /*** Séparer les fiche pour les afficher ***/
+    var fichesJoins = joins.split(",");
+    for (var i = 0; i < fichesJoins.length; i++) {
+       if(fichesJoins[i] != "0")
+          ficheAajoute += "<li><a href='"+fichesJoins[i]+"' target='_blank'>"+fichesJoins[i].substr(15)+"</a>&nbsp;<a href='#' id='"+i+"' onclick='delFiche(this)'>supprimer</a></li>";
+       else
+          ficheAajoute = "<p style='color:red'>La liste est vide</p>";
+    }
+    //Modification des champs
+    $("#modifFiches").html(ficheAajoute); 
+  }

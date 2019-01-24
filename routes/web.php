@@ -41,6 +41,7 @@ Route::get('module/getCours/{id}','CourController@getCours');
 Route::post('module/createCours/{id}','CourController@createCour');
 Route::post('module/deleteCour/{idCours}','CourController@deleteCour');
 Route::post('module/editCour/{id}','CourController@editCour');
+Route::post('module/delFiche/{ficheSupp}/{idCours}','CourController@deleteFiche');
 
 Route::post('createCat','MaterielController@createCategorie');
 Route::post('createMat','MaterielController@createMateriel');

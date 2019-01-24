@@ -29,15 +29,15 @@ class CourController extends Controller
                           Action <span class="caret"></span>
                       </button>
                      <ul class="dropdown-menu">
-                        <li><a type="button" data-toggle="modal" id="editCategoriesModalBtn" data-target="#editCoursModal" onclick="editCat('.$cour->id.',\''.$cour->libelle.'\',\''.$cour->description.'\',\''.$cour->pub_time.'\');" style="cursor:pointer;"> <i class="glyphicon glyphicon-edit"></i> Editer</a></li>
+                        <li><a type="button" data-toggle="modal" id="editCategoriesModalBtn" data-target="#editCoursModal" onclick="editCat('.$cour->id.',\''.$cour->libelle.'\',\''.$cour->description.'\',\''.$cour->pub_time.'\',\''.$cour->joins.'\');" style="cursor:pointer;"> <i class="glyphicon glyphicon-edit"></i> Editer</a></li>
                        <li><a type="button" data-toggle="modal" data-target="#removeCoursModal" id="removeCourModalBtn" onclick="removeCat('.$cour->id.');" style="cursor:pointer;"> <i class="glyphicon glyphicon-trash"></i> Supprimer</a></li>          
                      </ul>
                  </div>';
                  $desc = ($cour->description == "") ? "pas de description" : $cour->description;
             $output['data'][] = array(      
                $cour->libelle,
-               $desc,
-               "<a href = '".asset($cour->fiche)."' target='_blank'>lien du cours</a>",
+               $desc/*,
+               "<a href = '".asset($cour->fiche)."' target='_blank'>lien du cours</a>"*/,
                $button_Action   
             ); 
         }
@@ -49,19 +49,20 @@ class CourController extends Controller
         $cour->description = $request->input('coursDesc');
         $cour->mod_id = $id;
         $fls = "";
-        if($request->hasFile('fiche')){
+        /*if($request->hasFile('fiche')){
             $file = $request->file('fiche');
             $file_name = time().'.'.$file->getClientOriginalExtension();
-            $file->move(public_path('/uploads/cours/'),$file_name);
-            $cour->fiche = '/uploads/cours/'.$file_name;
-        }
+            $file->move(public_path('/uploads/cours/'),$cour->libelle);
+            $cour->fiche = '/uploads/cours/'.$cour->libelle;
+        }*/
         if($request->hasFile('joins')){
             $files = $request->file('joins');
             foreach ($files as $file) {
-              $file_name = time().'.'.$file->getClientOriginalExtension();
+              $file_name = $file->getClientOriginalName();
             $file->move(public_path('/uploads/cours/'),$file_name);
-            $fls.='/uploads/cours/'.$file_name.' ';
+            $fls.='/uploads/cours/'.$file_name.',';
             }
+            $fls = substr($fls,0,-1);
             $cour->joins = $fls;
         }
            $cour->pub_time = $request->input('pubTime');
@@ -80,12 +81,15 @@ class CourController extends Controller
     }
     function editCour($id,Request $request){
          $cour = Cour::find($id);
+         $start ="";
+         if($cour->joins != "0")
+              $start = $cour->joins;
          $cour->libelle = $request->input('editCoursLib');
          $cour->description = $request->input('editCoursDesc');
          if($request->input('editPubTime') != null)
             $cour->pub_time = $request->input('editPubTime');
         $fls = "";
-        if($request->hasFile('editFiche')){
+        /*if($request->hasFile('editFiche')){
             $file = $request->file('editFiche');
           if($file != null)
             {
@@ -93,19 +97,46 @@ class CourController extends Controller
               $file->move(public_path('/uploads/cours/'),$file_name);
               $cour->fiche = '/uploads/cours/'.$file_name;
             }
-        }
+        }*/
         if($request->hasFile('editJoins')){
             $files = $request->file('editJoins');
             foreach ($files as $file) {
-              $file_name = time().'.'.$file->getClientOriginalExtension();
+            $file_name = $file->getClientOriginalName();
             $file->move(public_path('/uploads/cours/'),$file_name);
-            $fls.='/uploads/cours/'.$file_name.' ';
+            $fls.='/uploads/cours/'.$file_name.',';
             }
             if($fls != "")
-               $cour->joins = $fls;
+               {
+                $fls = substr($fls,0,-1);
+                if($start != "")
+                   $cour->joins = $start.','.$fls;
+                else
+                   $cour->joins = $fls;
+               }
         }
 
          $cour->save();
-         return response()->json(array('success' => true,'message' => "la liste des cours est mise à Jour"));
+         return response()->json(array('success' => true,'message' => "la liste des chapitres est mise à Jour",'joins' => $cour->joins));
+    }
+    function deleteFiche($ficheSupp,$idCours){
+      $cour = Cour::find($idCours);
+      $joins = explode(",",$cour->joins);
+      if(sizeof($joins) == 0)
+          {
+            $cour->joins = "";
+            $cour->save();
+          }
+      else
+      {
+      $nvChaine = "";
+      for ($i=0; $i < sizeof($joins) ; $i++) { 
+        if($i != $ficheSupp)
+            $nvChaine .= $joins[$i].",";      
+      }
+       $nvChaine = substr($nvChaine,0,-1);
+      $cour->joins = $nvChaine;
+      $cour->save();
+    }
+      return response()->json(array('success' => true,'message' => "success"));
     }
 }
