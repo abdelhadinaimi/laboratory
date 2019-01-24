@@ -230,8 +230,6 @@ $(document).ready(function() {
                 var coloR = [];
                 var nombres = [];
                 var type =[];
-               
-    console.log(data);
                 for (var i=0;i<data.countArticle.length;i++) {
                     coloR.push(dynamicColors());
 
@@ -302,7 +300,6 @@ $(function () {
                     borderFin.push("rgba(50, 150, 250, 1)");
                     theseEncour.push(data.these[i][0].nombre);
                 }
-            console.log(data);
                 var options = {
                     maintainAspectRatio: false,
                     title : {

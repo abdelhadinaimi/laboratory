@@ -249,7 +249,9 @@ Route::get('/statThese',function(){
         $years[] = $year-$x;
 
         $finThese[] = DB::table('theses')->where(DB::raw("DATE_FORMAT(STR_TO_DATE(date_soutenance,'%m/%d/%Y'),'%Y')"),$year-$x)->count();
-        $these []= DB::select("SELECT YEAR(STR_TO_DATE(date_debut, \"%m/%d/%Y\")) as debut,YEAR(STR_TO_DATE(date_soutenance, \"%m/%d/%Y\")) as fin,(SELECT count(*) from theses where (YEAR(STR_TO_DATE(date_debut, \"%m/%d/%Y\"))<= ($year-$x) AND YEAR(STR_TO_DATE(date_soutenance, \"%m/%d/%Y\")) > ($year-$x) ) OR (YEAR(STR_TO_DATE(date_debut, \"%m/%d/%Y\"))<= ($year-$x) AND date_soutenance IS NULL ) ) as nombre from theses GROUP by debut");
+        $these []= DB::select("SELECT YEAR(STR_TO_DATE(date_debut, \"%m/%d/%Y\")) as debut,
+            YEAR(STR_TO_DATE(date_soutenance, \"%m/%d/%Y\")) as fin,
+            (SELECT count(*) from theses where (YEAR(STR_TO_DATE(date_debut, \"%m/%d/%Y\"))<= ($year-$x) AND YEAR(STR_TO_DATE(date_soutenance, \"%m/%d/%Y\")) > ($year-$x) ) OR (YEAR(STR_TO_DATE(date_debut, \"%m/%d/%Y\"))<= ($year-$x) AND date_soutenance IS NULL ) ) as nombre from theses GROUP by debut,fin");
     }
 
     return response()->json(["years"=>$years,

@@ -7,5 +7,6 @@ yarn-error.log
 .env
 .env.example
 .idea/
+.vscode/
 /config/database.php
 public/uploads/**
