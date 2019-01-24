@@ -229,23 +229,24 @@ $(document).ready(function() {
             success: function(data) {
                 var coloR = [];
                 var nombres = [];
-
+                var type =[];
                
-
-                for (var i=0;i<data.type.length;i++) {
+    console.log(data);
+                for (var i=0;i<data.countArticle.length;i++) {
                     coloR.push(dynamicColors());
 
                 }
 
                 for (var i = 0; i <data.countArticle.length; i++) {
                     nombres.push(data["countArticle"][i].count);
+                    type.push(data["countArticle"][i].type);
                 }
                 var options = {
                     maintainAspectRatio: false,
                     title : {
                         display : true,
                         position : "top",
-                        text : "Article publier",
+                        text : "Articles publiées",
                         fontSize : 18,
                         fontColor : "#111"
                     },
@@ -256,7 +257,7 @@ $(document).ready(function() {
                 };
                 var chartData = {
 
-                    labels: data.type,
+                    labels: type,
                     datasets: [{
                         label: 'nombres ',
                         //strokeColor:backGround,
@@ -292,14 +293,16 @@ $(function () {
                 var colorDebut = [],
                     colorFin = [],
                     borderDebut = [],
-                    borderFin = [];
+                    borderFin = [],
+                    theseEncour = [];
                 for (var i = 0; i <=10; i++) {
                     colorDebut.push("rgba(10, 20, 30, 0.3)");
                     colorFin.push("rgba(50, 150, 250, 0.3)");
                     borderDebut.push("rgba(10, 20, 30, 1)");
                     borderFin.push("rgba(50, 150, 250, 1)");
+                    theseEncour.push(data.these[i][0].nombre);
                 }
-
+            console.log(data);
                 var options = {
                     maintainAspectRatio: false,
                     title : {
@@ -323,30 +326,13 @@ $(function () {
                         }]
                     }
                 };
-                var d = new Date();
-                var n = d.getFullYear()-10;
-                var countThese = new Array(0,0,0,0,0,0,0,0,0,0,0);
-                function getCount(donne,annee){
-                    for(var i=0;i <= donne.length;i++){
-                        if (donne[i].year == annee){
-                            return donne[i].count;
-                        }else{
-                            return 0;
-                        }
-                    }
-                    return 0;
-                }
-                for (var i =0 ;i<=10;i++){
-                    countThese[i]= getCount(data.these,n+i);
-
-                    //countThese[i]=countThese[i-1]+getCount(data.these,n+1);
-                }
+      
                 var data = {
                     labels : data.years,
                     datasets : [
                         {
                             label : "These en cours",
-                            data : data.debuThese,
+                            data : theseEncour,
                             backgroundColor : colorDebut,
                             borderColor : borderDebut,
                             borderWidth : 1

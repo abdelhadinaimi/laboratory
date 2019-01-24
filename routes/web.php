@@ -228,35 +228,30 @@ Route::get('/statPie',function(){
 Route::get('/stat-pie-article',function(){
 
     $countArticle= DB::table('articles')
-        ->select('id','type', DB::raw('count(type) as count'))
-        ->groupBy('id','type')
-        ->orderBy('id','asc')
+        ->select('type', DB::raw('count(type) as count'))
+        ->groupBy('type')
         ->get();
-    $type = Article::distinct('type')->pluck('type');
 
-    return response()->json(["countArticle"=>$countArticle,
-        "type"=> $type
+
+    return response()->json(["countArticle"=>$countArticle
     ]);
 });
 //Stat These
 Route::get('/statThese',function(){
 
     $year = date('Y');
-
+    $these = array();
     $years = array();
     $debuThese = array();
     $finThese = array();
     for ($x = 10; $x>-1 ; $x--)
     {
         $years[] = $year-$x;
-        $debuThese[] = DB::table('theses')->where(DB::raw("DATE_FORMAT(STR_TO_DATE(date_debut,'%m/%d/%Y'),'%Y')"),"<=",$year-$x)
-            ->WhereNull(DB::raw("date_soutenance"))->count();
+
         $finThese[] = DB::table('theses')->where(DB::raw("DATE_FORMAT(STR_TO_DATE(date_soutenance,'%m/%d/%Y'),'%Y')"),$year-$x)->count();
+        $these []= DB::select("SELECT YEAR(STR_TO_DATE(date_debut, \"%m/%d/%Y\")) as debut,YEAR(STR_TO_DATE(date_soutenance, \"%m/%d/%Y\")) as fin,(SELECT count(*) from theses where (YEAR(STR_TO_DATE(date_debut, \"%m/%d/%Y\"))<= ($year-$x) AND YEAR(STR_TO_DATE(date_soutenance, \"%m/%d/%Y\")) > ($year-$x) ) OR (YEAR(STR_TO_DATE(date_debut, \"%m/%d/%Y\"))<= ($year-$x) AND date_soutenance IS NULL ) ) as nombre from theses GROUP by debut");
     }
-    $these = DB::table('theses')
-        ->select(DB::raw("DATE_FORMAT(STR_TO_DATE(date_debut,'%m/%d/%Y'),'%Y') as year"), DB::raw('count(*) as count'))
-        ->groupBy('year')
-        ->get();
+
     return response()->json(["years"=>$years,
         "debuThese"=> $debuThese,
         "finThese"=> $finThese,
