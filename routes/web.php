@@ -159,7 +159,7 @@ Route::get('/statistics',function(){
         ->join('projets','projets.id','=','projet_user.projet_id')
         ->whereOr('projets.chef_id','=','users.id')
         ->select('equipes.id as id','equipes.intitule as intitule', DB::raw("count(DISTINCT  projet_user.projet_id) as count"),DB::raw('YEAR(projets.created_at) year'))
-        ->groupBy('equipes.id','year')
+        ->groupBy('equipes.id','intitule','year')
         ->get();
 
 
@@ -184,7 +184,7 @@ Route::get('/stat-bar-article',function(){
         ->join('article_user','article_user.user_id','=','users.id')
         ->join('articles','articles.id','=','article_user.article_id')
         ->select('equipes.id as id','equipes.intitule as intitule', DB::raw("count(distinct articles.id) as count"),DB::raw('YEAR(articles.created_at) year'))
-        ->groupBy('equipes.id')
+        ->groupBy('equipes.id','intitule','year')
         ->get();
 
 
@@ -201,7 +201,7 @@ Route::get('/stat-bar-stacked-article',function(){
         $years[] = $year-$x;
     }
     $countArticle = Article::select('id','type', DB::raw('count(type) as count'),'annee')
-        ->groupBy('annee','type')
+        ->groupBy('id','type','annee')
         ->orderBy('id','ASC')
         ->get();
     $type = Article::distinct('type')->pluck('type');
@@ -229,7 +229,7 @@ Route::get('/stat-pie-article',function(){
 
     $countArticle= DB::table('articles')
         ->select('id','type', DB::raw('count(type) as count'))
-        ->groupBy('type')
+        ->groupBy('id','type')
         ->orderBy('id','asc')
         ->get();
     $type = Article::distinct('type')->pluck('type');
