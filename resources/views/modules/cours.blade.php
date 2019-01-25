@@ -1,49 +1,45 @@
 
  @extends('layouts.master')
-
-@section('title','LRI | Modules')
-
-@section('header_page')
-  <span id="modId" role="{{$module->id}}"></span>
-     <h1>
-       Module
-       <small>{{$module->libelle}}</small>
-     </h1>
+    @section('title','LRI | Chapitres')
+        @section('header_page')
+     <span id="modId" role="{{$module->id}}"></span>
+      <h1>
+        Chapitres
+        <small>{{$module->libelle}}</small>
+      </h1>
      <ol class="breadcrumb">
-       <li><a href="{{url('dashboard')}}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-       <li class="active">Modules</a></li>
+       <li>
+        <a href="{{url('dashboard')}}"><i class="fa fa-dashboard"></i> Dashboard</a>
+       </li>
+       <li class="active">Cours</a></li>
        <li class="active">{{$module->libelle}}</a></li>
      </ol>
-
-@endsection
-
-@section('asidebar')
-@component('components.sidebar',['active' => 'cours']) @endcomponent
-
- @endsection
-
-@section('content')
-
-
-  <div class="row">
+        @endsection<!--Fin Section Header Page-->
+   @section('asidebar')
+      @component('components.sidebar',['active' => 'cours'])@endcomponent
+   @endsection
+   @section('content')
+   <div class="row">
      <div class="col-md-12">
        <div class="box col-xs-12">
            <div class="container" style="padding-top: 30px">
               <div class="row" style="padding-bottom: 20px">
                   <div class="box-header col-xs-12">
-                      <h3 class="box-title">Liste des cours - {{$module->libelle}}</h3>
+                      <h3 class="box-title">
+                        Liste des chapitres -    {{$module->libelle}}
+                      </h3>
                       <div class="pull-right">
                          <div class="div-action pull pull-right">
-                             <button class="btn btn-primary button1" data-toggle="modal" data-target="#addCour"> <i class="glyphicon glyphicon-plus-sign"></i>  Ajouter Cours </button>
+                             <button class="btn btn-primary button1" data-toggle="modal" data-target="#addCour"> <i class="glyphicon glyphicon-plus-sign"></i>  Ajouter Chapitre </button>
                          </div>
                       </div>
                   </div>
               </div>
             </div>
            <div class="box-body">
-            <div class="panel panel-default">
+            <div class="panel panel-primary">
               <div class="panel-heading">
-                 <div class="page-heading"><b>Cours</b></div>
+                 <div class="page-heading"><b>Chapitre</b></div>
               </div> <!-- /panel-heading -->
       <div class="panel-body">
             <div class="remove-messages"></div>  
@@ -52,32 +48,25 @@
                    <tr>              
                       <th>Libelle</th>
                       <th>Description</th>
-                      <th>Lien</th>
                       <th style="width:15%;">Options</th>
                    </tr>
                </thead>
             </table>
         </div> <!-- /panel-body -->
     </div> <!-- /panel -->  
-
-
-
-             
-           </div>
-         </div>
-     </div>
    </div>
-
-   
-
-   <div class="modal fade" id="addCour" tabindex="-1" role="dialog">
+  </div>
+</div>
+</div>
+<!-- Modal D'ajout -->
+<div class="modal fade" id="addCour" tabindex="-1" role="dialog">
    <div class="modal-dialog">
       <div class="modal-content">
-                 
-               <div class="modal-header">
+        <!-- ************ Header ********** --> 
+             <div class="modal-header">
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                  <h4 class="modal-title"><i class="fa fa-plus"></i> Ajouter Cours</h4>
-               </div>
+                  <h4 class="modal-title"><i class="fa fa-plus"></i> Ajouter Chapitre</h4>
+             </div>
       <form id="submitCoursForm" action="createCours/{{$module->id}}" method="POST" enctype="multipart/form-data">
            {{csrf_field()}}
         <div class="modal-body">
@@ -87,15 +76,11 @@
                    <input type="text" class="form-control" id="coursLib" name="coursLib">
                 </div>
                 <div class="form-group">
-                   <label for="fiche" class="control-label">Fiche:</label>
-                   <input type="file" class="form-control" id="fiche" name="fiche">
-                </div>
-                <div class="form-group">
                    <label for="joins" class="control-label">Joins:</label>
                    <input type="file" class="form-control" id="joins" name="joins[]" multiple>
                 </div>
                 <div class="form-group">
-                   <label for="pubTime" class="control-label">Publication Time:</label>
+                   <label for="pubTime" class="control-label">Temps du publication de votre chapitre:(optionel)</label>
                    <input type="datetime-local" class="form-control" id="pubTime" name="pubTime" value="05-08-2018 05:05">
                 </div>
                 <div class="form-group">
@@ -119,7 +104,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title"><i class="glyphicon glyphicon-trash"></i> Supprimer Cours</h4>
+        <h4 class="modal-title"><i class="glyphicon glyphicon-trash"></i> Supprimer Chapitre</h4>
       </div>
       <div class="modal-body" id="body-remove">
         <p>Etes vous sur ?</p>
@@ -137,25 +122,31 @@
 <div class="modal fade" id="editCoursModal" tabindex="-1" role="dialog">
   <div class="modal-dialog">
     <div class="modal-content">
-
         <div class="modal-header">
            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-           <h4 class="modal-title"><i class="fa fa-edit"></i> Editer Module</h4>
+           <h4 class="modal-title"><i class="fa fa-edit"></i> Editer Chapitre</h4>
         </div>
         <form  id="editCoursForm"  method="POST" enctype="multipart/form-data">
         {{csrf_field()}}
         <div class="modal-body" id="body-edit">
           <div id="edit-cours-messages"></div>
           <div class="edit-mod-result">
-            <div class="form-group">
+                <div class="form-group">
                    <label for="editCoursLib" class="control-label">Libelle:</label>
                    <input type="text" class="form-control" id="editCoursLib" name="editCoursLib">
                 </div>
+                <!--
                 <div class="form-group">
                    <label for="editFiche" class="control-label">Fiche:</label>
                    <input type="file" class="form-control" id="editFiche" name="editFiche">
                 </div>
-                <div class="form-group">
+              -->
+       
+              <div>
+                <label class="control-label">Liste des cours</label>
+                <ul id="modifFiches"></ul>
+              </div>
+              <div class="form-group">
                    <label for="editJoins" class="control-label">Joins:</label>
                    <input type="file" class="form-control" id="editJoins" name="editJoins[]" multiple>
                 </div>

@@ -49,7 +49,7 @@ class ModuleController extends Controller
         {
             $valid['success'] = array('success' => false, 'messages' => array());
            $valid['success'] = false;
-           $valid['messages'] = "Ajout échoué Module déja existe";
+           $valid['messages'] = "Ajout échoué Cours déja existe";
         }
 
         return response()->json($valid);
@@ -71,6 +71,6 @@ class ModuleController extends Controller
          $module->libelle = $request->input('nvModLib');
          $module->description = $request->input('nvModDesc');
          $module->save();
-         return response()->json(array('success' => true,'message' => "Module Mis à Jour"));
+         return response()->json(array('success' => true,'message' => "Cours Mis à Jour"));
     }
 }

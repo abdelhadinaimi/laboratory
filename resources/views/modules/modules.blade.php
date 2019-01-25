@@ -1,17 +1,17 @@
 
  @extends('layouts.master')
 
-@section('title','LRI | Modules')
+@section('title','LRI | Cours')
 
 @section('header_page')
 
      <h1>
-       Modules
+       Cours
        <small>Liste</small>
      </h1>
      <ol class="breadcrumb">
        <li><a href="{{url('dashboard')}}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-       <li class="active">Modules</a></li>
+       <li class="active">Cours</a></li>
      </ol>
 
 @endsection
@@ -30,19 +30,19 @@
            <div class="container" style="padding-top: 30px">
               <div class="row" style="padding-bottom: 20px">
                   <div class="box-header col-xs-12">
-                      <h3 class="box-title">Liste des modules</h3>
+                      <h3 class="box-title">Liste des cours</h3>
                       <div class="pull-right">
                          <div class="div-action pull pull-right">
-                             <button class="btn btn-primary button1" data-toggle="modal" data-target="#addModule"> <i class="glyphicon glyphicon-plus-sign"></i>  Ajouter Module </button>
+                             <button class="btn btn-primary button1" data-toggle="modal" data-target="#addModule"> <i class="glyphicon glyphicon-plus-sign"></i>  Ajouter Cours </button>
                          </div>
                       </div>
                   </div>
               </div>
             </div>
            <div class="box-body">
-            <div class="panel panel-default">
+            <div class="panel panel-primary">
               <div class="panel-heading">
-                 <div class="page-heading"><b>Modules</b></div>
+                 <div class="page-heading"><b>Cours</b></div>
               </div> <!-- /panel-heading -->
       <div class="panel-body">
             <div class="remove-messages"></div>  
@@ -84,7 +84,7 @@
                  
                <div class="modal-header">
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                  <h4 class="modal-title"><i class="fa fa-plus"></i> Ajouter Module</h4>
+                  <h4 class="modal-title"><i class="fa fa-plus"></i> Ajouter Cours</h4>
                </div>
       <form id="submitModForm" action="createModule" method="POST">
            {{csrf_field()}}
@@ -115,7 +115,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title"><i class="glyphicon glyphicon-trash"></i> Supprimer Module</h4>
+        <h4 class="modal-title"><i class="glyphicon glyphicon-trash"></i> Supprimer Cours</h4>
       </div>
       <div class="modal-body" id="body-remove">
         <p>Etes vous sur ?</p>
@@ -136,7 +136,7 @@
       <form  class="form-horizental" id="editModForm" action="editCat" method="POST">
         <div class="modal-header">
            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-           <h4 class="modal-title"><i class="fa fa-edit"></i> Editer Module</h4>
+           <h4 class="modal-title"><i class="fa fa-edit"></i> Editer Cours</h4>
         </div>
         <div class="modal-body" id="body-edit">
           <div id="edit-mod-messages"></div>

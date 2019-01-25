@@ -119,7 +119,6 @@ public function detailActual($id)
                             ->whereRaw('users.equipe_id ='.request('equipe_id').' And users.id = article_user.user_id');
                       });
                    });
-            
             /*$pubs = $pubs->join('article_user', 'article_user.article_id', '=', 'articles.id')
             ->join('users', 'users.id', '=', 'article_user.user_id')
             ->join('equipes', 'equipes.id', '=', 'users.equipe_id')
