@@ -192,6 +192,7 @@ $(function () {
                    $("#createMatBtn").button('reset');
                      if(response.success == true) {
                            manageMat.ajax.reload(null, false);
+                           manageCat.ajax.reload(null, false);
                            $("#submitMatForm")[0].reset();
                            $(".text-danger").remove();
                            $('.form-group').removeClass('has-error').removeClass('has-success');
@@ -221,6 +222,7 @@ $(function () {
                 success:function(response) {
                   $('#removeMatModal').modal('hide');
                   manageMat.ajax.reload(null, false);
+                  manageCat.ajax.reload(null, false);
                   $('.remove-messagesMat').html('<div class="alert alert-success">'+
                   '<button type="button" class="close" data-dismiss="alert">&times;</button>'+
                   '<strong><i class="glyphicon glyphicon-ok-sign"></i></strong> Suppression Effectuée</div>');

@@ -239,13 +239,9 @@
 <script src="{{ asset('labo/bower_components/jquery-slimscroll/jquery.slimscroll.min.js') }}"></script>
 <!-- FastClick -->
 <script src="{{ asset('labo/bower_components/fastclick/lib/fastclick.js') }}"></script>
-<script src="{{ asset('labo/bower_components/Chart.js/Chart.min.js') }}"></script>
+<script src="{{ asset('labo/bower_components/chart.js/Chart.min.js') }}"></script>
 <!-- AdminLTE App -->
 <script src="{{ asset('labo/dist/js/adminlte.min.js') }}"></script>
-<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="{{ asset('labo/dist/js/pages/dashboard.js') }}"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="{{ asset('labo/dist/js/demo.js') }}"></script>
 <!-- DataTables -->
 <script src="{{ asset('labo/bower_components/datatables.net/js/jquery.dataTables.min.js')}}"></script>
 <script src="{{ asset('labo/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>

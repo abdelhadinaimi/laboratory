@@ -33,7 +33,14 @@ class FrontController extends Controller{
         $projets = array();
         foreach($equipe->membres as $user){
             foreach($user->projets as $projet){
-                if(!in_array($projet,$projets)){
+                $found = false;
+                foreach($projets as $p){
+                    if($p->id == $projet->id){
+                        $found = true;
+                        break;
+                    }
+                }
+                if(!$found){
                     $projets[] = $projet;
                 }
             }
@@ -197,8 +204,18 @@ public function detailActual($id)
     public function projet($id)
     {
         $projet = Projet::find($id);
+        $contacts = $projet->contacts()->orderBy('nom')->get();
+        $partenaires = array();
+        foreach($contacts as $contact){
+            $part = $contact->partenaire;
+            if(!in_array($part,$partenaires)){
+                $partenaires[] = $part;
+            }
+        }
         return view('front.projet')->with([
             'projet' => $projet,
+            'contacts' => $contacts,
+            'partenaires' => $partenaires,
             'labo' =>Parametre::find('1')
             
 

@@ -15,20 +15,20 @@ use Illuminate\Http\UploadedFile;
 
 class ProjetController extends Controller
 {
-    
+
     public function __construct()
     {
         $this->middleware('auth');
     }
 
-	//permet de lister les articles
+    //permet de lister les articles
     public function index(){
-    	$projets = Projet::all();
+        $projets = Projet::all();
         $labo =  Parametre::find('1');
         // $membres = Projet::find($id)->users()->orderBy('name')->get();
 
-    	return view('projet.index' , ['projets' => $projets] ,['labo'=>$labo]);
-    	
+        return view('projet.index' , ['projets' => $projets] ,['labo'=>$labo]);
+
     }
 
     public function details($id)
@@ -44,32 +44,32 @@ class ProjetController extends Controller
             'contacts'=>$contacts,
             'labo'=>$labo,
         ]);;
-    } 
+    }
 
     //affichage de formulaire de creation d'articles
-	 public function create()
-     {
+    public function create()
+    {
         $labo =  Parametre::find('1');
-        
+
         if( Auth::user()->role->nom == 'admin')
-            {
-    	 	 $membres = User::all();
-             $projet = Projet::all();
-             $contacts = Contact::all(); 
-    	 	return view('projet.create', ['membres' => $membres,'contacts'=>$contacts],['labo'=>$labo]);
-            }
-             else{
-                return view('errors.403',['labo'=>$labo]);
-            }
+        {
+            $membres = User::all();
+            $projet = Projet::all();
+            $contacts = Contact::all();
+            return view('projet.create', ['membres' => $membres,'contacts'=>$contacts],['labo'=>$labo]);
+        }
+        else{
+            return view('errors.403',['labo'=>$labo]);
+        }
     }
 
 
-	 public function store(projetRequest $request){
+    public function store(projetRequest $request){
 
-	 	$projet = new Projet();
+        $projet = new Projet();
         $labo =  Parametre::find('1');
 
-	 	if($request->hasFile('detail')){
+        if($request->hasFile('detail')){
 
             $file = $request->file('detail');
             $file_name = time().'.'.$file->getClientOriginalExtension();
@@ -77,7 +77,7 @@ class ProjetController extends Controller
             $projet->detail = '/uploads/projet/'.$file_name;
         }
 
-        
+
         if($request->hasFile('photo')) {
             $file = $request->file('photo');
             $file_name = 'photo' . time() . '.' . $file->getClientOriginalExtension();
@@ -89,16 +89,16 @@ class ProjetController extends Controller
             $projet->photo = 'uploads/images/projet.png';
         }
 
-	 	$projet->intitule = $request->input('intitule');
-	 	$projet->resume = $request->input('resume');
-	 	$projet->type = $request->input('type');
-	 	$projet->partenaires = $request->input('partenaires');
-	 	$projet->lien = $request->input('lien');
+        $projet->intitule = $request->input('intitule');
+        $projet->resume = $request->input('resume');
+        $projet->type = $request->input('type');
+        $projet->partenaires = $request->input('partenaires');
+        $projet->lien = $request->input('lien');
         $projet->chef_id = $request->input('chef_id');
-	 	
 
 
-	 	$projet->save();
+
+        $projet->save();
 
         $members =  $request->input('membre');
         foreach ($members as $key => $value) {
@@ -107,51 +107,53 @@ class ProjetController extends Controller
             $projet_user->user_id = $value;
             $projet_user->save();
 
-         } 
+        }
 
-         $contacts =  $request->input('contacts');
-        foreach ($contacts as $key => $value) {
-	 		$projet_contact = new ProjetContact();
-		 	$projet_contact->projet_id = $projet->id;
-		 	$projet_contact->contact_id = $value;
-	 	    $projet_contact->save();
-         } 
-	 	return redirect('projets');
+        $contacts =  $request->input('contacts');
+        if($contacts) {
+            foreach ($contacts as $key => $value) {
+                $projet_contact = new ProjetContact();
+                $projet_contact->projet_id = $projet->id;
+                $projet_contact->contact_id = $value;
+                $projet_contact->save();
+            }
+        }
+        return redirect('projets');
 
 
-	 }
+    }
 
     //récuperer un article puis le mettre dans le formulaire
-	 public function edit($id){
+    public function edit($id){
 
-	 	$projet = Projet::find($id);
+        $projet = Projet::find($id);
         $membres = User::all();
-        $contacts = Contact::all(); 
+        $contacts = Contact::all();
         $labo =  Parametre::find('1');
 
-         $this->authorize('update', $projet);
+        $this->authorize('update', $projet);
 
-	 	return view('projet.edit')->with([
+        return view('projet.edit')->with([
             'projet' => $projet,
             'membres' => $membres,
             'contacts'=>$contacts,
             'labo'=>$labo,
         ]);;
-	 	
+
     }
 
     //modifier et inserer
     public function update(projetRequest $request , $id){
-    
-    	$projet = Projet::find($id);
+
+        $projet = Projet::find($id);
         $labo =  Parametre::find('1');
 
-    	if($request->hasFile('detail')){
+        if($request->hasFile('detail')){
 
             $file = $request->file('detail');
             $file_name = time().'.'.$file->getClientOriginalExtension();
             $file->move(public_path('/uploads/projet'),$file_name);
-	 	     $projet->detail = '/uploads/projet/'.$file_name;
+            $projet->detail = '/uploads/projet/'.$file_name;
 
         }
 
@@ -169,7 +171,7 @@ class ProjetController extends Controller
         $projet->lien = $request->input('lien');
         $projet->chef_id = $request->input('chef_id');
 
-	 	$projet->save();
+        $projet->save();
 
         $members =  $request->input('membre');
         $projet_user = ProjetUser::where('projet_id',$id);
@@ -181,10 +183,10 @@ class ProjetController extends Controller
             $projet_user->user_id = $value;
             $projet_user->save();
 
-         } 
+        }
 
         $contacts =  $request->input('contacts');
-		$projet_contacts = ProjetContact::where('projet_id',$id);
+        $projet_contacts = ProjetContact::where('projet_id',$id);
         $projet_contacts->delete();
         if($contacts){
             foreach ($contacts as $key => $value) {
@@ -195,13 +197,13 @@ class ProjetController extends Controller
             }
         }
 
-	 	return redirect('projets');
+        return redirect('projets');
 
     }
     //supprimer un article
     public function destroy($id){
 
-    	$projet = Projet::find($id);
+        $projet = Projet::find($id);
 
         $this->authorize('delete', $projet);
 
