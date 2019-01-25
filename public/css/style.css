@@ -2500,11 +2500,7 @@ blockquote {
     margin: 0 auto;
     border: 3px solid #FFF;
     border-radius: 2px; }
-  .testimonial-block a {
-    display: inline-block;
-    font-size: 24px;
-    color: #3d676e !important;
-    text-transform: capitalize; }
+
   .testimonial-block .paragraph-medium {
     margin: 15px 0; }
     .testimonial-block .paragraph-medium .fa {

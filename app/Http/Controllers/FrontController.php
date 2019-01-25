@@ -164,15 +164,15 @@ public function detailActual($id)
 
     public function index()
     {
-    	$users = DB::table('projets')
-    		   ->join('users', 'projets.chef_id', '=', 'users.id')
-               ->orderBy('chef_id', 'desc')
-               ->take(5)
-    		   ->get();
-        $latestActualite = Actualite::orderBy('id', 'desc')->take(5)->get(); 
+    	$projets = Projet::orderBy('id')->take(3)->get();
+
+        $latestActualite = Actualite::orderBy('id', 'desc')->take(3)->get();
+        $latestArticles = Article::orderBy('id')->take(3)->get(); 
+
     	return view('front.index')->with([
-            'projets' => $users,
+            'projets' => $projets,
             'latestActs' => $latestActualite,
+            'latestArticles' => $latestArticles,
             'labo' =>Parametre::find('1')
         ]);
     }
