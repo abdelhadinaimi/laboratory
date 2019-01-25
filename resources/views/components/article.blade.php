@@ -12,7 +12,7 @@
             @foreach($users as $user)
                 <h6 class="paragraph-small paragraph-black service-description">Par {{$user->name}}  {{$user->prenom}}</h6>
             @endforeach
-            <h6 style="text-align:left"><a href="#">{{$pub->titre}}</a></h6>
+            <h6 style="text-align:left"><a href="{{$pub->detail}}">{{$pub->titre}}</a></h6>
             <p class="paragraph-small paragraph-black service-description">
                 <span>{{substr($pub->resume,0,200)}}</span>
                 <?php 
@@ -22,7 +22,7 @@
                     else
                         $lien =  $pub->detail;
                  ?>
-                <a href="{{asset($lien)}}" target="_blank">(Read More)</a>
+                <a href="{{asset($lien)}}" target="_blank">(Lisez plus)</a>
             </p>
         </div>
     </div>

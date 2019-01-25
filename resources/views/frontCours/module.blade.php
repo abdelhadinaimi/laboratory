@@ -70,7 +70,7 @@
     margin: auto;
 ">
                                             <table width="100%">
-                                                <tr><td  style="border-bottom: solid;border-color: #000;border-width: thin;" align="left"><h3 style="color: #000;">{{$membre->prenom}} {{$membre->name}}  </h3></td></tr>
+                                            
                                                 <tr><td  style="border-bottom: solid;border-color: #000;border-width: thin;" align="left"><h5 style="color: #000;">Grade : {{$membre->grade}}</h5></td></tr>
                                                 <tr><td  style="border-bottom: solid;border-color: #000;border-width: thin;" align="left"><h5 style="color: #000;">Equipe de recherche : {{$membre->equipe->achronymes}}</h5></td></tr>
                                             </table>

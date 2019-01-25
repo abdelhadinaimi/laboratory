@@ -147,9 +147,7 @@ class UserController extends Controller
                 }
         $membre->equipe_id = $request->input('equipe_id');
         $membre->num_tel = $request->input('num_tel');
-       
         $membre->autorisation_public_num_tel = $request->input('autorisation_public_num_tel');
-        $membre->autorisation_public_photo = $request->input('autorisation_public_photo');
         $membre->autorisation_public_date_naiss = $request->input('autorisation_public_date_naiss');
 
         $membre->lien_rg = $request->input('lien_rg');

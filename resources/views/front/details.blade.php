@@ -6,8 +6,8 @@
    <div class="page-ttl">
         <div class="layer-stretch">
             <div class="page-ttl-container">
-                <h1>Détails actualité</h1>
-                <p><a href="/front">Home</a> &#8594; <a href="/front/actualites">Actualité</a> &#8594; <span>Détails actualité</span></p>
+                <h1>{{$actualite->titre}}</h1>
+                <p><a href="/front">Home</a> &#8594; <a href="/front/actualites">Actualité</a> &#8594; <span>{{$actualite->titre}}</span></p>
             </div>
         </div>
     </div>

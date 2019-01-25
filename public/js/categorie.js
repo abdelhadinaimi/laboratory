@@ -7,7 +7,6 @@ function editCat(idCat,libelle){
     $('#editCatName').val(libelle);
 }
 /* fin */
-    $(function () {
         
            var manageCat = $("#gererCat").DataTable({
               destroy: true,
@@ -121,4 +120,3 @@ function editCat(idCat,libelle){
         });
 
 
-     });

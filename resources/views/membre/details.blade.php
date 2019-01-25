@@ -348,7 +348,7 @@
                       </div>
                       <div class="col-md-1">
                       <div class="form-group" title="Publique?">
-                            <label class="col-md-4 control-label">
+                            <label class="col-md-4 control-label" onclick="console.log('test')">
                               <input name="autorisation_public_date_naiss" type="checkbox" class="flat-red" value="{{$membre->autorisation_public_date_naiss}}" @if($membre->autorisation_public_date_naiss) checked @endif>
                             </label> 
                            </div>
