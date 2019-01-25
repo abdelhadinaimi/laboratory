@@ -15,44 +15,36 @@
                                     <div class="theme-accordion-bdy">
                                         <div class="row service-accordian">
                    
-                                            <div class="col-lg-6">
-                                            	<h3><strong>{{$cour->description}}</strong></h3>
-                                            	<?php 
-                                            		$fileName = explode("/", $cour->fiche);
-                                            		$fileName = end($fileName);
-                                            	 ?>
-                                            	<div class="row">
-                                            		<div class="col-md-2"><a href="{{URL::asset($cour->fiche)}}" target="_blank"><i class="fa fa-eye"></i>afficher</a> </div>
-                                            		<div class="col-md-2"><a href="download/{{$fileName}}">
-                                            			<i class="fa fa-download"></i>Telecharger</a></div>
-                                            	</div>
-                                            	<br>
-                                            	
-                                                
-                                            </div>
-                                            <div class="col-lg-6">
-                                            	<h3><strong>fichier joints:</strong></h3>
-                                            	<?php 
-                                            		$joinFiles = explode(" ", $cour->joins);
-                                            		$lenthJoins = sizeof($joinFiles)-1;
-                                            		array_pop($joinFiles);
-                                            	 ?>
-                                            	
+                                            <div class="container" >
+                                            	<h3 align="center"><strong>{{$cour->description}}</strong></h3><br>
+                                                <?php
+                                                $joinFiles =  explode(",",$cour->joins);
+                                                $lenthJoins = sizeof($joinFiles)-1;
+                                                //array_pop($joinFiles);
+                                                ?>
+                                                <ul class="theme-list" >
+
                                                 @foreach ($joinFiles as $joinFile)
-                                                <?php 
-                                            		$fileName = explode("/", $joinFile);
-                                            		$fileName = end($fileName);
-                                            	 ?>
-                                            	 {{$fileName}}
-                                            	 <div class="row">
-                                            		<div class="col-md-4"><a href="{{URL::asset($joinFile)}}" target="_blank"><i class="fa fa-eye"></i>afficher</a> </div>
-                                            		<div class="col-md-4"><a href="download/{{$fileName}}">
-                                            			<i class="fa fa-download"></i>Telecharger</a></div>
-                                            	</div>
+                                                    <?php
+                                                    $fileName = explode("/", $joinFile);
+                                                    $fileName = end($fileName);
+                                                    ?>
+
+                                                        <li>
+                                                            <div class="row">
+
+                                                                <div class="col-lg-4"><i class="fa fa-arrow-right color-green"></i>{{$fileName}}</div>
+                                                            <div class="col-lg-4"><a href="{{URL::asset($joinFile)}}" target="_blank"><i class="fa fa-eye"></i>afficher</a> </div>
+                                                            <div class="col-lg-4"><a href="download/{{$fileName}}">
+                                                                    <i class="fa fa-download"></i>Telecharger</a></div>
+                                                            </div></li>
+
 
                                                 @endforeach
+                                                </ul>
                                                 
                                             </div>
+                                        </div>
                                             <p class="pull-right" style="color: #25c1d0;">publie à {{$cour->pub_time}}</p>
                                         </div>
                                     </div>
