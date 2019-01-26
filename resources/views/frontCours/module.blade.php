@@ -51,7 +51,7 @@
                             <a class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list" href="#list-home" role="tab" aria-controls="home">A propos</a>
                             <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="profile">Articles</a>
                             <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" href="#list-messages" role="tab" aria-controls="messages">Projects</a>
-                            <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#list-settings" role="tab" aria-controls="settings">Module</a>
+                            <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#list-settings" role="tab" aria-controls="settings">Modules</a>
                         </div>
                     </div>
                     <div class="col-8">
@@ -148,7 +148,7 @@
                                                     <p class="card-text">{{$module->description}}</p>
                                                 </div>
                                                 <div class="card-footer">
-                                                    <a href="{{url('/frontCours/module/'.$module->id)}}" class="btn btn-primary">cours</a>
+                                                    <a href="{{url('/frontCours/module/'.$module->id)}}" class="btn btn-primary">Chapitres</a>
                                                 </div>
                                             </div>
                                         </div>

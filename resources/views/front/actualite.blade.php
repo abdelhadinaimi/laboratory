@@ -33,23 +33,8 @@
                         </div>
                     </form>
                     </div>
-                    <div class="theme-material-card">
-                        <div class="sub-ttl">Post récent</div>
-                        @foreach($latestActs as $latestAct)
-                        <a href="{{url('/front/actualites/'.$latestAct->id).'/details'}}" class="row blog-recent">
-                            <div class="col-4 blog-recent-img">
-                                <img class="img-responsive img-thumbnail" src="{{asset($latestAct->photo)}}" alt="">
-                            </div>
-                            <div class="col-8 blog-recent-post">
-                                <h4>{{$latestAct->titre}}</h4>
-                                <p>{{$latestAct->created_at->day}} {{date("F", mktime(0, 0, 0, $latestAct->created_at->month, 1))}} {{$latestAct->created_at->year}}</p>
-                            </div>
-                        </a>
-                        @endforeach
-                    </div>
-                </div>
             </div>
         </div>
     </div><!-- End Blog List Section -->
-
+    </div>
 @endsection
