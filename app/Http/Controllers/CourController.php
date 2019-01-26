@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use App\Cour;
 use App\Parametre;
 use App\Module;
+use Illuminate\Support\Facades\DB;
+
 class CourController extends Controller
 {
     public function index($id)
@@ -56,26 +58,42 @@ class CourController extends Controller
             $cour->fiche = '/uploads/cours/'.$cour->libelle;
         }*/
         if($request->hasFile('joins')){
+            $maxId = DB::table('cours')->select([DB::raw('MAX(id) AS id')])->get()->first()->id;
+            $maxId++;
+            if($maxId < 10){
+               $maxId.='a';
+            }
             $files = $request->file('joins');
+            $i = 0;
             foreach ($files as $file) {
-              $file_name = $file->getClientOriginalName();
-            $file->move(public_path('/uploads/cours/'),$file_name);
-            $fls.='/uploads/cours/'.$file_name.',';
+                $file_name = $file->getClientOriginalName();
+                $file->move(public_path('/uploads/cours/'),$maxId.$file_name);
+                $fls.='/uploads/cours/'.$maxId.$file_name.',';
             }
             $fls = substr($fls,0,-1);
             $cour->joins = $fls;
         }
-          if($request->input('pubTime'))
-              $cour->pub_time = $request->input('pubTime');
-          else
-              $cour->pub_time = date('Y-m-d H:i:s');
-           $cour->save();
-           $valid['success'] = array('success' => false, 'messages' => array());
-           $valid['success'] = true;
-           $valid['messages'] = "Ajout réussi";
+        if($request->input('pubTime')){
+            $cour->pub_time = $request->input('pubTime');
+        }
+        else{
+            $cour->pub_time = date('Y-m-d H:i:s');
+        }
+        $cour->save();
+        $valid['success'] = array('success' => false, 'messages' => array());
+        $valid['success'] = true;
+        $valid['messages'] = "Ajout réussi";
         return response()->json($valid);
     }
     function deleteCour($idCours){
+      $cour = Cour::find($idCours);
+      if($cour->joins != "0")
+      {
+        $joins = explode(",",$cour->joins);
+      for ($i=0; $i < sizeof($joins); $i++) { 
+        unlink(substr($joins[$i],1));
+      }
+    }
       Cour::destroy($idCours);
       $valid['success'] = array('success' => false, 'messages' => array());
       $valid['success'] = true;
@@ -103,10 +121,16 @@ class CourController extends Controller
         }*/
         if($request->hasFile('editJoins')){
             $files = $request->file('editJoins');
+
             foreach ($files as $file) {
+              $maxId = DB::table('cours')->select([DB::raw('MAX(id) AS id')])->get()->first()->id;
+            $maxId++;
+            if($maxId < 10)
+               $maxId.='a';
             $file_name = $file->getClientOriginalName();
-            $file->move(public_path('/uploads/cours/'),$file_name);
-            $fls.='/uploads/cours/'.$file_name.',';
+            $file->move(public_path('/uploads/cours/'),$maxId.$file_name);
+            
+            $fls.='/uploads/cours/'.$maxId.$file_name.',';
             }
             if($fls != "")
                {
@@ -126,6 +150,8 @@ class CourController extends Controller
       $joins = explode(",",$cour->joins);
       if(sizeof($joins) == 0)
           {
+            if($cour->joins != "" || $cour->joins != "0")
+               unlink(substr($cour->joins,1));
             $cour->joins = "";
             $cour->save();
           }
@@ -134,7 +160,9 @@ class CourController extends Controller
       $nvChaine = "";
       for ($i=0; $i < sizeof($joins) ; $i++) { 
         if($i != $ficheSupp)
-            $nvChaine .= $joins[$i].",";      
+            $nvChaine .= $joins[$i].",";  
+        else
+            unlink(substr($joins[$i],1));    
       }
        $nvChaine = substr($nvChaine,0,-1);
       $cour->joins = $nvChaine;

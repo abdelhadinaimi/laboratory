@@ -66,15 +66,12 @@
                       <a href="{{ url('actualites/'.$actualite->id.'/details')}}" class="btn btn-info">
                         <i class="fa fa-eye"></i>
                       </a>
-                      @if(Auth::user()->role->nom == 'admin' )
+               
                       <a href="{{ url('actualites/'.$actualite->id.'/edit')}}" class="btn btn-default">
                         <i class="fa fa-edit"></i>
                       </a>
-                      @endif
-                       @if(Auth::user()->role->nom != 'membre' )
-                      <!-- <button type="submit" class="btn btn-danger">
-                        <i class="fa fa-trash-o"></i>
-                      </button> -->
+                
+                      
 
                        <a href="#supprimer{{ $actualite->id }}Modal" role="button" class="btn btn-danger" data-toggle="modal"><i class="fa fa-trash-o"></i></a>
                       <div class="modal fade" id="supprimer{{ $actualite->id }}Modal" tabindex="-1" role="dialog" aria-labelledby="supprimer{{ $actualite->id }}ModalLabel" aria-hidden="true">
@@ -100,7 +97,6 @@
                               </div>
                           </div>
                       </div>
-                      @endif
                       </form>
                     </div>
                     </td>

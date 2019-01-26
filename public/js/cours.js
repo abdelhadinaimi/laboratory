@@ -166,8 +166,7 @@ var manageCours;//Data Table
     var fichesJoins = joins.split(",");
     for (var i = 0; i < fichesJoins.length; i++) {
        if(fichesJoins[i] != "0")
-          ficheAajoute += "<li><a href='"+fichesJoins[i]+"' target='_blank'>"+fichesJoins[i].substr(15)+"</a>&nbsp;<a href='#' id='"+i+"' onclick='delFiche(this)'>supprimer</a></li>";
-       else
+          ficheAajoute += "<li><a href='"+fichesJoins[i]+"' target='_blank'>"+fichesJoins[i].substr(17)+"</a>&nbsp;<a href='#' id='"+i+"' onclick='delFiche(this)'>supprimer</a></li>";       else
           ficheAajoute = "<p style='color:red'>La liste est vide</p>";
     }
     //Modification des champs

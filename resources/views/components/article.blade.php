@@ -7,8 +7,6 @@
             <img src="{{asset('uploads/types/'.$type.'.jpeg')}}" alt="">
         </div>
         <div class="theme-block-data service-block-data">
-            <div class="service-icon"><img src="{{asset($photo)}}" alt="" class="fa"></div>
-            <br><br>
             @foreach($users as $user)
                 <h6 class="paragraph-small paragraph-black service-description">Par {{$user->name}}  {{$user->prenom}}</h6>
             @endforeach

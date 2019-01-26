@@ -181,7 +181,7 @@ public function detailActual($id)
         $term = $req->input('term');
         $actualites = Actualite::orderBy('id', 'desc')->get();  
         $actualites = Actualite::orderBy('id', 'desc')->search($term)->paginate(4);
-        $latestActualite = Actualite::orderBy('id', 'desc')->take(5)->get();
+        $latestActualite = [Actualite::find('5'),Actualite::find('9'),Actualite::find('7')];
         return view('front.actualite')->with([
             'actualites' => $actualites,
             'latestActs'  => $latestActualite,
