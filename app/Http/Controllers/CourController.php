@@ -74,7 +74,7 @@ class CourController extends Controller
             $cour->joins = $fls;
         }
         if($request->input('pubTime')){
-            $cour->pub_time = $request->input('pubTime');
+            $cour->pub_time =  date_format(date_create($request->input('pubTime')),"Y-m-d H:i:s");
         }
         else{
             $cour->pub_time = date('Y-m-d H:i:s');
@@ -108,7 +108,7 @@ class CourController extends Controller
          $cour->libelle = $request->input('editCoursLib');
          $cour->description = $request->input('editCoursDesc');
          if($request->input('editPubTime') != null)
-            $cour->pub_time = $request->input('editPubTime');
+            $cour->pub_time =  date_format(date_create($request->input('editPubTime')),"Y-m-d H:i:s");
         $fls = "";
         /*if($request->hasFile('editFiche')){
             $file = $request->file('editFiche');
