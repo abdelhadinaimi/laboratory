@@ -49,7 +49,7 @@
               <div class="timeline-item">
 
                 <h3 class="timeline-header"><a >Intitulé</a></h3>
-
+                <div role="{{$equipe->id}}" id="equipId"></div>
                 <div class="timeline-body">
                   {{$equipe->intitule}} 
                 </div>
@@ -194,12 +194,40 @@
                   <!-- /.users-list -->
                 </div>
                 <!-- /.box-body -->
+
               </div>
               <!--/.box -->
+
             </div>
 
             <!-- timeLine start -->
     
 
+    </div>
+    <div class="box box-success">
+        <div class="box-header with-border">
+            <h3 class="box-title">Article</h3>
+
+            <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+            </div>
+        </div>
+        <div class="box-body">
+            <div class="chart">
+                <canvas id="statPieArticle-id" style="height:230px"></canvas>
+            </div>
+        </div>
+        <div class="box-body">
+            <div class="chart">
+                <canvas id="barArticle-stacked-id" style="height:230px"></canvas>
+            </div>
+        </div>
+        <div class="box-body">
+            <div class="chart">
+                <canvas id="chartThese-id" style="height:230px"></canvas>
+            </div>
+        </div>
     </div>
 @endsection
