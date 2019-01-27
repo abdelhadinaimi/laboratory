@@ -4,7 +4,11 @@
 
 @section('content')
         <div class="theme-material-card">
-        	<div class="sub-ttl font-28">Listes des cours de {{$module->libelle}}</div>
+                    <div class="row">
+                        <a href="javascript:history.back()" style="border-style: solid;" class="btn btn-outline-info m-2"> <i style="font-size: 1.5em;" class="fa fa-arrow-circle-left"></i> Retour</a>
+                    </div>
+
+        	<div class="sub-ttl font-28">Listes des chapitres {{$module->libelle}}</div>
                             <div class="theme-accordion-container">
                             	@foreach ($cours as $cour) 
                                 <div class="theme-accordion">
@@ -33,23 +37,24 @@
                                                         <li>
                                                             <div class="row">
 
-                                                                <div class="col-lg-4"><i class="fa fa-arrow-right color-green"></i>{{$fileName}}</div>
-                                                            <div class="col-lg-4"><a href="{{URL::asset($joinFile)}}" target="_blank"><i class="fa fa-eye"></i>afficher</a> </div>
+                                                                <div class="col-lg-4"><i class="fa fa-arrow-right color-green"></i>{{substr($fileName,2)}}</div>
+                                                            <div class="col-lg-4"><a href="{{URL::asset($joinFile)}}" target="_blank"><i class="fa fa-eye"></i>Afficher</a> </div>
                                                             <div class="col-lg-4"><a href="download/{{$fileName}}">
-                                                                    <i class="fa fa-download"></i>Telecharger</a></div>
+                                                                    <i class="fa fa-download"></i>Télécharger</a></div>
                                                             </div></li>
 
 
                                                 @endforeach
                                                 </ul>
-                                                
+                                                <p class="pull-right" style="color: #25c1d0;">publié le {{$cour->pub_time}}</p>
                                             </div>
                                         </div>
-                                            <p class="pull-right" style="color: #25c1d0;">publie à {{$cour->pub_time}}</p>
+                                            
                                         </div>
                                     </div>
+                                                                     @endforeach
+
                                 </div>
-                                 @endforeach
                             </div>
                         </div>
 

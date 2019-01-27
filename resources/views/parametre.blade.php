@@ -102,6 +102,12 @@
                               <input name="logo" type="file" accept="image/*">
                              </div>
                      </div>
+                     <div class="form-group" style="padding-top: 20px">
+                              <label class="col-md-4 control-label">Présentation Accueil</label>  
+                              <div  class="col-md-8 inputGroupContainer">
+                              <textarea rows="10" name="preAccueil" style="width: 50%">{{$labo->presentationIndex}}</textarea>
+                             </div>
+                     </div>
                     <div class="form-group">
                       <label class="col-md-3 control-label">Présentation</label>
                       <div class="col-md-9 inputGroupContainer @if($errors->get('content')) has-error @endif" >
