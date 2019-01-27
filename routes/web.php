@@ -261,7 +261,62 @@ Route::get('/statThese',function(){
         "these"=>$these
     ]);
 });
+Route::get('/statThese/{id}',function($id){
 
+    $year = date('Y');
+    $these = array();
+    $years = array();
+    $debuThese = array();
+    $finThese = array();
+    for ($x = 10; $x>-1 ; $x--)
+    {
+        $years[] = $year-$x;
+
+        $finThese[] = DB::select("select COUNT(theses.id) as count FROM theses ,users WHERE users.id=theses.user_id and 
+users.equipe_id= $id and DATE_FORMAT(STR_TO_DATE(theses.date_soutenance,'%m/%d/%Y'),'%Y')=($year-$x)");
+            //DB::table('theses')->where(DB::raw("DATE_FORMAT(STR_TO_DATE(date_soutenance,'%m/%d/%Y'),'%Y')"),$year-$x)->count();
+        $these []= DB::select("SELECT YEAR(STR_TO_DATE(date_debut, \"%m/%d/%Y\")) as debut,YEAR(STR_TO_DATE(date_soutenance, \"%m/%d/%Y\")) as fin,(SELECT count(*) from theses,users where users.equipe_id=$id and users.id = theses.user_id  and((YEAR(STR_TO_DATE(date_debut, \"%m/%d/%Y\"))<= ($year-$x) AND YEAR(STR_TO_DATE(date_soutenance, \"%m/%d/%Y\")) > ($year-$x) ) OR (YEAR(STR_TO_DATE(date_debut, \"%m/%d/%Y\"))<= ($year-$x) AND date_soutenance IS NULL ) )) as nombre from theses  GROUP by debut");
+    }
+
+    return response()->json(["years"=>$years,
+        "debuThese"=> $debuThese,
+        "finThese"=> $finThese,
+        "these"=>$these
+    ]);
+});
+Route::get('/stat-bar-stacked-article/{id}',function($id){
+    $year = date('Y');
+    $years = array();
+    for ($x = 10; $x>-1 ; $x--)
+    {
+        $years[] = $year-$x;
+    }
+    $countArticle = DB::select("select articles.id ,articles.type  , COUNT(articles.type) as count,articles.annee  FROM articles,article_user,users
+ WHERE users.equipe_id =$id and article_user.user_id = users.id and 
+ articles.id= article_user.article_id GROUP BY articles.type,articles.annee
+");
+
+    $type = Article::distinct('type')->pluck('type');
+
+    return response()->json(["countArticle"=>$countArticle,
+        "years"=> $years
+    ]);
+});
+
+Route::get('/stat-pie-article/{id}',function($id){
+
+    $countArticle= DB::table('articles')
+        ->join('article_user','article_user.article_id','=','articles.id')
+        ->join('users', 'article_user.user_id', '=', 'users.id')
+        ->where('users.equipe_id','=',$id)
+        ->select('articles.type', DB::raw('count(articles.type) as count'))
+        ->groupBy('articles.type')
+        ->get();
+
+
+    return response()->json(["countArticle"=>$countArticle
+    ]);
+});
 Route::any('/search',function(){
 
     $labo = Parametre::find('1');

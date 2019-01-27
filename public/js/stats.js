@@ -565,3 +565,274 @@ $(function () {
         });
     }
 });
+//stat-bar-stacked-article par equipe
+$(function () {
+    if($('#barArticle-stacked-id')[0]){
+        var id = $("#equipId").attr("role");
+
+        $.ajax({
+
+            type: "get",
+            url: "/stat-bar-stacked-article/"+id,
+            success: function(data) {
+
+
+                var d = new Date(),test=[];
+                var n = d.getFullYear()-10;
+                var countRevu = new Array();
+                var typeArticle = ["revue", "chapitre", "article long", "article court", "poster", "livre","brevet"];
+
+                for(var i=0;i<7;i++){
+
+                    countRevu[i]=new Array(0,0,0,0,0,0,0,0,0,0,0);
+                }
+                for(var i=0; i<7; i++){
+                    for(var j=0; j<data.countArticle.length; j++){
+                        if (data.countArticle[j].type == typeArticle[i]) {
+                            countRevu[i][data.countArticle[j].annee-n]+=data.countArticle[j].count;
+                        }
+                    }
+                }
+
+                var colorBar = [],
+                    borderBar = [];
+
+                for (var i = 0; i < 7; i++) {
+                    var c = dynamicColors();
+                    colorBar.push(dynamicColors());
+                    borderBar.push(dynamicColors());
+
+                }
+                var options = {
+                    maintainAspectRatio: false,
+                    responsive: true,
+                    title: {
+                        display: true,
+                        text: 'Article publiés par type'
+                    },
+                    tooltips: {
+                        mode: 'index',
+                        intersect: true
+                    },
+                    scales: {
+                        xAxes: [{ stacked: true }],
+                        yAxes: [{
+                            stacked: true,
+                            ticks : {
+                                beginAtZero: true,
+                                callback: function (value) { if (Number.isInteger(value)) { return value; } },
+                                stepSize: 1
+                            } }]
+                    }
+                };
+                var data = {
+                    labels : data.years,
+                    datasets : [
+                        {
+                            label : "Revue",
+                            data : countRevu[0],
+                            backgroundColor : colorBar[0],
+                            borderColor : borderBar[0],
+                            borderWidth : 1
+                        },
+                        {
+                            label : "Chapitre",
+                            data : countRevu[1],
+                            backgroundColor : colorBar[1],
+                            borderColor : borderBar[1],
+                            borderWidth : 1
+                        },
+                        {
+                            label : "Article long",
+                            data : countRevu[2],
+                            backgroundColor : colorBar[2],
+                            borderColor : borderBar[2],
+                            borderWidth : 1
+                        },
+                        {
+                            label : "Article court",
+                            data : countRevu[3],
+                            backgroundColor : colorBar[3],
+                            borderColor : borderBar[3],
+                            borderWidth : 1
+                        },
+                        {
+                            label : "Poster",
+                            data : countRevu[4],
+                            backgroundColor : colorBar[4],
+                            borderColor : borderBar[4],
+                            borderWidth : 1
+                        },
+                        {
+                            label : "Livre",
+                            data : countRevu[5],
+                            backgroundColor : colorBar[5],
+                            borderColor : borderBar[5],
+                            borderWidth : 1
+                        },
+                        {
+                            label : "Brevet",
+                            data : countRevu[6],
+                            backgroundColor : colorBar[6],
+                            borderColor : borderBar[6],
+                            borderWidth : 1
+                        }
+                    ]
+                };
+
+                var ctx = $('#barArticle-stacked-id');
+                var chart = new Chart( ctx[0], {
+                    type : "bar",
+                    data : data,
+                    options : options
+                });
+            },
+            error: function(data) {
+                console.log(data);
+            },
+        });
+    }
+});
+$(function () {
+    if($('#chartThese-id')[0]){
+        var id = $("#equipId").attr("role");
+        $.ajax({
+
+            type: "get",
+            url: "/statThese/"+id,
+            success: function(data) {
+
+                var colorDebut = [],
+                    colorFin = [],
+                    borderDebut = [],
+                    borderFin = [],
+                    theseEncour = []
+                    finThese = [];
+                for (var i = 0; i <=10; i++) {
+                    colorDebut.push("rgba(10, 20, 30, 0.3)");
+                    colorFin.push("rgba(50, 150, 250, 0.3)");
+                    borderDebut.push("rgba(10, 20, 30, 1)");
+                    borderFin.push("rgba(50, 150, 250, 1)");
+                    theseEncour.push(data.these[i][0].nombre);
+                    finThese.push(data.finThese[i][0].count)
+                }
+                var options = {
+                    maintainAspectRatio: false,
+                    title : {
+                        display : true,
+                        position : "top",
+                        text : "Thèses en cours/soutenus",
+                        fontSize : 18,
+                        fontColor : "#111"
+                    },
+                    legend : {
+                        display : true,
+                        position : "bottom"
+                    },
+                    scales : {
+                        yAxes : [{
+                            ticks : {
+                                beginAtZero: true,
+                                callback: function (value) { if (Number.isInteger(value)) { return value; } },
+                                stepSize: 1
+                            }
+                        }]
+                    }
+                };
+
+                var data = {
+                    labels : data.years,
+                    datasets : [
+                        {
+                            label : "These en cours",
+                            data : theseEncour,
+                            backgroundColor : colorDebut,
+                            borderColor : borderDebut,
+                            borderWidth : 1
+                        },
+                        {
+                            label : "Fin these",
+                            data : finThese,
+                            backgroundColor : colorFin,
+                            borderColor : borderFin,
+                            borderWidth : 1
+                        }
+                    ]
+                };
+
+                var ctx = $('#chartThese-id');
+                var chart = new Chart( ctx[0], {
+                    type : "bar",
+                    data : data,
+                    options : options
+                });
+            },
+            error: function(data) {
+                console.log(data);
+            },
+        });
+    }
+});
+
+$(document).ready(function() {
+    var id = $("#equipId").attr("role");
+    if($('#statPieArticle-id')[0]){
+        $.ajax({
+
+            type: "get",
+            url: "/stat-pie-article/"+id,
+            success: function(data) {
+                var coloR = [];
+                var nombres = [];
+                var type =[];
+                for (var i=0;i<data.countArticle.length;i++) {
+                    coloR.push(dynamicColors());
+
+                }
+
+                for (var i = 0; i <data.countArticle.length; i++) {
+                    nombres.push(data["countArticle"][i].count);
+                    type.push(data["countArticle"][i].type);
+                }
+                var options = {
+                    maintainAspectRatio: false,
+                    title : {
+                        display : true,
+                        position : "top",
+                        text : "Articles publiées",
+                        fontSize : 18,
+                        fontColor : "#111"
+                    },
+                    legend : {
+                        display : true,
+                        position : "bottom"
+                    }
+                };
+                var chartData = {
+
+                    labels: type,
+                    datasets: [{
+                        label: 'nombres ',
+                        //strokeColor:backGround,
+
+                        backgroundColor: coloR,
+
+                        borderColor: 'rgba(200, 200, 200, 0.75)',
+                        //hoverBackgroundColor: 'rgba(200, 200, 200, 1)',
+                        hoverBorderColor: 'rgba(200, 200, 200, 1)',
+                        data: nombres
+                    }]
+                };
+                var ctx = $('#statPieArticle-id');
+                var barGraph = new Chart(ctx[0], {
+                    type: 'pie',
+                    data: chartData,
+                    options: options
+                });
+            },
+            error: function(data) {
+                console.log(data);
+            },
+        });
+    }
+});
