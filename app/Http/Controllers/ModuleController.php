@@ -13,7 +13,7 @@ class ModuleController extends Controller
     public function index()
     {
     	$labo = Parametre::find('1');
-        $modules = Module::all();
+        $modules = Module::where("user_id",Auth::user()->id)->get();
         return view('modules.modules')->with([
             'labo' => $labo,'modules' => $modules,
         ]);;
@@ -30,7 +30,7 @@ class ModuleController extends Controller
            $module->save();
            $fragment = '<div class="col-lg-4 col-xs-6" id="'.$module->id.'">
                 <div class="small-box bg-green">
-                    <i class="glyphicon glyphicon-edit editMod" role="'.$module->id.'" data-toggle="modal" data-target="#editModModal"></i> <i class="glyphicon glyphicon-trash removeMod" role="'.$module->id.'" data-toggle="modal" data-target="#removeModModal"></i>
+                    <i style="padding-top:10px;padding-left:10px;font-size:16px" class="glyphicon glyphicon-edit editMod" role="'.$module->id.'" data-toggle="modal" data-target="#editModModal"></i> <i style="padding-top:10px;padding-left:10px;font-size:16px" class="glyphicon glyphicon-trash removeMod" role="'.$module->id.'" data-toggle="modal" data-target="#removeModModal"></i>
                    <div class="inner">
                       <h3>'.$module->libelle.'<sup style="font-size: 20px"></sup></h3>
                       <p>'.$module->description.'</p>
