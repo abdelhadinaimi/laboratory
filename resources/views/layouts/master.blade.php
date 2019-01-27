@@ -57,7 +57,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 
   <!-- include summernote css/js -->
-<link href="{{ asset('css/summernote.css')}}" rel="stylesheet">
+<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.css" rel="stylesheet">
 
 
 </head>
@@ -257,7 +257,7 @@
 <!-- iCheck 1.0.1 -->
 <script src="{{ asset('labo/plugins/iCheck/icheck.min.js')}}"></script>
 
-<script src="{{ asset('js/summernote.js')}}"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.js"></script>
 
 <script type="text/javascript" src="{{asset('js/stats.js')}}"></script>
 @yield('scripts')
