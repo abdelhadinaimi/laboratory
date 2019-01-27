@@ -55,8 +55,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/routes/web.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="481">
-              <caret line="312" column="30" selection-start-line="312" selection-start-column="30" selection-end-line="312" selection-end-column="30" />
+            <state relative-caret-position="624">
+              <caret line="311" column="46" selection-start-line="311" selection-start-column="46" selection-end-line="311" selection-end-column="46" />
             </state>
           </provider>
         </entry>
@@ -87,7 +87,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/js/stats.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="400">
+            <state relative-caret-position="1063">
               <caret line="781" column="24" selection-start-line="781" selection-start-column="24" selection-end-line="781" selection-end-column="24" />
             </state>
           </provider>
@@ -413,12 +413,12 @@
       <workItem from="1548411665277" duration="214000" />
       <workItem from="1548435860514" duration="26000" />
       <workItem from="1548435906983" duration="4224000" />
-      <workItem from="1548603949092" duration="2375000" />
+      <workItem from="1548603949092" duration="2959000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="15843000" />
+    <option name="totallyTimeSpent" value="16427000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -682,13 +682,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/stats.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="781" column="24" selection-start-line="781" selection-start-column="24" selection-end-line="781" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/dashboard.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-497">
@@ -696,10 +689,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/stats.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1063">
+          <caret line="781" column="24" selection-start-line="781" selection-start-column="24" selection-end-line="781" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/routes/web.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="481">
-          <caret line="312" column="30" selection-start-line="312" selection-start-column="30" selection-end-line="312" selection-end-column="30" />
+        <state relative-caret-position="624">
+          <caret line="311" column="46" selection-start-line="311" selection-start-column="46" selection-end-line="311" selection-end-column="46" />
         </state>
       </provider>
     </entry>
