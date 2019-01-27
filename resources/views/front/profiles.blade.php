@@ -71,9 +71,9 @@
                             <label class="mdl-textfield__label " for="profile-email">Email</label>
                         </div>
                         <div class="row" >
-                        <a href="/frontCours/{{$membre->id}}" style="border-radius:20px;cursor: pointer;width: 170px;height: 50px;line-height: 3;" class="btn btn-outline-info m-2" title="Researchgate"><b>Lien personnel</b></a>
-                   <a href="{{$membre->lien_linkedin}}" style="border-radius:20px;cursor: pointer;width: 170px;height: 50px;line-height: 3;" class="btn btn-outline-info m-2" title="Researchgate"><b>LinkedIn</b><img src="{{asset('/linkedin.png')}}"></a>
-                    <a href="{{$membre->lien_rg}}" style="border-radius:20px;cursor: pointer;width: 170px;height: 50px;line-height: 3;" class="btn btn-outline-info m-2" title="Researchgate"><b>ResearchGate</b> <img src="{{asset('/rg.png')}}"> </a>
+                        <a target="_blank" href="/frontCours/{{$membre->id}}" style="border-radius:20px;cursor: pointer;width: 170px;height: 50px;line-height: 3;" class="btn btn-outline-info m-2" title="Researchgate"><b>Lien personnel</b></a>
+                   <a target="_blank" href="{{$membre->lien_linkedin}}" style="border-radius:20px;cursor: pointer;width: 170px;height: 50px;line-height: 3;" class="btn btn-outline-info m-2" title="Researchgate"><b>LinkedIn</b><img src="{{asset('/linkedin.png')}}"></a>
+                    <a target="_blank" href="{{$membre->lien_rg}}" style="border-radius:20px;cursor: pointer;width: 170px;height: 50px;line-height: 3;" class="btn btn-outline-info m-2" title="Researchgate"><b>ResearchGate</b> <img src="{{asset('/rg.png')}}"> </a>
                 </div>
 
 
@@ -152,7 +152,7 @@
                         </div>
                       <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label form-input-icon">
                             <i class="fa fa-user"></i>
-                            <input class="mdl-textfield__input" readonly="true" value="{{$membre->these->coencadreur_int}}@if($membre->these->coencadreur_ext) ,{{$membre->these->coencadreur_ext}}@endif" type="text" >
+                            <input class="mdl-textfield__input" readonly="true" value="@if($membre->these->coencadreur_int){{$membre->these->coencadreur_int}},@endif @if($membre->these->coencadreur_ext){{$membre->these->coencadreur_ext}}@endif" type="text" >
                             <label class="mdl-textfield__label" for="profile-mobile">Co-encadreurs</label>
                         </div>
                     

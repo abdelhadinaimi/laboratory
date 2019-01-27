@@ -10,8 +10,8 @@
             <ul class="slides">
                 <li>
                     <div class="slider-info">
-                        <h2>Bienvenue au LRIT</h2>
-                        <p>Le laboratoire de Recherche en Informatique de Tlemcen (LRIT), agréé en Novembre 2014, est un laboratoire de recherche en informatique se consacrant à la modélisation et la résolution de problèmes fondamentaux motivés par les applications, ainsi qu'à la mise en œuvre et la validation des solutions au travers de partenariats académiques comme les laboratoires de Génie biomédical, de Télécommunications et d’Automatique.</p>
+                        <h2>Bienvenue au {{$labo->nom}}</h2>
+                        <p><b>{{$labo->presentationIndex}}</b></p>
                     </div>
                     <img src="{{ asset('uploads/indexWall.jpg')}}" alt="" />
                     <div class="slider-button slider-appointment">

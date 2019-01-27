@@ -16,7 +16,7 @@ class CreateCoursTable extends Migration
         Schema::create('cours', function (Blueprint $table) {
             $table->increments('id');
             $table->string('libelle',30);
-            $table->string('joins',100)->nullable();
+            $table->mediumText('joins')->nullable();
             $table->string('description',45)->nullable();
             $table->dateTime('pub_time');
             $table->integer('mod_id')->unsigned();

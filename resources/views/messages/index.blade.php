@@ -58,8 +58,8 @@
                    <td>{{$message->created_at}}</td>
                    <td>
                      <div class="btn-group">
-                        <a role="button" class="btn btn-info" data-target="#afficherModal" data-toggle="modal"><i class="fa fa-eye"></i></a>
-                        <div class="modal fade" id="afficherModal" tabindex="-1" role="dialog" aria-hidden="true">
+                        <a href="#show{{$message->id}}" class="btn btn-info"  data-toggle="modal"><i class="fa fa-eye"></i></a>
+                        <div class="modal fade" id="show{{$message->id}}" id="afficherModal" tabindex="-1" role="dialog" aria-labelledby="show{{$message->id}}" aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">

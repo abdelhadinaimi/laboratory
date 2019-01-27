@@ -44,6 +44,7 @@ class ParametreController extends Controller
         $labo->adresse = $request->input('adresse');
         $labo->email = $request->input('email');
         $labo->lienMap = $request->input('map');
+        $labo->presentationIndex = $request->input('preAccueil');
         $labo->presentation = $request->input('presentation');
         $labo->save();
 
