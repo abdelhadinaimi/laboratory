@@ -310,7 +310,7 @@ Route::get('/stat-pie-article/{id}',function($id){
         ->join('users', 'article_user.user_id', '=', 'users.id')
         ->where('users.equipe_id','=',$id)
         ->select('articles.type',"articles.id", DB::raw('count(distinct articles.type) as count'))
-        ->groupBy('articles.id')
+        ->groupBy('articles.id','articles.type')
         ->get();
 
 

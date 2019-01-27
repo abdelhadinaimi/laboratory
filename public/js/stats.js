@@ -783,16 +783,16 @@ $(document).ready(function() {
             url: "/stat-pie-article/"+id,
             success: function(data) {
                 var coloR = [];
-                var nombres = [];
-                var type =[];
+                var nombres = [0,0,0,0,0,0,0];
+                var type = ["revue", "chapitre", "article long", "article court", "poster", "livre","brevet"];
                 for (var i=0;i<data.countArticle.length;i++) {
                     coloR.push(dynamicColors());
 
                 }
-
+                
                 for (var i = 0; i <data.countArticle.length; i++) {
-                    nombres.push(data["countArticle"][i].count);
-                    type.push(data["countArticle"][i].type);
+                    var d = data["countArticle"][i];
+                    nombres[type.findIndex(e => e === d.type)]++;
                 }
                 var options = {
                     maintainAspectRatio: false,
