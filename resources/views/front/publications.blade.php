@@ -35,7 +35,7 @@
                                             <?php $nbrPub = $compteur->cpt ?>
                                           @endif
                                       @endforeach
-                            <li><a class="{{request('equipe_id') == $equipe->id ? 'active':''}}" href="{{ route('publications',[ 'equipe_id' => $equipe->id , 'type' => request('type') , 'from' => request('from') ,'to' => request('to') ]) }}">{{$equipe->intitule}}</a><span>({{$nbrPub}})</span></li>
+                            <li><a class="{{request('equipe_id') == $equipe->id ? 'active':''}} eqp" href="{{ route('publications',[ 'equipe_id' => $equipe->id , 'type' => request('type') , 'from' => request('from') ,'to' => request('to') ]) }}">{{$equipe->intitule}}</a><span class="nbr" role="{{$nbrPub}}">({{$nbrPub}})</span></li>
                             <?php $nbrPub = 0; ?>
                             @endforeach
                         </ul>
@@ -54,11 +54,22 @@
                     <div class="theme-material-card">
                         <div class="sub-ttl">Filtrer Par Année</div>
                           <div style="text-align: center;">
-                             <p><span id="from"><?php echo request()->has('from') ? request('from') : "2000"  ?></span>-<span id="to"><?php echo request()->has('to') ? request('to') : "2018"  ?></span></p>
+                             <p><span id="from"><?php echo request()->has('from') ? request('from') : "2000"  ?></span>-<span id="to"><?php echo request()->has('to') ? request('to') : date("Y")  ?></span></p>
                              <div id="slider-range" class="price-filter-range"></div>
                              <button class="mdl-button mdl-js-button mdl-button--colored mdl-js-ripple-effect mdl-button--raised button button-primary button-lg makeSlider">Rechercher</button>
                           </div>
                     </div>
+
+                    <div class="theme-material-card">
+                        <div class="sub-ttl">Statistique</div>
+                          <div class="col-md-12">
+                             <canvas id="statFront" style="height:230px"></canvas>
+                          </div>
+                          <div class="col-md-12">
+                             <canvas id="statFrontEq" style="height:230px"></canvas>
+                          </div>
+                    </div>
+
                  </div>
                 <div class="col-lg-8 text-center">
                     <div class="row">
@@ -89,6 +100,126 @@
 <script src="{{ asset('js/jquery-ui.min.js')}}" type="text/javascript"></script>
 <script src="{{ asset('slider/price_slider.js')}}"></script>
 <script src="{{ asset('js/front.js')}}"></script>
+<script src="{{ asset('labo/bower_components/chart.js/Chart.min.js') }}"></script>
+<script type="text/javascript">
+  //mon modification!
+  var i = 0;
+  var tab = ["#A01238","#008D2F","#F29400","#111010","#E61E76","#49B2E0","#4EB280"];
+  var dynamicColors = function() {
+    
+    return tab[(i++) % 7];
+};
+     
+        $.ajax({
+            type: "get",
+            url: "/statFront",
+            success: function(data) {
+                var coloR = [];
+                var nombres = [];
+                var type =[];
+                for (var i=0;i<data.countArticle.length;i++) {
+                    coloR.push(dynamicColors());
+               }
+
+                for (var i = 0; i <data.countArticle.length; i++) {
+                    nombres.push(data["countArticle"][i].count);
+                    type.push(data["countArticle"][i].type);
+                }
+                var options = {
+                    maintainAspectRatio: false,
+                    title : {
+                        display : true,
+                        position : "top",
+                        text : "Articles publiées",
+                        fontSize : 18,
+                        fontColor : "#376273"
+                    },
+                    legend : {
+                        display : true,
+                        position : "bottom"
+                    }
+                };
+                var chartData = {
+
+                    labels: type,
+                    datasets: [{
+                        label: 'nombres ',
+                        //strokeColor:backGround,
+
+                        backgroundColor: coloR,
+
+                        borderColor: 'rgba(200, 200, 200, 0.75)',
+                        //hoverBackgroundColor: 'rgba(200, 200, 200, 1)',
+                        hoverBorderColor: 'rgba(200, 200, 200, 1)',
+                        data: nombres
+                    }]
+                };
+                var ctx = $('#statFront');
+                var barGraph = new Chart(ctx[0], {
+                    type: 'pie',
+                    data: chartData,
+                    options: options
+                });
+            },
+            error: function(data) {
+                console.log(data);
+            },
+        });
+              //2éme diagramme statistique
+               var roles = $('.nbr');
+      var articlesParEquipes = [];
+      for (var i = 0; i < roles.length; i++) {
+        articlesParEquipes[i] = roles[i].getAttribute("role");
+      }
+      var cls = $('.eqp');
+      var equipesAr = [];
+      for (var i = 0; i < cls.length; i++) {
+        equipesAr[i] = cls[i].text;
+      }
+                var coloR = [];
+                var nombres = [];
+                var type =[];
+                for (var i=0; i< articlesParEquipes.length;i++) {
+                    coloR.push(dynamicColors());
+               }
+                var options = {
+                    maintainAspectRatio: false,
+                    title : {
+                        display : true,
+                        position : "top",
+                        text : "Articles publiées Par Equipe",
+                        fontSize : 18,
+                        fontColor : "#376273"
+                    },
+                    legend : {
+                        display : true,
+                        position : "bottom"
+                    }
+                };
+                var chartData = {
+
+                    labels: equipesAr,
+                    datasets: [{
+                        label: 'nombres ',
+                        //strokeColor:backGround,
+
+                        backgroundColor: coloR,
+
+                        borderColor: 'rgba(200, 200, 200, 0.75)',
+                        //hoverBackgroundColor: 'rgba(200, 200, 200, 1)',
+                        hoverBorderColor: 'rgba(200, 200, 200, 1)',
+                        data: articlesParEquipes
+                    }]
+                };
+                var ctx = $('#statFrontEq');
+                var barGraph = new Chart(ctx[0], {
+                    type: 'pie',
+                    data: chartData,
+                    options: options
+                });
+
+//mon modification
+</script>
 <script type="text/javascript">
       $( "#sidebar-search" ).autocomplete({
       source : "{{url('autocomplete')}}",

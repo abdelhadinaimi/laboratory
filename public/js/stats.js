@@ -72,6 +72,7 @@ $(function () {
 });
 
 $(function () {
+
     if($('#barChart')[0]){
         $.ajax({
             type:'get',
@@ -281,6 +282,7 @@ $(document).ready(function() {
         });
     }
 });
+
 $(function () {
     if($('#chartThese')[0]){
         $.ajax({

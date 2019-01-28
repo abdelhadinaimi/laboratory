@@ -237,6 +237,20 @@ Route::get('/stat-pie-article',function(){
     return response()->json(["countArticle"=>$countArticle
     ]);
 });
+
+//Stat pie
+Route::get('/statFront',function(){
+
+    $countArticle= DB::table('articles')
+        ->select('type', DB::raw('count(type) as count'))
+        ->groupBy('type')
+        ->get();
+
+
+    return response()->json(["countArticle"=>$countArticle
+    ]);
+});
+
 //Stat These
 Route::get('/statThese',function(){
 
