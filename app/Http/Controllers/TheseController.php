@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\These;
 use App\Parametre;
 use App\User;
+use App\Contact;
 use Auth;
 use App\Http\Requests\theseRequest;
 use Illuminate\Http\UploadedFile;
@@ -43,8 +44,10 @@ class TheseController extends Controller
                 $membres = User::all();
                 $these = These::all();
                 $labo = Parametre::find('1');
-                return view('these.ajouter',['membres'=>$membres], ['labo'=>$labo]);
+                $contacts = Contact::all();
+                return view('these.ajouter',['membres'=>$membres],['contacts' => $contacts],['labo'=>$labo]);
             }
+            
             else{
                 $labo = Parametre::find('1');
                 return view('errors.403', ['labo'=>$labo]);
@@ -92,14 +95,15 @@ class TheseController extends Controller
             {
         $these = These::find($id);
         $membres = User::all();
-
+        $contacts = Contact::all();
         $this->authorize('update', $these);
 
         return view('these.edit')->with([ 
             'these' => $these,
             'membres'=>$membres,
             'labo'=>$labo,
-        ]);;
+            'contacts' => $contacts
+        ]);
             }
     }
     public function update(theseRequest $request , $id)

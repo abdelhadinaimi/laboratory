@@ -73,7 +73,7 @@ border-style: solid;
                     <div class="tbl-row">
                         <!-- Start Header Logo Section -->
                         <div class="tbl-cell hdr-logo">
-                            <a href="/front"><img src="{{asset('logo.jpeg')}}" alt=""></a>
+                            <a href="/front"><img src="{{asset($labo->logo)}}" alt=""></a>
                         </div><!-- End Header Logo Section -->
                         <div class="tbl-cell hdr-menu">
                             <!-- Start Menu Section -->
