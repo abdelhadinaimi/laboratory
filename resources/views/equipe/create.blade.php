@@ -18,6 +18,7 @@
 
 @section('asidebar')
   @component('components.sidebar',['active' => 'Equipes']) @endcomponent
+  @endsection
 @section('content')
 
     <div class="row">

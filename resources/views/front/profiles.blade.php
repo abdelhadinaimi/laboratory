@@ -71,7 +71,7 @@
                             <label class="mdl-textfield__label " for="profile-email">Email</label>
                         </div>
                         <div class="row" >
-                        <a target="_blank" href="/frontCours/{{$membre->id}}" style="border-radius:20px;cursor: pointer;width: 170px;height: 50px;line-height: 3;" class="btn btn-outline-info m-2" title="Researchgate"><b>Lien personnel</b></a>
+                        <a target="_blank" href="/frontCours/{{$membre->id}}" style="border-radius:20px;cursor: pointer;width: 170px;height: 50px;line-height: 3;" class="btn btn-outline-info m-2" title="Lien personnel"><b>Lien personnel</b></a>
                    <a target="_blank" href="{{$membre->lien_linkedin}}" style="border-radius:20px;cursor: pointer;width: 170px;height: 50px;line-height: 3;" class="btn btn-outline-info m-2" title="Researchgate"><b>LinkedIn</b><img src="{{asset('/linkedin.png')}}"></a>
                     <a target="_blank" href="{{$membre->lien_rg}}" style="border-radius:20px;cursor: pointer;width: 170px;height: 50px;line-height: 3;" class="btn btn-outline-info m-2" title="Researchgate"><b>ResearchGate</b> <img src="{{asset('/rg.png')}}"> </a>
                 </div>
